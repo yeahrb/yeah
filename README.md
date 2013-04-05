@@ -1,6 +1,6 @@
 not art
 =======
-Pragmatic Ruby video game library
+Ruby video game library for pragmatists
 
 Ruby is a good fit for game development for the following reasons:
 * Ruby is optimized for developer happiness, and this library will be, too. A happy developer is a productive developer, which translates into more games made and with greater passion.
