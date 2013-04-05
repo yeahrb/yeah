@@ -15,7 +15,7 @@ So here's the plan
 ------------------
 
 ### Vector
-Vectors represent position, distance, velocity, etc. For the sake of simplicity, all vectors are three dimensional and missing components default to 0. As far as I can tell, one can treat a three-dimensional vector with a 0 third component as a two-dimensional vector, so this isn't problematic for 2D game development. Vectors have method aliases for various synonyms and contexts.
+`Vector`s represent position, distance, velocity, etc. For the sake of simplicity, all `Vector`s are three dimensional and missing components default to 0. As far as I can tell, one can treat a three-dimensional vector with a 0 third component as a two-dimensional vector, so this isn't problematic for 2D game development. `Vector`s have method aliases for various synonyms and contexts.
 
 ```ruby
 Vector[] #=> Vector[0, 0, 0]
