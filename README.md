@@ -23,7 +23,7 @@ v1 = Vector[2, 4, 16] #=> Vector[2, 4, 16]
 v1[0] #=> 2
 v1.height #=> 4
 v1.z #=> 16
-v2 = Vector[3, 4] #=> Vector[3, 4, 0]
+v2 = Vector[1.5, 2] * 2 #=> Vector[3, 4, 0]
 v2.norm #=> 5
 v2.magnitude #=> 5
 v2.length #=> 5
