@@ -32,7 +32,42 @@ v2.speed #=> 5
 ```
 
 ### Entity
-...
+`Entity` instances are objects that behave in the context of a `Game` instance. Each one has a `Vector` `position`, a `Vector` `size`, and may have a `visual` of various types. `Entity` has an `update` instance method which is continuously called by its `Game` instance, and various other methods. `Entity` is meant to be subclassed.
+
+```ruby
+class Paddle < Entity
+  def initialize(x: 0, y: 0, game: $game)
+    super(x, y, game) # set up position and add self to to Game instance
+    @visual = Image("gfx/paddle.png")
+    @size = @visual.size
+    @speed = 5
+    @velocity = Vector[]
+  end
+
+  def update
+    @velocity.reset # same as `@velocity = Vector[0, 0, 0]`
+
+    if press? :left || press? :a # if the left arrow key or A key is pressed...
+      @velocity.x -= @speed # increase @velocity to the left
+    end
+    
+    if press? :right || press? :d # if right arrow or D is pressed...
+      @velocity.x += @speed # increase @velocity to the right
+    end
+
+    if touch? Wall # if next to or intersecting a Wall...
+      unintersect Wall # fancy function to unintersect from any Wall
+      @velocity.reset # all of our previous button pressing was for naught
+    end
+
+    @position += @velocity # move (or perhaps not)
+  end
+end
+
+p = Paddle.new(20, 30) #=> Paddle at (20, 30, 0) in $game
+p.position #=> (20, 30, 0)
+p.y #=> 20 # method alias!
+```
 
 ### Map
 Maps are Ruby hashes that can be parsed from JSON. Upon loading a map into a `Game` instance, the game looks for an `entities` key with a value of a hash with keys that correspond to `Entity` subclass names. Each of these keys have a value that is an array of up to 3 numeric elements or an array of said arrays. These numeric arrays represent coordinates at which to instantiate said `Entity` subclasses. Maps can also contain arbitrary data.
@@ -40,15 +75,15 @@ Maps are Ruby hashes that can be parsed from JSON. Upon loading a map into a `Ga
 ```ruby
 level4 = {
   entities: {
-    Teal: [10, 10], # Will instantiate `Entity` subclass `Teal` at (10, 10, 0)
-    Behemoth: [ # Will instantiate `Behemoth` at three different coordinates
+    Teal: [10, 10], # instantiate Entity subclass Teal at (10, 10, 0)
+    Behemoth: [ # instantiate Behemoth at three different coordinates
       [50, 10],
       [100, 10],
       [150, 10]
     ]
   },
-  name: "Level 4", # Arbitrary data
-  time_limit: 300 # This too
+  name: "Level 4", # arbitrary data
+  time_limit: 300 # this too
 }
 ```
 
