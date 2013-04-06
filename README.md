@@ -32,7 +32,7 @@ v2.speed #=> 5
 ```
 
 ### Entity
-`Entity` instances are objects that behave in the context of a `Game` instance. Each one has a `Vector` `position`, a `Vector` `size`, and may have a `visual` of various types. `Entity` has an `update` instance method which is continuously called by its `Game` instance, and various other methods. `Entity` is meant to be subclassed.
+`Entity` instances are objects that behave in the context of a `Game` instance. Each one has a `Vector` `position`, a `Vector` `size`, and may have a `visual` of various types. `Entity` has an `update` instance method which is continuously called by its `Game` instance, and various other methods. `Entity` is meant to be built upon.
 
 ```ruby
 class Paddle < Entity
