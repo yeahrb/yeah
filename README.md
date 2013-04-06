@@ -37,7 +37,7 @@ v2.speed #=> 5
 ```ruby
 class Paddle < Entity
   def initialize(x: 0, y: 0, game: $game)
-    super(x, y, game) # set up position and add self to to Game instance
+    super(x, y, game) # set up position and add self to Game instance
     @visual = Image("gfx/paddle.png")
     @size = @visual.size
     @speed = 5
@@ -65,8 +65,8 @@ class Paddle < Entity
 end
 
 p = Paddle.new(20, 30) #=> Paddle at (20, 30, 0) in $game
-p.position #=> (20, 30, 0)
-p.y #=> 20 # method alias!
+p.position #=> Vector[20, 30, 0]
+p.y #=> 30 # method alias!
 ```
 
 ### Map
