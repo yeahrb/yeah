@@ -34,8 +34,23 @@ v2.speed #=> 5
 ### Entity
 ...
 
-### Game
-...
-
 ### Map
+Maps are Ruby hashes that can be parsed from JSON. Upon loading a map, the game will look for an `entities` key with a value of a hash containing keys that correspond to `Entity` subclass names, and each of these keys will have a value that is an array of up to 3 `Numeric` elements or an array of said arrays, which represent coordinates at which to instantiate said `Entity` subclasses. Maps can also contain arbitrary data.
+
+```ruby
+level4 = {
+  entities: {
+    Teal: [10, 10], # Will instantiate `Entity` subclass `Teal` at (10, 10, 0)
+    Behemoth: [ # Will instantiate `Behemoth` at three different coordinates
+      [50, 10],
+      [100, 10],
+      [150, 10]
+    ]
+  },
+  name: "Level 4", # Arbitrary data
+  time_limit: 300 # This too
+}
+```
+
+### Game
 ...
