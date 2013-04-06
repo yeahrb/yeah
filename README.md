@@ -35,7 +35,7 @@ v2.speed #=> 5
 ...
 
 ### Map
-Maps are Ruby hashes that can be parsed from JSON. Upon loading a map, the game will look for an `entities` key with a value of a hash containing keys that correspond to `Entity` subclass names, and each of these keys will have a value that is an array of up to 3 `Numeric` elements or an array of said arrays, which represent coordinates at which to instantiate said `Entity` subclasses. Maps can also contain arbitrary data.
+Maps are Ruby hashes that can be parsed from JSON. Upon loading a map into a `Game` instance, the game looks for an `entities` key with a value of a hash with keys that correspond to `Entity` subclass names. Each of these keys have a value that is an array of up to 3 numeric elements or an array of said arrays. These numeric arrays represent coordinates at which to instantiate said `Entity` subclasses. Maps can also contain arbitrary data.
 
 ```ruby
 level4 = {
