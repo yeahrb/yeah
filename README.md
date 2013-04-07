@@ -88,7 +88,7 @@ level4 = {
 ```
 
 ### Game
-A `Game` instance holds `Entity` instances in an `entities` array and runs their update loops each frame. Assigning a map to `map` replaces `entities` with an array of new `Entity` instances according to the map.
+A `Game` instance holds `Entity` instances in an `entities` array and runs their `update` methods on each frame. Assigning a map to `map` replaces `entities` with an array of new instances according to the map.
 
 ```ruby
 g = Game.new #=> Game
