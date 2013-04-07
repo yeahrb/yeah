@@ -32,13 +32,13 @@ v2.speed #=> 5
 ```
 
 ### Entity
-`Entity` instances are objects that behave in the context of a `Game` instance. Each one has a `Vector` `position`, a `Vector` `size`, and may have a `visual` of various types. `Entity` has an `update` instance method which is continuously called by its `Game` instance, and various helper methods. `Entity` is meant to be built upon.
+`Entity` instances are objects that behave in the context of a `Game` instance. Each one has a `Vector` `position`, and may have a `Visual` `visual` and `Vector` `size`. An `Entity` instance has an `update` method which is continuously called by its `Game` instance, and also various helper methods. `Entity` is meant to be built upon.
 
 ```ruby
 class Paddle < Entity
   def initialize(*args)
     super(*args) # set up position and add self to Game instance
-    @visual = Image("gfx/paddle.png")
+    @visual = Image.new("gfx/paddle.png")
     @speed = 5
     @velocity = Vector[]
   end
