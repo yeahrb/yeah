@@ -97,4 +97,6 @@ Paddle.new(g) #=> Paddle at (0, 0, 0) in g
 g.entities #=> [Paddle]
 g.map = level4
 g.entities #=> [Teal, Behemoth, Behemoth, Behemoth]
+Paddle.new #=> Paddle at (0, 0, 0) in $game
+$game.entities #=> [Paddle]
 ```
