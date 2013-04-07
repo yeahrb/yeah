@@ -36,8 +36,8 @@ v2.speed #=> 5
 
 ```ruby
 class Paddle < Entity
-  def initialize(x: 0, y: 0, game: $game)
-    super(x, y, game) # set up position and add self to Game instance
+  def initialize(*args)
+    super(*args) # set up position and add self to Game instance
     @visual = Image("gfx/paddle.png")
     @size = @visual.size
     @speed = 5
@@ -88,4 +88,13 @@ level4 = {
 ```
 
 ### Game
-...
+A `Game` instance holds `Entity` instances in an `entities` array and runs their update loops each frame. Assigning a map to `map` replaces `entities` with an array of new `Entity` instances according to the map.
+
+```ruby
+g = Game.new #=> Game
+g.entities #=> []
+Paddle.new(g) #=> Paddle at (0, 0, 0) in g
+g.entities #=> [Paddle]
+g.map = level4
+g.entities #=> [Teal, Behemoth, Behemoth, Behemoth]
+```
