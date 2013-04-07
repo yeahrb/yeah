@@ -64,7 +64,8 @@ class Paddle < Entity
   end
 end
 
-p = Paddle.new(20, 30) #=> Paddle at (20, 30, 0) in $game
+g = Game.new
+p = Paddle.new(20, 30, g) #=> Paddle at (20, 30, 0) in g
 p.position #=> Vector[20, 30, 0]
 p.y #=> 30 # method alias!
 ```
@@ -88,7 +89,7 @@ level4 = {
 ```
 
 ### Game
-A `Game` instance holds `Entity` instances in an `entities` array and runs their `update` methods on each frame. Assigning a map to `map` replaces `entities` with an array of new instances according to the map. A `Game` instance can be accessed globally through `$game`, and this is where `Entity` instances go by default.
+A `Game` instance holds `Entity` instances in an `entities` array and runs their `update` methods on each frame. Assigning a map to `map` replaces `entities` with an array of new instances according to the map. 
 
 ```ruby
 g = Game.new #=> Game
@@ -97,6 +98,4 @@ Paddle.new(g) #=> Paddle at (0, 0, 0) in g
 g.entities #=> [Paddle]
 g.map = level4
 g.entities #=> [Teal, Behemoth, Behemoth, Behemoth]
-Paddle.new #=> Paddle at (0, 0, 0) in $game
-$game.entities #=> [Paddle]
 ```
