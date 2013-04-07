@@ -39,7 +39,6 @@ class Paddle < Entity
   def initialize(*args)
     super(*args) # set up position and add self to Game instance
     @visual = Image("gfx/paddle.png")
-    @size = @visual.size
     @speed = 5
     @velocity = Vector[]
   end
