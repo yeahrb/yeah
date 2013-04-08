@@ -1,6 +1,6 @@
-not art
-=======
-Ruby video game framework for pragmatists
+Yeah
+====
+The positive video game framework
 
 Ruby is a good fit for game development for the following reasons:
 * Ruby is optimized for developer happiness, and this framework is, too. A happy developer is a productive developer, which translates into more games made and with greater passion.
