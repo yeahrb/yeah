@@ -44,7 +44,7 @@ class Paddle < Entity
   end
 
   def update
-    @velocity.reset # same as `@velocity = Vector[0, 0, 0]`
+    @velocity.reset! # same as `@velocity = Vector[0, 0, 0]`
 
     if pressing? :left || pressing? :a # if the left arrow key or A key is pressed...
       @velocity.x -= @speed # increase @velocity to the left
@@ -55,8 +55,8 @@ class Paddle < Entity
     end
 
     if touching? Wall # if next to or intersecting a Wall...
-      unintersect Wall # fancy function to unintersect from any Wall
-      @velocity.reset # all of our previous button pressing was for naught
+      unintersect! Wall # fancy function to unintersect from any Wall
+      @velocity.reset! # all of our previous button pressing was for naught
     end
 
     @position += @velocity # move (or perhaps not)
