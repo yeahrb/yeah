@@ -37,7 +37,7 @@ v2.speed #=> 5
 ```ruby
 class Paddle < Entity
   def initialize(*args)
-    super(*args) # set up position and add self to Game instance
+    super(*args) # attach to Game instance and set up position
     @visual = Image.new("gfx/paddle.png")
     @speed = 5
     @velocity = Vector[]
@@ -46,15 +46,15 @@ class Paddle < Entity
   def update
     @velocity.reset # same as `@velocity = Vector[0, 0, 0]`
 
-    if press? :left || press? :a # if the left arrow key or A key is pressed...
+    if pressing? :left || pressing? :a # if the left arrow key or A key is pressed...
       @velocity.x -= @speed # increase @velocity to the left
     end
     
-    if press? :right || press? :d # if right arrow or D is pressed...
+    if pressing? :right || pressing? :d # if right arrow or D is pressed...
       @velocity.x += @speed # increase @velocity to the right
     end
 
-    if touch? Wall # if next to or intersecting a Wall...
+    if touching? Wall # if next to or intersecting a Wall...
       unintersect Wall # fancy function to unintersect from any Wall
       @velocity.reset # all of our previous button pressing was for naught
     end
@@ -64,7 +64,7 @@ class Paddle < Entity
 end
 
 g = Game.new
-p = Paddle.new(20, 30, g) #=> Paddle at (20, 30, 0) in g
+p = Paddle.new(g, 20, 30) #=> Paddle at (20, 30, 0) in g
 p.position #=> Vector[20, 30, 0]
 p.y #=> 30 # method alias!
 ```
