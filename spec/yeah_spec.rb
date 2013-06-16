@@ -5,9 +5,9 @@ describe Yeah do
     Yeah.should be_instance_of Module
   end
 
-  describe '::Version' do
-    it "is a String" do
-      Yeah::Version.should be_instance_of String
-    end
+  describe '::VERSION' do
+    subject { Yeah::VERSION }
+
+    it { should be_instance_of String }
   end
 end
