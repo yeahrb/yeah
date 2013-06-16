@@ -15,7 +15,7 @@ So here's the plan
 ------------------
 
 ### Vector
-`Vector` instances represent position, distance, velocity, etc. For the sake of simplicity, all `Vector` instances are three-dimensional and missing components default to 0. As far as I can tell, one can treat a three-dimensional vector with a 0 third component as a two-dimensional vector, so this isn't problematic for 2D game development. `Vector` has method aliases for various synonyms and contexts.
+`Vector` instances represent position, distance, velocity, etc. For the sake of simplicity, all `Vector` instances are three-dimensional and missing components default to 0. This is not problematic for 2D game development because one can treat a three-dimensional vector with a third component of 0 as a two-dimensional vector in practice. `Vector` has method aliases for various synonyms and contexts.
 
 ```ruby
 Vector[] #=> Vector[0, 0, 0]
@@ -32,7 +32,7 @@ v2.speed #=> 5
 ```
 
 ### Entity
-`Entity` instances are objects that behave in the context of a `Game` instance. Each one has a `Vector` `position`, and may have a `Visual` `visual` and `Vector` `size`. An `Entity` instance has an `update` method which is continuously called by its `Game` instance, and also various helper methods. `Entity` is meant to be built upon.
+`Entity` instances are objects that behave in the context of a `Game` instance. Each has a `Vector` `position`, and may have a `Vector` `size` and `Visual` `visual`. An `Entity` instance has an `update` method which is continuously called by its `Game` instance. `Entity` is meant to be built upon.
 
 ```ruby
 class Paddle < Entity
@@ -44,27 +44,26 @@ class Paddle < Entity
   end
 
   def update
-    @velocity.reset! # same as `@velocity = Vector[0, 0, 0]`
+    @velocity.reset # same as `@velocity = Vector[0, 0, 0]`
 
     if pressing? :left || pressing? :a # if the left arrow key or A key is pressed...
       @velocity.x -= @speed # increase @velocity to the left
     end
-    
+
     if pressing? :right || pressing? :d # if right arrow or D is pressed...
       @velocity.x += @speed # increase @velocity to the right
     end
 
     if touching? Wall # if next to or intersecting a Wall...
-      unintersect! Wall # fancy function to unintersect from any Wall
-      @velocity.reset! # all of our previous button pressing was for naught
+      unintersect Wall # fancy function to unintersect from any Wall
+      @velocity.reset # all of our previous button pressing was for naught
     end
 
     @position += @velocity # move (or perhaps not)
   end
 end
 
-g = Game.new
-p = Paddle.new(g, 20, 30) #=> Paddle at (20, 30, 0) in g
+p = Paddle.new(20, 30) #=> Paddle at (20, 30, 0)
 p.position #=> Vector[20, 30, 0]
 p.y #=> 30 # method alias!
 ```
@@ -88,12 +87,12 @@ level4 = {
 ```
 
 ### Game
-A `Game` instance holds `Entity` instances in an `entities` array and runs their `update` methods on each frame. Assigning a map to `map` replaces `entities` with an array of new instances according to the map. 
+A `Game` instance holds `Entity` instances in an `entities` array and runs their `update` methods on each frame. Assigning a map to `map` replaces `entities` with an array of new instances according to the map.
 
 ```ruby
 g = Game.new #=> Game
 g.entities #=> []
-Paddle.new(g) #=> Paddle at (0, 0, 0) in g
+g.entities << Paddle.new #=> [Paddle]
 g.entities #=> [Paddle]
 g.map = level4
 g.entities #=> [Teal, Behemoth, Behemoth, Behemoth]
