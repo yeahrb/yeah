@@ -19,6 +19,28 @@ describe Yeah::Vector do
       vector = Yeah::Vector[4, 5, 6]
       vector.components.should eql [4, 5, 6]
     end
+
+    it "with parameters 8, 9 instantiates with components of [8, 9, 0]" do
+      vector = Yeah::Vector[8, 9]
+      vector.components.should eql [8, 9, 0]
+    end
+
+    it "with parameter 7 instantiates with components of [7, 0, 0]" do
+      vector = Yeah::Vector[7]
+      vector.components.should eql [7, 0, 0]
+    end
+
+    it "with parameters 7, 8, 9, 10 raises an ArgumentError with a message "\
+       "mentioning 'too many arguments'" do
+      expect { Yeah::Vector[7, 8, 9, 10] }.
+        to raise_error ArgumentError, /too many arguments/
+    end
+
+    it "with parameter *[8]*8 raises an ArgumentError with a message "\
+       "mentioning 'too many arguments'" do
+      expect { Yeah::Vector[*[8]*8] }.
+        to raise_error ArgumentError, /too many arguments/
+    end
   end
 
   describe '#components' do
