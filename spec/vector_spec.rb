@@ -27,6 +27,6 @@ describe Yeah::Vector do
 
     it { should be_instance_of Array }
     it { should have(3).elements }
-    it { subject.all? { |c| c.should be_kind_of Numeric } }
+    it { subject.each { |c| c.should be_kind_of Numeric } }
   end
 end
