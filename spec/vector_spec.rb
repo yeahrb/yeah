@@ -15,15 +15,8 @@ describe Yeah::Vector do
       it { method.call(8, 9).components.should eql [8, 9, 0] }
       it { method.call(7).components.should eql [7, 0, 0] }
 
-      it "with 4 parameters raises an ArgumentError with a message "\
-         "mentioning 'too many arguments'" do
+      it "complains with 4 arguments" do
         expect { method.call(7, 8, 9, 10) }.
-          to raise_error ArgumentError, /too many arguments/
-      end
-
-      it "with 8 parameters raises an ArgumentError with a message "\
-         "mentioning 'too many arguments'" do
-        expect { method.call(*[8]*8) }.
           to raise_error ArgumentError, /too many arguments/
       end
     end
@@ -34,11 +27,6 @@ describe Yeah::Vector do
 
     it { should be_instance_of Array }
     it { should have(3).elements }
-
-    it "has Numeric elements" do
-      subject.each do |component|
-        component.should be_a Numeric
-      end
-    end
+    it { subject.all? { |c| c.should be_kind_of Numeric } }
   end
 end
