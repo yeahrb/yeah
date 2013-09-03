@@ -23,11 +23,11 @@ describe Yeah::Vector do
   end
 
   describe '#components' do
-    subject { Yeah::Vector.new.components }
+    subject(:components) { Yeah::Vector.new.components }
 
     it { should be_instance_of Array }
     it { should have(3).elements }
-    it { subject.each { |c| c.should be_kind_of Numeric } }
+    it { components.each { |c| c.should be_kind_of Numeric } }
   end
 
   describe '#[]' do
