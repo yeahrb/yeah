@@ -19,4 +19,9 @@ class Yeah::Vector
   def [](index)
     @components[index]
   end
+
+  def x
+    @components[0]
+  end
+  alias_method :width, :x
 end
