@@ -24,4 +24,14 @@ class Yeah::Vector
     @components[0]
   end
   alias_method :width, :x
+
+  def y
+    @components[1]
+  end
+  alias_method :height, :y
+
+  def z
+    @components[2]
+  end
+  alias_method :depth, :z
 end

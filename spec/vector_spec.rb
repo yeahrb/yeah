@@ -38,12 +38,19 @@ describe Yeah::Vector do
     it { vector[2].should eq 6 }
   end
 
-  [:x, :width].each do |method_name|
-    describe "##{method_name}" do
-      let(:vector) { Yeah::Vector[4, 5, 6] }
-      subject(:method) { vector.method(method_name) }
+  [
+    [:x, :width],
+    [:y, :height],
+    [:z, :depth]
+  ].each_with_index do |method_set, i|
+    let(:vector) { Yeah::Vector[4, 5, 6] }
 
-      it { method.call.should eq vector[0] }
+    method_set.each do |method_name|
+      describe "##{method_name}" do
+        subject(:method) { vector.method(method_name) }
+
+        it { method.call.should eq vector[i] }
+      end
     end
   end
 end
