@@ -15,4 +15,8 @@ class Yeah::Vector
   def components
     @components
   end
+
+  def [](index)
+    @components[index]
+  end
 end

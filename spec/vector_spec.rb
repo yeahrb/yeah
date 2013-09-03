@@ -29,4 +29,12 @@ describe Yeah::Vector do
     it { should have(3).elements }
     it { subject.each { |c| c.should be_kind_of Numeric } }
   end
+
+  describe '#[]' do
+    subject(:vector) { Yeah::Vector[4, 5, 6] }
+
+    it { vector[0].should eq 4 }
+    it { vector[1].should eq 5 }
+    it { vector[2].should eq 6 }
+  end
 end
