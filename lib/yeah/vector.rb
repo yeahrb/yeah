@@ -34,23 +34,51 @@ class Yeah::Vector
   end
 
   def +(addend)
-    components = @components.zip(addend.components).map { |c| c.reduce(:+) }
-    Yeah::Vector[*components]
+    case addend
+    when self.class
+      comp_addends = addend.components
+    when Numeric
+      comp_addends = [addend] * 3
+    end
+    components = @components.zip(comp_addends).map { |c| c.reduce(:+) }
+
+    self.class[*components]
   end
 
   def -(subtrahend)
-    components = @components.zip(subtrahend.components).map { |c| c.reduce(:-)}
-    Yeah::Vector[*components]
+    case subtrahend
+    when self.class
+      comp_subtrahends = subtrahend.components
+    when Numeric
+      comp_subtrahends = [subtrahend] * 3
+    end
+    components = @components.zip(comp_subtrahends).map { |c| c.reduce(:-)}
+
+    self.class[*components]
   end
 
   def *(multiple)
-    components = @components.zip(multiple.components).map { |c| c.reduce(:*) }
-    Yeah::Vector[*components]
+    case multiple
+    when self.class
+      comp_multiples = multiple.components
+    when Numeric
+      comp_multiples = [multiple] * 3
+    end
+
+    components = @components.zip(comp_multiples).map { |c| c.reduce(:*) }
+    self.class[*components]
   end
 
   def /(divisor)
-    components = @components.zip(divisor.components).map { |c| c.reduce(:/) }
-    Yeah::Vector[*components]
+    case divisor
+    when self.class
+      comp_divisors = divisor.components
+    when Numeric
+      comp_divisors = [divisor] * 3
+    end
+
+    components = @components.zip(comp_divisors).map { |c| c.reduce(:/) }
+    self.class[*components]
   end
 
   def x

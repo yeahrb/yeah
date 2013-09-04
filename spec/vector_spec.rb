@@ -72,6 +72,15 @@ describe Yeah::Vector do
         component.should eq instance.components[i] * 2
       end
     end
+
+    it "adds Numeric" do
+      addend = Random.rand(100)
+      sum = instance + addend
+
+      sum.components.each_with_index do |component, i|
+        component.should eq instance.components[i] + addend
+      end
+    end
   end
 
   describe '#-' do
@@ -86,6 +95,15 @@ describe Yeah::Vector do
         component.should eq -instance.components[i]
       end
     end
+
+    it "subtracts Numeric" do
+      subtrahend = Random.rand(100)
+      difference = instance + subtrahend
+
+      difference.components.each_with_index do |component, i|
+        component.should eq instance.components[i] + subtrahend
+      end
+    end
   end
 
   describe '#*' do
@@ -93,6 +111,15 @@ describe Yeah::Vector do
       product = instance * instance
       product.components.each_with_index do |component, i|
         component.should eq instance.components[i] ** 2
+      end
+    end
+
+    it "multiplies Numeric" do
+      multiple = Random.rand(100)
+      product = instance * multiple
+
+      product.components.each_with_index do |component, i|
+        component.should eq instance.components[i] * multiple
       end
     end
   end
@@ -107,6 +134,15 @@ describe Yeah::Vector do
       quotient2 = instance / quotient
       quotient2.components.each_with_index do |component, i|
         component.should eq instance.components[i]
+      end
+    end
+
+    it "divides Numeric" do
+      divisor = Random.rand(100)
+      quotient = instance / divisor
+
+      quotient.components.each_with_index do |component, i|
+        component.should eq instance.components[i] / divisor
       end
     end
   end
