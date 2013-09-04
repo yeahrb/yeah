@@ -38,6 +38,11 @@ class Yeah::Vector
     Yeah::Vector[*components]
   end
 
+  def *(multiple)
+    components = @components.zip(multiple.components).map { |c| c.reduce(:*) }
+    Yeah::Vector[*components]
+  end
+
   def x
     @components[0]
   end

@@ -74,6 +74,15 @@ describe Yeah::Vector do
     end
   end
 
+  describe '#*' do
+    it "multiplies other Vectors" do
+      product = instance * instance
+      product.components.each_with_index do |component, i|
+        component.should eq instance.components[i] ** 2
+      end
+    end
+  end
+
   [
     [:x, :width],
     [:y, :height],
