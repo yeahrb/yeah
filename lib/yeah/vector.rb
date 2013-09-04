@@ -25,6 +25,10 @@ class Yeah::Vector
     @components = values + [0] * (3 - values.size)
   end
 
+  def ==(other)
+    other.class == self.class && @components == other.components ? true : false
+  end
+
   def [](index)
     @components[index]
   end

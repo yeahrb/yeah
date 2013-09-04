@@ -50,6 +50,12 @@ describe Yeah::Vector do
     end
   end
 
+  describe '#==' do
+    it { (instance == klass[*instance.components]).should eq true }
+    it { (instance == klass[*instance.components.reverse]).should eq false }
+    it { (instance == nil).should eq false }
+  end
+
   describe '#[]' do
     it { instance[0].should eq arguments[0] }
     it { instance[1].should eq arguments[1] }
