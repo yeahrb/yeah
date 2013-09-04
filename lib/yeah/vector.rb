@@ -123,7 +123,7 @@ class Yeah::Vector
   alias_method :distance, :norm
   alias_method :speed, :norm
 
-  def reset!
+  def reset
     @components = [0, 0, 0]
     self
   end

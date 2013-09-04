@@ -184,14 +184,14 @@ describe Yeah::Vector do
     end
   end
 
-  describe '#reset!' do
+  describe '#reset' do
     it "sets components to 0" do
-      instance.reset!
+      instance.reset
       instance.components.should eq [0, 0, 0]
     end
 
     it "returns itself" do
-      instance.reset!.should eq instance
+      instance.reset.should eq instance
     end
   end
 end
