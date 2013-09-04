@@ -118,4 +118,9 @@ class Yeah::Vector
   alias_method :length, :norm
   alias_method :distance, :norm
   alias_method :speed, :norm
+
+  def reset!
+    @components = [0, 0, 0]
+    self
+  end
 end

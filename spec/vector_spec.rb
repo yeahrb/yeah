@@ -177,4 +177,15 @@ describe Yeah::Vector do
       it { klass.new(6, 8).method(method_name).call.should eq 10 }
     end
   end
+
+  describe '#reset!' do
+    it "sets components to 0" do
+      instance.reset!
+      instance.components.should eq [0, 0, 0]
+    end
+
+    it "returns itself" do
+      instance.reset!.should eq instance
+    end
+  end
 end
