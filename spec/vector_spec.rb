@@ -32,6 +32,24 @@ describe Yeah::Vector do
     it { components.each { |c| c.should be_kind_of Numeric } }
   end
 
+  describe '#components=' do
+    it "assigns array of up to 3 elements and uses 0 for missing elements" do
+      instance.components = [4, 5, 6]
+      instance.components.should eq [4, 5, 6]
+
+      instance.components = [8, 9]
+      instance.components.should eq [8, 9, 0]
+
+      instance.components = []
+      instance.components.should eq [0, 0, 0]
+    end
+
+    it "complains with 4-element array" do
+      expect { instance.components = [7, 8, 9, 10] }.
+        to raise_error ArgumentError, /too many elements/
+    end
+  end
+
   describe '#[]' do
     it { instance[0].should eq arguments[0] }
     it { instance[1].should eq arguments[1] }

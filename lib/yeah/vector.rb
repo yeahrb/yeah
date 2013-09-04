@@ -9,11 +9,20 @@ class Yeah::Vector
       raise ArgumentError, error_message
     end
 
-    @components = components + [0] * (3 - components.size)
+    self.components = components
   end
 
   def components
     @components
+  end
+
+  def components=(values)
+    if values.size > 3
+      error_message = "too many elements (#{values.size} for up to 3)"
+      raise ArgumentError, error_message
+    end
+
+    @components = values + [0] * (3 - values.size)
   end
 
   def [](index)
