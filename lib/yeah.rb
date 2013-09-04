@@ -3,3 +3,4 @@ module Yeah
 end
 
 require 'yeah/vector'
+require 'yeah/entity'
