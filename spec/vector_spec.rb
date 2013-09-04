@@ -1,15 +1,16 @@
 require 'spec_helper'
 
 describe Yeah::Vector do
-  it "is a Class" do
-    Yeah::Vector.should be_instance_of Class
-  end
+  let(:klass) { Yeah::Vector }
+  let(:instance) { klass.new(4, 5, 6) }
+
+  it { klass.should be_instance_of Class }
 
   [:new, :[]].each do |method_name|
     describe "::#{method_name}" do
-      subject(:method) { Yeah::Vector.method(method_name) }
+      subject(:method) { klass.method(method_name) }
 
-      it { method.call.should be_instance_of Yeah::Vector }
+      it { method.call.should be_instance_of klass }
       it { method.call.components.should eql [0, 0, 0] }
       it { method.call(4, 5, 6).components.should eql [4, 5, 6] }
       it { method.call(8, 9).components.should eql [8, 9, 0] }
@@ -23,7 +24,7 @@ describe Yeah::Vector do
   end
 
   describe '#components' do
-    subject(:components) { Yeah::Vector.new.components }
+    subject(:components) { instance.components }
 
     it { should be_instance_of Array }
     it { should have(3).elements }
@@ -31,32 +32,28 @@ describe Yeah::Vector do
   end
 
   describe '#[]' do
-    subject(:vector) { Yeah::Vector[4, 5, 6] }
-
-    it { vector[0].should eq 4 }
-    it { vector[1].should eq 5 }
-    it { vector[2].should eq 6 }
+    it { instance[0].should eq 4 }
+    it { instance[1].should eq 5 }
+    it { instance[2].should eq 6 }
   end
 
   [
     [:x, :width],
     [:y, :height],
     [:z, :depth]
-  ].each_with_index do |method_set, i|
-    let(:vector) { Yeah::Vector[4, 5, 6] }
-
-    method_set.each do |method_name|
+  ].each_with_index do |method_name_set, i|
+    method_name_set.each do |method_name|
       describe "##{method_name}" do
-        subject(:method) { vector.method(method_name) }
+        subject(:method) { instance.method(method_name) }
 
-        it { method.call.should eq vector[i] }
+        it { method.call.should eq instance[i] }
       end
     end
   end
 
   [:norm, :magnitude, :length, :distance, :speed].each do |method_name|
     describe "##{method_name}" do
-      subject(:method) { Yeah::Vector[3, 4].method(method_name) }
+      subject(:method) { klass.new(3, 4).method(method_name) }
 
       it { method.call.should eq 5 }
     end
