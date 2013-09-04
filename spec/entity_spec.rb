@@ -28,4 +28,19 @@ describe Yeah::Entity do
       instance.position.should eq vector
     end
   end
+
+  describe '#x' do
+    it "is #position.x" do
+      instance.position.x = Random.rand(100)
+      instance.x.should eq instance.position.x
+    end
+  end
+
+  describe '#x=' do
+    it "assigns #position.x" do
+      value = Random.rand(100)
+      instance.x = value
+      instance.position.x.should eq value
+    end
+  end
 end
