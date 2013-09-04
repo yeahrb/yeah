@@ -64,7 +64,7 @@ class Yeah::Vector
   alias_method :depth=, :z=
 
   def norm
-    Math.sqrt(@components.inject(0) { |v, e| v + e.abs2 })
+    Math.sqrt(@components.reduce(0) { |m, c| m + c*c })
   end
   alias_method :magnitude, :norm
   alias_method :length, :norm
