@@ -92,6 +92,20 @@ describe Yeah::Vector do
     end
   end
 
+  describe '#/' do
+    it "divides other Vectors" do
+      quotient = instance / instance
+      quotient.components.each do |component|
+        component.should eq 1
+      end
+
+      quotient2 = instance / quotient
+      quotient2.components.each_with_index do |component, i|
+        component.should eq instance.components[i]
+      end
+    end
+  end
+
   [
     [:x, :width],
     [:y, :height],
