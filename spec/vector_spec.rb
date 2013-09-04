@@ -66,7 +66,7 @@ describe Yeah::Vector do
   end
 
   describe '#+' do
-    it "adds other Vectors" do
+    it "adds Vector" do
       sum = instance + instance
       sum.components.each_with_index do |component, i|
         component.should eq instance.components[i] * 2
@@ -75,16 +75,21 @@ describe Yeah::Vector do
   end
 
   describe '#-' do
-    it "subtracts other Vectors" do
-      difference = instance + instance - instance
-      difference.components.each_with_index do |component, i|
-        component.should eq instance.components[i]
+    it "subtracts Vector" do
+      difference = instance - instance
+      difference.components.each do |component|
+        component.should eq 0
+      end
+
+      difference2 = difference - instance
+      difference2.components.each_with_index do |component, i|
+        component.should eq -instance.components[i]
       end
     end
   end
 
   describe '#*' do
-    it "multiplies other Vectors" do
+    it "multiplies Vector" do
       product = instance * instance
       product.components.each_with_index do |component, i|
         component.should eq instance.components[i] ** 2
@@ -93,7 +98,7 @@ describe Yeah::Vector do
   end
 
   describe '#/' do
-    it "divides other Vectors" do
+    it "divides Vector" do
       quotient = instance / instance
       quotient.components.each do |component|
         component.should eq 1
