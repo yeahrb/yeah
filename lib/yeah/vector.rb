@@ -29,6 +29,10 @@ class Yeah::Vector
     @components[index]
   end
 
+  def []=(index, value)
+    @components[index] = value
+  end
+
   def x
     @components[0]
   end

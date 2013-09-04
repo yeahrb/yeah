@@ -56,6 +56,15 @@ describe Yeah::Vector do
     it { instance[2].should eq arguments[2] }
   end
 
+  describe '#[]=' do
+    it "assigns n component" do
+      3.times do |i|
+        instance[i] = instance[i] + 5
+        instance[i].should eq arguments[i] + 5
+      end
+    end
+  end
+
   [
     [:x, :width],
     [:y, :height],
