@@ -1,7 +1,7 @@
 class Yeah::Entity
   attr_accessor :position
 
-  def initialize
-    self.position = Yeah::Vector[]
+  def initialize(*position)
+    self.position = Yeah::Vector[*position]
   end
 end

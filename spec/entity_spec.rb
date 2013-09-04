@@ -6,6 +6,14 @@ describe Yeah::Entity do
 
   it { klass.should be_instance_of Class }
 
+  describe '::new' do
+    subject(:method) { klass.method(:new) }
+
+    it { method.call.should be_instance_of klass }
+    it { method.call.position.should eq Yeah::Vector[0, 0, 0] }
+    it { method.call(2, 4, 8).position.should eq Yeah::Vector[2, 4, 8] }
+  end
+
   describe '#position' do
     subject(:position) { instance.position }
 
