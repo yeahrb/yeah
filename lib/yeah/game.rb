@@ -1,0 +1,2 @@
+class Yeah::Game
+end
