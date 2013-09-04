@@ -33,6 +33,11 @@ class Yeah::Vector
     @components[index] = value
   end
 
+  def +(addend)
+    components = @components.zip(addend.components).map { |c| c.reduce(:+) }
+    Yeah::Vector[*components]
+  end
+
   def x
     @components[0]
   end

@@ -65,6 +65,15 @@ describe Yeah::Vector do
     end
   end
 
+  describe '#+' do
+    it "adds other Vectors" do
+      sum = instance + instance
+      sum.components.each_with_index do |component, i|
+        component.should eq instance.components[i] * 2
+      end
+    end
+  end
+
   [
     [:x, :width],
     [:y, :height],
