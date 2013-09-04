@@ -74,6 +74,15 @@ describe Yeah::Vector do
     end
   end
 
+  describe '#-' do
+    it "subtracts other Vectors" do
+      difference = instance + instance - instance
+      difference.components.each_with_index do |component, i|
+        component.should eq instance.components[i]
+      end
+    end
+  end
+
   describe '#*' do
     it "multiplies other Vectors" do
       product = instance * instance
