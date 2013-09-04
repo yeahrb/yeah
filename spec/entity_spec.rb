@@ -29,18 +29,20 @@ describe Yeah::Entity do
     end
   end
 
-  describe '#x' do
-    it "is #position.x" do
-      instance.position.x = Random.rand(100)
-      instance.x.should eq instance.position.x
+  [:x, :y, :z].each do |method_name|
+    describe "##{method_name}" do
+      it "is #position.#{method_name}" do
+        instance.position.send("#{method_name}=", Random.rand(100))
+        instance.send(method_name).should eq instance.position.send(method_name)
+      end
     end
-  end
 
-  describe '#x=' do
-    it "assigns #position.x" do
-      value = Random.rand(100)
-      instance.x = value
-      instance.position.x.should eq value
+    describe "##{method_name}=" do
+      it "assigns #position.#{method_name}" do
+        value = Random.rand(100)
+        instance.send("#{method_name}=", value)
+        instance.position.send(method_name).should eq value
+      end
     end
   end
 end
