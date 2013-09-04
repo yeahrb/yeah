@@ -48,6 +48,21 @@ class Yeah::Vector
   end
   alias_method :depth, :z
 
+  def x=(value)
+    @components[0] = value
+  end
+  alias_method :width=, :x=
+
+  def y=(value)
+    @components[1] = value
+  end
+  alias_method :height=, :y=
+
+  def z=(value)
+    @components[2] = value
+  end
+  alias_method :depth=, :z=
+
   def norm
     Math.sqrt(@components.inject(0) { |v, e| v + e.abs2 })
   end

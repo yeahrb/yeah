@@ -76,6 +76,16 @@ describe Yeah::Vector do
 
         it { method.call.should eq instance[i] }
       end
+
+      describe "#{method_name}=" do
+        subject(:method) { instance.method("#{method_name}=") }
+
+        it "assigns value" do
+          value = Random.rand(100)
+          method.call(value)
+          instance[i].should eq value
+        end
+      end
     end
   end
 
