@@ -2,7 +2,8 @@ require 'spec_helper'
 
 describe Yeah::Vector do
   let(:klass) { Yeah::Vector }
-  let(:instance) { klass.new(4, 5, 6) }
+  let(:arguments) { (1..3).map { Random.rand(100) } }
+  let(:instance) { klass.new(*arguments) }
 
   it { klass.should be_instance_of Class }
 
@@ -11,10 +12,10 @@ describe Yeah::Vector do
       subject(:method) { klass.method(method_name) }
 
       it { method.call.should be_instance_of klass }
-      it { method.call.components.should eql [0, 0, 0] }
-      it { method.call(4, 5, 6).components.should eql [4, 5, 6] }
-      it { method.call(8, 9).components.should eql [8, 9, 0] }
-      it { method.call(7).components.should eql [7, 0, 0] }
+      it { method.call.components.should eq [0, 0, 0] }
+      it { method.call(4, 5, 6).components.should eq [4, 5, 6] }
+      it { method.call(8, 9).components.should eq [8, 9, 0] }
+      it { method.call(7).components.should eq [7, 0, 0] }
 
       it "complains with 4 arguments" do
         expect { method.call(7, 8, 9, 10) }.
@@ -32,9 +33,9 @@ describe Yeah::Vector do
   end
 
   describe '#[]' do
-    it { instance[0].should eq 4 }
-    it { instance[1].should eq 5 }
-    it { instance[2].should eq 6 }
+    it { instance[0].should eq arguments[0] }
+    it { instance[1].should eq arguments[1] }
+    it { instance[2].should eq arguments[2] }
   end
 
   [
