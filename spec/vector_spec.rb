@@ -53,4 +53,12 @@ describe Yeah::Vector do
       end
     end
   end
+
+  [:norm, :magnitude, :length, :distance, :speed].each do |method_name|
+    describe "##{method_name}" do
+      subject(:method) { Yeah::Vector[3, 4].method(method_name) }
+
+      it { method.call.should eq 5 }
+    end
+  end
 end

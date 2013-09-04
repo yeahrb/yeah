@@ -34,4 +34,12 @@ class Yeah::Vector
     @components[2]
   end
   alias_method :depth, :z
+
+  def norm
+    Math.sqrt(@components.inject(0) { |v, e| v + e.abs2 })
+  end
+  alias_method :magnitude, :norm
+  alias_method :length, :norm
+  alias_method :distance, :norm
+  alias_method :speed, :norm
 end
