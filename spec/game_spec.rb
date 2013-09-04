@@ -19,4 +19,14 @@ describe Yeah::Game do
       instance.entities.should eq value
     end
   end
+
+  describe '#update' do
+    it "calls #update of each element in #entities" do
+      instance.entities = (1..3).map { DummyEntity.new }
+      update_count = Random.rand(5)
+      update_count.times { instance.update }
+
+      instance.entities.each { |e| e.update_count.should eq update_count }
+    end
+  end
 end
