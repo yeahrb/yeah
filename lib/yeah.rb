@@ -5,3 +5,4 @@ end
 require 'yeah/vector'
 require 'yeah/entity'
 require 'yeah/game'
+require 'yeah/desktop'
