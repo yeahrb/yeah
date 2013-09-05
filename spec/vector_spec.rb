@@ -113,14 +113,14 @@ describe Yeah::Vector do
   end
 
   describe '#*' do
-    it "multiplies Vector" do
+    it "multiplies by Vector" do
       product = instance * instance
       product.components.each_with_index do |component, i|
         component.should eq instance.components[i] ** 2
       end
     end
 
-    it "multiplies Numeric" do
+    it "multiplies by Numeric" do
       multiple = Random.rand(100)
       product = instance * multiple
 
@@ -131,7 +131,7 @@ describe Yeah::Vector do
   end
 
   describe '#/' do
-    it "divides Vector" do
+    it "divides by Vector" do
       quotient = instance / instance
       quotient.components.each do |component|
         component.should eq 1
@@ -143,7 +143,7 @@ describe Yeah::Vector do
       end
     end
 
-    it "divides Numeric" do
+    it "divides by Numeric" do
       divisor = Random.rand(100)
       quotient = instance / divisor
 
