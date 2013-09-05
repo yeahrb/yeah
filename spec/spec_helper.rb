@@ -1,7 +1,7 @@
 require 'yeah'
 
 class DummyEntity < Yeah::Entity
-  attr_accessor :update_count
+  attr_reader :update_count
 
   def initialize
     super
