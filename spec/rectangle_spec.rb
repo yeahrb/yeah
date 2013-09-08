@@ -11,9 +11,14 @@ describe Yeah::Rectangle do
 
     it { method.call.should be_instance_of Yeah::Rectangle }
 
-    it "assigns Vector argument as #size" do
+    it "assigns Vector first argument as #size" do
       vector = Yeah::Vector[Random.rand(40)]
       method.call(vector).size.should eq vector
+    end
+
+    it "assigns second argument RGBA byte array as #color" do
+      byte_array = (1..4).map { Random.rand(255) }
+      method.call(Yeah::Vector[], byte_array).color.should eq byte_array
     end
   end
 
@@ -30,6 +35,22 @@ describe Yeah::Rectangle do
       vector = Yeah::Vector[Random.rand(40)]
       method.call(vector)
       instance.size.should eq vector
+    end
+  end
+
+  describe '#color' do
+    subject(:color) { instance.color }
+
+    it { should eq [255, 255, 255, 255] }
+  end
+
+  describe '#color=' do
+    subject(:method) { instance.method(:color=) }
+
+    it "assigns RGBA byte array value" do
+      byte_array = (1..4).map { Random.rand(255) }
+      method.call(byte_array)
+      instance.color.should eq byte_array
     end
   end
 end
