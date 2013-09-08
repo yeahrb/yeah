@@ -1,23 +1,16 @@
 require 'spec_helper'
 
 describe Yeah::Color do
-  let(:klass) { Yeah::Color }
-  let(:instance) { klass.new }
+  let(:modjul) { Yeah::Color }
 
-  describe '::new' do
-    subject(:method) { klass.method(:new) }
+  it { modjul.should be_kind_of Module }
 
-    it { method.call.should be_instance_of klass }
+  describe '::byte_array' do
+    subject(:method) { modjul.method(:byte_array) }
 
-    it "creates an internal reference to an RGBA hex string repr. black" do
-      instance.instance_variables.should include :@hex_string
-      hex_string = instance.instance_variable_get(:@hex_string)
-      hex_string.should eq '000000FF'
-    end
-
-    it "uses first argument as hex string" do
-      hex_string = (1..8).map { Random.rand(16).to_s(16) }.join
-      color = method.call(hex_string)
-    end
+    it { method.call([10, 20, 30, 40]).should eq [10, 20, 30, 40] }
+    it { method.call([255, 255, 255, 255]).should eq [255, 255, 255, 255] }
+    it { method.call('00FF01FE').should eq [0, 255, 1, 254] }
+    it { method.call('11223344').should eq [17, 34, 51, 68] }
   end
 end
