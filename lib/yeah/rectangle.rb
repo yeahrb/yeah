@@ -5,7 +5,7 @@ class Yeah::Rectangle
   end
 
   def size
-    @size ||= Yeah::Vector[]
+    @size
   end
 
   def size=(value)
