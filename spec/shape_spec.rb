@@ -1,7 +1,7 @@
 require 'spec_helper'
 
-describe Yeah::Shape do
-  let(:klass) { Yeah::Shape }
+describe Yeah::Rectangle do
+  let(:klass) { Yeah::Rectangle }
 
   it { klass.should be_kind_of Class }
 
