@@ -10,6 +10,11 @@ describe Yeah::Rectangle do
     subject(:method) { klass.method(:new) }
 
     it { method.call.should be_instance_of Yeah::Rectangle }
+
+    it "assigns Vector argument as #size" do
+      vector = Yeah::Vector[Random.rand(40)]
+      method.call(vector).size.should eq vector
+    end
   end
 
   describe '#size' do
