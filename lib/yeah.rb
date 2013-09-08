@@ -3,6 +3,7 @@ module Yeah
 end
 
 require 'yeah/vector'
+require 'yeah/color'
 require 'yeah/rectangle'
 require 'yeah/entity'
 require 'yeah/game'
