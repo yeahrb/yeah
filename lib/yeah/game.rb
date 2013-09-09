@@ -2,6 +2,7 @@ class Yeah::Game
   attr_accessor :entities
 
   def initialize
+    @platform = Yeah::Desktop.new
     @entities = []
   end
 

@@ -6,6 +6,14 @@ describe Yeah::Game do
 
   it { klass.should be_instance_of Class }
 
+  describe '::new' do
+    it "creates an internal reference to Yeah::Desktop as platform" do
+      instance.instance_variables.should include :@platform
+      platform = instance.instance_variable_get(:@platform)
+      platform.should be_kind_of Yeah::Desktop
+    end
+  end
+
   describe '#entities' do
     subject(:entities) { instance.entities }
 
