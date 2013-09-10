@@ -17,4 +17,16 @@ describe Yeah::Desktop do
       it { screen.size.should eq [320, 240] }
     end
   end
+
+  describe '#game' do
+    subject { instance.game }
+
+    it { should eq nil }
+  end
+
+  describe '#game=' do
+    subject { instance.method(:game=) }
+
+    it_behaves_like 'writer', Yeah::Game.new
+  end
 end
