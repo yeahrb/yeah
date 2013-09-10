@@ -15,10 +15,6 @@ describe Yeah::Map do
   describe '#background=' do
     subject(:method) { instance.method(:background=) }
 
-    it "assigns #background" do
-      color = Yeah::Color[(1..4).map { Random.rand(255) }]
-      method.call(color)
-      instance.background.should eq color
-    end
+    it_behaves_like 'writer', Yeah::Color[*[Random.rand(255)]*4]
   end
 end

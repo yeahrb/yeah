@@ -22,11 +22,9 @@ describe Yeah::Entity do
   end
 
   describe '#position=' do
-    it "assigns position" do
-      vector = Yeah::Vector[Random.rand(100)]
-      instance.position = vector
-      instance.position.should eq vector
-    end
+    subject(:method) { instance.method(:position=) }
+
+    it_behaves_like 'writer', Yeah::Vector[Random.rand(100)]
   end
 
   [:x, :y, :z].each do |method_name|

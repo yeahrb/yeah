@@ -21,11 +21,9 @@ describe Yeah::Game do
   end
 
   describe '#entities=' do
-    it "assigns #entities" do
-      value = [Yeah::Entity.new(Random.rand(100))]
-      instance.entities = value
-      instance.entities.should eq value
-    end
+    subject(:method) { instance.method(:entities=) }
+
+    it_behaves_like 'writer', [Yeah::Entity.new(Random.rand(10))]
   end
 
   describe '#update' do

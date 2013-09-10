@@ -31,11 +31,7 @@ describe Yeah::Rectangle do
   describe '#size=' do
     subject(:method) { instance.method(:size=) }
 
-    it "assigns Vector value" do
-      vector = Yeah::Vector[Random.rand(40)]
-      method.call(vector)
-      instance.size.should eq vector
-    end
+    it_behaves_like 'writer', Yeah::Vector[Random.rand(40)]
   end
 
   describe '#color' do
@@ -47,10 +43,6 @@ describe Yeah::Rectangle do
   describe '#color=' do
     subject(:method) { instance.method(:color=) }
 
-    it "assigns RGBA byte array value" do
-      byte_array = (1..4).map { Random.rand(255) }
-      method.call(byte_array)
-      instance.color.should eq byte_array
-    end
+    it_behaves_like 'writer', [Random.rand(255)]*4
   end
 end

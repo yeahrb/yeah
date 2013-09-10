@@ -51,10 +51,6 @@ describe Yeah::Color do
   describe '#byte_array=' do
     subject(:method) { instance.method(:byte_array=) }
 
-    it "assigns #byte_array" do
-      byte_array = (1..4).map { Random.rand(255) }
-      method.call byte_array
-      instance.byte_array.should eq byte_array
-    end
+    it_behaves_like 'writer', (1..4).map { Random.rand(255) }
   end
 end
