@@ -14,6 +14,18 @@ describe Yeah::Game do
     end
   end
 
+  describe '#resolution' do
+    subject { instance.resolution }
+
+    it { should eq Yeah::Vector[320, 240] }
+  end
+
+  describe '#resolution=' do
+    subject { instance.method(:resolution=) }
+
+    it_behaves_like 'writer', Yeah::Vector[512, 384]
+  end
+
   describe '#entities' do
     subject(:entities) { instance.entities }
 
