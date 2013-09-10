@@ -7,9 +7,17 @@ describe Yeah::Desktop do
   it { klass.should be_instance_of Class }
 
   describe '::new' do
+    subject(:method) { klass.method(:new) }
+
+    it { method.call.game.should eq nil }
+
+    it "takes game as first argument" do
+      game = Yeah::Game.new
+      inst = method.call(game)
+      inst.game.should eq game
+    end
 
     it { instance.instance_variables.should include :@screen }
-
     describe '@screen' do
       subject(:screen) { instance.instance_variable_get(:@screen) }
 
