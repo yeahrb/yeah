@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe Yeah::Desktop do
-  let(:klass) { Yeah::Desktop }
+  let(:klass) { described_class }
   let(:instance) { klass.new }
 
   it { klass.should be_instance_of Class }

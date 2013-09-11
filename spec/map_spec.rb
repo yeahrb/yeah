@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe Yeah::Map do
-  let(:klass) { Yeah::Map }
+  let(:klass) { described_class }
   let(:instance) { klass.new }
 
   it { klass.should be_instance_of Class }

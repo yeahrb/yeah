@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe Yeah::Entity do
-  let(:klass) { Yeah::Entity }
+  let(:klass) { described_class }
   let(:instance) { klass.new }
 
   it { klass.should be_instance_of Class }

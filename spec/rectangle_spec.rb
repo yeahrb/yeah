@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe Yeah::Rectangle do
-  let(:klass) { Yeah::Rectangle }
+  let(:klass) { described_class }
   let(:instance) { klass.new }
 
   it { klass.should be_kind_of Class }
