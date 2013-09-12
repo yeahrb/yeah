@@ -9,4 +9,8 @@ class Yeah::Surface
     @size = value
     @data = "\x00\x00\x00\xFF" * size.x * size.y
   end
+
+  def color_at(position)
+    Color[]
+  end
 end

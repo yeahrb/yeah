@@ -43,4 +43,11 @@ describe Surface do
       pixels.first.should eq "000000ff"
     end
   end
+
+  describe '#color_at' do
+    subject(:method) { instance.method(:color_at) }
+
+    it { expect { method.call }.to raise_error ArgumentError }
+    it { method.call(Vector[]).should eq Color[] }
+  end
 end
