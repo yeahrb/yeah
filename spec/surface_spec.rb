@@ -74,15 +74,16 @@ describe Surface do
 
   describe '#draw_rectangle' do
     subject(:method) { instance.method(:draw_rectangle) }
-    let(:rectangle) { Rectangle.new(vector/2, Color[0, 255, 0, 255]) }
 
     it { expect { method.call }.to raise_error ArgumentError }
     it { expect { method.call(vector) }.to raise_error ArgumentError }
+    it { expect { method.call(vector, vector) }.to raise_error ArgumentError }
 
     it "changes color of rectangular area" do
-      method.call(Vector[], rectangle)
-      instance.color_at(Vector[]).should eq Color[0, 255, 0, 255]
-      instance.color_at(vector/2+1).should eq color
+      color2 = Color[0, 255, 0, 255]
+      method.call(Vector[], vector/2, color2)
+      instance.color_at(Vector[]).should eq color2
+      instance.color_at(vector/2 + Vector[1, 0]).should eq color
     end
   end
 end
