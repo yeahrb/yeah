@@ -72,8 +72,8 @@ describe Surface do
     end
   end
 
-  describe '#draw_rectangle' do
-    subject(:method) { instance.method(:draw_rectangle) }
+  describe '#fill_rectangle' do
+    subject(:method) { instance.method(:fill_rectangle) }
 
     it { expect { method.call }.to raise_error ArgumentError }
     it { expect { method.call(vector) }.to raise_error ArgumentError }

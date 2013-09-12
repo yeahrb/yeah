@@ -16,7 +16,7 @@ class Yeah::Surface
     @color
   end
 
-  def draw_rectangle(position1, position2, color)
+  def fill_rectangle(position1, position2, color)
     @color = color
   end
 end
