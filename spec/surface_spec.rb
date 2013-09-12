@@ -13,6 +13,7 @@ describe Surface do
     it "accepts a Vector size" do
       vector = Vector[Random.rand(20), Random.rand(20)]
       surface = method.call(vector)
+      surface.size.should eq vector
     end
   end
 
