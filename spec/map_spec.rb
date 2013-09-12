@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Yeah::Map do
+describe Map do
   let(:klass) { described_class }
   let(:instance) { klass.new }
 
@@ -9,12 +9,12 @@ describe Yeah::Map do
   describe '#background' do
     subject(:background) { instance.background }
 
-    it { should eq Yeah::Color[] }
+    it { should eq Color[] }
   end
 
   describe '#background=' do
     subject(:method) { instance.method(:background=) }
 
-    it_behaves_like 'writer', Yeah::Color[*[Random.rand(255)]*4]
+    it_behaves_like 'writer', Color[*[Random.rand(255)]*4]
   end
 end

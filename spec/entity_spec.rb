@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Yeah::Entity do
+describe Entity do
   let(:klass) { described_class }
   let(:instance) { klass.new }
 
@@ -10,21 +10,21 @@ describe Yeah::Entity do
     subject(:method) { klass.method(:new) }
 
     it { method.call.should be_instance_of klass }
-    it { method.call.position.should eq Yeah::Vector[0, 0, 0] }
-    it { method.call(2, 4, 8).position.should eq Yeah::Vector[2, 4, 8] }
+    it { method.call.position.should eq Vector[0, 0, 0] }
+    it { method.call(2, 4, 8).position.should eq Vector[2, 4, 8] }
   end
 
   describe '#position' do
     subject(:position) { instance.position }
 
-    it { should be_instance_of Yeah::Vector }
+    it { should be_instance_of Vector }
     it { position.components.should eq [0, 0, 0] }
   end
 
   describe '#position=' do
     subject(:method) { instance.method(:position=) }
 
-    it_behaves_like 'writer', Yeah::Vector[Random.rand(100)]
+    it_behaves_like 'writer', Vector[Random.rand(100)]
   end
 
   [:x, :y, :z].each do |method_name|

@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Yeah::Vector do
+describe Vector do
   let(:klass) { described_class }
   let(:arguments) { (1..3).map { Random.rand(100) } }
   let(:instance) { klass.new(*arguments) }

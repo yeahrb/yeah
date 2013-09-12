@@ -1,29 +1,29 @@
 require 'spec_helper'
 
-describe Yeah::Game do
+describe Game do
   let(:klass) { described_class }
   let(:instance) { klass.new }
 
   it { klass.should be_instance_of Class }
 
   describe '::new' do
-    it "creates an internal reference to Yeah::Desktop as platform" do
+    it "creates an internal reference to Desktop as platform" do
       instance.instance_variables.should include :@platform
       platform = instance.instance_variable_get(:@platform)
-      platform.should be_kind_of Yeah::Desktop
+      platform.should be_kind_of Desktop
     end
   end
 
   describe '#resolution' do
     subject { instance.resolution }
 
-    it { should eq Yeah::Vector[320, 240] }
+    it { should eq Vector[320, 240] }
   end
 
   describe '#resolution=' do
     subject { instance.method(:resolution=) }
 
-    it_behaves_like 'writer', Yeah::Vector[512, 384]
+    it_behaves_like 'writer', Vector[512, 384]
   end
 
   describe '#entities' do
@@ -35,7 +35,7 @@ describe Yeah::Game do
   describe '#entities=' do
     subject(:method) { instance.method(:entities=) }
 
-    it_behaves_like 'writer', [Yeah::Entity.new(Random.rand(10))]
+    it_behaves_like 'writer', [Entity.new(Random.rand(10))]
   end
 
   describe '#update' do

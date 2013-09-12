@@ -1,12 +1,12 @@
 require 'spec_helper'
 
 describe Yeah do
-  it "is a Module" do
-    Yeah.should be_instance_of Module
-  end
+  let(:modjul) { described_class }
+
+  it { modjul.should be_instance_of Module }
 
   describe '::VERSION' do
-    subject { Yeah::VERSION }
+    subject { modjul::VERSION }
 
     it { should be_instance_of String }
     it { should match /[0-9]+\.[0-9]+\.[0-9]+/ }

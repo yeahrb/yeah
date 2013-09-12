@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Yeah::Rectangle do
+describe Rectangle do
   let(:klass) { described_class }
   let(:instance) { klass.new }
 
@@ -9,29 +9,29 @@ describe Yeah::Rectangle do
   describe '::new' do
     subject(:method) { klass.method(:new) }
 
-    it { method.call.should be_instance_of Yeah::Rectangle }
+    it { method.call.should be_instance_of klass }
 
     it "assigns Vector first argument as #size" do
-      vector = Yeah::Vector[Random.rand(40)]
+      vector = Vector[Random.rand(40)]
       method.call(vector).size.should eq vector
     end
 
     it "assigns second argument RGBA byte array as #color" do
       byte_array = (1..4).map { Random.rand(255) }
-      method.call(Yeah::Vector[], byte_array).color.should eq byte_array
+      method.call(Vector[], byte_array).color.should eq byte_array
     end
   end
 
   describe '#size' do
     subject(:size) { instance.size }
 
-    it { should eq Yeah::Vector[] }
+    it { should eq Vector[] }
   end
 
   describe '#size=' do
     subject(:method) { instance.method(:size=) }
 
-    it_behaves_like 'writer', Yeah::Vector[Random.rand(40)]
+    it_behaves_like 'writer', Vector[Random.rand(40)]
   end
 
   describe '#color' do

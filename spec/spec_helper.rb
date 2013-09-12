@@ -1,4 +1,5 @@
 require 'yeah'
+include Yeah
 
 shared_examples 'writer' do |value|
   it "assigns its reader" do
@@ -11,7 +12,7 @@ shared_examples 'writer' do |value|
   end
 end
 
-class DummyEntity < Yeah::Entity
+class DummyEntity < Entity
   attr_reader :update_count
 
   def initialize
