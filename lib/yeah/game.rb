@@ -1,5 +1,5 @@
 class Yeah::Game
-  attr_accessor :resolution, :entities
+  attr_accessor :entities, :platform, :resolution
 
   def initialize
     @resolution = Yeah::Vector[320, 240]
@@ -12,6 +12,6 @@ class Yeah::Game
   end
 
   def draw
-    @entities.each { |e| e.draw(@platform) }
+    @entities.each { |e| e.draw(platform) }
   end
 end

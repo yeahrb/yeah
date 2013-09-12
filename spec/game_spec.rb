@@ -6,12 +6,10 @@ describe Game do
 
   it { klass.should be_instance_of Class }
 
-  describe '::new' do
-    it "creates an internal reference to Desktop as platform" do
-      instance.instance_variables.should include :@platform
-      platform = instance.instance_variable_get(:@platform)
-      platform.should be_kind_of Desktop
-    end
+  describe '#platform' do
+    subject { instance.platform }
+
+    it { should be_instance_of Desktop }
   end
 
   describe '#resolution' do
@@ -53,11 +51,10 @@ describe Game do
       instance.entities = (1..3).map { DummyEntity.new }
       draw_count = Random.rand(5) + 1
       draw_count.times { instance.draw }
-      platform = instance.instance_variable_get(:@platform)
 
       instance.entities.each do |entity|
         entity.draw_count.should eq draw_count
-        entity.last_draw_platform.should eq platform
+        entity.last_draw_platform.should eq instance.platform
       end
     end
   end
