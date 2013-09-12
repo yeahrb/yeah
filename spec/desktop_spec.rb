@@ -17,4 +17,22 @@ describe Yeah::Desktop do
     it { should be_instance_of Rubygame::Screen }
     its(:size) { should eq [320, 240] }
   end
+
+  describe '#resolution' do
+    subject { instance.resolution }
+
+    it { should eq Yeah::Vector[320, 240] }
+  end
+
+  describe '#resolution=' do
+    subject(:method) { instance.method(:resolution=) }
+
+    it_behaves_like 'writer', Yeah::Vector[Random.rand(250), Random.rand(250)]
+
+    it "changes screen size" do
+      resolution = Yeah::Vector[Random.rand(250), Random.rand(250)]
+      method.call(resolution)
+      instance.screen.size.should eq resolution.components[0..1]
+    end
+  end
 end
