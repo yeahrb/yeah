@@ -3,8 +3,7 @@ require 'spec_helper'
 describe Surface do
   let(:klass) { described_class }
   let(:vector) { Vector[Random.rand(50)+1, Random.rand(50)+1] }
-  let(:color) { Color[Random.rand(254)+1, Random.rand(254)+1, 0, 255] }
-  let(:instance) { klass.new(vector, color) }
+  let(:instance) { klass.new(vector) }
 
   describe '::new' do
     subject(:method) { klass.method :new }
@@ -14,14 +13,6 @@ describe Surface do
     it "accepts a Vector size" do
       surface = method.call(vector)
       surface.size.should eq vector
-    end
-
-    it "accepts a Color color" do
-      surface = method.call(vector, color)
-      surface.color_at(vector/2).should eq color
-      color_bytes = color.rgba_bytes.pack('C*')
-      color_bytes *= instance.size.x * instance.size.y
-      surface.data.unpack('H*').should eq color_bytes.unpack('H*')
     end
   end
 
@@ -46,9 +37,10 @@ describe Surface do
       data.length.should eq expected_length
     end
 
-    it "is a series of repeating 4 bytes by default" do
+    it "is a series of \x00\x00\x00\x00 by default" do
       pixels = data.unpack('H*')[0].scan(/.{8}/)
       pixels.uniq.size.should eq 1
+      pixels.uniq.last.should eq "00000000"
     end
   end
 
@@ -68,7 +60,7 @@ describe Surface do
     it { expect { method.call }.to raise_error ArgumentError }
 
     it "matches the color of the pixel at position" do
-      method.call(Vector[]).should eq color
+      method.call(vector/2).should eq Color[0, 0, 0, 0]
     end
   end
 

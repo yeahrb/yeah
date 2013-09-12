@@ -2,14 +2,13 @@ class Yeah::Surface
   attr_reader :size
   attr_accessor :data
 
-  def initialize(size, color=Color[])
-    @color = color
+  def initialize(size)
     self.size = size
   end
 
   def size=(value)
     @size = value
-    @data = @color.rgba_bytes.pack('C*') * size.x * size.y
+    @data = "\x00" * 4 * size.x * size.y
   end
 
   def color_at(position)
