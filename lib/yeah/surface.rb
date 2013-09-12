@@ -1,8 +1,9 @@
 class Yeah::Surface
   attr_reader :size, :data
 
-  def initialize(size)
+  def initialize(size, color=Color[])
     self.size = size
+    @color = color
   end
 
   def size=(value)
@@ -11,6 +12,6 @@ class Yeah::Surface
   end
 
   def color_at(position)
-    Color[]
+    @color
   end
 end

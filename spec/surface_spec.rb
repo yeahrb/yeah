@@ -3,7 +3,8 @@ require 'spec_helper'
 describe Surface do
   let(:klass) { described_class }
   let(:vector) { Vector[Random.rand(50)+1, Random.rand(50)+1] }
-  let(:instance) { klass.new(vector) }
+  let(:color) { Color[Random.rand(254)+1, Random.rand(254)+1, 0, 255] }
+  let(:instance) { klass.new(vector, color) }
 
   describe '::new' do
     subject(:method) { klass.method :new }
@@ -11,9 +12,13 @@ describe Surface do
     it { expect { method.call }.to raise_error ArgumentError }
 
     it "accepts a Vector size" do
-      vector = Vector[Random.rand(20), Random.rand(20)]
       surface = method.call(vector)
       surface.size.should eq vector
+    end
+
+    it "accepts a Color color" do
+      surface = method.call(vector, color)
+      surface.color_at(vector/2).should eq color
     end
   end
 
@@ -49,6 +54,9 @@ describe Surface do
     subject(:method) { instance.method(:color_at) }
 
     it { expect { method.call }.to raise_error ArgumentError }
-    it { method.call(Vector[]).should eq Color[] }
+
+    it "matches the color of the pixel at position" do
+      method.call(Vector[]).should eq color
+    end
   end
 end
