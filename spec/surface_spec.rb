@@ -75,7 +75,7 @@ describe Surface do
       color2 = Color[0, 255, 0, 255]
       method.call(Vector[], vector/2, color2)
       instance.color_at(Vector[]).should eq color2
-      instance.color_at(vector/2 + Vector[1, 0]).should eq color
+      instance.color_at(vector/2 + Vector[1, 0]).should eq Color[0, 0, 0, 0]
     end
   end
 end

@@ -27,7 +27,16 @@ class Yeah::Surface
     rect_width = position2.x - position1.x
     (position1.y..position2.y).each do |i|
       color_bytes_row = color_byte_string * rect_width
-      data_lines[i][position2.x..position1.x] = color_bytes_row
+      data_lines[i][position1.x..position2.x] = color_bytes_row
+    end
+
+    print "\n"
+    data_lines.each do |line|
+      line.scan(/.{4}/).each do |pixel|
+        rep = (pixel.bytes == [0, 0, 0, 0]) ? 0 : 1
+        print rep
+      end
+      print "\n"
     end
 
     @data = data_lines.join
