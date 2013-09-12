@@ -21,4 +21,10 @@ describe Surface do
 
     it { should eq vector }
   end
+
+  describe '#size=' do
+    subject(:method) { instance.method(:size=) }
+
+    it_behaves_like 'writer', Vector[20, 20]
+  end
 end

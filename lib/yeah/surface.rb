@@ -4,4 +4,8 @@ class Yeah::Surface
   def initialize(size)
     @size = size
   end
+
+  def size=(value)
+    @size = value
+  end
 end
