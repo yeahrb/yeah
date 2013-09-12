@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Surface do
   let(:klass) { described_class }
-  let(:vector) { Vector[50, 50] }
+  let(:vector) { Vector[Random.rand(50)+1, Random.rand(50)+1] }
   let(:instance) { klass.new(vector) }
 
   describe '::new' do
@@ -26,5 +26,21 @@ describe Surface do
     subject(:method) { instance.method(:size=) }
 
     it_behaves_like 'writer', Vector[20, 20]
+  end
+
+  describe '#pixels' do
+    subject(:pixels) { instance.pixels }
+
+    it "has length of #size.x * #size.y * 4" do
+      instance.size = instance.size * 2
+      expected_length = instance.size.x * instance.size.y * 4
+      pixels.length.should eq expected_length
+    end
+
+    it "is repeatedly \x00\x00\x00\xFF by default" do
+      pix_array = pixels.unpack('H*')[0].scan(/.{8}/)
+      pix_array.uniq.size.should eq 1
+      pix_array.first.should eq "000000ff"
+    end
   end
 end
