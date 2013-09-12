@@ -10,4 +10,8 @@ class Yeah::Game
   def update
     @entities.each { |e| e.update }
   end
+
+  def draw
+    @entities.each { |e| e.draw(@platform) }
+  end
 end
