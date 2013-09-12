@@ -9,7 +9,7 @@ class Yeah::Surface
 
   def size=(value)
     @size = value
-    @data = @color.byte_array.pack('C*') * size.x * size.y
+    @data = @color.rgba_bytes.pack('C*') * size.x * size.y
   end
 
   def color_at(position)

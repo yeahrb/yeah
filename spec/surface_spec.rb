@@ -19,7 +19,7 @@ describe Surface do
     it "accepts a Color color" do
       surface = method.call(vector, color)
       surface.color_at(vector/2).should eq color
-      color_bytes = color.byte_array.pack('C*')
+      color_bytes = color.rgba_bytes.pack('C*')
       color_bytes *= instance.size.x * instance.size.y
       surface.data.unpack('H*').should eq color_bytes.unpack('H*')
     end

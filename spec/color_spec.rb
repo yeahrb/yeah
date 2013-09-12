@@ -11,11 +11,11 @@ describe Color do
       subject(:method) { klass.method(method_name) }
 
       it { method.call.should be_instance_of klass }
-      it { method.call.byte_array.should eq [0, 0, 0, 255] }
-      it { method.call([10, 20, 30, 40]).byte_array.should eq [10, 20, 30, 40] }
-      it { method.call([55, 25, 55, 25]).byte_array.should eq [55, 25, 55, 25] }
-      it { method.call(10, 20, 30, 40).byte_array.should eq [10, 20, 30, 40] }
-      it { method.call(55, 25, 55, 25).byte_array.should eq [55, 25, 55, 25] }
+      it { method.call.rgba_bytes.should eq [0, 0, 0, 255] }
+      it { method.call([10, 20, 30, 40]).rgba_bytes.should eq [10, 20, 30, 40] }
+      it { method.call([55, 25, 55, 25]).rgba_bytes.should eq [55, 25, 55, 25] }
+      it { method.call(10, 20, 30, 40).rgba_bytes.should eq [10, 20, 30, 40] }
+      it { method.call(55, 25, 55, 25).rgba_bytes.should eq [55, 25, 55, 25] }
     end
   end
 
@@ -42,14 +42,14 @@ describe Color do
     end
   end
 
-  describe '#byte_array' do
-    subject(:byte_array) { instance.byte_array }
+  describe '#rgba_bytes' do
+    subject(:rgba_bytes) { instance.rgba_bytes }
 
     it { should eq [0, 0, 0, 255] }
   end
 
-  describe '#byte_array=' do
-    subject(:method) { instance.method(:byte_array=) }
+  describe '#rgba_bytes=' do
+    subject(:method) { instance.method(:rgba_bytes=) }
 
     it_behaves_like 'writer', (1..4).map { Random.rand(255) }
   end

@@ -1,5 +1,5 @@
 class Yeah::Color
-  attr_accessor :byte_array
+  attr_accessor :rgba_bytes
 
   class << self
     alias_method :[], :new
@@ -10,13 +10,13 @@ class Yeah::Color
 
     case arguments[0]
     when Numeric
-      @byte_array = [*arguments]
+      @rgba_bytes = [*arguments]
     when Array
-      @byte_array = arguments[0]
+      @rgba_bytes = arguments[0]
     end
   end
 
   def ==(other)
-    self.class == other.class && @byte_array == other.byte_array ? true : false
+    self.class == other.class && @rgba_bytes == other.rgba_bytes ? true : false
   end
 end
