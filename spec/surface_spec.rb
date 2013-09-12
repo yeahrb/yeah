@@ -19,6 +19,9 @@ describe Surface do
     it "accepts a Color color" do
       surface = method.call(vector, color)
       surface.color_at(vector/2).should eq color
+      color_bytes = color.byte_array.pack('C*')
+      color_bytes *= instance.size.x * instance.size.y
+      surface.data.unpack('H*').should eq color_bytes.unpack('H*')
     end
   end
 
@@ -43,10 +46,9 @@ describe Surface do
       data.length.should eq expected_length
     end
 
-    it "is repeatedly \x00\x00\x00\xFF by default" do
+    it "is a series of repeating 4 bytes by default" do
       pixels = data.unpack('H*')[0].scan(/.{8}/)
       pixels.uniq.size.should eq 1
-      pixels.first.should eq "000000ff"
     end
   end
 

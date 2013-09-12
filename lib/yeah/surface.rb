@@ -3,13 +3,13 @@ class Yeah::Surface
   attr_accessor :data
 
   def initialize(size, color=Color[])
-    self.size = size
     @color = color
+    self.size = size
   end
 
   def size=(value)
     @size = value
-    @data = "\x00\x00\x00\xFF" * size.x * size.y
+    @data = @color.byte_array.pack('C*') * size.x * size.y
   end
 
   def color_at(position)
