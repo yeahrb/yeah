@@ -1,5 +1,5 @@
 class Yeah::Surface
-  attr_reader :size, :pixels
+  attr_reader :size, :data
 
   def initialize(size)
     self.size = size
@@ -7,6 +7,6 @@ class Yeah::Surface
 
   def size=(value)
     @size = value
-    @pixels = "\x00\x00\x00\xFF" * size.x * size.y
+    @data = "\x00\x00\x00\xFF" * size.x * size.y
   end
 end

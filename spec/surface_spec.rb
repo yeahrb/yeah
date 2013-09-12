@@ -28,19 +28,19 @@ describe Surface do
     it_behaves_like 'writer', Vector[20, 20]
   end
 
-  describe '#pixels' do
-    subject(:pixels) { instance.pixels }
+  describe '#data' do
+    subject(:data) { instance.data }
 
     it "has length of #size.x * #size.y * 4" do
       instance.size = instance.size * 2
       expected_length = instance.size.x * instance.size.y * 4
-      pixels.length.should eq expected_length
+      data.length.should eq expected_length
     end
 
     it "is repeatedly \x00\x00\x00\xFF by default" do
-      pix_array = pixels.unpack('H*')[0].scan(/.{8}/)
-      pix_array.uniq.size.should eq 1
-      pix_array.first.should eq "000000ff"
+      pixels = data.unpack('H*')[0].scan(/.{8}/)
+      pixels.uniq.size.should eq 1
+      pixels.first.should eq "000000ff"
     end
   end
 end
