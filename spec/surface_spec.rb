@@ -2,7 +2,8 @@ require 'spec_helper'
 
 describe Surface do
   let(:klass) { described_class }
-  let(:instance) { klass.new }
+  let(:vector) { Vector[50, 50] }
+  let(:instance) { klass.new(vector) }
 
   describe '::new' do
     subject(:method) { klass.method :new }
@@ -13,5 +14,11 @@ describe Surface do
       vector = Vector[Random.rand(20), Random.rand(20)]
       surface = method.call(vector)
     end
+  end
+
+  describe '#size' do
+    subject { instance.size }
+
+    it { should eq vector }
   end
 end
