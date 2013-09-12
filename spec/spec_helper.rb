@@ -24,3 +24,21 @@ class DummyEntity < Entity
     @update_count += 1
   end
 end
+
+describe DummyEntity do
+  let(:klass) { described_class }
+  let(:instance) { klass.new }
+
+  describe '#update_count' do
+    subject { instance.update_count }
+
+    it { should eq 0 }
+
+    it "increments after calling #update" do
+      3.times do |i|
+        instance.update
+        instance.update_count.should eq i+1
+      end
+    end
+  end
+end
