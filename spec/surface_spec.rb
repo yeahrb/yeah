@@ -50,6 +50,16 @@ describe Surface do
     end
   end
 
+  describe '#data=' do
+    subject(:method) { instance.method(:data=) }
+
+    it "assigns hex data of length size.x * size.y * 4" do
+      data = "\xFF" * instance.size.x * instance.size.y * 4
+      method.call(data)
+      instance.data.should eq data
+    end
+  end
+
   describe '#color_at' do
     subject(:method) { instance.method(:color_at) }
 
