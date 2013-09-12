@@ -4,6 +4,7 @@ end
 
 require 'yeah/vector'
 require 'yeah/color'
+require 'yeah/surface'
 require 'yeah/rectangle'
 require 'yeah/entity'
 require 'yeah/map'
