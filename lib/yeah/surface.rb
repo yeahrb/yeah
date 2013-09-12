@@ -14,4 +14,8 @@ class Yeah::Surface
   def color_at(position)
     @color
   end
+
+  def draw_rectangle(position, rectangle)
+    @color = rectangle.color
+  end
 end
