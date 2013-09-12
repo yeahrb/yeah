@@ -3,9 +3,8 @@ require 'rubygame'
 class Yeah::Desktop
   attr_reader :screen, :resolution
 
-  def initialize
-    @resolution = Yeah::Vector[320, 240]
-    @screen = Rubygame::Screen.new([320, 240])
+  def initialize(resolution=Yeah::Vector[320, 240])
+    self.resolution = resolution
   end
 
   def resolution=(value)

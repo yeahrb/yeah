@@ -9,6 +9,14 @@ describe Yeah::Desktop do
   describe '::new' do
     subject(:method) { klass.method(:new) }
 
+    it { method.call.resolution.should eq Yeah::Vector[320, 240] }
+
+    it "accepts Vector as resolution" do
+      vector = Yeah::Vector[Random.rand(250), Random.rand(250)]
+      desktop = method.call(vector)
+      desktop.resolution.should eq vector
+      desktop.screen.size.should eq vector[0..1]
+    end
   end
 
   describe '#screen' do
