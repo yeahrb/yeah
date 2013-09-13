@@ -46,7 +46,7 @@ describe Rectangle do
   describe '#color=' do
     subject(:method) { instance.method(:color=) }
 
-    it_behaves_like 'writer', [Random.rand(255)]*4
+    it_behaves_like 'writer', Color[*[Random.rand(255)]*4]
   end
 
   describe '#draw' do
