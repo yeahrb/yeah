@@ -44,6 +44,18 @@ describe Entity do
     end
   end
 
+  describe '#visual' do
+    subject { instance.visual }
+
+    it { should eq nil }
+  end
+
+  describe '#visual=' do
+    subject { instance.method(:visual=) }
+
+    it_behaves_like 'writer', Rectangle.new(Vector[50, 50])
+  end
+
   describe '#draw' do
     subject(:method) { instance.method(:draw) }
 
