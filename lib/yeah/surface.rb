@@ -21,13 +21,16 @@ class Yeah::Surface
   end
 
   def fill_rectangle(position1, position2, color)
+    puts position1.inspect
+    puts position2.inspect
     color_byte_string = color.rgba_bytes.pack('C*')
     data_lines = data.scan(/.{#{size.x*4}}/)
 
-    rect_width = position2.x - position1.x
-    (position1.y..position2.y).each do |i|
+    rect_width = (position2.x - position1.x).abs
+    (position1.y...position2.y).each do |i|
+      line = data_lines[i]
       color_bytes_row = color_byte_string * rect_width
-      data_lines[i][position1.x..position2.x] = color_bytes_row
+      line[position1.x*4...position2.x*4] = color_bytes_row
     end
 
     print "\n"
