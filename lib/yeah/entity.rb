@@ -30,5 +30,6 @@ class Yeah::Entity
   end
 
   def draw
+    visual.draw if visual
   end
 end
