@@ -28,4 +28,8 @@ class Yeah::Entity
   def z=(value)
     @position.z = value
   end
+
+  def draw
+    Yeah::Surface.new(Yeah::Vector[])
+  end
 end

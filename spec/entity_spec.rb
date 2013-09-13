@@ -43,4 +43,11 @@ describe Entity do
       end
     end
   end
+
+  describe '#draw' do
+    subject(:method) { instance.method(:draw) }
+
+    its(:call) { should be_instance_of Surface }
+    it { method.call.size.should eq Vector[] }
+  end
 end
