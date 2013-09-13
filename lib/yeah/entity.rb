@@ -30,6 +30,6 @@ class Yeah::Entity
   end
 
   def draw
-    Yeah::Surface.new(Yeah::Vector[])
+    Yeah::Surface.new
   end
 end

@@ -2,7 +2,7 @@ class Yeah::Surface
   attr_reader :size
   attr_accessor :data
 
-  def initialize(size)
+  def initialize(size=Vector[])
     self.size = size
   end
 

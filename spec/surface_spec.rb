@@ -8,7 +8,7 @@ describe Surface do
   describe '::new' do
     subject(:method) { klass.method :new }
 
-    it { expect { method.call }.to raise_error ArgumentError }
+    it { method.call.size.should eq Vector[] }
 
     it "accepts a Vector size" do
       surface = method.call(vector)
