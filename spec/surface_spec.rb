@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Surface do
   let(:klass) { described_class }
-  let(:vector) { Vector[Random.rand(50)+1, Random.rand(50)+1] }
+  let(:vector) { Vector[Random.rand(48)+2, Random.rand(48)+2] }
   let(:instance) { klass.new(vector) }
 
   describe '::new' do
