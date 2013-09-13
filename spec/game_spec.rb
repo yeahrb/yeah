@@ -47,14 +47,13 @@ describe Game do
   end
 
   describe '#draw' do
-    it "calls #draw (with @platform argument) of each element in #entities" do
+    it "calls #draw of each element in #entities" do
       instance.entities = (1..3).map { DummyEntity.new }
       draw_count = Random.rand(5) + 1
       draw_count.times { instance.draw }
 
       instance.entities.each do |entity|
         entity.draw_count.should eq draw_count
-        entity.last_draw_platform.should eq instance.platform
       end
     end
   end

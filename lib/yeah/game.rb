@@ -12,6 +12,6 @@ class Yeah::Game
   end
 
   def draw
-    @entities.each { |e| e.draw(platform) }
+    @entities.each { |e| e.draw }
   end
 end

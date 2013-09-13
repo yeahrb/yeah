@@ -13,22 +13,20 @@ shared_examples 'writer' do |value|
 end
 
 class DummyEntity < Entity
-  attr_reader :update_count, :draw_count, :last_draw_platform
+  attr_reader :update_count, :draw_count
 
   def initialize
     super
     @update_count = 0
     @draw_count = 0
-    @last_draw_platform = nil
   end
 
   def update
     @update_count += 1
   end
 
-  def draw(platform)
+  def draw
     @draw_count += 1
-    @last_draw_platform = platform
   end
 end
 
@@ -56,21 +54,9 @@ describe DummyEntity do
 
     it "increments after calling #draw" do
       3.times do |i|
-        instance.draw(nil)
+        instance.draw
         instance.draw_count.should eq i+1
       end
-    end
-  end
-
-  describe '#last_draw_platform' do
-    subject { instance.last_draw_platform }
-
-    it { should eq nil }
-
-    it "is whatever is passed into the last #draw call" do
-      random = Random.rand(10)
-      instance.draw(random)
-      instance.last_draw_platform.should eq random
     end
   end
 end
