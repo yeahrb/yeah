@@ -30,6 +30,5 @@ class Yeah::Entity
   end
 
   def draw
-    Yeah::Surface.new
   end
 end
