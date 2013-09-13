@@ -38,7 +38,7 @@ describe Desktop do
     it_behaves_like 'writer', Vector[Random.rand(250), Random.rand(250)]
 
     it "changes screen size" do
-      resolution = Vector[Random.rand(250), Random.rand(250)]
+      resolution = Vector[Random.rand(250)+1, Random.rand(250)+1]
       method.call(resolution)
       instance.screen.size.should eq resolution.components[0..1]
     end
