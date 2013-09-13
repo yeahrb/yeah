@@ -104,10 +104,10 @@ describe Vector do
 
     it "subtracts Numeric" do
       subtrahend = Random.rand(100)
-      difference = instance + subtrahend
+      difference = instance - subtrahend
 
       difference.components.each_with_index do |component, i|
-        component.should eq instance.components[i] + subtrahend
+        component.should eq instance.components[i] - subtrahend
       end
     end
   end
