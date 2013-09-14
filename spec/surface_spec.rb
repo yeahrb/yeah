@@ -87,4 +87,32 @@ describe Surface do
       instance.data.length.should eq instance.size.x * instance.size.y * 4
     end
   end
+
+  describe '#draw' do
+    subject(:method) { instance.method(:draw) }
+    let(:color) { Color[0, Random.rand(255), Random.rand(255), 255] }
+
+    it { expect { method.call }.to raise_error ArgumentError }
+
+    it "draws surface at position" do
+      surface = Surface.new(Vector[1, 1])
+      surface.fill(color)
+      surface2 = Surface.new(Vector[10, 10])
+      surface2.draw(surface, Vector[1, 1])
+
+      surface2.color_at(Vector[0, 0]).should eq Color[0, 0, 0, 0]
+      surface2.color_at(Vector[1, 1]).should eq color
+      surface2.color_at(Vector[2, 2]).should eq Color[0, 0, 0, 0]
+    end
+
+    it "draws surface at (0, 0) by default" do
+      surface = Surface.new(Vector[1, 1])
+      surface.fill(color)
+      surface2 = Surface.new(Vector[10, 10])
+      surface2.draw(surface)
+
+      surface2.color_at(Vector[0, 0]).should eq color
+      surface2.color_at(Vector[1, 1]).should eq Color[0, 0, 0, 0]
+    end
+  end
 end

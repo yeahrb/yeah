@@ -33,4 +33,18 @@ class Yeah::Surface
 
     @data = data_lines.join
   end
+
+  def draw(surface, position=Vector[0, 0])
+    data_lines = data.scan(/.{#{size.x*4}}/)
+    surface_data_lines = surface.data.scan(/.{#{surface.size.x*4}}/)
+
+    (position.y...position.y+surface.size.height).each_with_index do |y, i|
+      line = data_lines[y]
+      surface_line = surface_data_lines[i]
+
+      line[position.x*4...(position.x+surface.size.width+1)*4] = surface_line
+    end
+
+    @data = data_lines.join
+  end
 end
