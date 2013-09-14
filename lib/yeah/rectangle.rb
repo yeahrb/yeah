@@ -8,7 +8,7 @@ class Yeah::Rectangle
 
   def draw
     surface = Yeah::Surface.new(size)
-    surface.fill_rectangle(Vector[], size-Vector[1, 1], color)
+    surface.fill(color)
     surface
   end
 end

@@ -64,20 +64,26 @@ describe Surface do
     end
   end
 
-  describe '#fill_rectangle' do
-    subject(:method) { instance.method(:fill_rectangle) }
+  describe '#fill' do
+    subject(:method) { instance.method(:fill) }
+    let(:color2) { Color[0, 255, 0, 255] }
 
     it { expect { method.call }.to raise_error ArgumentError }
-    it { expect { method.call(vector) }.to raise_error ArgumentError }
-    it { expect { method.call(vector, vector) }.to raise_error ArgumentError }
 
-    it "changes color of rectangular area" do
-      color2 = Color[0, 255, 0, 255]
-      method.call(Vector[], vector/2, color2)
+    it "changes color of rectangular area with position args" do
+      method.call(color2, Vector[], vector/2)
       instance.color_at(Vector[]).should eq color2
       instance.color_at(vector/2).should eq color2
       instance.color_at(vector/2 + Vector[1, 0]).should eq Color[0, 0, 0, 0]
       instance.color_at(vector/2 + Vector[0, 1]).should eq Color[0, 0, 0, 0]
+      instance.data.length.should eq instance.size.x * instance.size.y * 4
+    end
+
+    it "changes color of entire surface without position args" do
+      method.call(color2)
+      instance.color_at(Vector[]).should eq color2
+      instance.color_at(vector/2).should eq color2
+      instance.color_at(vector-1).should eq color2
       instance.data.length.should eq instance.size.x * instance.size.y * 4
     end
   end

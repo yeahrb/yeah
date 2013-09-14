@@ -20,7 +20,7 @@ class Yeah::Surface
     Color[*color_bytes]
   end
 
-  def fill_rectangle(position1, position2, color)
+  def fill(color, position1=Vector[0, 0], position2=size-1)
     color_byte_string = color.rgba_bytes.pack('C*')
     data_lines = data.scan(/.{#{size.x*4}}/)
 
