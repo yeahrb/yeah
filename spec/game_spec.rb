@@ -57,4 +57,11 @@ describe Game do
       end
     end
   end
+
+  describe '#screen' do
+    subject(:screen) { instance.screen }
+
+    it { should be_instance_of Surface }
+    its(:size) { should eq instance.resolution }
+  end
 end
