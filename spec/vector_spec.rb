@@ -144,7 +144,7 @@ describe Vector do
     end
 
     it "divides by Numeric" do
-      divisor = Random.rand(100)
+      divisor = Random.rand(100) + 1
       quotient = instance / divisor
 
       quotient.components.each_with_index do |component, i|
