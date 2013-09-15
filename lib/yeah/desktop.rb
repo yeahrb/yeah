@@ -11,4 +11,10 @@ class Yeah::Desktop
     @screen = Rubygame::Screen.new(value.components[0..1])
     @resolution = value
   end
+
+  def render(surface)
+    struct = screen.send(:struct)
+    struct.pixels.write_string(surface.data, surface.data.length)
+    screen.update
+  end
 end
