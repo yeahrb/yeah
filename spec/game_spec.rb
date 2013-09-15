@@ -56,6 +56,17 @@ describe Game do
         entity.draw_count.should eq draw_count
       end
     end
+
+    it "draws entities on #screen" do
+      color = Color[0, 255, 0, 255]
+      entity = Entity.new
+      entity.visual = Rectangle.new(Vector[1, 1], color)
+      entity.position = Vector[Random.rand(10), Random.rand(10)]
+      instance.entities << entity
+      instance.draw
+
+      instance.screen.color_at(entity.position).should eq color
+    end
   end
 
   describe '#screen' do

@@ -13,6 +13,9 @@ class Yeah::Game
   end
 
   def draw
-    @entities.each { |e| e.draw }
+    @entities.each do |entity|
+      surface = entity.draw
+      screen.draw(surface, entity.position) unless surface.nil?
+    end
   end
 end

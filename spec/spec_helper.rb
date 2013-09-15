@@ -27,6 +27,7 @@ class DummyEntity < Entity
 
   def draw
     @draw_count += 1
+    super
   end
 end
 
