@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Vector do
   let(:klass) { described_class }
-  let(:arguments) { (1..3).map { Random.rand(100) } }
+  let(:arguments) { (1..3).map { Random.rand(100)+1 } }
   let(:instance) { klass.new(*arguments) }
 
   it { klass.should be_instance_of Class }
