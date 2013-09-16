@@ -13,6 +13,7 @@ class Yeah::Game
   end
 
   def draw
+    screen.fill(Color[0, 0, 0, 0])
     @entities.each do |entity|
       surface = entity.draw
       screen.draw(surface, entity.position) unless surface.nil?

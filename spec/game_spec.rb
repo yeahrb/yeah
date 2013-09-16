@@ -49,6 +49,11 @@ describe Game do
   describe '#draw' do
     subject(:method) { instance.method(:draw) }
 
+    it "clears #screen" do
+      instance.screen.should receive(:fill).with(Color[0, 0, 0, 0])
+      method.call
+    end
+
     it "calls #draw of each element in #entities" do
       instance.entities = (1..3).map { DummyEntity.new }
       draw_count = Random.rand(5) + 1
