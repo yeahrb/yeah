@@ -104,7 +104,7 @@ describe Desktop do
   describe '#tickrate' do
     subject { instance.tickrate }
 
-    it { should eq 30 }
+    its(:round) { should eq 30 }
   end
 
   describe '#tickrate=' do
@@ -117,7 +117,7 @@ describe Desktop do
       clock = instance.instance_variable_get(:@clock)
       method.call(tickrate)
 
-      clock.target_framerate.should eq tickrate
+      clock.target_framerate.round.should eq tickrate
     end
   end
 end
