@@ -17,6 +17,9 @@ class Yeah::Game
       surface = entity.draw
       screen.draw(surface, entity.position) unless surface.nil?
     end
+    pixels = platform.screen.send(:struct).pixels
+    pixels.write_string(screen.data, screen.data.length)
+    platform.screen.update
   end
 
   def start

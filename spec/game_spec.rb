@@ -47,10 +47,12 @@ describe Game do
   end
 
   describe '#draw' do
+    subject(:method) { instance.method(:draw) }
+
     it "calls #draw of each element in #entities" do
       instance.entities = (1..3).map { DummyEntity.new }
       draw_count = Random.rand(5) + 1
-      draw_count.times { instance.draw }
+      draw_count.times { method.call }
 
       instance.entities.each do |entity|
         entity.draw_count.should eq draw_count
@@ -63,9 +65,28 @@ describe Game do
       entity.visual = Rectangle.new(Vector[1, 1], color)
       entity.position = Vector[Random.rand(10), Random.rand(10)]
       instance.entities << entity
-      instance.draw
+      method.call
 
       instance.screen.color_at(entity.position).should eq color
+    end
+
+    it "calls #platform#screen#struct#pixels#write_string" do
+      # TODO: Why does this fail?
+      pixels = instance.platform.screen.send(:struct).pixels
+      pixels.should receive(:write_string)
+      method.call
+    end
+
+    #it "calls #platform#screen#struct#pixels#write_string with screen data" do
+    #  pixels = instance.platform.screen.send(:struct).pixels
+    #  screen_data_args = [instance.screen.data, instance.screen.data.length]
+    #  pixels.should receive(:write_string).with(*screen_data_args)
+    #  method.call
+    #end
+
+    it "calls #platform#screen#update" do
+      instance.platform.screen.should receive(:update)
+      method.call
     end
   end
 
