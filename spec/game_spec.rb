@@ -76,35 +76,14 @@ describe Game do
     its(:size) { should eq instance.resolution }
   end
 
-  describe '#started' do
-    subject { instance.started }
-
-    it { should eq false }
-  end
-
-  describe '#started=' do
-    subject(:method) { instance.method(:started=) }
-
-    it_behaves_like 'writer', true
-  end
-
   describe '#start' do
     subject(:method) { instance.method(:start) }
 
-    it "sets #started to true" do
-      instance.started = false
+    it "calls #platform#each_tick with a block" do
+      instance.platform.should receive(:each_tick).and_yield
       method.call
-      instance.started.should eq true
     end
-  end
 
-  describe '#stop' do
-    subject(:method) { instance.method(:stop) }
-
-    it "sets #started to false" do
-      instance.started = true
-      method.call
-      instance.started.should eq false
-    end
+    it "calls #platform#each_tick with a block with #update and #draw calls"
   end
 end
