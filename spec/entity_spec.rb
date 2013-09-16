@@ -11,7 +11,7 @@ describe Entity do
 
     it { method.call.should be_instance_of klass }
     it { method.call.position.should eq Vector[0, 0, 0] }
-    it { method.call(2, 4, 8).position.should eq Vector[2, 4, 8] }
+    it { method.call(Vector[2, 4, 8]).position.should eq Vector[2, 4, 8] }
   end
 
   describe '#position' do

@@ -1,8 +1,8 @@
 class Yeah::Entity
   attr_accessor :position, :visual
 
-  def initialize(*position)
-    @position = Yeah::Vector[*position]
+  def initialize(position=Vector[])
+    @position = position
   end
 
   def x
