@@ -100,4 +100,24 @@ describe Desktop do
       tick_call_count.should eq 5
     end
   end
+
+  describe '#tickrate' do
+    subject { instance.tickrate }
+
+    it { should eq 30 }
+  end
+
+  describe '#tickrate=' do
+    subject(:method) { instance.method(:tickrate=) }
+
+    it_behaves_like 'writer', 60
+
+    it "sets @clock#target_framerate" do
+      tickrate = Random.rand(30) + 30
+      clock = instance.instance_variable_get(:@clock)
+      method.call(tickrate)
+
+      clock.target_framerate.should eq tickrate
+    end
+  end
 end

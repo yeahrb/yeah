@@ -1,11 +1,12 @@
 require 'rubygame'
 
 class Yeah::Desktop
-  attr_reader :screen, :resolution
+  attr_reader :screen, :resolution, :tickrate
 
   def initialize(resolution=Yeah::Vector[320, 240])
     self.resolution = resolution
     @clock = Rubygame::Clock.new
+    self.tickrate = 30
   end
 
   def resolution=(value)
@@ -17,6 +18,11 @@ class Yeah::Desktop
     struct = screen.send(:struct)
     struct.pixels.write_string(surface.data, surface.data.length)
     screen.update
+  end
+
+  def tickrate=(value)
+    @clock.target_framerate = value
+    @tickrate = value
   end
 
   def each_tick
