@@ -75,4 +75,16 @@ describe Game do
     it { should be_instance_of Surface }
     its(:size) { should eq instance.resolution }
   end
+
+  describe '#playing' do
+    subject { instance.playing }
+
+    it { should eq true }
+  end
+
+  describe '#playing=' do
+    subject { instance.method(:playing=) }
+
+    it_behaves_like 'writer', false
+  end
 end
