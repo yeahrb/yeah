@@ -76,15 +76,35 @@ describe Game do
     its(:size) { should eq instance.resolution }
   end
 
-  describe '#playing' do
-    subject { instance.playing }
+  describe '#started' do
+    subject { instance.started }
 
-    it { should eq true }
+    it { should eq false }
   end
 
-  describe '#playing=' do
-    subject { instance.method(:playing=) }
+  describe '#started=' do
+    subject(:method) { instance.method(:started=) }
 
-    it_behaves_like 'writer', false
+    it_behaves_like 'writer', true
+  end
+
+  describe '#start' do
+    subject(:method) { instance.method(:start) }
+
+    it "sets #started to true" do
+      instance.started = false
+      method.call
+      instance.started.should eq true
+    end
+  end
+
+  describe '#stop' do
+    subject(:method) { instance.method(:stop) }
+
+    it "sets #started to false" do
+      instance.started = true
+      method.call
+      instance.started.should eq false
+    end
   end
 end

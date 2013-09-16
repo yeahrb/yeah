@@ -1,12 +1,12 @@
 class Yeah::Game
-  attr_accessor :entities, :screen, :platform, :resolution, :playing
+  attr_accessor :entities, :screen, :platform, :resolution, :started
 
   def initialize
     @resolution = Yeah::Vector[320, 240]
     @screen = Yeah::Surface.new(@resolution)
     @platform = Yeah::Desktop.new
     @entities = []
-    @playing = true
+    @started = false
   end
 
   def update
@@ -18,5 +18,13 @@ class Yeah::Game
       surface = entity.draw
       screen.draw(surface, entity.position) unless surface.nil?
     end
+  end
+
+  def start
+    self.started = true
+  end
+
+  def stop
+    self.started = false
   end
 end
