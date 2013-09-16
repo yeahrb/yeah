@@ -5,6 +5,7 @@ class Yeah::Desktop
 
   def initialize(resolution=Yeah::Vector[320, 240])
     self.resolution = resolution
+    @clock = Rubygame::Clock.new
   end
 
   def resolution=(value)
@@ -16,5 +17,12 @@ class Yeah::Desktop
     struct = screen.send(:struct)
     struct.pixels.write_string(surface.data, surface.data.length)
     screen.update
+  end
+
+  def each_tick
+    loop do
+      yield
+      @clock.tick
+    end
   end
 end

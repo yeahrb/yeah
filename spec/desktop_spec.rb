@@ -17,6 +17,12 @@ describe Desktop do
       desktop.resolution.should eq vector
       desktop.screen.size.should eq vector[0..1]
     end
+
+    it { method.call.instance_variables.should include :@clock }
+    it do
+      clock = method.call.instance_variable_get(:@clock)
+      clock.should be_instance_of Rubygame::Clock
+    end
   end
 
   describe '#screen' do
@@ -59,6 +65,39 @@ describe Desktop do
       method.call(surface)
       instance.screen.get_at([0, 0]).should eq [0, 255, 0, 255]
       screen_update_count.should eq 1
+    end
+  end
+
+  describe '#each_tick' do
+    subject(:method) { instance.method(:each_tick) }
+
+    it { expect { method.call }.to raise_error LocalJumpError }
+
+    it "repeatedly calls passed block" do
+      call_count = 0
+
+      method.call do
+        call_count += 1
+        break if call_count == 5
+      end
+
+      call_count.should eq 5
+    end
+
+    it "calls Rubygame::Clock#tick per call" do
+      call_count = 0
+      tick_call_count = 0
+      allow(instance.instance_variable_get(:@clock)).to receive(:tick) do
+        tick_call_count += 1
+      end
+
+      method.call do
+        break if tick_call_count == 5
+        call_count += 1
+      end
+
+      call_count.should eq 5
+      tick_call_count.should eq 5
     end
   end
 end
