@@ -37,12 +37,12 @@ describe Game do
   end
 
   describe '#update' do
-    it "calls #update of each element in #entities" do
-      instance.entities = (1..3).map { DummyEntity.new }
-      update_count = Random.rand(5)
-      update_count.times { instance.update }
+    subject(:method) { instance.method(:update) }
 
-      instance.entities.each { |e| e.update_count.should eq update_count }
+    it "calls #update of each element in #entities" do
+      instance.entities = (1..3).map { Entity.new }
+      instance.entities.each { |e| e.should receive(:update) }
+      method.call
     end
   end
 
@@ -55,13 +55,9 @@ describe Game do
     end
 
     it "calls #draw of each element in #entities" do
-      instance.entities = (1..3).map { DummyEntity.new }
-      draw_count = Random.rand(5) + 1
-      draw_count.times { method.call }
-
-      instance.entities.each do |entity|
-        entity.draw_count.should eq draw_count
-      end
+      instance.entities = (1..3).map { Entity.new }
+      instance.entities.each { |e| e.should receive(:draw) }
+      method.call
     end
 
     it "draws entities on #screen" do

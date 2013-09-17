@@ -62,9 +62,9 @@ describe Entity do
     its(:call) { should eq nil }
 
     it "calls #draw method of #visual if it exists" do
-      instance.visual = DummyEntity.new
-      instance.draw
-      instance.visual.draw_count.should eq 1
+      instance.visual = Rectangle.new
+      instance.visual.should receive(:draw)
+      method.call
     end
   end
 end
