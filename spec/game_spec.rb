@@ -75,19 +75,11 @@ describe Game do
       instance.screen.color_at(entity.position).should eq color
     end
 
-    it "calls #platform#screen#struct#pixels#write_string" do
-      # TODO: Why does this fail?
+    it "writes to #platform#screen#struct#pixels" do
       pixels = instance.platform.screen.send(:struct).pixels
-      pixels.should receive(:write_string)
-      method.call
+      pixel_data = pixels.read_string(instance.screen.data.length)
+      pixel_data.should eq instance.screen.data
     end
-
-    #it "calls #platform#screen#struct#pixels#write_string with screen data" do
-    #  pixels = instance.platform.screen.send(:struct).pixels
-    #  screen_data_args = [instance.screen.data, instance.screen.data.length]
-    #  pixels.should receive(:write_string).with(*screen_data_args)
-    #  method.call
-    #end
 
     it "calls #platform#screen#update" do
       instance.platform.screen.should receive(:update)
