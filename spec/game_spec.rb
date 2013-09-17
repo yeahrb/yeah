@@ -97,11 +97,11 @@ describe Game do
   describe '#start' do
     subject(:method) { instance.method(:start) }
 
-    it "calls #platform#each_tick with a block" do
-      instance.platform.should receive(:each_tick).and_yield
+    it "calls #platform#each_tick with a block with #update and #draw calls" do
+      instance.platform.instance_eval "def each_tick; yield; end"
+      instance.should receive(:update)
+      instance.should receive(:draw)
       method.call
     end
-
-    it "calls #platform#each_tick with a block with #update and #draw calls"
   end
 end
