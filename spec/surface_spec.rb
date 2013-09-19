@@ -121,5 +121,21 @@ describe Surface do
       surface2.color_at(Vector[0, 0]).should eq color
       surface2.color_at(Vector[1, 1]).should eq Color[0, 0, 0, 0]
     end
+
+    it "draws a rectangular area" do
+      surface = Surface.new(Vector[3, 3])
+      surface.fill(color)
+      surface2 = Surface.new(Vector[5, 5])
+      surface2.draw(surface, Vector[1, 1])
+
+      surface2.color_at(Vector[1, 1]).should eq color
+      surface2.color_at(Vector[1, 3]).should eq color
+      surface2.color_at(Vector[3, 1]).should eq color
+      surface2.color_at(Vector[3, 3]).should eq color
+      surface2.color_at(Vector[0, 3]).should eq Color[0, 0, 0, 0]
+      surface2.color_at(Vector[3, 0]).should eq Color[0, 0, 0, 0]
+      surface2.color_at(Vector[4, 3]).should eq Color[0, 0, 0, 0]
+      surface2.color_at(Vector[3, 4]).should eq Color[0, 0, 0, 0]
+    end
   end
 end

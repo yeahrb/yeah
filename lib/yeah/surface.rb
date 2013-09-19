@@ -51,7 +51,7 @@ class Yeah::Surface
       line = data_lines[y]
       surface_line = surface_data_lines[i]
 
-      line[position.x*4...(position.x+surface.size.width+1)*4] = surface_line
+      line[position.x*4...(position.x+surface.size.width)*4] = surface_line
     end
 
     @data = data_lines.join
