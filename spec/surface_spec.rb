@@ -29,7 +29,8 @@ describe Surface do
   end
 
   describe '#data' do
-    subject(:data) { instance.data }
+    subject(:method) { instance.method(:data) }
+    let(:data) { instance.data }
 
     it "has length of #size.x * #size.y * 4" do
       instance.size = instance.size * 2
@@ -41,6 +42,12 @@ describe Surface do
       pixels = data.unpack('H*')[0].scan(/.{8}/)
       pixels.uniq.size.should eq 1
       pixels.uniq.last.should eq "00000000"
+    end
+
+    it "accepts format param" do
+      instance.data = "\x00\x11\x22\x33"
+      method.call(:rgba).should eq "\x00\x11\x22\x33"
+      method.call(:bgra).should eq "\x22\x11\x00\x33"
     end
   end
 
