@@ -57,13 +57,13 @@ describe Desktop do
 
     it "renders a Surface" do
       surface = Surface.new(instance.resolution)
-      surface.fill(Color[0, 255, 0, 255], Vector[0, 0], Vector[1, 1])
+      surface.fill(Color[255, 255, 0, 255], Vector[0, 0], Vector[1, 1])
 
       screen_update_count = 0
       allow(instance.screen).to receive(:update) { screen_update_count += 1 }
 
       method.call(surface)
-      instance.screen.get_at([0, 0]).should eq [0, 255, 0, 255]
+      instance.screen.get_at([0, 0]).should eq [255, 255, 0, 255]
       screen_update_count.should eq 1
     end
   end

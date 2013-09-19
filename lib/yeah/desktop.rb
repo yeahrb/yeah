@@ -16,7 +16,7 @@ class Yeah::Desktop
 
   def render(surface)
     struct = screen.send(:struct)
-    struct.pixels.write_string(surface.data, surface.data.length)
+    struct.pixels.write_string(surface.data(:bgra), surface.data.length)
     screen.update
   end
 
