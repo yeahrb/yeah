@@ -1,3 +1,5 @@
+#!/usr/bin/env ruby
+
 # Happy Rectangle
 # A barebones demo for Yeah.
 
