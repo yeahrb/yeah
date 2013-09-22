@@ -1,5 +1,5 @@
 module Yeah
-  VERSION = '0.1.0'
+  VERSION = '0.2.0'
 end
 
 requires = %i(vector color surface rectangle entity map desktop game)
