@@ -15,7 +15,7 @@ describe Game do
   describe '#resolution' do
     subject { instance.resolution }
 
-    it { should eq Vector[320, 240] }
+    it { should eq Vector[320, 180] }
   end
 
   describe '#resolution=' do

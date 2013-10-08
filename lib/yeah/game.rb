@@ -2,7 +2,7 @@ class Yeah::Game
   attr_accessor :entities, :screen, :platform, :resolution
 
   def initialize
-    @resolution = Vector[320, 240]
+    @resolution = Vector[320, 180]
     @screen = Surface.new(@resolution)
     @platform = Desktop.new
     @entities = []

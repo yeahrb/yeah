@@ -3,7 +3,7 @@ require 'rubygame'
 class Yeah::Desktop
   attr_reader :screen, :resolution, :tickrate
 
-  def initialize(resolution=Vector[320, 240])
+  def initialize(resolution=Vector[320, 180])
     self.resolution = resolution
     @clock = Rubygame::Clock.new
     self.tickrate = 30
