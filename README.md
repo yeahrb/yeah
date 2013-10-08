@@ -9,6 +9,10 @@ Planned features
 * Graphical tools for creating video game resources like sprites and maps.
 * Multiple target platforms, starting with desktop and web.
 
+Installing
+----------
+Install with `gem install yeah`. Yeah depends on Rubygame, which depends on SDL; see [these guides](https://github.com/rubygame/rubygame/wiki/Install).
+
 Blog
 ----
 [Why am I making Yeah?](http://skofo.github.io/blog/why-am-i-making-yeah)
