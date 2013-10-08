@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 
 # Happy Rectangle
-# A barebones demo for Yeah.
+# A barebones benchmark for Yeah.
 
 lib = File.expand_path('../../lib/', __FILE__)
 $:.unshift lib unless $:.include?(lib)
@@ -44,7 +44,6 @@ end
 
 Benchmark.bmbm do |bm|
   bm.report do
-    g = HappyRectangleGame.new
-    g.start
+    HappyRectangleGame.new.start
   end
 end
