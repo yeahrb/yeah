@@ -1,6 +1,6 @@
 Yeah
 ====
-An early-stage Ruby video game framework that optimizes for development efficiency. It is in very early stages, but by version 0.3.0 the [Shootguy](https://github.com/skofo/yeah/demo/shootguy/) demo should be functional.
+An early-stage Ruby video game framework that optimizes for development efficiency. It is in very early stages, but by version 0.3.0 the Shootguy demo should be functional.
 
 Planned features
 ----------------
