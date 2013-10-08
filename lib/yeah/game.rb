@@ -25,6 +25,11 @@ class Yeah::Game
     platform.each_tick do
       update
       draw
+      break if @stopped
     end
+  end
+
+  def stop
+    @stopped = true
   end
 end
