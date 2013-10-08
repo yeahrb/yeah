@@ -17,6 +17,6 @@ class Yeah::Color
   end
 
   def ==(other)
-    self.class == other.class && @rgba_bytes == other.rgba_bytes ? true : false
+    self.class == other.class && @rgba_bytes == other.rgba_bytes
   end
 end
