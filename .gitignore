@@ -1,2 +1,5 @@
 *.gem
 /tmp
+.bundle/
+bin/
+vendor/bundle
