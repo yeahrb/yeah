@@ -12,8 +12,6 @@ describe Color do
 
       it { method.call.should be_instance_of klass }
       it { method.call.rgba_bytes.should eq [0, 0, 0, 255] }
-      it { method.call([10, 20, 30, 40]).rgba_bytes.should eq [10, 20, 30, 40] }
-      it { method.call([55, 25, 55, 25]).rgba_bytes.should eq [55, 25, 55, 25] }
       it { method.call(10, 20, 30, 40).rgba_bytes.should eq [10, 20, 30, 40] }
       it { method.call(55, 25, 55, 25).rgba_bytes.should eq [55, 25, 55, 25] }
     end

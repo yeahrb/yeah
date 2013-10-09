@@ -7,13 +7,7 @@ class Yeah::Color
 
   def initialize(*arguments)
     arguments = [0, 0, 0, 255] if arguments.empty?
-
-    case arguments[0]
-    when Numeric
-      @rgba_bytes = [*arguments]
-    when Array
-      @rgba_bytes = arguments[0]
-    end
+    @rgba_bytes = [*arguments]
   end
 
   def ==(other)
