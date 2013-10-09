@@ -24,6 +24,15 @@ describe Vector do
     end
   end
 
+  describe '#inspect' do
+    subject(:method) { instance.method(:inspect) }
+
+    it "is a human-friendly representation of itself" do
+      instance.components = [Random.rand(50), Random.rand(50), Random.rand(50)]
+      method.call.should eq "#{klass.name}[#{instance.components.join(', ')}]"
+    end
+  end
+
   describe '#components' do
     subject(:components) { instance.components }
 

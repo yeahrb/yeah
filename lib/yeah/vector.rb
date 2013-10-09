@@ -26,6 +26,10 @@ class Yeah::Vector
     self.components = components
   end
 
+  def inspect
+    "#{self.class.name}[#{components.join(', ')}]"
+  end
+
   def components=(values)
     if values.size > 3
       error_message = "too many elements (#{values.size} for up to 3)"
