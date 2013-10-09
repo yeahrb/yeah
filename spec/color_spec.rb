@@ -17,6 +17,15 @@ describe Color do
     end
   end
 
+  describe '#inspect' do
+    subject(:method) { instance.method(:inspect) }
+
+    it "is a human-friendly representation of itself" do
+      instance.rgba_bytes = [Random.rand(50), Random.rand(50), Random.rand(50)]
+      method.call.should eq "#{klass.name}[#{instance.rgba_bytes.join(', ')}]"
+    end
+  end
+
   describe '#==' do
     subject(:method) { instance.method(:==).unbind }
 

@@ -10,6 +10,10 @@ class Yeah::Color
     @rgba_bytes = [*arguments]
   end
 
+  def inspect
+    "#{self.class.name}[#{rgba_bytes.join(', ')}]"
+  end
+
   def ==(other)
     self.class == other.class && @rgba_bytes == other.rgba_bytes
   end
