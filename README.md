@@ -1,6 +1,8 @@
 Yeah
 ====
-An early-stage Ruby video game framework that optimizes for development efficiency. It is in very early stages, but by version 0.3.0 the Shootguy demo should be functional.
+An early-stage Ruby video game framework that optimizes for development efficiency.
+
+It is in very early stages, but at version 0.3.0 the Shootguy demo should be functional. Any version below 1.0.0 is unstable and lacks backward compatibility.
 
 Planned features
 ----------------
@@ -9,8 +11,8 @@ Planned features
 * Graphical tools for creating video game resources like sprites and maps.
 * Multiple target platforms, starting with desktop and web.
 
-Installing
-----------
+Installation
+------------
 Install with `gem install yeah`. Yeah depends on Rubygame, which depends on SDL; see [these guides](https://github.com/rubygame/rubygame/wiki/Install).
 
 Blog
