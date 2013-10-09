@@ -1,7 +1,21 @@
 class Yeah::Vector
+  attr_reader :components
+
   class << self
     alias_method :[], :new
+
+    def define_component_helpers
+      component_name_sets = [[:x, :width], [:y, :height], [:z, :depth]]
+      component_name_sets.each_with_index do |set, ci|
+        set.each do |name|
+          define_method(name) { @components[ci] }
+          define_method("#{name}=") { |val| @components[ci] = val }
+        end
+      end
+    end
   end
+
+  define_component_helpers
 
   def initialize(*components)
     if components.size > 3
@@ -10,10 +24,6 @@ class Yeah::Vector
     end
 
     self.components = components
-  end
-
-  def components
-    @components
   end
 
   def components=(values)
@@ -84,36 +94,6 @@ class Yeah::Vector
     components = @components.zip(comp_divisors).map { |c| c.reduce(:/) }
     self.class[*components]
   end
-
-  def x
-    @components[0]
-  end
-  alias_method :width, :x
-
-  def y
-    @components[1]
-  end
-  alias_method :height, :y
-
-  def z
-    @components[2]
-  end
-  alias_method :depth, :z
-
-  def x=(value)
-    @components[0] = value
-  end
-  alias_method :width=, :x=
-
-  def y=(value)
-    @components[1] = value
-  end
-  alias_method :height=, :y=
-
-  def z=(value)
-    @components[2] = value
-  end
-  alias_method :depth=, :z=
 
   def norm
     Math.sqrt(@components.reduce(0) { |m, c| m + c*c })
