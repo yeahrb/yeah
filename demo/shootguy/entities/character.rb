@@ -4,13 +4,13 @@ class Character < Entity
   # magic_attrs true # implicit
 
   def update
-    # velocity.x = 5 if velocity.x > 5
-    limit velocity.x, 5
-
-    # face visual in the direction of horizontal velocity
+    # face visual left or right
     self.face = velocity.x
 
-    # add position to velocity
+    # velocity.x's range is (-5, 5)
+    velocity.x.limit 5
+
+    # #position += #velocity
     move
 
     # unintersect from any Wall
