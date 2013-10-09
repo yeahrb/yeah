@@ -23,7 +23,7 @@ describe Surface do
   end
 
   describe '#size=' do
-    subject(:method) { instance.method(:size=) }
+    subject { instance.method(:size=) }
 
     it_behaves_like 'writer', Vector[20, 20]
   end

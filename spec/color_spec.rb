@@ -41,13 +41,13 @@ describe Color do
   end
 
   describe '#rgba_bytes' do
-    subject(:rgba_bytes) { instance.rgba_bytes }
+    subject { instance.rgba_bytes }
 
     it { should eq [0, 0, 0, 255] }
   end
 
   describe '#rgba_bytes=' do
-    subject(:method) { instance.method(:rgba_bytes=) }
+    subject { instance.method(:rgba_bytes=) }
 
     it_behaves_like 'writer', (1..4).map { Random.rand(255) }
   end
