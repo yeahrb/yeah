@@ -1,3 +1,4 @@
+# Colored rectangle Visual.
 class Yeah::Rectangle
   attr_accessor :size, :color
 

@@ -1,5 +1,6 @@
 require 'rubygame'
 
+# Bindings to the native desktop powered by Rubygame.
 class Yeah::Desktop
   attr_reader :screen, :resolution, :tickrate
 

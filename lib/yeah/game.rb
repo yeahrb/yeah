@@ -1,3 +1,4 @@
+# Manages entities.
 class Yeah::Game
   attr_accessor :entities, :screen, :platform, :resolution
 

@@ -1,3 +1,4 @@
+# Color.
 class Yeah::Color
   attr_accessor :rgba_bytes
 

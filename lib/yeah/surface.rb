@@ -1,3 +1,4 @@
+# Chunk of pixel data.
 class Yeah::Surface
   attr_reader :size
   attr_writer :data

@@ -1,3 +1,4 @@
+# Three-dimensional geometric vector. Used as position or size.
 class Yeah::Vector
   attr_reader :components
 

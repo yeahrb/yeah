@@ -1,3 +1,4 @@
+# Game object.
 class Yeah::Entity
   attr_accessor :position, :visual
 
