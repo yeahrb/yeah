@@ -9,6 +9,20 @@ class Yeah::Game
     @entities = []
   end
 
+  def start
+    platform.each_tick do
+      update
+      draw
+      break if @stopped
+    end
+  end
+
+  def stop
+    @stopped = true
+  end
+
+  protected
+
   def update
     @entities.each { |e| e.update }
   end
@@ -20,17 +34,5 @@ class Yeah::Game
       screen.draw(surface, entity.position) unless surface.nil?
     end
     platform.render(screen)
-  end
-
-  def start
-    platform.each_tick do
-      update
-      draw
-      break if @stopped
-    end
-  end
-
-  def stop
-    @stopped = true
   end
 end
