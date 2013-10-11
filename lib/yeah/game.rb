@@ -9,6 +9,7 @@ class Yeah::Game
     @entities = []
   end
 
+  # Starts the game loop.
   def start
     platform.each_tick do
       update
@@ -17,6 +18,7 @@ class Yeah::Game
     end
   end
 
+  # Stops the game loop.
   def stop
     @stopped = true
   end
