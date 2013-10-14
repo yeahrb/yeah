@@ -122,6 +122,5 @@ class Yeah::Vector
   # Reset every component to 0.
   def reset
     @components = [0, 0, 0]
-    self
   end
 end

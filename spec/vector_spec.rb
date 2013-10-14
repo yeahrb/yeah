@@ -198,9 +198,5 @@ describe Vector do
       instance.reset
       instance.components.should eq [0, 0, 0]
     end
-
-    it "returns itself" do
-      instance.reset.should eq instance
-    end
   end
 end
