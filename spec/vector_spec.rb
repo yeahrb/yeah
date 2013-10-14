@@ -186,7 +186,7 @@ describe Vector do
     end
   end
 
-  [:norm, :magnitude, :length, :distance, :speed].each do |method_name|
+  [:magnitude, :length, :distance, :speed].each do |method_name|
     describe "##{method_name}" do
       it { klass.new(3, 4).method(method_name).call.should eq 5 }
       it { klass.new(6, 8).method(method_name).call.should eq 10 }

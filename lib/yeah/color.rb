@@ -1,5 +1,8 @@
 # Color.
 class Yeah::Color
+  # @!attribute rgba_bytes
+  #   @return [Array<(Integer, Integer, Integer, Integer)>] red, green, blue,
+  #     alpha bytes
   attr_accessor :rgba_bytes
 
   class << self

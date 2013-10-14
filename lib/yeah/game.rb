@@ -1,6 +1,15 @@
 # Manages entities.
 class Yeah::Game
-  attr_accessor :entities, :screen, :platform, :resolution
+  # @!attribute resolution
+  #   @return [Vector] size of screen
+  # @!attribute screen
+  #   @return [Surface] visual render
+  # @!attribute [r] platform
+  #   @return [Platform] underlying platform bindings
+  # @!attribute entities
+  #   @return [Array] active entities
+  attr_accessor :resolution, :screen, :entities
+  attr_reader :platform
 
   def initialize
     @resolution = Vector[320, 180]
@@ -9,7 +18,7 @@ class Yeah::Game
     @entities = []
   end
 
-  # Starts the game loop.
+  # Start the game loop.
   def start
     platform.each_tick do
       update
@@ -18,7 +27,7 @@ class Yeah::Game
     end
   end
 
-  # Stops the game loop.
+  # Stop the game loop.
   def stop
     @stopped = true
   end
