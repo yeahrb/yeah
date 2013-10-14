@@ -4,3 +4,4 @@ tmp/
 bin/
 vendor/bundle/
 .yardoc/
+doc/
