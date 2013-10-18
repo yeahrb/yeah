@@ -1,3 +1,8 @@
+## 0.2.1 [2013-10-18]
+* Shootguy demo/API model
+* Cleanup
+* Documentation
+
 ## 0.2.0 [2013-09-21]
 * Added Color, Surface, Rectangle, Map and Desktop classes.
 * Extended Vector, Entity and Game classes.
