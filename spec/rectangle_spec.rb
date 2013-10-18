@@ -18,7 +18,7 @@ describe Rectangle do
       method.call(vector).size.should eq vector
     end
 
-    it "assigns second argument Color as #color" do
+    it "assigns Color second argument as #color" do
       byte_array = (1..4).map { Random.rand(255) }
       color = Color[*byte_array]
       method.call(Vector[], color).color.should eq color
@@ -26,25 +26,25 @@ describe Rectangle do
   end
 
   describe '#size' do
-    subject(:size) { instance.size }
+    subject { instance.size }
 
     it { should eq Vector[] }
   end
 
   describe '#size=' do
-    subject(:method) { instance.method(:size=) }
+    subject { instance.method(:size=) }
 
     it_behaves_like 'writer', Vector[Random.rand(40)]
   end
 
   describe '#color' do
-    subject(:color) { instance.color }
+    subject { instance.color }
 
     it { should eq Color[255, 255, 255, 255] }
   end
 
   describe '#color=' do
-    subject(:method) { instance.method(:color=) }
+    subject { instance.method(:color=) }
 
     it_behaves_like 'writer', Color[*[Random.rand(255)]*4]
   end

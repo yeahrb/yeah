@@ -12,10 +12,19 @@ describe Color do
 
       it { method.call.should be_instance_of klass }
       it { method.call.rgba_bytes.should eq [0, 0, 0, 255] }
-      it { method.call([10, 20, 30, 40]).rgba_bytes.should eq [10, 20, 30, 40] }
-      it { method.call([55, 25, 55, 25]).rgba_bytes.should eq [55, 25, 55, 25] }
+      it { method.call(42).rgba_bytes.should eq [42, 0, 0, 255] }
+      it { method.call(9, 8, 7).rgba_bytes.should eq [9, 8, 7, 255] }
       it { method.call(10, 20, 30, 40).rgba_bytes.should eq [10, 20, 30, 40] }
       it { method.call(55, 25, 55, 25).rgba_bytes.should eq [55, 25, 55, 25] }
+    end
+  end
+
+  describe '#inspect' do
+    subject(:method) { instance.method(:inspect) }
+
+    it "is a human-friendly representation of itself" do
+      instance.rgba_bytes = [Random.rand(50), Random.rand(50), Random.rand(50)]
+      method.call.should eq "#{klass.name}[#{instance.rgba_bytes.join(', ')}]"
     end
   end
 
@@ -43,13 +52,13 @@ describe Color do
   end
 
   describe '#rgba_bytes' do
-    subject(:rgba_bytes) { instance.rgba_bytes }
+    subject { instance.rgba_bytes }
 
     it { should eq [0, 0, 0, 255] }
   end
 
   describe '#rgba_bytes=' do
-    subject(:method) { instance.method(:rgba_bytes=) }
+    subject { instance.method(:rgba_bytes=) }
 
     it_behaves_like 'writer', (1..4).map { Random.rand(255) }
   end

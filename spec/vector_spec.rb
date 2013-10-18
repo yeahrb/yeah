@@ -24,6 +24,15 @@ describe Vector do
     end
   end
 
+  describe '#inspect' do
+    subject(:method) { instance.method(:inspect) }
+
+    it "is a human-friendly representation of itself" do
+      instance.components = [Random.rand(50), Random.rand(50), Random.rand(50)]
+      method.call.should eq "#{klass.name}[#{instance.components.join(', ')}]"
+    end
+  end
+
   describe '#components' do
     subject(:components) { instance.components }
 
@@ -177,7 +186,7 @@ describe Vector do
     end
   end
 
-  [:norm, :magnitude, :length, :distance, :speed].each do |method_name|
+  [:magnitude, :length, :distance, :speed].each do |method_name|
     describe "##{method_name}" do
       it { klass.new(3, 4).method(method_name).call.should eq 5 }
       it { klass.new(6, 8).method(method_name).call.should eq 10 }
@@ -188,10 +197,6 @@ describe Vector do
     it "sets components to 0" do
       instance.reset
       instance.components.should eq [0, 0, 0]
-    end
-
-    it "returns itself" do
-      instance.reset.should eq instance
     end
   end
 end

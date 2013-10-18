@@ -15,7 +15,7 @@ describe Game do
   describe '#resolution' do
     subject { instance.resolution }
 
-    it { should eq Vector[320, 240] }
+    it { should eq Vector[320, 180] }
   end
 
   describe '#resolution=' do
@@ -98,6 +98,16 @@ describe Game do
       instance.should receive(:update)
       instance.should receive(:draw)
       method.call
+    end
+  end
+
+  describe '#stop' do
+    subject(:method) { instance.method(:stop) }
+
+    it "breaks out of #update/#draw loop initialized by #start" do
+      instance.instance_eval "def update; stop; end"
+      instance.should receive(:draw).once
+      instance.start
     end
   end
 end

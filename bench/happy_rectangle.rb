@@ -1,11 +1,12 @@
 #!/usr/bin/env ruby
 
 # Happy Rectangle
-# A barebones demo for Yeah.
+# A barebones benchmark for Yeah.
 
 lib = File.expand_path('../../lib/', __FILE__)
 $:.unshift lib unless $:.include?(lib)
 
+require 'benchmark'
 require 'yeah'
 include Yeah
 
@@ -29,16 +30,20 @@ class HappyRectangleGame < Game
   def initialize
     super
     @updates = 0
+    @last_update = 30
     @entities << HappyRectangle.new(resolution/2)
   end
 
   def update
     super
     @updates += 1
-    puts "#{@updates}/60 updates."
-    abort if @updates == 60
+    puts "#{@updates}/#{@last_update} updates."
+    stop if @updates == @last_update
   end
 end
 
-g = HappyRectangleGame.new
-g.start
+Benchmark.bmbm do |bm|
+  bm.report do
+    HappyRectangleGame.new.start
+  end
+end

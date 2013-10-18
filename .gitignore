@@ -1,2 +1,7 @@
 *.gem
-/tmp
+tmp/
+.bundle/
+bin/
+vendor/bundle/
+.yardoc/
+doc/

@@ -1,4 +1,10 @@
+# Rectangular pixel data.
 class Yeah::Surface
+  # @!attribute size
+  #   @return [Vector]
+  # @!attribute data
+  #   @param [Symbol] color byte order (:rgba or :bgra)
+  #   @return [String] pixel data as string of bytes
   attr_reader :size
   attr_writer :data
 
@@ -20,6 +26,9 @@ class Yeah::Surface
     end
   end
 
+  # Color of pixel at a position.
+  # @param [Vector] position of pixel
+  # @return [Color]
   def color_at(position)
     data_lines = data.scan(/.{#{size.x*4}}/)
     line = data_lines[position.y]
@@ -29,6 +38,10 @@ class Yeah::Surface
     Color[*color_bytes]
   end
 
+  # Fill a rectangular area with a color.
+  # @param [Color] fill color
+  # @param [Vector] position of first corner
+  # @param [Vector] position of other corner
   def fill(color, position1=Vector[0, 0], position2=size-1)
     color_byte_string = color.rgba_bytes.pack('C*')
     data_lines = data.scan(/.{#{size.x*4}}/)
@@ -43,6 +56,9 @@ class Yeah::Surface
     @data = data_lines.join
   end
 
+  # Draw onto other surface.
+  # @param [Surface] surface to draw on
+  # @param [Vector] position to draw on other surface
   def draw(surface, position=Vector[0, 0])
     data_lines = data.scan(/.{#{size.x*4}}/)
     surface_data_lines = surface.data.scan(/.{#{surface.size.x*4}}/)

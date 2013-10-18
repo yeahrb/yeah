@@ -1,34 +1,34 @@
+# Game object.
 class Yeah::Entity
+  # @!attribute position
+  #   @return [Vector] position within a game
+  # @!attribute visual
+  #   @return [Visual] visual representation within a game
   attr_accessor :position, :visual
 
   def initialize(position=Vector[])
     @position = position
   end
 
-  def x
-    @position.x
+  class << self
+    def define_position_helpers
+      %w(x y z).each_with_index do |coord, i|
+        define_method(coord) { @position[i] }
+        define_method("#{coord}=") { |val| @position[i] = val }
+      end
+    end
   end
 
-  def x=(value)
-    @position.x = value
-  end
+  # @!attribute x
+  #   @return [Vector] position.x
+  # @!attribute y
+  #   @return [Vector] position.y
+  # @!attribute z
+  #   @return [Vector] position.z
+  define_position_helpers
 
-  def y
-    @position.y
-  end
-
-  def y=(value)
-    @position.y = value
-  end
-
-  def z
-    @position.z
-  end
-
-  def z=(value)
-    @position.z = value
-  end
-
+  # Get visual representation from visual.
+  #   @return [Surface] visual representation
   def draw
     visual.draw if visual
   end

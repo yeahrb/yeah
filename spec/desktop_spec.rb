@@ -9,9 +9,9 @@ describe Desktop do
   describe '::new' do
     subject(:method) { klass.method(:new) }
 
-    it { method.call.resolution.should eq Vector[320, 240] }
+    it { method.call.resolution.should eq Vector[320, 180] }
 
-    it "accepts Vector as resolution" do
+    it "accepts Vector as resolution argument" do
       vector = Vector[Random.rand(250), Random.rand(250)]
       desktop = method.call(vector)
       desktop.resolution.should eq vector
@@ -29,13 +29,13 @@ describe Desktop do
     subject { instance.screen }
 
     it { should be_instance_of Rubygame::Screen }
-    its(:size) { should eq [320, 240] }
+    its(:size) { should eq [320, 180] }
   end
 
   describe '#resolution' do
     subject { instance.resolution }
 
-    it { should eq Vector[320, 240] }
+    it { should eq Vector[320, 180] }
   end
 
   describe '#resolution=' do

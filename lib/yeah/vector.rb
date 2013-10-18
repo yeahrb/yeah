@@ -1,7 +1,11 @@
+# Three-dimensional geometric vector. Used as position or size.
 class Yeah::Vector
-  class << self
-    alias_method :[], :new
-  end
+  # @!attribute components
+  #   @return [Array<(Numeric, Numeric, Numeric)>]
+  # @!attribute []
+  #   @param [Integer] *n* of component
+  #   @return [Numeric] *n*th component
+  attr_reader :components
 
   def initialize(*components)
     if components.size > 3
@@ -12,8 +16,8 @@ class Yeah::Vector
     self.components = components
   end
 
-  def components
-    @components
+  def inspect
+    "#{self.class.name}[#{components.join(', ')}]"
   end
 
   def components=(values)
@@ -24,6 +28,22 @@ class Yeah::Vector
 
     @components = values + [0] * (3 - values.size)
   end
+
+  class << self
+    alias_method :[], :new
+
+    def define_component_helpers
+      component_name_sets = [[:x, :width], [:y, :height], [:z, :depth]]
+      component_name_sets.each_with_index do |set, ci|
+        set.each do |name|
+          define_method(name) { @components[ci] }
+          define_method("#{name}=") { |val| @components[ci] = val }
+        end
+      end
+    end
+  end
+
+  define_component_helpers
 
   def ==(other)
     other.class == self.class && @components == other.components ? true : false
@@ -85,46 +105,22 @@ class Yeah::Vector
     self.class[*components]
   end
 
-  def x
-    @components[0]
-  end
-  alias_method :width, :x
-
-  def y
-    @components[1]
-  end
-  alias_method :height, :y
-
-  def z
-    @components[2]
-  end
-  alias_method :depth, :z
-
-  def x=(value)
-    @components[0] = value
-  end
-  alias_method :width=, :x=
-
-  def y=(value)
-    @components[1] = value
-  end
-  alias_method :height=, :y=
-
-  def z=(value)
-    @components[2] = value
-  end
-  alias_method :depth=, :z=
-
-  def norm
+  # @return [Numeric]
+  def magnitude
     Math.sqrt(@components.reduce(0) { |m, c| m + c*c })
   end
-  alias_method :magnitude, :norm
-  alias_method :length, :norm
-  alias_method :distance, :norm
-  alias_method :speed, :norm
+  # @!attribute length
+  #   @see magnitude
+  # @!attribute distance
+  #   @see magnitude
+  # @!attribute speed
+  #   @see magnitude
+  alias_method :length, :magnitude
+  alias_method :distance, :magnitude
+  alias_method :speed, :magnitude
 
+  # Reset every component to 0.
   def reset
     @components = [0, 0, 0]
-    self
   end
 end
