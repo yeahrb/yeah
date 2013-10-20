@@ -29,8 +29,8 @@ class Yeah::Desktop
   # Project a surface onto screen.
   # @param [Surface]
   def render(surface)
-    struct = screen.send(:struct)
-    struct.pixels.write_string(surface.data(:bgra), surface.data.length)
+    pixels = screen.send(:struct).pixels
+    pixels.write_string(surface.data(:bgra), surface.data.length)
     screen.update
   end
 
