@@ -33,12 +33,14 @@ describe Vector do
     end
   end
 
-  describe '#components' do
-    subject(:components) { instance.components }
+  [:components, :to_a].each do |method_name|
+    describe "::#{method_name}" do
+      subject(:value) { instance.method(method_name).call }
 
-    it { should be_instance_of Array }
-    it { should have(3).elements }
-    it { components.each { |c| c.should be_kind_of Numeric } }
+      it { should be_instance_of Array }
+      it { should have(3).elements }
+      it { value.each { |n| n.should be_kind_of Numeric } }
+    end
   end
 
   describe '#components=' do
