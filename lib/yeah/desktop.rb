@@ -29,12 +29,10 @@ class Yeah::Desktop
   # Project a surface onto screen.
   # @param [Surface]
   def render(surface)
-    rgs_size = surface.size.components[0..1]
-    rgs_opts = {}
-    rgs_opts[:masks] = [0x0000ff,  0x00ff00,  0xff0000, 0]
-    rubygame_surface = Rubygame::Surface.new(rgs_size, rgs_opts)
-    rubygame_surface.pixels = surface.data
-    rubygame_surface.blit(screen, [0, 0])
+    masks = [0x0000ff,  0x00ff00,  0xff0000, 0]
+    rg_surface = Rubygame::Surface.new(surface.size.to_a[0..1], masks: masks)
+    rg_surface.pixels = surface.data
+    rg_surface.blit(screen, [0, 0])
     screen.update
   end
 
