@@ -43,12 +43,6 @@ describe Surface do
       pixels.uniq.size.should eq 1
       pixels.uniq.last.should eq "00000000"
     end
-
-    it "accepts format param" do
-      instance.data = "\x00\x11\x22\x33"
-      method.call(:rgba).should eq "\x00\x11\x22\x33"
-      method.call(:bgra).should eq "\x22\x11\x00\x33"
-    end
   end
 
   describe '#data=' do

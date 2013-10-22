@@ -6,7 +6,7 @@ class Yeah::Surface
   #   @param [Symbol] color byte order (:rgba or :bgra)
   #   @return [String] pixel data as string of bytes
   attr_reader :size
-  attr_writer :data
+  attr_accessor :data
 
   def initialize(size=Vector[])
     self.size = size
@@ -15,15 +15,6 @@ class Yeah::Surface
   def size=(value)
     @size = value
     @data = "\x00" * 4 * size.x * size.y
-  end
-
-  def data(format=:rgba)
-    case format
-    when :rgba
-      @data
-    when :bgra
-      @data.scan(/.{4}/).map { |p| p[2] + p[1] + p[0] + p[3] }.join
-    end
   end
 
   # Color of pixel at a position.
