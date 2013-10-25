@@ -23,7 +23,7 @@ class Character < Entity
 
       # jump!
       self.state = :jump
-      self.speed.y += 5
+      self.velocity.y += 5
     end
   end
 end
