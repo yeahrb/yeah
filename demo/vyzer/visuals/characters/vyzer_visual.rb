@@ -1,4 +1,4 @@
-class ShootguyVisual < Sprite
+class VyzerVisual < Sprite
   # sheet :shootguy (implicit)
 
   size V[16, 24] # or Vector[16, 24]

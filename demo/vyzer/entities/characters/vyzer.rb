@@ -1,4 +1,4 @@
-class Shootguy < Character
+class Vyzer < Character
   # See Character entity.
 
   # visual :shootguy_visual (implicit)

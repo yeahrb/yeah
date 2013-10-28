@@ -2,7 +2,7 @@ Yeah
 ====
 An early-stage Ruby video game framework that optimizes for development efficiency.
 
-It is in very early stages, but at version 0.3.0 the Shootguy demo should be functional. Any version below 1.0.0 is unstable and lacks backward compatibility.
+It is in very early stages, but at version 0.3.0 the Vyzer demo should be functional. Any version below 1.0.0 is unstable and lacks backward compatibility.
 
 Planned features
 ----------------

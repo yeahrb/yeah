@@ -1,5 +1,5 @@
 require 'yeah'
 
-class ShootguyGame < Yeah::Game
+class VyzerGame < Yeah::Game
   # first_map :training # if unspecified, picks first file in /maps
 end
