@@ -12,7 +12,7 @@ class Yeah::Game
   attr_reader :platform
 
   def initialize
-    @resolution = Vector[320, 180]
+    @resolution = V[320, 180]
     @screen = Surface.new(@resolution)
     @platform = Desktop.new
     @entities = []

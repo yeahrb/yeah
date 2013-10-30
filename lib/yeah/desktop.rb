@@ -10,7 +10,7 @@ class Yeah::Desktop
   #   @return [Integer] target ticks per second
   attr_reader :screen, :resolution, :tickrate
 
-  def initialize(resolution=Vector[320, 180])
+  def initialize(resolution=V[320, 180])
     self.resolution = resolution
 
     @clock = Rubygame::Clock.new

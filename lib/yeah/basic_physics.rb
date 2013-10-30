@@ -2,7 +2,7 @@ module Yeah::BasicPhysics
   attr_writer :velocity
 
   def velocity
-    @velocity ||= Vector[0, 0, 0]
+    @velocity ||= V[0, 0, 0]
   end
 
   def move

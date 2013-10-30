@@ -6,7 +6,7 @@ class Yeah::Entity
   #   @return [Visual] visual representation within a game
   attr_accessor :position, :visual
 
-  def initialize(position=Vector[])
+  def initialize(position=V[])
     @position = position
   end
 
