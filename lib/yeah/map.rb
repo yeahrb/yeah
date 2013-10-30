@@ -23,13 +23,9 @@ class Yeah::Map
   end
 
   def initialize
-    @@key ||= {}
-    @@tile_size ||= V[]
-    @@tiles ||= []
-
     @background = @@background || Color[]
-    @key = @@key
-    @tile_size = @@tile_size
-    @tiles = @@tiles
+    @key = @@key ||= {}
+    @tile_size = @@tile_size ||= V[]
+    @tiles = @@tiles ||= []
   end
 end
