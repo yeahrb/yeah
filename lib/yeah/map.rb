@@ -4,7 +4,7 @@ class Yeah::Map
   #   @return [Color] background color
   # @!attribute key
   #   @return [Hash] tile key
-  attr_accessor :background, :key
+  attr_accessor :background, :key, :tile_size, :tiles
 
   def self.background(background)
     @@background = background
@@ -14,10 +14,22 @@ class Yeah::Map
     @@key = key
   end
 
+  def self.tile_size(tile_size)
+    @@tile_size = tile_size
+  end
+
+  def self.tiles(tiles)
+    @@tiles = tiles
+  end
+
   def initialize
     @@key ||= {}
+    @@tile_size ||= V[]
+    @@tiles ||= []
 
     @background = @@background || Color[]
     @key = @@key
+    @tile_size = @@tile_size
+    @tiles = @@tiles
   end
 end

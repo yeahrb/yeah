@@ -30,13 +30,37 @@ describe Map do
     end
   end
 
+  describe '::tile_size' do
+    after(:each) { klass.class_variable_set :@@tile_size, nil }
+
+    it { expect{klass.tile_size}.to raise_error ArgumentError }
+
+    it "assigns #tile_size in instances" do
+      tile_size = V[16, 16]
+      klass.tile_size(tile_size)
+      klass.new.tile_size.should eq tile_size
+    end
+  end
+
+  describe '::tiles' do
+    after(:each) { klass.class_variable_set :@@tiles, nil }
+
+    it { expect{klass.tiles}.to raise_error ArgumentError }
+
+    it "assigns #tiles in instances" do
+      tiles = ["###"]
+      klass.tiles(tiles)
+      klass.new.tiles.should eq tiles
+    end
+  end
+
   describe '#background' do
     subject { instance.background }
     it { should eq Color[] }
   end
 
   describe '#background=' do
-    subject(:method) { instance.method(:background=) }
+    subject { instance.method(:background=) }
     it_behaves_like 'writer', Color[*[Random.rand(255)]*4]
   end
 
@@ -46,7 +70,27 @@ describe Map do
   end
 
   describe '#key=' do
-    subject(:method) { instance.method(:key=) }
+    subject { instance.method(:key=) }
     it_behaves_like 'writer', { '#' => Entity }
+  end
+
+  describe '#tile_size' do
+    subject { instance.tile_size }
+    it { should eq V[] }
+  end
+
+  describe '#tile_size=' do
+    subject { instance.method(:tile_size=) }
+    it_behaves_like 'writer', V[16, 16]
+  end
+
+  describe '#tiles' do
+    subject { instance.tiles }
+    it { should eq [] }
+  end
+
+  describe '#tiles=' do
+    subject { instance.method(:tiles=) }
+    it_behaves_like 'writer', ["###"]
   end
 end
