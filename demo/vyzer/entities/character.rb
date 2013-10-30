@@ -1,7 +1,5 @@
 class Character < Entity
-  attr_accessor :position, :velocity
-  # attr_accessor :x, :y, :z, :speed, :direction # implicit
-  # magic_attrs true # implicit
+  include BasicPhysics # for #velocity and #move
 
   def update
     # face visual left or right
