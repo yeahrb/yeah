@@ -120,4 +120,41 @@ describe Desktop do
       clock.target_framerate.round.should eq tickrate
     end
   end
+
+  describe "input handling" do
+    let(:pressables_keys) { [(:a..:z).to_a, (:A..:Z).to_a, (0..9).to_a,
+                            :up, :down, :left, :right].flatten }
+
+    describe '#press' do
+      subject(:method) { instance.method(:press) }
+
+      it { expect {method.call}.to raise_error ArgumentError }
+
+      it "causes #pressing?(pressable) to equal true" do
+        pressable = pressables_keys.sample
+        method.call(pressable)
+        instance.pressing?(pressable).should eq true
+      end
+    end
+
+    describe '#release' do
+      subject(:method) { instance.method(:release) }
+
+      it { expect {method.call}.to raise_error ArgumentError }
+
+      it "causes #pressing?(pressable) to equal false" do
+        pressable = pressables_keys.sample
+        instance.press pressable
+        instance.release pressable
+        instance.pressing?(pressable).should eq false
+      end
+    end
+
+    describe '#pressing?' do
+      subject(:method) { instance.method(:pressing?) }
+
+      it { expect {method.call}.to raise_error ArgumentError }
+      it { pressables_keys.each { |pk| method.call(pk).should eq false } }
+    end
+  end
 end

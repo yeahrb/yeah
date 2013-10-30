@@ -12,8 +12,14 @@ class Yeah::Desktop
 
   def initialize(resolution=Vector[320, 180])
     self.resolution = resolution
+
     @clock = Rubygame::Clock.new
     self.tickrate = 30
+
+    @pressables = {}
+    pressables_keys = [(:a..:z).to_a, (:A..:Z).to_a, (0..9).to_a,
+                       :up, :down, :left, :right].flatten
+    pressables_keys.each { |pk| @pressables[pk] = false }
   end
 
   def resolution=(value)
@@ -43,5 +49,23 @@ class Yeah::Desktop
       yield
       @clock.tick
     end
+  end
+
+  # Press a key or button.
+  # @param [Symbol|Integer] key or button
+  def press(pressable)
+    @pressables[pressable] = true
+  end
+
+  # Release a key or button.
+  # @param [Symbol|Integer] key or button
+  def release(pressable)
+    @pressables[pressable] = false
+  end
+
+  # Is a key or button being pressed?
+  # @param [Symbol|Integer] key or button
+  def pressing?(pressable)
+    @pressables[pressable]
   end
 end
