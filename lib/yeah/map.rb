@@ -16,6 +16,7 @@ class Yeah::Map
 
   def self.key(key)
     @@key = key
+    @@tile_size ||= key.first.last.new.size
   end
 
   def self.tile_size(tile_size)
