@@ -127,3 +127,6 @@ class Yeah::Vector
     @components = [0, 0, 0]
   end
 end
+
+# Shorthand for Vector.
+Yeah::V = Yeah::Vector

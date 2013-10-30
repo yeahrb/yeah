@@ -202,3 +202,8 @@ describe Vector do
     end
   end
 end
+
+describe V do
+  let(:klass) { described_class }
+  it { klass.should eq Vector }
+end
