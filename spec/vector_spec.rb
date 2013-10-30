@@ -25,9 +25,7 @@ describe Vector do
   end
 
   describe '::random' do
-    subject(:method) { klass.method(:random) }
-
-    it "returns a Vector with components between 0 and nth arg" do
+    it "is a Vector with components between 0 and nth arg" do
       max = 10
       rand_vec = klass.random(max, max, max)
       rand_vec.components.each do |c|
@@ -38,11 +36,9 @@ describe Vector do
   end
 
   describe '#inspect' do
-    subject(:method) { instance.method(:inspect) }
-
     it "is a human-friendly representation of itself" do
       instance.components = [Random.rand(50), Random.rand(50), Random.rand(50)]
-      method.call.should eq "#{klass.name}[#{instance.components.join(', ')}]"
+      instance.inspect.should eq "#{klass.name}[#{instance.components.join(', ')}]"
     end
   end
 

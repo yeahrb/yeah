@@ -7,29 +7,25 @@ describe Map do
   it { klass.should be_instance_of Class }
 
   describe '::background' do
-    subject(:method) { klass.method(:background) }
-
     after(:each) { klass.class_variable_set :@@background, nil }
 
-    it { expect{method.call}.to raise_error ArgumentError }
+    it { expect{klass.background}.to raise_error ArgumentError }
 
     it "assigns #background in instances" do
       background = :black
-      method.call(background)
+      klass.background(background)
       klass.new.background.should eq background
     end
   end
 
   describe '::key' do
-    subject(:method) { klass.method(:key) }
-
     after(:each) { klass.class_variable_set :@@key, nil }
 
-    it { expect{method.call}.to raise_error ArgumentError }
+    it { expect{klass.key}.to raise_error ArgumentError }
 
     it "assigns #key in instances" do
       key = { '#' => Entity }
-      method.call(key)
+      klass.key(key)
       klass.new.key.should eq key
     end
   end

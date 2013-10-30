@@ -6,73 +6,61 @@ describe Surface do
   let(:instance) { klass.new(vector) }
 
   describe '::new' do
-    subject(:method) { klass.method :new }
-
-    it { method.call.size.should eq V[] }
+    it { klass.new.size.should eq V[] }
 
     it "accepts a Vector size" do
-      surface = method.call(vector)
+      surface = klass.new(vector)
       surface.size.should eq vector
     end
   end
 
   describe '#size' do
     subject { instance.size }
-
     it { should eq vector }
   end
 
   describe '#size=' do
     subject { instance.method(:size=) }
-
     it_behaves_like 'writer', V[20, 20]
   end
 
   describe '#data' do
-    subject(:method) { instance.method(:data) }
-    let(:data) { instance.data }
-
     it "has length of #size.x * #size.y * 4" do
       instance.size = instance.size * 2
       expected_length = instance.size.x * instance.size.y * 4
-      data.length.should eq expected_length
+      instance.data.length.should eq expected_length
     end
 
     it "is a series of \x00\x00\x00\x00 by default" do
-      pixels = data.unpack('H*')[0].scan(/.{8}/)
+      pixels = instance.data.unpack('H*')[0].scan(/.{8}/)
       pixels.uniq.size.should eq 1
       pixels.uniq.last.should eq "00000000"
     end
   end
 
   describe '#data=' do
-    subject(:method) { instance.method(:data=) }
-
     it "assigns hex data of length size.x * size.y * 4" do
       data = "\xFF" * instance.size.x * instance.size.y * 4
-      method.call(data)
+      instance.data = data
       instance.data.should eq data
     end
   end
 
   describe '#color_at' do
-    subject(:method) { instance.method(:color_at) }
-
-    it { expect { method.call }.to raise_error ArgumentError }
+    it { expect {instance.color_at}.to raise_error ArgumentError }
 
     it "matches the color of the pixel at position" do
-      method.call(vector/2).should eq Color[0, 0, 0, 0]
+      instance.color_at(vector/2).should eq Color[0, 0, 0, 0]
     end
   end
 
   describe '#fill' do
-    subject(:method) { instance.method(:fill) }
     let(:color2) { Color[0, 255, 0, 255] }
 
-    it { expect { method.call }.to raise_error ArgumentError }
+    it { expect {instance.fill}.to raise_error ArgumentError }
 
     it "changes color of rectangular area with position args" do
-      method.call(color2, V[], vector/2)
+      instance.fill(color2, V[], vector/2)
       instance.color_at(V[]).should eq color2
       instance.color_at(vector/2).should eq color2
       instance.color_at(vector/2 + V[1, 0]).should eq Color[0, 0, 0, 0]
@@ -81,7 +69,7 @@ describe Surface do
     end
 
     it "changes color of entire surface without position args" do
-      method.call(color2)
+      instance.fill(color2)
       instance.color_at(V[]).should eq color2
       instance.color_at(vector/2).should eq color2
       instance.color_at(vector-1).should eq color2
@@ -90,10 +78,9 @@ describe Surface do
   end
 
   describe '#draw' do
-    subject(:method) { instance.method(:draw) }
     let(:color) { Color[0, Random.rand(255), Random.rand(255), 255] }
 
-    it { expect { method.call }.to raise_error ArgumentError }
+    it { expect {instance.draw}.to raise_error ArgumentError }
 
     it "draws surface at position" do
       surface = Surface.new(V[1, 1])

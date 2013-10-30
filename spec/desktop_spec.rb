@@ -9,18 +9,19 @@ describe Desktop do
   describe '::new' do
     subject(:method) { klass.method(:new) }
 
-    it { method.call.resolution.should eq V[320, 180] }
+    it { klass.new.resolution.should eq V[320, 180] }
 
     it "accepts V as resolution argument" do
       vector = V.random(250, 250)
-      desktop = method.call(vector)
+      desktop = klass.new(vector)
       desktop.resolution.should eq vector
       desktop.screen.size.should eq vector[0..1]
     end
 
-    it { method.call.instance_variables.should include :@clock }
+    it { klass.new.instance_variables.should include :@clock }
+
     it do
-      clock = method.call.instance_variable_get(:@clock)
+      clock = klass.new.instance_variable_get(:@clock)
       clock.should be_instance_of Rubygame::Clock
     end
   end
@@ -34,26 +35,23 @@ describe Desktop do
 
   describe '#resolution' do
     subject { instance.resolution }
-
     it { should eq V[320, 180] }
   end
 
   describe '#resolution=' do
-    subject(:method) { instance.method(:resolution=) }
+    subject { instance.method(:resolution=) }
 
     it_behaves_like 'writer', V.random(250, 250)
 
     it "changes screen size" do
       resolution = V.random(250, 250) + V[1, 1]
-      method.call(resolution)
+      instance.resolution = resolution
       instance.screen.size.should eq resolution.components[0..1]
     end
   end
 
   describe '#render' do
-    subject(:method) { instance.method(:render) }
-
-    it { expect { method.call }.to raise_error ArgumentError }
+    it { expect { instance.render }.to raise_error ArgumentError }
 
     it "renders a Surface" do
       surface = Surface.new(instance.resolution)
@@ -62,21 +60,19 @@ describe Desktop do
       screen_update_count = 0
       allow(instance.screen).to receive(:update) { screen_update_count += 1 }
 
-      method.call(surface)
+      instance.render(surface)
       instance.screen.get_at([0, 0]).should eq [255, 255, 0, 255]
       screen_update_count.should eq 1
     end
   end
 
   describe '#each_tick' do
-    subject(:method) { instance.method(:each_tick) }
-
-    it { expect { method.call }.to raise_error LocalJumpError }
+    it { expect {instance.each_tick}.to raise_error LocalJumpError }
 
     it "repeatedly calls passed block" do
       call_count = 0
 
-      method.call do
+      instance.each_tick do
         call_count += 1
         break if call_count == 5
       end
@@ -91,7 +87,7 @@ describe Desktop do
         tick_call_count += 1
       end
 
-      method.call do
+      instance.each_tick do
         break if tick_call_count == 5
         call_count += 1
       end
@@ -103,19 +99,18 @@ describe Desktop do
 
   describe '#tickrate' do
     subject { instance.tickrate }
-
     its(:round) { should eq 30 }
   end
 
   describe '#tickrate=' do
-    subject(:method) { instance.method(:tickrate=) }
+    subject { instance.method(:tickrate=) }
 
     it_behaves_like 'writer', 60
 
     it "sets @clock#target_framerate" do
       tickrate = Random.rand(30) + 30
       clock = instance.instance_variable_get(:@clock)
-      method.call(tickrate)
+      instance.tickrate = tickrate
 
       clock.target_framerate.round.should eq tickrate
     end
@@ -126,35 +121,33 @@ describe Desktop do
                             :up, :down, :left, :right].flatten }
 
     describe '#press' do
-      subject(:method) { instance.method(:press) }
-
-      it { expect {method.call}.to raise_error ArgumentError }
+      it { expect {instance.press}.to raise_error ArgumentError }
 
       it "causes #pressing?(pressable) to equal true" do
         pressable = pressables_keys.sample
-        method.call(pressable)
-        instance.pressing?(pressable).should eq true
+        instance.press(pressable)
+        instance.pressing?(pressable).should be_true
       end
     end
 
     describe '#release' do
-      subject(:method) { instance.method(:release) }
+      subject { instance.method(:release) }
 
-      it { expect {method.call}.to raise_error ArgumentError }
+      it { expect {instance.release}.to raise_error ArgumentError }
 
       it "causes #pressing?(pressable) to equal false" do
         pressable = pressables_keys.sample
         instance.press pressable
         instance.release pressable
-        instance.pressing?(pressable).should eq false
+        instance.pressing?(pressable).should be_false
       end
     end
 
     describe '#pressing?' do
-      subject(:method) { instance.method(:pressing?) }
+      subject { instance.method(:pressing?) }
 
-      it { expect {method.call}.to raise_error ArgumentError }
-      it { pressables_keys.each { |pk| method.call(pk).should eq false } }
+      it { expect {instance.pressing?}.to raise_error ArgumentError }
+      it { pressables_keys.each { |pk| instance.pressing?(pk).should be_false }}
     end
   end
 end

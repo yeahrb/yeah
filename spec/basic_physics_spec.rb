@@ -22,11 +22,9 @@ describe BasicPhysics do
   end
 
   describe '#move' do
-    subject(:method) { entity.method(:move) }
-
     it "adds velocity to position" do
       entity.velocity = V[3, 6, 9]
-      method.call
+      entity.move
       entity.position.should eq entity.velocity
     end
   end

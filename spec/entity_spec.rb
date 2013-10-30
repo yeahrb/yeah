@@ -7,23 +7,20 @@ describe Entity do
   it { klass.should be_instance_of Class }
 
   describe '::new' do
-    subject(:method) { klass.method(:new) }
-
-    it { method.call.should be_instance_of klass }
-    it { method.call.position.should eq V[0, 0, 0] }
-    it { method.call(V[2, 4, 8]).position.should eq V[2, 4, 8] }
+    it { klass.new.should be_instance_of klass }
+    it { klass.new.position.should eq V[0, 0, 0] }
+    it { klass.new(V[2, 4, 8]).position.should eq V[2, 4, 8] }
   end
 
   describe '#position' do
-    subject(:position) { instance.position }
+    subject { instance.position }
 
     it { should be_instance_of Vector }
-    it { position.components.should eq [0, 0, 0] }
+    its(:components) { should eq [0, 0, 0] }
   end
 
   describe '#position=' do
-    subject(:method) { instance.method(:position=) }
-
+    subject { instance.method(:position=) }
     it_behaves_like 'writer', V.random(100)
   end
 
@@ -46,25 +43,23 @@ describe Entity do
 
   describe '#visual' do
     subject { instance.visual }
-
     it { should eq nil }
   end
 
   describe '#visual=' do
     subject { instance.method(:visual=) }
-
     it_behaves_like 'writer', Rectangle.new(V[50, 50])
   end
 
   describe '#draw' do
-    subject(:method) { instance.method(:draw) }
+    subject { instance.method(:draw) }
 
     its(:call) { should eq nil }
 
     it "calls #draw method of #visual if it exists" do
       instance.visual = Rectangle.new
       instance.visual.should receive(:draw)
-      method.call
+      instance.draw
     end
   end
 end

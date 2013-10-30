@@ -20,46 +20,38 @@ describe Color do
   end
 
   describe '#inspect' do
-    subject(:method) { instance.method(:inspect) }
-
     it "is a human-friendly representation of itself" do
       instance.rgba_bytes = [Random.rand(50), Random.rand(50), Random.rand(50)]
-      method.call.should eq "#{klass.name}[#{instance.rgba_bytes.join(', ')}]"
+      instance.inspect.should eq "#{klass.name}[#{instance.rgba_bytes.join(', ')}]"
     end
   end
 
   describe '#==' do
-    subject(:method) { instance.method(:==).unbind }
-
     it "is true for itself" do
       color = klass[55, 54, 53, 52]
-      method.bind(color).call(color).should eq true
+      (color == color).should be_true
     end
 
     it "is true for Color of same value" do
       value = (1..4).map { Random.rand(255) }
-      method.bind(klass[value]).call(klass[value]).should eq true
+      (klass[*value] == klass[*value]).should be_true
     end
 
     it "is false for Color of different value" do
       value = (1..4).map { Random.rand(255) }
-      method.bind(klass[value]).call(klass[value.reverse]).should eq false
+      (klass[*value] == klass[*value.reverse]).should be_false
     end
 
-    it "is false for nil" do
-      method.bind(klass[]).call(nil).should eq false
-    end
+    it { (klass[] == nil).should be_false }
   end
 
   describe '#rgba_bytes' do
     subject { instance.rgba_bytes }
-
     it { should eq [0, 0, 0, 255] }
   end
 
   describe '#rgba_bytes=' do
     subject { instance.method(:rgba_bytes=) }
-
     it_behaves_like 'writer', (1..4).map { Random.rand(255) }
   end
 end
