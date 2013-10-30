@@ -12,20 +12,20 @@ describe BasicPhysics do
   describe '#velocity' do
     subject { entity.velocity }
 
-    it { should eq Vector[0, 0, 0] }
+    it { should eq V[0, 0, 0] }
   end
 
   describe '#velocity=' do
     subject { entity.method(:velocity=) }
 
-    it_behaves_like 'writer', Vector[1, 2, 3]
+    it_behaves_like 'writer', V[1, 2, 3]
   end
 
   describe '#move' do
     subject(:method) { entity.method(:move) }
 
     it "adds velocity to position" do
-      entity.velocity = Vector[3, 6, 9]
+      entity.velocity = V[3, 6, 9]
       method.call
       entity.position.should eq entity.velocity
     end

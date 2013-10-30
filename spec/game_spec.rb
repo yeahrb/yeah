@@ -15,13 +15,13 @@ describe Game do
   describe '#resolution' do
     subject { instance.resolution }
 
-    it { should eq Vector[320, 180] }
+    it { should eq V[320, 180] }
   end
 
   describe '#resolution=' do
     subject { instance.method(:resolution=) }
 
-    it_behaves_like 'writer', Vector[512, 384]
+    it_behaves_like 'writer', V[512, 384]
   end
 
   describe '#entities' do
@@ -63,8 +63,8 @@ describe Game do
     it "draws entities on #screen" do
       color = Color[0, 255, 0, 255]
       entity = Entity.new
-      entity.visual = Rectangle.new(Vector[1, 1], color)
-      entity.position = Vector[Random.rand(10), Random.rand(10)]
+      entity.visual = Rectangle.new(V[1, 1], color)
+      entity.position = V[Random.rand(10), Random.rand(10)]
       instance.entities << entity
       method.call
 

@@ -9,10 +9,10 @@ describe Desktop do
   describe '::new' do
     subject(:method) { klass.method(:new) }
 
-    it { method.call.resolution.should eq Vector[320, 180] }
+    it { method.call.resolution.should eq V[320, 180] }
 
-    it "accepts Vector as resolution argument" do
-      vector = Vector[Random.rand(250), Random.rand(250)]
+    it "accepts V as resolution argument" do
+      vector = V.random(250, 250)
       desktop = method.call(vector)
       desktop.resolution.should eq vector
       desktop.screen.size.should eq vector[0..1]
@@ -35,16 +35,16 @@ describe Desktop do
   describe '#resolution' do
     subject { instance.resolution }
 
-    it { should eq Vector[320, 180] }
+    it { should eq V[320, 180] }
   end
 
   describe '#resolution=' do
     subject(:method) { instance.method(:resolution=) }
 
-    it_behaves_like 'writer', Vector[Random.rand(250), Random.rand(250)]
+    it_behaves_like 'writer', V.random(250, 250)
 
     it "changes screen size" do
-      resolution = Vector[Random.rand(250)+1, Random.rand(250)+1]
+      resolution = V.random(250, 250) + V[1, 1]
       method.call(resolution)
       instance.screen.size.should eq resolution.components[0..1]
     end
@@ -57,7 +57,7 @@ describe Desktop do
 
     it "renders a Surface" do
       surface = Surface.new(instance.resolution)
-      surface.fill(Color[255, 255, 0, 255], Vector[0, 0], Vector[1, 1])
+      surface.fill(Color[255, 255, 0, 255], V[0, 0], V[1, 1])
 
       screen_update_count = 0
       allow(instance.screen).to receive(:update) { screen_update_count += 1 }

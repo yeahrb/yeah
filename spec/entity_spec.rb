@@ -10,8 +10,8 @@ describe Entity do
     subject(:method) { klass.method(:new) }
 
     it { method.call.should be_instance_of klass }
-    it { method.call.position.should eq Vector[0, 0, 0] }
-    it { method.call(Vector[2, 4, 8]).position.should eq Vector[2, 4, 8] }
+    it { method.call.position.should eq V[0, 0, 0] }
+    it { method.call(V[2, 4, 8]).position.should eq V[2, 4, 8] }
   end
 
   describe '#position' do
@@ -24,7 +24,7 @@ describe Entity do
   describe '#position=' do
     subject(:method) { instance.method(:position=) }
 
-    it_behaves_like 'writer', Vector[Random.rand(100)]
+    it_behaves_like 'writer', V.random(100)
   end
 
   [:x, :y, :z].each do |method_name|
@@ -53,7 +53,7 @@ describe Entity do
   describe '#visual=' do
     subject { instance.method(:visual=) }
 
-    it_behaves_like 'writer', Rectangle.new(Vector[50, 50])
+    it_behaves_like 'writer', Rectangle.new(V[50, 50])
   end
 
   describe '#draw' do
