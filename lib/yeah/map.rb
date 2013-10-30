@@ -4,6 +4,10 @@ class Yeah::Map
   #   @return [Color] background color
   # @!attribute key
   #   @return [Hash] tile key
+  # @!attribute tile_size
+  #   @return [Vector] size of each character in #tiles
+  # @!attribute tiles
+  #   @return [Array<String>] entities at relative positions
   attr_accessor :background, :key, :tile_size, :tiles
 
   def self.background(background)
