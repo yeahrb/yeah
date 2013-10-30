@@ -6,6 +6,20 @@ describe Map do
 
   it { klass.should be_instance_of Class }
 
+  describe '::background' do
+    subject(:method) { klass.method(:background) }
+
+    after(:each) { klass.class_variable_set :@@background, nil }
+
+    it { expect{method.call}.to raise_error ArgumentError }
+
+    it "assigns #background in instances" do
+      background = :black
+      method.call(background)
+      klass.new.background.should eq background
+    end
+  end
+
   describe '::key' do
     subject(:method) { klass.method(:key) }
 

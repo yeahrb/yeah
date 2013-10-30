@@ -2,19 +2,22 @@
 class Yeah::Map
   # @!attribute background
   #   @return [Color] background color
-  attr_accessor :background
-  attr_writer :key
+  # @!attribute key
+  #   @return [Hash] tile key
+  attr_accessor :background, :key
+
+  def self.background(background)
+    @@background = background
+  end
 
   def self.key(key)
     @@key = key
   end
 
   def initialize
-    @background = Color[]
-    @key = @@key || {}
-  end
+    @@key ||= {}
 
-  def key
-    @key
+    @background = @@background || Color[]
+    @key = @@key
   end
 end
