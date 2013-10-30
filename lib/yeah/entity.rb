@@ -2,9 +2,11 @@
 class Yeah::Entity
   # @!attribute position
   #   @return [Vector] position within a game
+  # @!attribute size
+  #   @return [NilClass|Vector] visual size
   # @!attribute visual
   #   @return [Visual] visual representation within a game
-  attr_accessor :position, :visual
+  attr_accessor :position, :size, :visual
 
   def initialize(position=V[])
     @position = position

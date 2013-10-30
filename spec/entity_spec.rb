@@ -41,6 +41,16 @@ describe Entity do
     end
   end
 
+  describe '#size' do
+    subject { instance.size }
+    it { should eql nil }
+  end
+
+  describe 'size=' do
+    subject { instance.method(:size=) }
+    it_behaves_like 'writer', V.random(10)
+  end
+
   describe '#visual' do
     subject { instance.visual }
     it { should eq nil }
