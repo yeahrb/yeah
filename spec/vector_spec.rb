@@ -24,6 +24,19 @@ describe Vector do
     end
   end
 
+  describe '::random' do
+    subject(:method) { klass.method(:random) }
+
+    it "returns a Vector with components between 0 and nth arg" do
+      max = 10
+      rand_vec = klass.random(max, max, max)
+      rand_vec.components.each do |c|
+        (c > max).should_not be_true
+        (c < 0).should_not be_true
+      end
+    end
+  end
+
   describe '#inspect' do
     subject(:method) { instance.method(:inspect) }
 

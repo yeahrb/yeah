@@ -10,6 +10,11 @@ class Yeah::Vector
   attr_reader :components
   alias_method :to_a, :components
 
+  def self.random(*component_maxes)
+    components = component_maxes.map { |cm| Random.rand(cm) }
+    self.new(*components)
+  end
+
   def initialize(*components)
     if components.size > 3
       error_message = "too many arguments (#{components.size} for up to 3)"
