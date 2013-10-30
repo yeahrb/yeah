@@ -77,17 +77,14 @@ describe Map do
   describe '#tile_size' do
     subject { instance.tile_size }
 
-    before(:each) { klass.class_variable_set :@@tile_size, nil }
-    after(:each) { klass.class_variable_set :@@tile_size, nil }
+    it { should eq nil }
 
-    it { should eq V[] }
-
-    it "is implied by #key.first.last.new.size when #key set by ::key" do
+    it "is implied by #key's first entity's size after #key is set from nil" do
       class Pseudoentity
         def size; V[5, 10, 15]; end
       end
-      klass.key({ '#' => Pseudoentity })
-      klass.new.tile_size.should eq Pseudoentity.new.size
+      instance.key = { '#' => Pseudoentity }
+      instance.tile_size.should eq Pseudoentity.new.size
     end
   end
 

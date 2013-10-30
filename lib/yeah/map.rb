@@ -16,7 +16,6 @@ class Yeah::Map
 
   def self.key(key)
     @@key = key
-    @@tile_size ||= key.first.last.new.size
   end
 
   def self.tile_size(tile_size)
@@ -30,7 +29,12 @@ class Yeah::Map
   def initialize
     @background = @@background || Color[]
     @key = @@key ||= {}
-    @tile_size = @@tile_size ||= V[]
+    @tile_size = @@tile_size ||= nil
     @tiles = @@tiles ||= []
+  end
+
+  def key=(key)
+    @key = key
+    self.tile_size = @key.first.last.new.size if @key.first && tile_size.nil?
   end
 end
