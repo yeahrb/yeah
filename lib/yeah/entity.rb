@@ -29,6 +29,10 @@ class Yeah::Entity
   #   @return [Vector] position.z
   define_position_helpers
 
+  # Update entity.
+  def update
+  end
+
   # Get visual representation from visual.
   #   @return [Surface] visual representation
   def draw

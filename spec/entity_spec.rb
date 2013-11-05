@@ -61,6 +61,11 @@ describe Entity do
     it_behaves_like 'writer', Rectangle.new(V[50, 50])
   end
 
+  describe '#update' do
+    subject { instance.method(:update) }
+    its(:call) { should eq nil }
+  end
+
   describe '#draw' do
     subject { instance.method(:draw) }
 
