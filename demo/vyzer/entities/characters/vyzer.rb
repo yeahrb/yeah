@@ -5,7 +5,7 @@ class Vyzer < Character
 
   def update
     # control horizontal velocity with D/A keys in increments of 1
-    control(velocity.x).with(:d, :a).by(1)
+    control('velocity.x').with(:d, :a).by(1)
 
     # run state if pressing D or A
     self.state = :run if pressing? :d, :a
