@@ -12,6 +12,29 @@ describe Entity do
     it { klass.new(V[2, 4, 8]).position.should eq V[2, 4, 8] }
   end
 
+  describe '#game' do
+    subject { instance.game }
+
+    it { should eq nil }
+  end
+
+  describe '#game=' do
+    subject { instance.method(:game=) }
+    it_behaves_like 'writer', Game.new
+
+    it "pushes self to value's #entities" do
+      instance.game = Game.new
+      instance.game.entities.last.should eq instance
+    end
+
+    it "doesn't push self to value's #entities if already there" do
+      game = Game.new
+      game.entities << instance
+      instance.game = game
+      game.entities.count.should eq 1
+    end
+  end
+
   describe '#position' do
     subject { instance.position }
 

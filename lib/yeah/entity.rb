@@ -6,7 +6,10 @@ class Yeah::Entity
   #   @return [NilClass|Vector] visual size
   # @!attribute visual
   #   @return [Visual] visual representation within a game
+  # @!attribute game
+  #   @return [Game] game to which this belongs to
   attr_accessor :position, :size, :visual
+  attr_reader :game
 
   def initialize(position=V[])
     @position = position
@@ -19,6 +22,11 @@ class Yeah::Entity
         define_method("#{coord}=") { |val| @position[i] = val }
       end
     end
+  end
+
+  def game=(value)
+    @game = value
+    @game.entities << self unless @game.entities.include? self
   end
 
   # @!attribute x
