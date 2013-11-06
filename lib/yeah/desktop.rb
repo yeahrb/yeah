@@ -65,7 +65,8 @@ class Yeah::Desktop
 
   # Is a key or button being pressed?
   # @param [Symbol|Integer] key or button
-  def pressing?(pressable)
-    @pressables[pressable]
+  def pressing?(*pressables)
+    raise ArgumentError if pressables.empty?
+    pressables.any? { |p| @pressables[p] }
   end
 end
