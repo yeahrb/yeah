@@ -74,6 +74,16 @@ describe Entity do
     it_behaves_like 'writer', V.random(10)
   end
 
+  describe '#state' do
+    subject { instance.state }
+    it { should eql nil }
+  end
+
+  describe 'state=' do
+    subject { instance.method(:state=) }
+    it_behaves_like 'writer', :run
+  end
+
   describe '#visual' do
     subject { instance.visual }
     it { should eq nil }

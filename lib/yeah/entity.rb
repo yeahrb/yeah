@@ -4,11 +4,13 @@ class Yeah::Entity
   #   @return [Vector] position within a game
   # @!attribute size
   #   @return [NilClass|Vector] visual size
+  # @!attribute state
+  #   @return [Symbol] state in game
   # @!attribute visual
   #   @return [Visual] visual representation within a game
   # @!attribute game
   #   @return [Game] game to which this belongs to
-  attr_accessor :position, :size, :visual
+  attr_accessor :position, :size, :state, :visual
   attr_reader :game
 
   def initialize(position=V[])
