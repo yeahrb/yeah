@@ -100,4 +100,16 @@ describe Entity do
       instance.draw
     end
   end
+
+  describe '#pressing?' do
+    subject { instance.method(:pressing?) }
+
+    it { expect {instance.pressing?}.to raise_error ArgumentError }
+
+    it "defers to #game#pressing?" do
+      instance.game = Game.new
+      instance.game.should receive(:pressing?).with(:e)
+      instance.pressing? :e
+    end
+  end
 end

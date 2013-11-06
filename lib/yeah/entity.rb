@@ -46,4 +46,8 @@ class Yeah::Entity
   def draw
     visual.draw if visual
   end
+
+  def pressing?(pressable)
+    game.pressing? pressable
+  end
 end
