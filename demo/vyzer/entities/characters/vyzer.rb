@@ -4,16 +4,14 @@ class Vyzer < Character
   # visual :shootguy_visual (implicit)
 
   def update
-    # control horizontal velocity with D/A keys in increments of 1
-    control('velocity.x').with(:d, :a).by(1)
-
-    # run state if pressing D or A
-    self.state = :run if pressing? :d, :a
-
-    # call #jump if pressing W
+    run if pressing? :d, :a
     jump if pressing? :w
 
-    # Character's #update
     super
+  end
+
+  def run
+    control 'velocity.x', with: [:d, :a], by: 1
+    @state = :run
   end
 end
