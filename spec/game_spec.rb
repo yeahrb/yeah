@@ -29,11 +29,19 @@ describe Game do
   describe '#entities=' do
     subject { instance.method(:entities=) }
     it_behaves_like 'writer', [Entity.new(Random.rand(10))]
+
+    it "assigns each item's #game as self" do
+      entities = [Entity.new, Entity.new]
+      instance.entities = entities
+
+      entities.each { |e| e.game.should eq instance }
+    end
   end
 
   describe '#update' do
+    before { instance.entities = (1..3).map { Entity.new } }
+
     it "calls #update of each element in #entities" do
-      instance.entities = (1..3).map { Entity.new }
       instance.entities.each { |e| e.should receive(:update) }
       instance.send(:update)
     end

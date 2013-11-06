@@ -8,8 +8,8 @@ class Yeah::Game
   #   @return [Platform] underlying platform bindings
   # @!attribute entities
   #   @return [Array] active entities
-  attr_accessor :resolution, :screen, :entities
-  attr_reader :platform
+  attr_accessor :resolution, :screen
+  attr_reader :entities, :platform
 
   def initialize
     @resolution = V[320, 180]
@@ -30,6 +30,11 @@ class Yeah::Game
   # Stop the game loop.
   def stop
     @stopped = true
+  end
+
+  def entities=(value)
+    @entities = value
+    @entities.each { |e| e.game = self }
   end
 
   protected
