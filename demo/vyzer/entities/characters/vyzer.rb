@@ -11,7 +11,7 @@ class Vyzer < Character
   end
 
   def run
-    pressing? :d, :a { |d| velocity.x += speed * d }
+    control 'velocity.x', [:d, :a], 2
     @state = :run
   end
 end
