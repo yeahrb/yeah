@@ -97,4 +97,11 @@ class Yeah::Entity
     return if size.nil?
     position.y - size.y / 2
   end
+
+  # Coordinate of center.
+  #   @return [Vector]
+  def center
+    return if size.nil?
+    position
+  end
 end

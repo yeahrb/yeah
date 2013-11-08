@@ -215,4 +215,15 @@ describe Entity do
       instance.bottom.should eq 9
     end
   end
+
+  describe '#center' do
+    it { instance.center.should eq nil }
+
+    it "is position of center within game" do
+      instance.game = Game.new
+      instance.position = V[10, 10]
+      instance.size = V[4, 2]
+      instance.center.should eq V[10, 10]
+    end
+  end
 end
