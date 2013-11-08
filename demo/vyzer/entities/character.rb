@@ -11,8 +11,8 @@ class Character < Entity
     # #position += #velocity
     move
 
-    # unintersect from any Wall
-    unintersect Wall
+    # deintersect from any Wall
+    deintersect Wall
   end
 
   def jump
