@@ -217,6 +217,28 @@ describe Entity do
       end
     end
 
+    describe '#front' do
+      it { instance.front.should eq nil }
+
+      it "is y of front edge within game" do
+        instance.game = Game.new
+        instance.position = V[10, 10, 10]
+        instance.size = V[4, 2, 8]
+        instance.front.should eq 18
+      end
+    end
+
+    describe '#back' do
+      it { instance.back.should eq nil }
+
+      it "is y of back edge within game" do
+        instance.game = Game.new
+        instance.position = V[10, 10, 10]
+        instance.size = V[4, 2, 8]
+        instance.back.should eq 10
+      end
+    end
+
     describe '#center' do
       it { instance.center.should eq nil }
 
@@ -237,10 +259,25 @@ describe Entity do
     it "is true when edges touch" do
       should_touch = lambda { instance.touching?(instance2).should eq true }
 
-      instance.size = instance2.size = V[5, 5]
+      instance.size = instance2.size = V[5, 5, 5]
       should_touch.call
 
-      instance.position = V[5, 5]
+      instance.position = V[5, 10, 10]
+      should_touch.call
+
+      instance.position = V[10, 5, 10]
+      should_touch.call
+
+      instance.position = V[10, 10, 5]
+      should_touch.call
+
+      instance.position = V[-5, 10, 10]
+      should_touch.call
+
+      instance.position = V[10, -5, 10]
+      should_touch.call
+
+      instance.position = V[10, 10, -5]
       should_touch.call
     end
 
@@ -251,10 +288,10 @@ describe Entity do
 
       instance.size = instance2.size = V[5, 5]
 
-      instance.position = V[6, 6]
+      instance.position = V[6, 6, 6]
       shouldnt_touch.call
 
-      instance.position = V[-6, -6]
+      instance.position = V[-6, -6, -6]
       shouldnt_touch.call
     end
   end

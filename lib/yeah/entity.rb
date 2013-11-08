@@ -98,6 +98,20 @@ class Yeah::Entity
     position.y
   end
 
+  # Z of front edge.
+  #   @return [Integer]
+  def front
+    return if size.nil?
+    position.z + size.z
+  end
+
+  # Z of back edge.
+  #   @return [Integer]
+  def back
+    return if size.nil?
+    position.z
+  end
+
   # Coordinate of center.
   #   @return [Vector]
   def center
@@ -110,7 +124,8 @@ class Yeah::Entity
 
     not_touching_x = left > other.right || right < other.left
     not_touching_y = bottom > other.top || top < other.bottom
+    not_touching_z = back > other.front || front < other.back
 
-    !(not_touching_x || not_touching_y)
+    !(not_touching_x && not_touching_y && not_touching_z)
   end
 end
