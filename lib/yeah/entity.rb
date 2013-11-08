@@ -119,6 +119,8 @@ class Yeah::Entity
     position + size / 2
   end
 
+  # Is intersected with other entity?
+  #   @return [Boolean]
   def touching?(other)
     return false if !size || !other.size
 
