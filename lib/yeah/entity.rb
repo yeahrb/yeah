@@ -74,34 +74,34 @@ class Yeah::Entity
   #   @return [Integer]
   def right
     return if size.nil?
-    position.x + size.x / 2
+    position.x + size.x
   end
 
   # X of left edge.
   #   @return [Integer]
   def left
     return if size.nil?
-    position.x - size.x / 2
+    position.x
   end
 
   # Y of top edge.
   #   @return [Integer]
   def top
     return if size.nil?
-    position.y + size.y / 2
+    position.y + size.y
   end
 
   # Y of bottom edge.
   #   @return [Integer]
   def bottom
     return if size.nil?
-    position.y - size.y / 2
+    position.y
   end
 
   # Coordinate of center.
   #   @return [Vector]
   def center
     return if size.nil?
-    position
+    position + size / 2
   end
 end

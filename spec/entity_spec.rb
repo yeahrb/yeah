@@ -172,58 +172,60 @@ describe Entity do
     end
   end
 
-  describe '#right' do
-    it { instance.right.should eq nil }
+  describe 'edges and center' do
+    describe '#right' do
+      it { instance.right.should eq nil }
 
-    it "is x of right edge within game" do
-      instance.game = Game.new
-      instance.position = V[10, 10]
-      instance.size = V[4, 2]
-      instance.right.should eq 12
+      it "is x of right edge within game" do
+        instance.game = Game.new
+        instance.position = V[10, 10]
+        instance.size = V[4, 2]
+        instance.right.should eq 14
+      end
     end
-  end
 
-  describe '#left' do
-    it { instance.left.should eq nil }
+    describe '#left' do
+      it { instance.left.should eq nil }
 
-    it "is x of left edge within game" do
-      instance.game = Game.new
-      instance.position = V[10, 10]
-      instance.size = V[4, 2]
-      instance.left.should eq 8
+      it "is x of left edge within game" do
+        instance.game = Game.new
+        instance.position = V[10, 10]
+        instance.size = V[4, 2]
+        instance.left.should eq 10
+      end
     end
-  end
 
-  describe '#top' do
-    it { instance.top.should eq nil }
+    describe '#top' do
+      it { instance.top.should eq nil }
 
-    it "is y of top edge within game" do
-      instance.game = Game.new
-      instance.position = V[10, 10]
-      instance.size = V[4, 2]
-      instance.top.should eq 11
+      it "is y of top edge within game" do
+        instance.game = Game.new
+        instance.position = V[10, 10]
+        instance.size = V[4, 2]
+        instance.top.should eq 12
+      end
     end
-  end
 
-  describe '#bottom' do
-    it { instance.bottom.should eq nil }
+    describe '#bottom' do
+      it { instance.bottom.should eq nil }
 
-    it "is y of bottom edge within game" do
-      instance.game = Game.new
-      instance.position = V[10, 10]
-      instance.size = V[4, 2]
-      instance.bottom.should eq 9
+      it "is y of bottom edge within game" do
+        instance.game = Game.new
+        instance.position = V[10, 10]
+        instance.size = V[4, 2]
+        instance.bottom.should eq 10
+      end
     end
-  end
 
-  describe '#center' do
-    it { instance.center.should eq nil }
+    describe '#center' do
+      it { instance.center.should eq nil }
 
-    it "is position of center within game" do
-      instance.game = Game.new
-      instance.position = V[10, 10]
-      instance.size = V[4, 2]
-      instance.center.should eq V[10, 10]
+      it "is position of center within game" do
+        instance.game = Game.new
+        instance.position = V[10, 10]
+        instance.size = V[4, 2]
+        instance.center.should eq V[12, 11]
+      end
     end
   end
 end
