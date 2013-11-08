@@ -69,4 +69,32 @@ class Yeah::Entity
 
     self.instance_eval("#{attrName} += #{value} * #{polarity}")
   end
+
+  # X of right edge.
+  #   @return [Integer]
+  def right
+    return if size.nil?
+    position.x + size.x / 2
+  end
+
+  # X of left edge.
+  #   @return [Integer]
+  def left
+    return if size.nil?
+    position.x - size.x / 2
+  end
+
+  # Y of top edge.
+  #   @return [Integer]
+  def top
+    return if size.nil?
+    position.y + size.y / 2
+  end
+
+  # Y of bottom edge.
+  #   @return [Integer]
+  def bottom
+    return if size.nil?
+    position.y - size.y / 2
+  end
 end

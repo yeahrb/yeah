@@ -171,4 +171,48 @@ describe Entity do
       end
     end
   end
+
+  describe '#right' do
+    it { instance.right.should eq nil }
+
+    it "is x of right edge within game" do
+      instance.game = Game.new
+      instance.position = V[10, 10]
+      instance.size = V[4, 2]
+      instance.right.should eq 12
+    end
+  end
+
+  describe '#left' do
+    it { instance.left.should eq nil }
+
+    it "is x of left edge within game" do
+      instance.game = Game.new
+      instance.position = V[10, 10]
+      instance.size = V[4, 2]
+      instance.left.should eq 8
+    end
+  end
+
+  describe '#top' do
+    it { instance.top.should eq nil }
+
+    it "is y of top edge within game" do
+      instance.game = Game.new
+      instance.position = V[10, 10]
+      instance.size = V[4, 2]
+      instance.top.should eq 11
+    end
+  end
+
+  describe '#bottom' do
+    it { instance.bottom.should eq nil }
+
+    it "is y of bottom edge within game" do
+      instance.game = Game.new
+      instance.position = V[10, 10]
+      instance.size = V[4, 2]
+      instance.bottom.should eq 9
+    end
+  end
 end
