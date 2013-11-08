@@ -57,4 +57,16 @@ class Yeah::Entity
   def pressing?(pressable)
     game.pressing? pressable
   end
+
+  def control(attrName, input, value)
+    if input.class == Array
+      polarity = 0
+      polarity += 1 if game.platform.pressing?(input.first)
+      polarity -= 1 if game.platform.pressing?(input.last)
+    else
+      polarity = game.platform.pressing?(input) ? 1 : -1
+    end
+
+    self.instance_eval("#{attrName} += #{value} * #{polarity}")
+  end
 end

@@ -135,4 +135,40 @@ describe Entity do
       instance.pressing? :e
     end
   end
+
+  describe '#control' do
+    before { instance.game = Game.new }
+
+    describe "one pressable" do
+      it "adds to attribute if pressed" do
+        instance.game.platform.press :q
+        instance.control 'position.y', :q, 2
+        instance.position.y.should eq 2
+      end
+
+      it "subtracts from attribute if not pressed" do
+        instance.control 'position.y', :q, 2
+        instance.position.y.should eq -2
+      end
+    end
+
+    describe "two pressables" do
+      it "does nothing by default" do
+        instance.control 'position.y', [:q, :e], 2
+        instance.position.y.should eq 0
+      end
+
+      it "adds to attribute if first is pressed" do
+        instance.game.platform.press :q
+        instance.control 'position.y', [:q, :e], 2
+        instance.position.y.should eq 2
+      end
+
+      it "subtracts from attribute if second is pressed" do
+        instance.game.platform.press :e
+        instance.control 'position.y', [:q, :e], 2
+        instance.position.y.should eq -2
+      end
+    end
+  end
 end
