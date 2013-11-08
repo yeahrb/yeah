@@ -228,4 +228,34 @@ describe Entity do
       end
     end
   end
+
+  describe '#touching?' do
+    let(:instance2) { Entity.new }
+
+    it { instance.touching?(instance2).should eq false }
+
+    it "is true when edges touch" do
+      should_touch = lambda { instance.touching?(instance2).should eq true }
+
+      instance.size = instance2.size = V[5, 5]
+      should_touch.call
+
+      instance.position = V[5, 5]
+      should_touch.call
+    end
+
+    it "is false when edges don't touch" do
+      shouldnt_touch = lambda { instance.touching?(instance2).should eq false }
+
+      shouldnt_touch.call
+
+      instance.size = instance2.size = V[5, 5]
+
+      instance.position = V[6, 6]
+      shouldnt_touch.call
+
+      instance.position = V[-6, -6]
+      shouldnt_touch.call
+    end
+  end
 end

@@ -104,4 +104,13 @@ class Yeah::Entity
     return if size.nil?
     position + size / 2
   end
+
+  def touching?(other)
+    return false if !size || !other.size
+
+    not_touching_x = left > other.right || right < other.left
+    not_touching_y = bottom > other.top || top < other.bottom
+
+    !(not_touching_x || not_touching_y)
+  end
 end
