@@ -112,9 +112,20 @@ class Yeah::Entity
     position + size / 2
   end
 
-  # Is intersected with other entity?
+  # Is intersected with other entity or entity of subclass?
   #   @return [Boolean]
   def touching?(other)
+    return false if other == self
+
+    if other.is_a?(Class)
+      if game
+        return game.entities.select { |e| e.is_a? other }
+                            .any? { |e| touching? e }
+      else
+        return false
+      end
+    end
+
     return false if size == V[] || other.size == V[]
 
     not_touching_x = left > other.right || right < other.left
