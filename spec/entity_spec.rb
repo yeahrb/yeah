@@ -66,7 +66,7 @@ describe Entity do
 
   describe '#size' do
     subject { instance.size }
-    it { should eql nil }
+    it { should eq V[] }
 
     it "is implied by visual size" do
       size = V[10, 10]
@@ -172,9 +172,9 @@ describe Entity do
     end
   end
 
-  describe 'edges and center' do
+  describe 'subpositions' do
     describe '#right' do
-      it { instance.right.should eq nil }
+      it { instance.right.should eq 0 }
 
       it "is x of right edge within game" do
         instance.game = Game.new
@@ -185,7 +185,7 @@ describe Entity do
     end
 
     describe '#left' do
-      it { instance.left.should eq nil }
+      it { instance.left.should eq 0 }
 
       it "is x of left edge within game" do
         instance.game = Game.new
@@ -196,7 +196,7 @@ describe Entity do
     end
 
     describe '#top' do
-      it { instance.top.should eq nil }
+      it { instance.top.should eq 0 }
 
       it "is y of top edge within game" do
         instance.game = Game.new
@@ -207,7 +207,7 @@ describe Entity do
     end
 
     describe '#bottom' do
-      it { instance.bottom.should eq nil }
+      it { instance.bottom.should eq 0 }
 
       it "is y of bottom edge within game" do
         instance.game = Game.new
@@ -218,7 +218,7 @@ describe Entity do
     end
 
     describe '#front' do
-      it { instance.front.should eq nil }
+      it { instance.front.should eq 0 }
 
       it "is y of front edge within game" do
         instance.game = Game.new
@@ -229,7 +229,7 @@ describe Entity do
     end
 
     describe '#back' do
-      it { instance.back.should eq nil }
+      it { instance.back.should eq 0 }
 
       it "is y of back edge within game" do
         instance.game = Game.new
@@ -240,7 +240,7 @@ describe Entity do
     end
 
     describe '#center' do
-      it { instance.center.should eq nil }
+      it { instance.center.should eq V[] }
 
       it "is position of center within game" do
         instance.game = Game.new

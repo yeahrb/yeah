@@ -28,7 +28,7 @@ class Yeah::Entity
   end
 
   def size
-    @size || visual && visual.size
+    @size || visual && visual.size || V[]
   end
 
   def game=(value)
@@ -73,56 +73,49 @@ class Yeah::Entity
   # X of right edge.
   #   @return [Integer]
   def right
-    return if size.nil?
     position.x + size.x
   end
 
   # X of left edge.
   #   @return [Integer]
   def left
-    return if size.nil?
     position.x
   end
 
   # Y of top edge.
   #   @return [Integer]
   def top
-    return if size.nil?
     position.y + size.y
   end
 
   # Y of bottom edge.
   #   @return [Integer]
   def bottom
-    return if size.nil?
     position.y
   end
 
   # Z of front edge.
   #   @return [Integer]
   def front
-    return if size.nil?
     position.z + size.z
   end
 
   # Z of back edge.
   #   @return [Integer]
   def back
-    return if size.nil?
     position.z
   end
 
   # Coordinate of center.
   #   @return [Vector]
   def center
-    return if size.nil?
     position + size / 2
   end
 
   # Is intersected with other entity?
   #   @return [Boolean]
   def touching?(other)
-    return false if !size || !other.size
+    return false if size == V[] || other.size == V[]
 
     not_touching_x = left > other.right || right < other.left
     not_touching_y = bottom > other.top || top < other.bottom
