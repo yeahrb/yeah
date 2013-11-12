@@ -17,7 +17,7 @@ class Character < Entity
 
   def jump
     # if Wall is right below...
-    if touching? Wall, :below
+    if touching? Wall, :bottom
 
       # jump!
       self.state = :jump
