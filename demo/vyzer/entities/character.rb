@@ -1,7 +1,5 @@
 class Character < Entity
-  attr_accessor :position, :velocity
-  # attr_accessor :x, :y, :z, :speed, :direction # implicit
-  # magic_attrs true # implicit
+  include BasicPhysics # for #velocity and #move
 
   def update
     # face visual left or right
@@ -13,17 +11,17 @@ class Character < Entity
     # #position += #velocity
     move
 
-    # unintersect from any Wall
-    unintersect Wall
+    # deintersect from any Wall
+    deintersect Wall
   end
 
   def jump
     # if Wall is right below...
-    if touching? Wall, :below
+    if touching? Wall, :bottom
 
       # jump!
       self.state = :jump
-      self.speed.y += 5
+      self.velocity.y += 5
     end
   end
 end

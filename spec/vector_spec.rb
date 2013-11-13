@@ -24,21 +24,32 @@ describe Vector do
     end
   end
 
-  describe '#inspect' do
-    subject(:method) { instance.method(:inspect) }
-
-    it "is a human-friendly representation of itself" do
-      instance.components = [Random.rand(50), Random.rand(50), Random.rand(50)]
-      method.call.should eq "#{klass.name}[#{instance.components.join(', ')}]"
+  describe '::random' do
+    it "is a Vector with components between 0 and nth arg" do
+      max = 10
+      rand_vec = klass.random(max, max, max)
+      rand_vec.components.each do |c|
+        (c > max).should_not be_true
+        (c < 0).should_not be_true
+      end
     end
   end
 
-  describe '#components' do
-    subject(:components) { instance.components }
+  describe '#inspect' do
+    it "is a human-friendly representation of itself" do
+      instance.components = [Random.rand(50), Random.rand(50), Random.rand(50)]
+      instance.inspect.should eq "#{klass.name}[#{instance.components.join(', ')}]"
+    end
+  end
 
-    it { should be_instance_of Array }
-    it { should have(3).elements }
-    it { components.each { |c| c.should be_kind_of Numeric } }
+  [:components, :to_a].each do |method_name|
+    describe "::#{method_name}" do
+      subject(:value) { instance.method(method_name).call }
+
+      it { should be_instance_of Array }
+      it { should have(3).elements }
+      it { value.each { |n| n.should be_kind_of Numeric } }
+    end
   end
 
   describe '#components=' do
@@ -199,4 +210,9 @@ describe Vector do
       instance.components.should eq [0, 0, 0]
     end
   end
+end
+
+describe V do
+  let(:klass) { described_class }
+  it { klass.should eq Vector }
 end

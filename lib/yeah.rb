@@ -1,8 +1,11 @@
 module Yeah
-  VERSION = '0.2.1'
+  VERSION = '0.2.2'
 end
 
-requires = %i(vector color surface rectangle entity map desktop game)
-requires.each do |req|
+require 'monkey/numeric'
+
+yeah_requires = %i(vector color surface rectangle entity map desktop game
+                   basic_physics)
+yeah_requires.each do |req|
   require "yeah/#{req}"
 end

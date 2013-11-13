@@ -1,10 +1,10 @@
 class Training < Map
   key {
-    '@': Shootguy,
-    '#': Wall
+    '#' => Wall,
+    '@' => Shootguy
   }
 
-  tile_size 16
+  # tile_size Wall.new.size (implicit)
 
   tiles [
     "################",

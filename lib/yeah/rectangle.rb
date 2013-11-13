@@ -6,7 +6,7 @@ class Yeah::Rectangle
   #   @return [Color]
   attr_accessor :size, :color
 
-  def initialize(size=Vector[], color=Color[*[255]*4])
+  def initialize(size=V[], color=Color[*[255]*4])
     @size = size
     @color = color
   end

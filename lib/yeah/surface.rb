@@ -6,24 +6,15 @@ class Yeah::Surface
   #   @param [Symbol] color byte order (:rgba or :bgra)
   #   @return [String] pixel data as string of bytes
   attr_reader :size
-  attr_writer :data
+  attr_accessor :data
 
-  def initialize(size=Vector[])
+  def initialize(size=V[])
     self.size = size
   end
 
   def size=(value)
     @size = value
     @data = "\x00" * 4 * size.x * size.y
-  end
-
-  def data(format=:rgba)
-    case format
-    when :rgba
-      @data
-    when :bgra
-      @data.scan(/.{4}/).map { |p| p[2] + p[1] + p[0] + p[3] }.join
-    end
   end
 
   # Color of pixel at a position.
@@ -42,7 +33,7 @@ class Yeah::Surface
   # @param [Color] fill color
   # @param [Vector] position of first corner
   # @param [Vector] position of other corner
-  def fill(color, position1=Vector[0, 0], position2=size-1)
+  def fill(color, position1=V[0, 0], position2=size-1)
     color_byte_string = color.rgba_bytes.pack('C*')
     data_lines = data.scan(/.{#{size.x*4}}/)
 
@@ -59,7 +50,7 @@ class Yeah::Surface
   # Draw onto other surface.
   # @param [Surface] surface to draw on
   # @param [Vector] position to draw on other surface
-  def draw(surface, position=Vector[0, 0])
+  def draw(surface, position=V[0, 0])
     data_lines = data.scan(/.{#{size.x*4}}/)
     surface_data_lines = surface.data.scan(/.{#{surface.size.x*4}}/)
 

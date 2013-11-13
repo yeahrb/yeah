@@ -2,10 +2,18 @@
 class Yeah::Vector
   # @!attribute components
   #   @return [Array<(Numeric, Numeric, Numeric)>]
+  # @!attribute [r] to_a
+  #   @see components
   # @!attribute []
   #   @param [Integer] *n* of component
   #   @return [Numeric] *n*th component
   attr_reader :components
+  alias_method :to_a, :components
+
+  def self.random(*component_maxes)
+    components = component_maxes.map { |cm| Random.rand(cm) }
+    self.new(*components)
+  end
 
   def initialize(*components)
     if components.size > 3
@@ -124,3 +132,6 @@ class Yeah::Vector
     @components = [0, 0, 0]
   end
 end
+
+# Shorthand for Vector.
+Yeah::V = Yeah::Vector
