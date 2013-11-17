@@ -1,21 +1,21 @@
 # Rectangular pixel data.
 class Yeah::Surface
-  # @!attribute size
-  #   @return [Vector]
-  # @!attribute data
-  #   @param [Symbol] color byte order (:rgba or :bgra)
-  #   @return [String] pixel data as string of bytes
-  attr_reader :size
-  attr_accessor :data
-
   def initialize(size=V[])
     self.size = size
   end
+
+  # @!attribute size
+  #   @return [Vector]
+  attr_reader :size
 
   def size=(value)
     @size = value
     @data = "\x00" * 4 * size.x * size.y
   end
+
+  # @!attribute data
+  #   @return [String] pixel data as string of bytes
+  attr_accessor :data
 
   # Color of pixel at a position.
   # @param [Vector] position of pixel
