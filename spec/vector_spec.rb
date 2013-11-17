@@ -16,6 +16,8 @@ describe Vector do
       it { method.call(4, 5, 6).components.should eq [4, 5, 6] }
       it { method.call(8, 9).components.should eq [8, 9, 0] }
       it { method.call(7).components.should eq [7, 0, 0] }
+      it { method.call([9, 5]).components.should eq [9, 5, 0] }
+      it { method.call(V[2, 3, 4]).components.should eq [2, 3, 4] }
 
       it "complains with 4 arguments" do
         expect { method.call(7, 8, 9, 10) }.

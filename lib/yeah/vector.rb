@@ -16,6 +16,8 @@ class Yeah::Vector
   end
 
   def initialize(*components)
+    components = components.first.to_a if components.first.respond_to?(:to_a)
+
     if components.size > 3
       error_message = "too many arguments (#{components.size} for up to 3)"
       raise ArgumentError, error_message
