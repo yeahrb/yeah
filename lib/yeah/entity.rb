@@ -25,10 +25,6 @@ class Yeah::Entity
 
   attr_writer :size
 
-  # @!attribute state
-  #   @return [Symbol] state in game
-  attr_accessor :state
-
   # @!attribute visual
   #   @return [Visual] visual representation within a game
   attr_accessor :visual
