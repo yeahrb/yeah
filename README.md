@@ -2,18 +2,11 @@ Yeah
 ====
 An early-stage Ruby video game framework that optimizes for development efficiency.
 
-It is in very early stages, but at version 0.3.0 the Vyzer demo should be functional. Any version below 1.0.0 is unstable and lacks backward compatibility.
-
-Planned features
-----------------
-* An opinionated, modular API that makes common tasks easy and everything else possible.
-* Command line initialization script to help one hit the ground running.
-* Graphical tools for creating video game resources like sprites and maps.
-* Multiple target platforms, starting with desktop and web.
+Any version below 1.0.0 is unstable and lacks backward compatibility. At version 0.3.0 the Vyzer demo should be functional.
 
 Installation
 ------------
-Install with `gem install yeah`. Yeah depends on Rubygame, which depends on SDL; see [these guides](https://github.com/rubygame/rubygame/wiki/Install).
+Install with `gem install yeah`. Yeah depends on Rubygame, which means that you need SDL - [read instructions to install](https://github.com/rubygame/rubygame/wiki/Install).
 
 Blog
 ----
