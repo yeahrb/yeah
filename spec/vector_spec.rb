@@ -91,6 +91,38 @@ describe Vector do
     end
   end
 
+  describe '#operate' do
+    let(:operators) { [:+, :-, :*, :/] }
+
+    it { instance.private_methods.should include(:operate) }
+
+    it "operates on Numeric" do
+      operand = Random.rand(50)
+      instance = V[99, 2, -5]
+
+      operators.each do |operator|
+        expected = V[*instance.components.map { |c| c.send(operator, operand)}]
+        instance.send(:operate, operand, operator).should eq expected
+      end
+    end
+
+    it "operates on Vector" do
+      operand = V.random(20, 20, 20)
+
+      operators.each do |operator|
+        result = instance.send(operator, operand)
+
+        result.components.each_with_index do |component, i|
+          comp1 = instance.components[i]
+          comp2 = operand.components[i]
+          expected = comp1.send(operator, comp2)
+
+          component.should eq expected
+        end
+      end
+    end
+  end
+
   describe '#+' do
     it "adds Vector" do
       sum = instance + instance

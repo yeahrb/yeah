@@ -65,52 +65,32 @@ class Yeah::Vector
     @components[index] = value
   end
 
-  def +(addend)
-    case addend
+  def operate(operand, operator)
+    case operand
     when self.class
-      comp_addends = addend.components
+      comp_operand = operand.components
     when Numeric
-      comp_addends = [addend] * 3
+      comp_operand = [operand] * 3
     end
-    components = @components.zip(comp_addends).map { |c| c.reduce(:+) }
 
+    components = @components.zip(comp_operand).map { |c| c.reduce(operator) }
     self.class[*components]
+  end
+
+  def +(addend)
+    operate(addend, :+)
   end
 
   def -(subtrahend)
-    case subtrahend
-    when self.class
-      comp_subtrahends = subtrahend.components
-    when Numeric
-      comp_subtrahends = [subtrahend] * 3
-    end
-    components = @components.zip(comp_subtrahends).map { |c| c.reduce(:-)}
-
-    self.class[*components]
+    operate(subtrahend, :-)
   end
 
   def *(multiple)
-    case multiple
-    when self.class
-      comp_multiples = multiple.components
-    when Numeric
-      comp_multiples = [multiple] * 3
-    end
-
-    components = @components.zip(comp_multiples).map { |c| c.reduce(:*) }
-    self.class[*components]
+    operate(multiple, :*)
   end
 
   def /(divisor)
-    case divisor
-    when self.class
-      comp_divisors = divisor.components
-    when Numeric
-      comp_divisors = [divisor] * 3
-    end
-
-    components = @components.zip(comp_divisors).map { |c| c.reduce(:/) }
-    self.class[*components]
+    operate(divisor, :/)
   end
 
   # @return [Numeric]
@@ -131,6 +111,8 @@ class Yeah::Vector
   def reset
     @components = [0, 0, 0]
   end
+
+  private :operate
 end
 
 # Shorthand for Vector.
