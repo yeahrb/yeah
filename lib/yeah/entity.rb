@@ -94,6 +94,10 @@ class Yeah::Entity
     !(not_touching_x && not_touching_y && not_touching_z)
   end
 
+  def pressing?(pressable)
+    game.pressing? pressable
+  end
+
   def control(attr_name, input, value)
     if input.class == Array
       polarity = 0
@@ -104,10 +108,6 @@ class Yeah::Entity
     end
 
     self.instance_eval("#{attr_name} += #{value} * #{polarity}")
-  end
-
-  def pressing?(pressable)
-    game.pressing? pressable
   end
 
   # Update entity.
