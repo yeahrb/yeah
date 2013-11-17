@@ -1,7 +1,7 @@
 # Color.
 class Yeah::Color
   def inspect
-    "#{self.class.name}[#{rgba_bytes.join(', ')}]"
+    "#{self.class.name}#{rgba_bytes.inspect}"
   end
 
   def initialize(*values)
