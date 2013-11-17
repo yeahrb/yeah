@@ -1,7 +1,7 @@
 # Three-dimensional geometric vector. Used as position or size.
 class Yeah::Vector
   def inspect
-    "#{self.class.name}[#{components.join(', ')}]"
+    "#{self.class.name}#{components.inspect}"
   end
 
   def initialize(*components)
