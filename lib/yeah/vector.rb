@@ -68,15 +68,14 @@ class Yeah::Vector
   end
 
   def operate(operand, operator)
-    case operand
-    when self.class
-      comp_operand = operand.components
-    when Numeric
-      comp_operand = [operand] * 3
+    if operand.respond_to? :to_a
+      operand = operand.to_a
+    else
+      operand = Array.new(3, operand)
     end
 
-    components = @components.zip(comp_operand).map { |c| c.reduce(operator) }
-    self.class[*components]
+    components = @components.zip(operand).map { |cs| cs.reduce(operator) }
+    self.class[components]
   end
 
   def +(addend)
