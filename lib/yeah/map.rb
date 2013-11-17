@@ -1,18 +1,32 @@
 # A map of entities for a Game.
 class Yeah::Map
-  # @!attribute background
-  #   @return [Color] background color
+  def initialize
+    @background = @@background || Color[]
+    @key = @@key ||= {}
+    @tile_size = @@tile_size ||= nil
+    @tiles = @@tiles ||= []
+  end
+
   # @!attribute key
   #   @return [Hash] tile key
+  attr_reader :key
+
+  def key=(key)
+    @key = key
+    self.tile_size = @key.first.last.new.size if @key.first && tile_size.nil?
+  end
+
   # @!attribute tile_size
   #   @return [Vector] size of each character in #tiles
+  attr_accessor :tile_size
+
   # @!attribute tiles
   #   @return [Array<String>] entities at relative positions
-  attr_accessor :background, :key, :tile_size, :tiles
+  attr_accessor :tiles
 
-  def self.background(background)
-    @@background = background
-  end
+  # @!attribute background
+  #   @return [Color] background color
+  attr_accessor :background
 
   def self.key(key)
     @@key = key
@@ -26,15 +40,7 @@ class Yeah::Map
     @@tiles = tiles
   end
 
-  def initialize
-    @background = @@background || Color[]
-    @key = @@key ||= {}
-    @tile_size = @@tile_size ||= nil
-    @tiles = @@tiles ||= []
-  end
-
-  def key=(key)
-    @key = key
-    self.tile_size = @key.first.last.new.size if @key.first && tile_size.nil?
+  def self.background(background)
+    @@background = background
   end
 end
