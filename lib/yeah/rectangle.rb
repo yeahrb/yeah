@@ -1,15 +1,17 @@
 # Colored rectangle Visual.
 class Yeah::Rectangle
-  # @!attribute size
-  #   @return [Vector]
-  # @!attribute color
-  #   @return [Color]
-  attr_accessor :size, :color
-
   def initialize(size=V[], color=Color[*[255]*4])
     @size = size
     @color = color
   end
+
+  # @!attribute size
+  #   @return [Vector]
+  attr_accessor :size
+
+  # @!attribute color
+  #   @return [Color]
+  attr_accessor :color
 
   # Surface representation.
   # @return [Surface]
