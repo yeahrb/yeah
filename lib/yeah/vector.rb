@@ -37,22 +37,6 @@ class Yeah::Vector
   #   @see components
   alias_method :to_a, :components
 
-  class << self
-    alias_method :[], :new
-
-    def define_component_helpers
-      component_name_sets = [[:x, :width], [:y, :height], [:z, :depth]]
-      component_name_sets.each_with_index do |set, ci|
-        set.each do |name|
-          define_method(name) { @components[ci] }
-          define_method("#{name}=") { |val| @components[ci] = val }
-        end
-      end
-    end
-  end
-
-  define_component_helpers
-
   def ==(other)
     other.class == self.class && @components == other.components ? true : false
   end
@@ -116,6 +100,25 @@ class Yeah::Vector
   def reset
     @components = [0, 0, 0]
   end
+
+  class << self
+    alias_method :[], :new
+
+    def define_component_shorthands
+      name_sets = [[:x, :width],
+                   [:y, :height],
+                   [:z, :depth]]
+
+      name_sets.each_with_index do |set, n|
+        set.each do |name|
+          define_method(name) { @components[n] }
+          define_method("#{name}=") { |val| @components[n] = val }
+        end
+      end
+    end
+  end
+
+  define_component_shorthands
 
   private :operate
 end
