@@ -136,4 +136,6 @@ class Yeah::Entity
   # @!attribute z
   #   @return [Vector] position.z
   define_position_helpers
+
+  protected :pressing?
 end
