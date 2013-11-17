@@ -1,21 +1,31 @@
 # Manages entities.
 class Yeah::Game
-  # @!attribute resolution
-  #   @return [Vector] size of screen
-  # @!attribute screen
-  #   @return [Surface] visual render
-  # @!attribute [r] platform
-  #   @return [Platform] underlying platform bindings
-  # @!attribute entities
-  #   @return [Array] active entities
-  attr_accessor :resolution, :screen
-  attr_reader :entities, :platform
-
   def initialize
     @resolution = V[320, 180]
     @screen = Surface.new(@resolution)
     @platform = Desktop.new
     @entities = []
+  end
+
+  # @!attribute [r] platform
+  #   @return [Platform] underlying platform bindings
+  attr_reader :platform
+
+  # @!attribute screen
+  #   @return [Surface] visual render
+  attr_accessor :screen
+
+  # @!attribute resolution
+  #   @return [Vector] size of screen
+  attr_accessor :resolution
+
+  # @!attribute entities
+  #   @return [Array] active entities
+  attr_reader :entities
+
+  def entities=(value)
+    @entities = value
+    @entities.each { |e| e.game = self }
   end
 
   # Start the game loop.
@@ -32,13 +42,6 @@ class Yeah::Game
     @stopped = true
   end
 
-  def entities=(value)
-    @entities = value
-    @entities.each { |e| e.game = self }
-  end
-
-  protected
-
   def update
     @entities.each { |e| e.update }
   end
@@ -51,4 +54,6 @@ class Yeah::Game
     end
     platform.render(screen)
   end
+
+  protected :update, :draw
 end
