@@ -1,7 +1,7 @@
-class VyzerVisual < Sprite
-  # sheet :shootguy (implicit)
+class YugoVisual < Sprite
+  # sheet :yugo (implicit)
 
-  size V[16, 24] # or Vector[16, 24]
+  size V[16, 24]
 
   states {
     stand: (0..2), # or [0, 1, 2]

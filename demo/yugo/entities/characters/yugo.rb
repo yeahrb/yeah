@@ -1,7 +1,7 @@
-class Vyzer < Character
+class Yugo < Character
   # See Character entity.
 
-  # visual :shootguy_visual (implicit)
+  # visual :yugo_visual (implicit)
 
   def update
     run if pressing? :d, :a
