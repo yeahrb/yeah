@@ -7,7 +7,7 @@ describe BasicPhysics do
     Entity.new
   end
 
-  it { modjul.should be_kind_of Module }
+  it { modjul.should be_an_instance_of Module }
 
   describe '#velocity' do
     subject { entity.velocity }
