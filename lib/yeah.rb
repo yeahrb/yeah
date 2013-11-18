@@ -5,6 +5,8 @@ end
 require 'monkey/numeric'
 
 %i[
+  loader
+
   vector
 
   color
