@@ -1,4 +1,11 @@
 GIT
+  remote: git://github.com/skofo/pow.git
+  revision: ee1f565bb2535404c056a9a72048a36f0d09a4a8
+  ref: ee1f565
+  specs:
+    pow (0.2.2)
+
+GIT
   remote: git://github.com/skofo/rubygame.git
   revision: f1d19872333de563554c01b6baba4471aa252d0e
   ref: f1d1987
@@ -64,6 +71,7 @@ PLATFORMS
 DEPENDENCIES
   guard-rspec
   libnotify
+  pow!
   rspec
   rubygame!
   yard
