@@ -1,3 +1,7 @@
+require 'yeah'
+include Yeah
+
 require File.expand_path('../game.rb', __FILE__)
 
+Yeah.load_project
 YugoGame.start

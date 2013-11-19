@@ -11,4 +11,20 @@ describe Yeah do
     it { should be_instance_of String }
     it { should match /[0-9]+\.[0-9]+\.[0-9]+/ }
   end
+
+  describe '#load_project' do
+    it "recursively requires project folders" do
+      %i(visuals entities maps).each do |dir|
+        modjul.should receive(:require_recursively).with(dir)
+      end
+
+      modjul.load_project
+    end
+  end
+
+  describe '#require_recursively' do
+    it "requires given dir recursively" do
+      # TODO: specs
+    end
+  end
 end
