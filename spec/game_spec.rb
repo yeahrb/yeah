@@ -105,4 +105,11 @@ describe Game do
       instance.start
     end
   end
+
+  describe '#pow' do
+    subject { instance.send(:pow) }
+
+    it { should eq Pow }
+    it { instance.private_methods.should include :pow }
+  end
 end

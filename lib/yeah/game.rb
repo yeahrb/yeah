@@ -1,3 +1,5 @@
+require 'pow'
+
 # Manages entities.
 class Yeah::Game
   def initialize
@@ -55,5 +57,10 @@ class Yeah::Game
     platform.render(screen)
   end
 
+  def pow
+    Pow
+  end
+
   protected :update, :draw
+  private :pow
 end
