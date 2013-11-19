@@ -4,11 +4,11 @@ module Yeah
   VERSION = '0.2.2'
 
   def self.load_project
-    %i(entities maps visuals).each { |d| require_recursively(d) }
+    require_recursively('.')
   end
 
   def self.require_recursively(dir)
-    Pow(dir).files.each { |f| require f }
+    Pow(dir).files.select { |f| f.extention == 'rb' }.each { |f| require f }
     Pow(dir).directories.each { |sd| require_recursively(sd) }
   end
 end

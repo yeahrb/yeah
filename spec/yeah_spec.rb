@@ -13,18 +13,15 @@ describe Yeah do
   end
 
   describe '#load_project' do
-    it "recursively requires project folders" do
-      %i(visuals entities maps).each do |dir|
-        modjul.should receive(:require_recursively).with(dir)
-      end
-
+    it "recursively requires every Ruby file in current dir" do
+      modjul.should receive(:require_recursively).with('.')
       modjul.load_project
     end
   end
 
   describe '#require_recursively' do
-    it "requires given dir recursively" do
-      # TODO: specs
+    it "recursively requires Ruby files in given dir" do
+      # TODO
     end
   end
 end
