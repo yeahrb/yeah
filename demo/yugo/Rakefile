@@ -1,6 +1,0 @@
-require 'yeah'
-include Yeah
-
-Yeah.load_project
-
-YugoGame.start
