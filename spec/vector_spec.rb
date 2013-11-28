@@ -99,7 +99,7 @@ describe Vector do
     it { instance.private_methods.should include(:operate) }
 
     it "operates on Numeric" do
-      operand = Random.rand(50)
+      operand = Random.rand(50) + 1
       instance = V[99, 2, -5]
 
       operators.each do |operator|
