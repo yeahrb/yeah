@@ -16,6 +16,8 @@ end
 require 'monkey/numeric'
 
 %i[
+  command
+
   vector
 
   color

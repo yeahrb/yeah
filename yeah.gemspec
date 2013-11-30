@@ -15,6 +15,7 @@ Gem::Specification.new do |s|
   s.files = Dir.glob('lib/**/*') + %w(LICENSE.txt README.md CHANGELOG.md)
   s.license = 'MIT'
   s.homepage = 'https://github.com/skofo/yeah'
+  s.executables = ['yeah']
   s.add_runtime_dependency 'rubygame'
   s.add_runtime_dependency 'pow'
   s.add_development_dependency 'rspec'
