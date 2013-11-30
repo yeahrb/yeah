@@ -6,6 +6,11 @@ describe Utility do
   it { modjul.should be_instance_of Module }
 
   describe '::make_file_structure' do
+    before do
+      Dir.stub(:mkdir)
+      File.stub(:open)
+    end
+
     it "creates a directory for each key with an empty hash value" do
       structure = {
         all: {},
