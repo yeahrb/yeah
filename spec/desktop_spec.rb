@@ -12,7 +12,7 @@ describe Desktop do
     it { klass.new.resolution.should eq V[320, 180] }
 
     it "accepts V as resolution argument" do
-      vector = V.random(250, 250)
+      vector = V.random(250, 250) + V[1, 1]
       desktop = klass.new(vector)
       desktop.resolution.should eq vector
       desktop.screen.size.should eq vector[0..1]
