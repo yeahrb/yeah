@@ -9,10 +9,10 @@ describe Command do
     let(:project_name) { 'dang' }
 
     it "creates project file structure" do
-      Dir.should receive(:mkdir).with(project_name)
+      Dir.should receive(:mkdir).with("#{project_name}/")
 
       %i[entities visuals maps assets config].each do |subdir|
-        Dir.should receive(:mkdir).with("#{project_name}/#{subdir}")
+        Dir.should receive(:mkdir).with("#{project_name}/#{subdir}/")
       end
 
       modjul.new(project_name)

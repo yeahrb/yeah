@@ -1,8 +1,14 @@
 module Yeah::Command
   def self.new(project_name)
-    Dir.mkdir(project_name)
+    structure = {}
+    structure[project_name] = {
+      entities: {},
+      visuals: {},
+      maps: {},
+      assets: {},
+      config: {}
+    }
 
-    subdirs = %i[entities visuals maps assets config]
-    subdirs.each { |sd| Dir.mkdir("#{project_name}/#{sd}") }
+    Utility.make_file_structure(structure)
   end
 end
