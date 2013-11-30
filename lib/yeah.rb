@@ -16,6 +16,7 @@ end
 require 'monkey/numeric'
 
 %i[
+  utility
   command
 
   vector
