@@ -70,4 +70,17 @@ describe Utility do
       modjul.make_file_structure(structure)
     end
   end
+
+  describe '::load_project' do
+    it "recursively requires every Ruby file in current dir" do
+      modjul.should receive(:require_recursively).with('.')
+      modjul.load_project
+    end
+  end
+
+  describe '::require_recursively' do
+    it "recursively requires Ruby files in given dir" do
+      # TODO
+    end
+  end
 end
