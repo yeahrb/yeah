@@ -109,7 +109,7 @@ describe Vector do
     end
 
     it "operates on Vector" do
-      operand = V.random(20, 20, 20)
+      operand = V.random(20, 20, 20) + V[1, 1, 1]
 
       operators.each do |operator|
         result = instance.send(operator, operand)
