@@ -5,19 +5,6 @@ describe Utility do
 
   it { modjul.should be_instance_of Module }
 
-  describe '::load_project' do
-    it "recursively requires every Ruby file in current dir" do
-      modjul.should receive(:require_recursively).with('.')
-      modjul.load_project
-    end
-  end
-
-  describe '::require_recursively' do
-    it "recursively requires Ruby files in given dir" do
-      # TODO
-    end
-  end
-
   describe '::make_project' do
     let(:name) { 'pepperoni' }
 
@@ -98,6 +85,19 @@ describe Utility do
       File.should receive(:open).with('i_am_a_directory/and_i_am_a_file', 'w')
 
       modjul.make_file_structure(structure)
+    end
+  end
+
+  describe '::load_project' do
+    it "recursively requires every Ruby file in current dir" do
+      modjul.should receive(:require_recursively).with('.')
+      modjul.load_project
+    end
+  end
+
+  describe '::require_recursively' do
+    it "recursively requires Ruby files in given dir" do
+      # TODO
     end
   end
 end

@@ -1,13 +1,4 @@
 module Yeah::Utility
-  def self.load_project
-    require_recursively('.')
-  end
-
-  def self.require_recursively(dir)
-    Pow(dir).files.select { |f| f.extention == 'rb' }.each { |f| require f }
-    Pow(dir).directories.each { |sd| require_recursively(sd) }
-  end
-
   def self.make_project(name)
     structure = {}
     structure[name] = {
@@ -46,5 +37,14 @@ module Yeah::Utility
     end
 
     make_recursively.call structure
+  end
+
+  def self.load_project
+    require_recursively('.')
+  end
+
+  def self.require_recursively(dir)
+    Pow(dir).files.select { |f| f.extention == 'rb' }.each { |f| require f }
+    Pow(dir).directories.each { |sd| require_recursively(sd) }
   end
 end
