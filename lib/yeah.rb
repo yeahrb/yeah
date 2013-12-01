@@ -13,7 +13,7 @@ module Yeah
   end
 end
 
-require 'monkey/numeric'
+%i[numeric string].each { |r| require "monkey/#{r}" }
 
 %i[
   utility
