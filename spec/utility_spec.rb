@@ -106,10 +106,4 @@ describe Utility do
       # TODO
     end
   end
-
-  describe '::require_in_context' do
-    it "executes code in context" do
-      # TODO
-    end
-  end
 end

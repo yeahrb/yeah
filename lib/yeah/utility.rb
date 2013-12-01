@@ -49,14 +49,7 @@ module Yeah::Utility
   end
 
   def self.project_game_class
-    # TODO: do this better
-    require_in_context('game.rb')
-    game_class_name = constants.find { |c| c[-4..-1] == "Game" }
+    game_class_name = Object.constants.find { |c| c[-4..-1] == "Game" }
     Kernel.const_get(game_class_name)
-  end
-
-  def self.require_in_context(file)
-    code = File.open(file, 'r').read
-    eval(code)
   end
 end
