@@ -1,5 +1,7 @@
 # Colored rectangle Visual.
 class Yeah::Rectangle
+  include Yeah
+
   def initialize(size=V[], color=Color[*[255]*4])
     @size = size
     @color = color

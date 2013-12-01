@@ -1,5 +1,7 @@
 # Rectangular pixel data.
 class Yeah::Surface
+  include Yeah
+
   def initialize(size=V[])
     self.size = size
   end

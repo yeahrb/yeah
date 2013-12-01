@@ -2,6 +2,8 @@ require 'rubygame'
 
 # Bindings to the native desktop powered by Rubygame.
 class Yeah::Desktop
+  include Yeah
+
   def initialize(resolution=V[320, 180])
     self.resolution = resolution
 

@@ -1,5 +1,7 @@
 # A map of entities for a Game.
 class Yeah::Map
+  include Yeah
+
   def initialize
     @background = @@background || Color[]
     @key = @@key ||= {}

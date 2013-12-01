@@ -1,4 +1,6 @@
 module Yeah::BasicPhysics
+  include Yeah
+
   attr_writer :velocity
 
   def velocity

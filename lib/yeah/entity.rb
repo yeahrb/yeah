@@ -1,5 +1,7 @@
 # Game object.
 class Yeah::Entity
+  include Yeah
+
   def initialize(position=V[])
     @position = position
   end

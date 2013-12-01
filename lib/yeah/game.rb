@@ -1,5 +1,7 @@
 # Manages entities.
 class Yeah::Game
+  include Yeah
+
   def initialize
     @resolution = V[320, 180]
     @screen = Surface.new(@resolution)
