@@ -15,6 +15,9 @@ describe Command do
         Dir.should receive(:mkdir).with("#{project_name}/#{subdir}/")
       end
 
+      File.should receive(:open).with("#{project_name}/game.rb", 'w')
+      # TODO: Test contents of game.rb.
+
       modjul.new(project_name)
     end
   end
