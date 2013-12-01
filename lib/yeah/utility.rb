@@ -8,6 +8,26 @@ module Yeah::Utility
     Pow(dir).directories.each { |sd| require_recursively(sd) }
   end
 
+  def self.make_project(name)
+    structure = {}
+    structure[name] = {
+      entities: {},
+      visuals: {},
+      maps: {},
+      assets: {},
+      config: {},
+      'game.rb' => <<-eoc.unindent
+        require "yeah"
+        include Yeah
+
+        class #{name.classify}Game < Game
+        end
+      eoc
+    }
+
+    make_file_structure(structure)
+  end
+
   # TODO: clean up this monster
   def self.make_file_structure(structure)
     make_recursively = lambda do |struct, base_loc=""|

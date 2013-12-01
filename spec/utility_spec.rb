@@ -18,6 +18,23 @@ describe Utility do
     end
   end
 
+  describe '::make_project' do
+    let(:name) { 'pepperoni' }
+
+    it "creates project file structure" do
+      Dir.should receive(:mkdir).with("#{name}/")
+
+      %i[entities visuals maps assets config].each do |subdir|
+        Dir.should receive(:mkdir).with("#{name}/#{subdir}/")
+      end
+
+      File.should receive(:open).with("#{name}/game.rb", 'w')
+      # TODO: Test contents of game.rb.
+
+      modjul.make_project(name)
+    end
+  end
+
   describe '::make_file_structure' do
     before do
       Dir.stub(:mkdir)

@@ -8,15 +8,8 @@ describe Command do
   describe '::new' do
     let(:project_name) { 'dang' }
 
-    it "creates project file structure" do
-      Dir.should receive(:mkdir).with("#{project_name}/")
-
-      %i[entities visuals maps assets config].each do |subdir|
-        Dir.should receive(:mkdir).with("#{project_name}/#{subdir}/")
-      end
-
-      File.should receive(:open).with("#{project_name}/game.rb", 'w')
-      # TODO: Test contents of game.rb.
+    it "defers to Utility::make_project" do
+      Utility.should receive(:make_project).with(project_name)
 
       modjul.new(project_name)
     end
