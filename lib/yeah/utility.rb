@@ -44,7 +44,7 @@ module Yeah::Utility
   end
 
   def self.require_recursively(dir)
-    Pow(dir).files.select { |f| f.extention == 'rb' }.each { |f| require f }
+    Pow(dir).files.select { |f| f.extension == 'rb' }.each { |f| require f }
     Pow(dir).directories.each { |sd| require_recursively(sd) }
   end
 
