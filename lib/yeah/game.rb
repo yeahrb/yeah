@@ -5,7 +5,6 @@ class Yeah::Game
   def initialize
     @resolution = V[320, 180]
     @surface = Surface.new(@resolution)
-    @screen = DesktopScreen.new
     @entities = []
   end
 
@@ -32,6 +31,8 @@ class Yeah::Game
 
   # Start the game loop.
   def start
+    @screen = DesktopScreen.new
+
     screen.each_tick do
       update
       draw
@@ -41,6 +42,7 @@ class Yeah::Game
 
   # Stop the game loop.
   def stop
+    @screen = nil
     @stopped = true
   end
 

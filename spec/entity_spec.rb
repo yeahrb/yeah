@@ -131,6 +131,12 @@ describe Entity do
   describe '#control' do
     before { instance.game = Game.new }
 
+    # TODO: make this unnecessary
+    before do
+      DesktopScreen.class_eval "def each_tick; yield; end"
+      instance.game.start
+    end
+
     describe "one pressable" do
       it "adds to attribute if pressed" do
         instance.game.screen.press :q
