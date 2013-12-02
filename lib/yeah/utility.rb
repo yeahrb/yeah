@@ -44,6 +44,11 @@ module Yeah::Utility
   end
 
   def self.require_recursively(dir)
+    pow_spells_correctly = Pow::Base.method_defined? :extension
+    if !pow_spells_correctly
+      Pow::Base.class_eval "alias_method :extension, :extention"
+    end
+
     Pow(dir).files.select { |f| f.extension == 'rb' }.each { |f| require f }
     Pow(dir).directories.each { |sd| require_recursively(sd) }
   end
