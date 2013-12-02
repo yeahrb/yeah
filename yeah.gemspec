@@ -12,7 +12,7 @@ Gem::Specification.new do |s|
   s.description = "Programming video games should have a positive impact on your health!"
   s.authors = ["Artur Ostrega"]
   s.email = 'skoofoo@gmail.com'
-  s.files = Dir.glob('lib/**/*') + %w(LICENSE.txt README.md CHANGELOG.md)
+  s.files = Dir.glob('lib/**/*') + %w(LICENSE.txt README.md)
   s.license = 'MIT'
   s.homepage = 'https://github.com/skofo/yeah'
   s.executables = ['yeah']
