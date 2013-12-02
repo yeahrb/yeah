@@ -4,7 +4,7 @@ class Yeah::Game
 
   def initialize
     @resolution = V[320, 180]
-    @screen = Surface.new(@resolution)
+    @surface = Surface.new(@resolution)
     @platform = Desktop.new
     @entities = []
   end
@@ -13,9 +13,9 @@ class Yeah::Game
   #   @return [Platform] underlying platform bindings
   attr_reader :platform
 
-  # @!attribute screen
+  # @!attribute surface
   #   @return [Surface] visual render
-  attr_accessor :screen
+  attr_accessor :surface
 
   # @!attribute resolution
   #   @return [Vector] size of screen
@@ -49,11 +49,13 @@ class Yeah::Game
   end
 
   def draw
-    screen.fill(Color[0, 0, 0, 0])
+    surface.fill(Color[0, 0, 0, 0])
+
     @entities.each do |entity|
-      screen.draw(entity.surface, entity.position) unless entity.surface.nil?
+      surface.draw(entity.surface, entity.position) unless entity.surface.nil?
     end
-    platform.render(screen)
+
+    platform.render(surface)
   end
 
   protected :update, :draw

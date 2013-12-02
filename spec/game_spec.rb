@@ -48,8 +48,8 @@ describe Game do
   end
 
   describe '#draw' do
-    it "clears #screen" do
-      instance.screen.should receive(:fill).with(Color[0, 0, 0, 0])
+    it "clears #surface" do
+      instance.surface.should receive(:fill).with(Color[0, 0, 0, 0])
       instance.send(:draw)
     end
 
@@ -59,21 +59,21 @@ describe Game do
       instance.send(:draw)
     end
 
-    it "draws entities on #screen" do
+    it "draws entities on #surface" do
       color = Color[0, 255, 0, 255]
       entity = Entity.new
       entity.visual = Rectangle.new(V[1, 1], color)
       entity.position = V[Random.rand(10), Random.rand(10)]
       instance.entities << entity
       instance.send(:draw)
-      instance.screen.color_at(entity.position).should eq color
+      instance.surface.color_at(entity.position).should eq color
     end
 
     it "writes to #platform#screen#struct#pixels" do
       instance.send(:draw)
       pixels = instance.platform.screen.send(:struct).pixels
-      pixel_data = pixels.read_string(instance.screen.data.length)
-      pixel_data.should eq instance.screen.data
+      pixel_data = pixels.read_string(instance.surface.data.length)
+      pixel_data.should eq instance.surface.data
     end
 
     it "calls #platform#screen#update" do
@@ -82,8 +82,8 @@ describe Game do
     end
   end
 
-  describe '#screen' do
-    subject { instance.screen }
+  describe '#surface' do
+    subject { instance.surface }
 
     it { should be_instance_of Surface }
     its(:size) { should eq instance.resolution }
