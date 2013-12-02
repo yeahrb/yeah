@@ -5,7 +5,7 @@ class Yeah::Game
   def initialize
     @resolution = V[320, 180]
     @surface = Surface.new(@resolution)
-    @platform = Desktop.new
+    @platform = DesktopScreen.new
     @entities = []
   end
 

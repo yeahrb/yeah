@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Desktop do
+describe DesktopScreen do
   let(:klass) { described_class }
   let(:instance) { klass.new }
 

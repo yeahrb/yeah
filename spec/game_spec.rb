@@ -8,7 +8,7 @@ describe Game do
 
   describe '#platform' do
     subject { instance.platform }
-    it { should be_instance_of Desktop }
+    it { should be_instance_of DesktopScreen }
   end
 
   describe '#resolution' do
