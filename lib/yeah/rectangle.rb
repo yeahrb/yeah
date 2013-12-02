@@ -17,7 +17,7 @@ class Yeah::Rectangle
 
   # Surface representation.
   # @return [Surface]
-  def draw
+  def surface
     surface = Surface.new(size)
     surface.fill(color)
     surface

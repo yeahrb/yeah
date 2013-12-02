@@ -51,8 +51,7 @@ class Yeah::Game
   def draw
     screen.fill(Color[0, 0, 0, 0])
     @entities.each do |entity|
-      surface = entity.draw
-      screen.draw(surface, entity.position) unless surface.nil?
+      screen.draw(entity.surface, entity.position) unless entity.surface.nil?
     end
     platform.render(screen)
   end

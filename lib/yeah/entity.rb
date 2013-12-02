@@ -118,8 +118,8 @@ class Yeah::Entity
 
   # Get visual representation from visual.
   #   @return [Surface] visual representation
-  def draw
-    visual.draw if visual
+  def surface
+    visual.surface if visual
   end
 
   class << self

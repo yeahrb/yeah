@@ -53,9 +53,9 @@ describe Game do
       instance.send(:draw)
     end
 
-    it "calls #draw of each element in #entities" do
+    it "gets #surface of each element in #entities" do
       instance.entities = (1..3).map { Entity.new }
-      instance.entities.each { |e| e.should receive(:draw) }
+      instance.entities.each { |e| e.should receive(:surface) }
       instance.send(:draw)
     end
 

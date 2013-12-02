@@ -43,18 +43,18 @@ describe Rectangle do
     it_behaves_like 'writer', Color[*[Random.rand(255)]*4]
   end
 
-  describe '#draw' do
-    it { instance.draw.should be_instance_of Surface }
+  describe '#surface' do
+    it { instance.surface.should be_instance_of Surface }
 
     it "matches size" do
       instance.size = V.random(50, 50) + V[1, 1]
-      instance.draw.size.should eq instance.size
+      instance.surface.size.should eq instance.size
     end
 
     it "matches color" do
       instance.size = V[10, 10]
       instance.color = Color[*[Random.rand(255)]*4]
-      surface = instance.draw
+      surface = instance.surface
       surface.color_at(V[]).should eq instance.color
       surface.color_at(instance.size/2).should eq instance.color
       surface.color_at(instance.size-V[1, 1]).should eq instance.color

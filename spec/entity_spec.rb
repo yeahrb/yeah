@@ -102,15 +102,15 @@ describe Entity do
     its(:call) { should eq nil }
   end
 
-  describe '#draw' do
-    subject { instance.method(:draw) }
+  describe '#surface' do
+    subject { instance.method(:surface) }
 
     its(:call) { should eq nil }
 
-    it "calls #draw method of #visual if it exists" do
+    it "gets #surface of #visual if it exists" do
       instance.visual = Rectangle.new
-      instance.visual.should receive(:draw)
-      instance.draw
+      instance.visual.should receive(:surface)
+      instance.surface
     end
   end
 
