@@ -103,10 +103,10 @@ class Yeah::Entity
   def control(attr_name, input, value)
     if input.class == Array
       polarity = 0
-      polarity += 1 if game.platform.pressing?(input.first)
-      polarity -= 1 if game.platform.pressing?(input.last)
+      polarity += 1 if game.screen.pressing?(input.first)
+      polarity -= 1 if game.screen.pressing?(input.last)
     else
-      polarity = game.platform.pressing?(input) ? 1 : -1
+      polarity = game.screen.pressing?(input) ? 1 : -1
     end
 
     self.instance_eval("#{attr_name} += #{value} * #{polarity}")

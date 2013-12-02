@@ -5,13 +5,13 @@ class Yeah::Game
   def initialize
     @resolution = V[320, 180]
     @surface = Surface.new(@resolution)
-    @platform = DesktopScreen.new
+    @screen = DesktopScreen.new
     @entities = []
   end
 
-  # @!attribute [r] platform
-  #   @return [Platform] underlying platform bindings
-  attr_reader :platform
+  # @!attribute [r] screen
+  #   @return [Platform] game screen
+  attr_reader :screen
 
   # @!attribute surface
   #   @return [Surface] visual render
@@ -32,7 +32,7 @@ class Yeah::Game
 
   # Start the game loop.
   def start
-    platform.each_tick do
+    screen.each_tick do
       update
       draw
       break if @stopped
@@ -55,7 +55,7 @@ class Yeah::Game
       surface.draw(entity.surface, entity.position) unless entity.surface.nil?
     end
 
-    platform.render(surface)
+    screen.render(surface)
   end
 
   protected :update, :draw

@@ -133,7 +133,7 @@ describe Entity do
 
     describe "one pressable" do
       it "adds to attribute if pressed" do
-        instance.game.platform.press :q
+        instance.game.screen.press :q
         instance.control 'position.y', :q, 2
         instance.position.y.should eq 2
       end
@@ -151,13 +151,13 @@ describe Entity do
       end
 
       it "adds to attribute if first is pressed" do
-        instance.game.platform.press :q
+        instance.game.screen.press :q
         instance.control 'position.y', [:q, :e], 2
         instance.position.y.should eq 2
       end
 
       it "subtracts from attribute if second is pressed" do
-        instance.game.platform.press :e
+        instance.game.screen.press :e
         instance.control 'position.y', [:q, :e], 2
         instance.position.y.should eq -2
       end

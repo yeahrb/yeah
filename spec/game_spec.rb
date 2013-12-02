@@ -6,8 +6,8 @@ describe Game do
 
   it { klass.should be_instance_of Class }
 
-  describe '#platform' do
-    subject { instance.platform }
+  describe '#screen' do
+    subject { instance.screen }
     it { should be_instance_of DesktopScreen }
   end
 
@@ -69,15 +69,15 @@ describe Game do
       instance.surface.color_at(entity.position).should eq color
     end
 
-    it "writes to #platform#screen#struct#pixels" do
+    it "writes to #screen#screen#struct#pixels" do
       instance.send(:draw)
-      pixels = instance.platform.screen.send(:struct).pixels
+      pixels = instance.screen.screen.send(:struct).pixels
       pixel_data = pixels.read_string(instance.surface.data.length)
       pixel_data.should eq instance.surface.data
     end
 
-    it "calls #platform#screen#update" do
-      instance.platform.screen.should receive(:update)
+    it "calls #screen#screen#update" do
+      instance.screen.screen.should receive(:update)
       instance.send(:draw)
     end
   end
@@ -90,8 +90,8 @@ describe Game do
   end
 
   describe '#start' do
-    it "calls #platform#each_tick with a block with #update and #draw calls" do
-      instance.platform.instance_eval "def each_tick; yield; end"
+    it "calls #screen#each_tick with a block with #update and #draw calls" do
+      instance.screen.instance_eval "def each_tick; yield; end"
       instance.should receive(:update)
       instance.should receive(:draw)
       instance.start
