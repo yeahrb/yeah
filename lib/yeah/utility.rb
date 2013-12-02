@@ -52,4 +52,8 @@ module Yeah::Utility
     game_class_name = Object.constants.find { |c| c[-4..-1] == "Game" }
     Kernel.const_get(game_class_name)
   end
+
+  def self.run_project
+    project_game_class.new.start
+  end
 end

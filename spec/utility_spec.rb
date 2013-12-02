@@ -106,4 +106,10 @@ describe Utility do
       # TODO
     end
   end
+
+  describe '::run_project' do
+    it "instantiates and starts the project game" do
+      # TODO
+    end
+  end
 end

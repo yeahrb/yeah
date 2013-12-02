@@ -14,4 +14,20 @@ describe Command do
       modjul.new(project_name)
     end
   end
+
+  describe '::run' do
+    it "loads project" do
+      Utility.stub(:run_project)
+      Utility.should receive(:load_project)
+
+      modjul.run
+    end
+
+    it "runs project" do
+      Utility.stub(:load_project)
+      Utility.should receive(:run_project)
+
+      modjul.run
+    end
+  end
 end
