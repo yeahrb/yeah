@@ -8,11 +8,11 @@ require 'yeah'
 Gem::Specification.new do |s|
   s.name = 'yeah'
   s.version = Yeah::VERSION
-  s.summary = "The positive video game framework"
-  s.description = "Programming video games should have a positive impact on your health!"
+  s.summary = "A practical Ruby game framework"
+  s.description = "Demolishes the distance from game idea to polished work of art."
   s.authors = ["Artur Ostrega"]
   s.email = 'skoofoo@gmail.com'
-  s.files = Dir.glob('lib/**/*') + %w(LICENSE.txt README.md)
+  s.files = Dir.glob('{bin,lib,demo}/**/*') + %w(LICENSE.txt README.md)
   s.license = 'MIT'
   s.homepage = 'https://github.com/skofo/yeah'
   s.executables = ['yeah']
