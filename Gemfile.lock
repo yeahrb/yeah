@@ -7,12 +7,12 @@ GIT
 
 GIT
   remote: git://github.com/skofo/rubygame.git
-  revision: f1d19872333de563554c01b6baba4471aa252d0e
-  ref: f1d1987
+  revision: 6025266662177a58168d7ff43b5756856ce0b194
+  branch: 2.7.0.unofficial
   specs:
-    rubygame (2.7.0)
+    rubygame (2.7.0.unofficial)
       rake (>= 0.7.0)
-      ruby-sdl-ffi (>= 0.1.0)
+      ruby-sdl-ffi (>= 0.4.0)
 
 GEM
   remote: https://rubygems.org/
