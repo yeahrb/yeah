@@ -12,7 +12,7 @@ Install Yeah with `gem install yeah`.
 
 Overview
 --------
-Yeah is a collection of abstractions, utilities and conventions around media and input APIs that aid in the creation of compelling video games.
+Yeah is a collection of abstractions, utilities and conventions that aid in the creation of compelling video games.
 
 Commands perform common utility tasks.
 
