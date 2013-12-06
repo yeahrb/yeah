@@ -8,9 +8,9 @@ class Yeah::Game
     @entities = []
   end
 
-  # @!attribute [r] screen
-  #   @return [Platform] game screen
-  attr_reader :screen
+  # @!attribute [r] backend
+  #   @return [Platform] platform bindings
+  attr_reader :backend
 
   # @!attribute surface
   #   @return [Surface] visual render
@@ -31,9 +31,9 @@ class Yeah::Game
 
   # Start the game loop.
   def start
-    @screen = DesktopScreen.new
+    @backend = DesktopBackend.new
 
-    screen.each_tick do
+    backend.each_tick do
       update
       draw
       break if @stopped
@@ -42,7 +42,7 @@ class Yeah::Game
 
   # Stop the game loop.
   def stop
-    @screen = nil
+    @backend = nil
     @stopped = true
   end
 
@@ -57,7 +57,7 @@ class Yeah::Game
       surface.draw(entity.surface, entity.position) unless entity.surface.nil?
     end
 
-    screen.render(surface)
+    backend.render(surface)
   end
 
   protected :update, :draw

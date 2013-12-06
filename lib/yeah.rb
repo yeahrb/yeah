@@ -21,7 +21,7 @@ end
 
   map
 
-  desktop_screen
+  desktop_backend
 
   game
 ].each { |r| require "yeah/#{r}" }
