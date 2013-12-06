@@ -12,7 +12,7 @@ Install Yeah with `gem install yeah`.
 
 Overview
 --------
-Yeah is a collection of abstractions, utilities and conventions that aid in the creation of compelling video games.
+Yeah is a collection of abstractions, utilities and conventions around media and input APIs that aid in the creation of compelling video games.
 
 Commands perform common utility tasks.
 
@@ -23,9 +23,9 @@ Commands perform common utility tasks.
 Intuitive abstractions.
 
   * Game - a container for entities, communicates with a backend, can load maps.
-  * Entity - an actor within a game, can be represented by a visual.
+  * Entity - something that can be represented by a visual in a game.
   * Visual - something that is rendered onto a screen.
-  * Backend - platform bindings to media and input APIs.
+  * Backend - bindings to media and input APIs for a particular platform.
   * Vector - used to represent position, size, velocity...
   * Color - will accept hex, RGB, HSV, and Wikipedia names.
   * Map - will be arrangement of entities in space.
