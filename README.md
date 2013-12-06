@@ -20,7 +20,7 @@ Commands perform common utility tasks.
   * `yeah run` runs a game project.
   * `yeah build` will build ready-to-go packages for every platform available.
 
-Intuitive abstractions.
+Intuitive abstractions that are a good fit for many types of games.
 
   * Game - a container for entities, communicates with a backend, can load maps.
   * Entity - something that can be represented by a visual in a game.
@@ -29,3 +29,14 @@ Intuitive abstractions.
   * Vector - used to represent position, size, velocity...
   * Color - will accept hex, RGB, HSV, and Wikipedia names.
   * Map - will be arrangement of entities in space.
+
+Roadmap
+-------
+  1. Get this to the point where one can gracefully hack on crude games.
+  2. Make the code clean and robust.
+  3. Make the creation of retro 2D games feasible.
+  4. Write the HTML5 backend.
+
+Contributing
+------------
+Do you have an idea that could potentially improve Yeah? You are encouraged to open an issue!
