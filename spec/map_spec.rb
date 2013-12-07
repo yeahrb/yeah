@@ -146,4 +146,43 @@ describe Map do
       b_positions.should eq [V[16, 0], V[48, 16]]
     end
   end
+
+  describe '#update' do
+    before { instance.entities = (1..3).map { Entity.new } }
+
+    it "calls #update on each entity in #entities" do
+      instance.entities.each { |e| e.should receive(:update) }
+      instance.update
+    end
+  end
+
+  describe '#draw' do
+    subject { instance.draw }
+
+    it { should be_instance_of Surface }
+
+    it "has a size that matches tile data" do
+      test_map = Class.new(Map)
+      test_map.tile_size 16
+      test_map.tiles ["   ",
+                      "   "]
+
+      test_map.new.draw.size.should eq V[48, 32]
+
+      test_map.tiles ["  ",
+                      "  ",
+                      "  "]
+      test_map.new.draw.size.should eq V[32, 48]
+    end
+
+    it "draws map entities" do
+      color = Color[0, 255, 0, 255]
+      entity = Entity.new
+      entity.visual = Rectangle.new(V[1, 1], color)
+      entity.position = V[Random.rand(10), Random.rand(10)]
+      instance.entities << entity
+      instance.draw.color_at(entity.position).should eq color
+    end
+
+  end
 end
