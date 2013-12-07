@@ -61,4 +61,9 @@ module Yeah::Utility
   def self.run_project
     project_game_class.new.start
   end
+
+  def self.first_map
+    map_class_name = Dir['maps/*'].first[5..-4].classify
+    Kernel.const_get(map_class_name)
+  end
 end
