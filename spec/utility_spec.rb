@@ -101,7 +101,7 @@ describe Utility do
     end
   end
 
-  describe '::project_game_class' do
+  describe '::project_game' do
     it "is the Game of the loaded project" do
       # TODO
     end

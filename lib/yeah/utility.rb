@@ -53,13 +53,13 @@ module Yeah::Utility
     Pow(dir).directories.each { |sd| require_recursively(sd) }
   end
 
-  def self.project_game_class
+  def self.project_game
     game_class_name = Object.constants.find { |c| c[-4..-1] == "Game" }
     Kernel.const_get(game_class_name)
   end
 
   def self.run_project
-    project_game_class.new.start
+    project_game.new.start
   end
 
   def self.first_map
