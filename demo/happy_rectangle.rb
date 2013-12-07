@@ -31,7 +31,7 @@ class HappyRectangleGame < Game
     super
     @updates = 0
     @last_update = 30
-    @map = Map.new
+    self.map = Map.new
     @map.entities << HappyRectangle.new(resolution/2)
   end
 
