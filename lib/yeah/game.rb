@@ -11,10 +11,6 @@ class Yeah::Game
   #   @return [Platform] platform bindings
   attr_reader :backend
 
-  # @!attribute surface
-  #   @return [Surface] visual render
-  attr_accessor :surface
-
   attr_reader :map
   def map=(value)
     @map = value
@@ -47,8 +43,7 @@ class Yeah::Game
   end
 
   def draw
-    self.surface = @map.draw if @map
-    backend.render(surface)
+    backend.render(@map.draw) if @map
   end
 
   protected :update, :draw

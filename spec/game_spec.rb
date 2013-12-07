@@ -42,31 +42,12 @@ describe Game do
     context "after start" do
       before { instance.start }
 
-      it "assigns map's draw to surface" do
-        instance.map.should receive(:draw).twice
-        instance.send(:draw)
-        instance.surface.should eq instance.map.draw
-      end
-
-      it "writes to #backend#screen#struct#pixels" do
-        instance.send(:draw)
-        pixels = instance.backend.screen.send(:struct).pixels
-        pixel_data = pixels.read_string(instance.surface.data.length)
-        pixel_data.should eq instance.surface.data
-      end
-
-      it "calls #backend#screen#update" do
-        instance.backend.screen.should receive(:update)
+      it "renders map's draw" do
+        instance.map.stub(:draw).and_return("the map")
+        instance.backend.should receive(:render).with("the map")
         instance.send(:draw)
       end
     end
-  end
-
-  describe '#surface' do
-    subject { instance.surface }
-
-    it { should be_instance_of Surface }
-    its(:size) { should eq instance.resolution }
   end
 
   describe '#map' do
