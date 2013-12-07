@@ -11,6 +11,12 @@ describe Map do
 
     it { expect{klass.background}.to raise_error ArgumentError }
 
+    it "assigns class variable" do
+      background = :black
+      klass.background background
+      klass.class_variable_get(:@@background).should eq background
+    end
+
     it "assigns #background in instances" do
       background = :black
       klass.background(background)
@@ -23,10 +29,10 @@ describe Map do
 
     it { expect{klass.key}.to raise_error ArgumentError }
 
-    it "assigns #key in instances" do
+    it "assigns class variable" do
       key = { '#' => Entity }
-      klass.key(key)
-      klass.new.key.should eq key
+      klass.key key
+      klass.class_variable_get(:@@key).should eq key
     end
   end
 
@@ -35,10 +41,10 @@ describe Map do
 
     it { expect{klass.tile_size}.to raise_error ArgumentError }
 
-    it "assigns #tile_size in instances" do
-      tile_size = V[16, 16]
-      klass.tile_size(tile_size)
-      klass.new.tile_size.should eq tile_size
+    it "assigns class variable" do
+      tile_size = V[5, 5]
+      klass.tile_size tile_size
+      klass.class_variable_get(:@@tile_size).should eq tile_size
     end
   end
 
@@ -47,10 +53,10 @@ describe Map do
 
     it { expect{klass.tiles}.to raise_error ArgumentError }
 
-    it "assigns #tiles in instances" do
+    it "assigns class variable" do
       tiles = ["###"]
-      klass.tiles(tiles)
-      klass.new.tiles.should eq tiles
+      klass.tiles tiles
+      klass.class_variable_get(:@@tiles).should eq tiles
     end
   end
 
@@ -62,45 +68,6 @@ describe Map do
   describe '#background=' do
     subject { instance.method(:background=) }
     it_behaves_like 'writer', Color[*[Random.rand(255)]*4]
-  end
-
-  describe '#key' do
-    subject { instance.key }
-    it { should eq Hash.new }
-  end
-
-  describe '#key=' do
-    subject { instance.method(:key=) }
-    it_behaves_like 'writer', { '#' => Entity }
-  end
-
-  describe '#tile_size' do
-    subject { instance.tile_size }
-
-    it { should eq nil }
-
-    it "is implied by #key's first entity's size after #key is set from nil" do
-      class Pseudoentity
-        def size; V[5, 10, 15]; end
-      end
-      instance.key = { '#' => Pseudoentity }
-      instance.tile_size.should eq Pseudoentity.new.size
-    end
-  end
-
-  describe '#tile_size=' do
-    subject { instance.method(:tile_size=) }
-    it_behaves_like 'writer', V[16, 16]
-  end
-
-  describe '#tiles' do
-    subject { instance.tiles }
-    it { should eq [] }
-  end
-
-  describe '#tiles=' do
-    subject { instance.method(:tiles=) }
-    it_behaves_like 'writer', ["###"]
   end
 
   describe '#entities' do

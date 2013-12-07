@@ -4,26 +4,10 @@ class Yeah::Map
 
   def initialize
     @background = @@background ||= Color[]
-    @key = @@key ||= {}
-    @tile_size = @@tile_size ||= nil
-    @tiles = @@tiles ||= []
+    @@key ||= {}
+    @@tile_size ||= 0
+    @@tiles ||= []
   end
-
-  # @!attribute key
-  #   @return [Hash] tile key
-  attr_reader :key
-  def key=(key)
-    @key = key
-    self.tile_size = @key.first.last.new.size if @key.first && tile_size.nil?
-  end
-
-  # @!attribute tile_size
-  #   @return [Vector] size of each character in #tiles
-  attr_accessor :tile_size
-
-  # @!attribute tiles
-  #   @return [Array<String>] entities at relative positions
-  attr_accessor :tiles
 
   # @!attribute background
   #   @return [Color] background color
