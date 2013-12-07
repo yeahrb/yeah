@@ -9,12 +9,10 @@ describe Map do
   describe '::background' do
     after(:each) { klass.class_variable_set :@@background, nil }
 
-    it { expect{klass.background}.to raise_error ArgumentError }
-
-    it "assigns class variable" do
+    it "assigns itself" do
       background = :black
       klass.background background
-      klass.class_variable_get(:@@background).should eq background
+      klass.background.should eq background
     end
 
     it "assigns #background in instances" do
@@ -27,42 +25,41 @@ describe Map do
   describe '::key' do
     after(:each) { klass.class_variable_set :@@key, nil }
 
-    it { expect{klass.key}.to raise_error ArgumentError }
-
-    it "assigns class variable" do
+    it "assigns itself" do
       key = { '#' => Entity }
       klass.key key
-      klass.class_variable_get(:@@key).should eq key
+      klass.key.should eq key
     end
   end
 
   describe '::tile_size' do
     after(:each) { klass.class_variable_set :@@tile_size, nil }
 
-    it { expect{klass.tile_size}.to raise_error ArgumentError }
-
-    it "assigns class variable" do
+    it "assigns itself" do
       tile_size = V[5, 5]
       klass.tile_size tile_size
-      klass.class_variable_get(:@@tile_size).should eq tile_size
+      klass.tile_size.should eq tile_size
     end
   end
 
   describe '::tiles' do
     after(:each) { klass.class_variable_set :@@tiles, nil }
 
-    it { expect{klass.tiles}.to raise_error ArgumentError }
-
-    it "assigns class variable" do
+    it "assigns itself" do
       tiles = ["###"]
       klass.tiles tiles
-      klass.class_variable_get(:@@tiles).should eq tiles
+      klass.tiles.should eq tiles
     end
   end
 
   describe '#background' do
     subject { instance.background }
-    it { should eq Color[] }
+    after(:each) { klass.class_variable_set :@@background, nil }
+
+    it "is @@background" do
+      klass.background :orange
+      klass.new.background.should eq :orange
+    end
   end
 
   describe '#background=' do
