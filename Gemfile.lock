@@ -40,6 +40,7 @@ GEM
       rb-inotify (>= 0.9)
     lumberjack (1.0.4)
     method_source (0.8.2)
+    naught (0.0.2)
     nice-ffi (0.4)
       ffi (>= 0.5.0)
     pry (0.9.12.2)
@@ -71,6 +72,7 @@ PLATFORMS
 DEPENDENCIES
   guard-rspec
   libnotify
+  naught
   pow!
   rspec
   rubygame!
