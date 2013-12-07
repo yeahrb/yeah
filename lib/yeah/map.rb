@@ -3,7 +3,7 @@ class Yeah::Map
   include Yeah
 
   def initialize
-    @background = @@background
+    @background = self.class.background
   end
 
   # @!attribute background
@@ -26,23 +26,27 @@ class Yeah::Map
     @game.map = self unless @game.map == self
   end
 
-  def self.key(key=nil)
-    return @@key unless key
-    @@key = key
+  def self.key(value=nil)
+    @@key ||= {}
+    return @@key unless value
+    @@key = value
   end
 
-  def self.tile_size(tile_size=nil)
-    return @@tile_size unless tile_size
-    @@tile_size = tile_size
+  def self.tile_size(value=nil)
+    @@tile_size ||= 0
+    return @@tile_size unless value
+    @@tile_size = value
   end
 
-  def self.tiles(tiles=nil)
-    return @@tiles unless tiles
-    @@tiles = tiles
+  def self.tiles(value=nil)
+    @@tiles ||= []
+    return @@tiles unless value
+    @@tiles = value
   end
 
-  def self.background(background=nil)
-    return @@background unless background
-    @@background = background
+  def self.background(value=nil)
+    @@background ||= Color[]
+    return @@background unless value
+    @@background = value
   end
 end

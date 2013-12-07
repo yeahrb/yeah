@@ -7,7 +7,10 @@ describe Map do
   it { klass.should be_instance_of Class }
 
   describe '::background' do
+    subject { klass.background }
     after(:each) { klass.class_variable_set :@@background, nil }
+
+    it { should eq Color[] }
 
     it "assigns itself" do
       background = :black
@@ -23,7 +26,10 @@ describe Map do
   end
 
   describe '::key' do
+    subject { klass.key }
     after(:each) { klass.class_variable_set :@@key, nil }
+
+    it { should eq Hash.new }
 
     it "assigns itself" do
       key = { '#' => Entity }
@@ -33,7 +39,10 @@ describe Map do
   end
 
   describe '::tile_size' do
+    subject { klass.tile_size }
     after(:each) { klass.class_variable_set :@@tile_size, nil }
+
+    it { should eq 0 }
 
     it "assigns itself" do
       tile_size = V[5, 5]
@@ -43,7 +52,10 @@ describe Map do
   end
 
   describe '::tiles' do
+    subject { klass.tiles }
     after(:each) { klass.class_variable_set :@@tiles, nil }
+
+    it { should eq [] }
 
     it "assigns itself" do
       tiles = ["###"]
