@@ -25,13 +25,10 @@ describe Game do
   end
 
   describe '#update' do
-    before do
-      instance.map = Map.new
-      instance.map.entities = (1..3).map { Entity.new }
-    end
+    before { instance.map = Map.new }
 
-    it "calls #update of each element in #map#entities" do
-      instance.map.entities.each { |e| e.should receive(:update) }
+    it "calls #map's update" do
+      instance.map.should receive(:update)
       instance.send(:update)
     end
   end

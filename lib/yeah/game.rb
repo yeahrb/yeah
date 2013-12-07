@@ -43,10 +43,7 @@ class Yeah::Game
   end
 
   def update
-    # TODO: Clean
-    return unless @map
-
-    @map.entities.each { |e| e.update }
+    @map.update if @map
   end
 
   def draw
