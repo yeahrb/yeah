@@ -12,26 +12,37 @@ describe Entity do
     it { klass.new(V[2, 4, 8]).position.should eq V[2, 4, 8] }
   end
 
-  describe '#game' do
-    subject { instance.game }
+  describe '#map' do
+    subject { instance.map }
 
     it { should eq nil }
   end
 
-  describe '#game=' do
-    subject { instance.method(:game=) }
-    it_behaves_like 'writer', Game.new
+  describe '#map=' do
+    subject { instance.method(:map=) }
+    it_behaves_like 'writer', Map.new
 
     it "pushes self to value's #entities" do
-      instance.game = Game.new
-      instance.game.entities.last.should eq instance
+      instance.map = Map.new
+      instance.map.entities.last.should eq instance
     end
 
     it "doesn't push self to value's #entities if already there" do
-      game = Game.new
-      game.entities << instance
-      instance.game = game
-      game.entities.count.should eq 1
+      map = Map.new
+      map.entities << instance
+      instance.map = map
+      map.entities.count.should eq 1
+    end
+  end
+
+  describe '#game' do
+    subject(:game) { instance.game }
+
+    it { should eq nil }
+
+    it "is #map's game" do
+      instance.map = Map.new
+      instance.game.should eq instance.map.game
     end
   end
 
@@ -122,17 +133,18 @@ describe Entity do
     it { expect {instance.send(:pressing?)}.to raise_error ArgumentError }
 
     it "defers to #game#pressing?" do
-      instance.game = Game.new
+      instance.map = Map.new
+      instance.map.game = Game.new
       instance.game.should receive(:pressing?).with(:e)
       instance.send(:pressing?, :e)
     end
   end
 
   describe '#control' do
-    before { instance.game = Game.new }
-
     # TODO: make this unnecessary
     before do
+      instance.map = Map.new
+      instance.map.game = Game.new
       DesktopBackend.class_eval "def each_tick; yield; end"
       instance.game.start
     end
@@ -174,8 +186,8 @@ describe Entity do
     describe '#right' do
       it { instance.right.should eq 0 }
 
-      it "is x of right edge within game" do
-        instance.game = Game.new
+      it "is x of right edge within map" do
+        instance.map = Map.new
         instance.position = V[10, 10]
         instance.size = V[4, 2]
         instance.right.should eq 14
@@ -185,8 +197,8 @@ describe Entity do
     describe '#left' do
       it { instance.left.should eq 0 }
 
-      it "is x of left edge within game" do
-        instance.game = Game.new
+      it "is x of left edge within map" do
+        instance.map = Map.new
         instance.position = V[10, 10]
         instance.size = V[4, 2]
         instance.left.should eq 10
@@ -196,8 +208,8 @@ describe Entity do
     describe '#top' do
       it { instance.top.should eq 0 }
 
-      it "is y of top edge within game" do
-        instance.game = Game.new
+      it "is y of top edge within map" do
+        instance.map = Map.new
         instance.position = V[10, 10]
         instance.size = V[4, 2]
         instance.top.should eq 12
@@ -207,8 +219,8 @@ describe Entity do
     describe '#bottom' do
       it { instance.bottom.should eq 0 }
 
-      it "is y of bottom edge within game" do
-        instance.game = Game.new
+      it "is y of bottom edge within map" do
+        instance.map = Map.new
         instance.position = V[10, 10]
         instance.size = V[4, 2]
         instance.bottom.should eq 10
@@ -218,8 +230,8 @@ describe Entity do
     describe '#front' do
       it { instance.front.should eq 0 }
 
-      it "is y of front edge within game" do
-        instance.game = Game.new
+      it "is y of front edge within map" do
+        instance.map = Map.new
         instance.position = V[10, 10, 10]
         instance.size = V[4, 2, 8]
         instance.front.should eq 18
@@ -229,8 +241,8 @@ describe Entity do
     describe '#back' do
       it { instance.back.should eq 0 }
 
-      it "is y of back edge within game" do
-        instance.game = Game.new
+      it "is y of back edge within map" do
+        instance.map = Map.new
         instance.position = V[10, 10, 10]
         instance.size = V[4, 2, 8]
         instance.back.should eq 10
@@ -240,8 +252,8 @@ describe Entity do
     describe '#center' do
       it { instance.center.should eq V[] }
 
-      it "is position of center within game" do
-        instance.game = Game.new
+      it "is position of center within map" do
+        instance.map = Map.new
         instance.position = V[10, 10]
         instance.size = V[4, 2]
         instance.center.should eq V[12, 11]
@@ -304,12 +316,12 @@ describe Entity do
   describe "with Entity subclass" do
     it "is true when edges touch any instance of given class" do
       instance2 = Entity.new
-      instance2.game = instance.game = Game.new
+      instance2.map = instance.map = Map.new
       instance2.size = instance.size = V[5, 5]
       instance.touching?(Entity).should eq true
     end
 
-    it "is false without a game" do
+    it "is false without a map" do
       instance2 = Entity.new
       instance2.size = instance.size = V[5, 5]
       instance.touching?(Entity).should eq false
@@ -327,7 +339,7 @@ describe Entity do
     it "is false for instances of any class other than the given one" do
       subentity_class = Class.new(Entity)
       instance2 = subentity_class.new
-      instance2.game = instance.game = Game.new
+      instance2.map = instance.map = Map.new
       instance2.size = instance.size = V[5, 5]
       instance2.touching?(subentity_class).should eq false
     end

@@ -6,16 +6,20 @@ class Yeah::Entity
     @position = position
   end
 
-  # @!attribute game
-  #   @return [Game] game to which this belongs to
-  attr_reader :game
-  def game=(value)
-    @game = value
-    @game.entities << self unless @game.entities.include? self
+  # @!attribute map
+  #   @return [Map] map to which this belongs to
+  attr_reader :map
+  def map=(value)
+    @map = value
+    @map.entities << self unless @map.entities.include? self
+  end
+
+  def game
+    @map && @map.game
   end
 
   # @!attribute position
-  #   @return [Vector] position within a game
+  #   @return [Vector] position within a map
   attr_accessor :position
 
   # @!attribute size
@@ -26,7 +30,7 @@ class Yeah::Entity
   attr_writer :size
 
   # @!attribute visual
-  #   @return [Visual] visual representation within a game
+  #   @return [Visual] visual representation within a map
   attr_accessor :visual
 
   # X of right edge.
@@ -77,8 +81,8 @@ class Yeah::Entity
     return false if other == self
 
     if other.is_a?(Class)
-      if game
-        return game.entities.select { |e| e.is_a? other }
+      if map
+        return map.entities.select { |e| e.is_a? other }
                             .any? { |e| touching? e }
       else
         return false

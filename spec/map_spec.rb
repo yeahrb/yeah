@@ -102,4 +102,31 @@ describe Map do
     subject { instance.method(:tiles=) }
     it_behaves_like 'writer', ["###"]
   end
+
+  describe '#entities' do
+    subject { instance.entities }
+    it { should eq [] }
+  end
+
+  describe '#entities=' do
+    subject { instance.method(:entities=) }
+    it_behaves_like 'writer', [Entity.new(Random.rand(10))]
+
+    it "assigns each item's #map as self" do
+      entities = [Entity.new, Entity.new]
+      instance.entities = entities
+
+      entities.each { |e| e.map.should eq instance }
+    end
+  end
+
+  describe '#game' do
+    subject { instance.game }
+    it { should eq nil }
+  end
+
+  describe '#game=' do
+    subject { instance.method(:game=) }
+    it_behaves_like 'writer', Game.new
+  end
 end

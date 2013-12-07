@@ -5,7 +5,6 @@ class Yeah::Game
   def initialize
     @resolution = V[320, 180]
     @surface = Surface.new(@resolution)
-    @entities = []
   end
 
   # @!attribute [r] backend
@@ -16,17 +15,11 @@ class Yeah::Game
   #   @return [Surface] visual render
   attr_accessor :surface
 
+  attr_accessor :map
+
   # @!attribute resolution
   #   @return [Vector] size of screen
   attr_accessor :resolution
-
-  # @!attribute entities
-  #   @return [Array] active entities
-  attr_reader :entities
-  def entities=(value)
-    @entities = value
-    @entities.each { |e| e.game = self }
-  end
 
   # Start the game loop.
   def start
@@ -46,13 +39,19 @@ class Yeah::Game
   end
 
   def update
-    @entities.each { |e| e.update }
+    # TODO: Clean
+    return unless @map
+
+    @map.entities.each { |e| e.update }
   end
 
   def draw
     surface.fill(Color[0, 0, 0, 0])
 
-    @entities.each do |entity|
+    # TODO: Clean
+    return unless @map
+
+    @map.entities.each do |entity|
       surface.draw(entity.surface, entity.position) unless entity.surface.nil?
     end
 

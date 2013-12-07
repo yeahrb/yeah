@@ -29,6 +29,18 @@ class Yeah::Map
   #   @return [Color] background color
   attr_accessor :background
 
+  # @!attribute entities
+  #   @return [Array] active entities
+  def entities
+    @entities ||= []
+  end
+  def entities=(value)
+    @entities = value
+    @entities.each { |e| e.map = self }
+  end
+
+  attr_accessor :game
+
   def self.key(key)
     @@key = key
   end

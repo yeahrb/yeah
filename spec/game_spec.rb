@@ -24,53 +24,42 @@ describe Game do
     it_behaves_like 'writer', V[512, 384]
   end
 
-  describe '#entities' do
-    subject { instance.entities }
-    it { should eq [] }
-  end
-
-  describe '#entities=' do
-    subject { instance.method(:entities=) }
-    it_behaves_like 'writer', [Entity.new(Random.rand(10))]
-
-    it "assigns each item's #game as self" do
-      entities = [Entity.new, Entity.new]
-      instance.entities = entities
-
-      entities.each { |e| e.game.should eq instance }
-    end
-  end
-
   describe '#update' do
-    before { instance.entities = (1..3).map { Entity.new } }
+    before do
+      instance.map = Map.new
+      instance.map.entities = (1..3).map { Entity.new }
+    end
 
-    it "calls #update of each element in #entities" do
-      instance.entities.each { |e| e.should receive(:update) }
+    it "calls #update of each element in #map#entities" do
+      instance.map.entities.each { |e| e.should receive(:update) }
       instance.send(:update)
     end
   end
 
   describe '#draw' do
     context "after start" do
-      before { instance.start }
+      before do
+        instance.map = Map.new
+        instance.start
+      end
 
       it "clears #surface" do
         instance.surface.should receive(:fill).with(Color[0, 0, 0, 0])
         instance.send(:draw)
       end
 
-      it "gets #surface of each element in #entities" do
-        instance.entities = (1..3).map { Entity.new }
-        instance.entities.each { |e| e.should receive(:surface) }
+      it "gets #surface of each element in #map#entities" do
+        instance.map.entities = (1..3).map { Entity.new }
+        instance.map.entities.each { |e| e.should receive(:surface) }
         instance.send(:draw)
       end
 
-      it "draws entities on #surface" do
+      it "draws map entities on #surface" do
         color = Color[0, 255, 0, 255]
         entity = Entity.new
         entity.visual = Rectangle.new(V[1, 1], color)
         entity.position = V[Random.rand(10), Random.rand(10)]
-        instance.entities << entity
+        instance.map.entities << entity
         instance.send(:draw)
         instance.surface.color_at(entity.position).should eq color
       end
@@ -94,6 +83,18 @@ describe Game do
 
     it { should be_instance_of Surface }
     its(:size) { should eq instance.resolution }
+  end
+
+  describe '#map' do
+    subject { instance.map }
+
+    it { should be_nil }
+  end
+
+  describe '#map=' do
+    subject { instance.method(:map=) }
+
+    it_behaves_like 'writer', Map.new
   end
 
   describe '#start' do
