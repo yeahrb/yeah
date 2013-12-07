@@ -3,7 +3,7 @@ class Yeah::Map
   include Yeah
 
   def initialize
-    @background = @@background || Color[]
+    @background = @@background ||= Color[]
     @key = @@key ||= {}
     @tile_size = @@tile_size ||= nil
     @tiles = @@tiles ||= []
