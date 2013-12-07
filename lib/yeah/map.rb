@@ -26,6 +26,11 @@ class Yeah::Map
     @game.map = self unless @game.map == self
   end
 
+  def entities_from_tiles
+    # TODO
+    []
+  end
+
   def self.key(value=nil)
     @@key ||= {}
     return @@key unless value
@@ -49,4 +54,6 @@ class Yeah::Map
     return @@background unless value
     @@background = value
   end
+
+  protected :entities_from_tiles
 end

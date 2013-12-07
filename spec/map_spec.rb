@@ -117,4 +117,12 @@ describe Map do
       instance.game = instance.game
     end
   end
+
+  describe '#entities_from_tiles' do
+    subject { instance.send(:entities_from_tiles) }
+
+    it { instance.protected_methods.should include :entities_from_tiles }
+
+    it { should eq [] }
+  end
 end
