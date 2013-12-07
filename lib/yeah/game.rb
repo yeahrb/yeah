@@ -15,7 +15,11 @@ class Yeah::Game
   #   @return [Surface] visual render
   attr_accessor :surface
 
-  attr_accessor :map
+  attr_reader :map
+  def map=(value)
+    @map = value
+    @map.game = self unless @map.game == self
+  end
 
   # @!attribute resolution
   #   @return [Vector] size of screen

@@ -128,5 +128,17 @@ describe Map do
   describe '#game=' do
     subject { instance.method(:game=) }
     it_behaves_like 'writer', Game.new
+
+    it "sets #game's map as self" do
+      instance.game = Game.new
+      instance.game.map.should eq instance
+    end
+
+    it "does not set game's map as self twice" do
+      instance.game = Game.new
+      instance.game.should_not receive(:map=)
+
+      instance.game = instance.game
+    end
   end
 end

@@ -39,7 +39,11 @@ class Yeah::Map
     @entities.each { |e| e.map = self }
   end
 
-  attr_accessor :game
+  attr_reader :game
+  def game=(value)
+    @game = value
+    @game.map = self unless @game.map == self
+  end
 
   def self.key(key)
     @@key = key
