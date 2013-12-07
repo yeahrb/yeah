@@ -4,6 +4,7 @@ class Yeah::Map
 
   def initialize
     @background = self.class.background
+    @entities = entities_from_tiles
   end
 
   # @!attribute background
