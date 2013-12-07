@@ -50,15 +50,7 @@ class Yeah::Game
   end
 
   def draw
-    surface.fill(Color[0, 0, 0, 0])
-
-    # TODO: Clean
-    return unless @map
-
-    @map.entities.each do |entity|
-      surface.draw(entity.surface, entity.position) unless entity.surface.nil?
-    end
-
+    self.surface = @map.draw if @map
     backend.render(surface)
   end
 

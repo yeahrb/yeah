@@ -37,31 +37,18 @@ describe Game do
   end
 
   describe '#draw' do
+    before do
+      instance.map = Map.new
+      surface = Surface.new(V[10, 10])
+    end
+
     context "after start" do
-      before do
-        instance.map = Map.new
-        instance.start
-      end
+      before { instance.start }
 
-      it "clears #surface" do
-        instance.surface.should receive(:fill).with(Color[0, 0, 0, 0])
+      it "assigns map's draw to surface" do
+        instance.map.should receive(:draw).twice
         instance.send(:draw)
-      end
-
-      it "gets #surface of each element in #map#entities" do
-        instance.map.entities = (1..3).map { Entity.new }
-        instance.map.entities.each { |e| e.should receive(:surface) }
-        instance.send(:draw)
-      end
-
-      it "draws map entities on #surface" do
-        color = Color[0, 255, 0, 255]
-        entity = Entity.new
-        entity.visual = Rectangle.new(V[1, 1], color)
-        entity.position = V[Random.rand(10), Random.rand(10)]
-        instance.map.entities << entity
-        instance.send(:draw)
-        instance.surface.color_at(entity.position).should eq color
+        instance.surface.should eq instance.map.draw
       end
 
       it "writes to #backend#screen#struct#pixels" do

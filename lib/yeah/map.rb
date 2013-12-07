@@ -47,10 +47,13 @@ class Yeah::Map
   end
 
   def draw
+    surface = Surface.new
+
+    return surface if self.class.tiles.empty?
     tile_columns = self.class.tiles.first.length
     tile_rows = self.class.tiles.length
     tile_size = self.class.tile_size
-    surface = Surface.new
+
     surface.size = V[tile_columns * tile_size, tile_rows * tile_size]
     entities.each do |entity|
       surface.draw(entity.surface, entity.position) unless entity.surface.nil?

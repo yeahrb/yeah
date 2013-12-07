@@ -183,6 +183,5 @@ describe Map do
       instance.entities << entity
       instance.draw.color_at(entity.position).should eq color
     end
-
   end
 end
