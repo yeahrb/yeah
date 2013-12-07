@@ -23,7 +23,6 @@ class Yeah::Game
   # @!attribute entities
   #   @return [Array] active entities
   attr_reader :entities
-
   def entities=(value)
     @entities = value
     @entities.each { |e| e.game = self }

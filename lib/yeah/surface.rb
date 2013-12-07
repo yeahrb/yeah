@@ -9,7 +9,6 @@ class Yeah::Surface
   # @!attribute size
   #   @return [Vector]
   attr_reader :size
-
   def size=(value)
     @size = value
     @data = "\x00" * 4 * size.x * size.y

@@ -23,7 +23,6 @@ class Yeah::Vector
   # @!attribute components
   #   @return [Array<(Numeric, Numeric, Numeric)>]
   attr_reader :components
-
   def components=(values)
     if values.size > 3
       error_message = "too many elements (#{values.size} for up to 3)"

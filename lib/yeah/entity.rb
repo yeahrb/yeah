@@ -9,7 +9,6 @@ class Yeah::Entity
   # @!attribute game
   #   @return [Game] game to which this belongs to
   attr_reader :game
-
   def game=(value)
     @game = value
     @game.entities << self unless @game.entities.include? self
@@ -24,7 +23,6 @@ class Yeah::Entity
   def size
     @size || visual && visual.size || V[]
   end
-
   attr_writer :size
 
   # @!attribute visual

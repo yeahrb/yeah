@@ -12,7 +12,6 @@ class Yeah::Map
   # @!attribute key
   #   @return [Hash] tile key
   attr_reader :key
-
   def key=(key)
     @key = key
     self.tile_size = @key.first.last.new.size if @key.first && tile_size.nil?
