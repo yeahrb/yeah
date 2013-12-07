@@ -121,8 +121,24 @@ describe Map do
   describe '#entities_from_tiles' do
     subject { instance.send(:entities_from_tiles) }
 
-    it { instance.protected_methods.should include :entities_from_tiles }
-
     it { should eq [] }
+
+    # TODO eep
+    it "generates entities based on tile class variables" do
+      test_map = Class.new(Map)
+      test_entity_a = Class.new(Entity)
+      test_entity_b = Class.new(Entity)
+      test_map.key({ 'a' => test_entity_a, 'b' => test_entity_b })
+      test_map.tile_size 16
+      test_map.tiles ['aa b',
+                      ' ba ']
+
+      eft = test_map.new.entities_from_tiles
+      eft.count.should eq 5
+      eft.reject { |e| e.is_a? test_entity_a }.count.should eq 2
+      eft.reject { |e| e.is_a? test_entity_b }.count.should eq 3
+      b_positions = eft.reject { |e| e.is_a? test_entity_a }.map(&:position)
+      b_positions.should eq [V[16, 0], V[48, 16]]
+    end
   end
 end
