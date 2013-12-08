@@ -23,10 +23,10 @@ Commands perform common utility tasks.
 These intuitive abstractions are a good fit for many types of games.
 
   * Platform - bindings to a particular platform, mixed into Screen.
-  * Screen - manages I/O and a map.
+  * Screen - manages I/O and interfaces with a map.
   * Map - manages entities in space.
   * Entity - acts within a map.
-  * Visual - visual representation of an entity.
+  * Visual - graphical representation of an entity.
   * Vector - for representing position, size, velocity...
   * Color - accepts hex, RGB, HSV, and Wikipedia names.
 
