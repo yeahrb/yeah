@@ -6,9 +6,9 @@ class Yeah::Game
     @resolution = V[320, 180]
   end
 
-  # @!attribute [r] backend
-  #   @return [Platform] platform bindings
-  attr_reader :backend
+  # @!attribute [r] context
+  #   @return [context]
+  attr_reader :context
 
   attr_reader :map
   def map=(value)
@@ -20,20 +20,20 @@ class Yeah::Game
   #   @return [Vector] size of screen
   attr_accessor :resolution
 
-  # Start the game loop.
+  # Start the game.
   def start
-    @backend = DesktopBackend.new
+    @context = DesktopWindow.new
 
-    backend.each_tick do
+    context.each_tick do
       update
       render
       break if @stopped
     end
   end
 
-  # Stop the game loop.
+  # Stop the game.
   def stop
-    @backend = nil
+    @context = nil
     @stopped = true
   end
 
@@ -42,7 +42,7 @@ class Yeah::Game
   end
 
   def render
-    backend.render(@map.render) if @map
+    context.render(@map.render) if @map
   end
 
   protected :update, :render

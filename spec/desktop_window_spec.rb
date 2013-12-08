@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe DesktopBackend do
+describe DesktopWindow do
   let(:klass) { described_class }
   let(:instance) { klass.new }
 

@@ -7,10 +7,10 @@ describe Game do
   it { klass.should be_instance_of Class }
 
   # For testing purposes, we don't want our thread to enter a game loop.
-  before(:all) { DesktopBackend.class_eval "def each_tick; yield; end" }
+  before(:all) { DesktopWindow.class_eval "def each_tick; yield; end" }
 
-  describe '#backend' do
-    subject { instance.backend }
+  describe '#context' do
+    subject { instance.context }
     it { should be_nil }
   end
 
@@ -44,7 +44,7 @@ describe Game do
 
       it "renders map's render" do
         instance.map.stub(:render).and_return("the map")
-        instance.backend.should receive(:render).with("the map")
+        instance.context.should receive(:render).with("the map")
         instance.send(:render)
       end
     end
@@ -77,12 +77,12 @@ describe Game do
   end
 
   describe '#start' do
-    it "instantiates a DesktopBackend for #backend" do
+    it "instantiates a DesktopBackend for #context" do
       instance.start
-      instance.backend.should be_instance_of DesktopBackend
+      instance.context.should be_instance_of DesktopWindow
     end
 
-    it "calls #backend#each_tick with a block with #update and #render calls" do
+    it "calls #context#each_tick with a block with #update and #render calls" do
       instance.should receive(:update)
       instance.should receive(:render)
       instance.start
@@ -93,7 +93,7 @@ describe Game do
     it "makes #screen nil" do
       instance.start
       instance.stop
-      instance.backend.should be_nil
+      instance.context.should be_nil
     end
 
     it "breaks out of #update/#render loop initialized by #start" do

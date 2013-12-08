@@ -145,13 +145,13 @@ describe Entity do
     before do
       instance.map = Map.new
       instance.map.game = Game.new
-      DesktopBackend.class_eval "def each_tick; yield; end"
+      DesktopWindow.class_eval "def each_tick; yield; end"
       instance.game.start
     end
 
     describe "one pressable" do
       it "adds to attribute if pressed" do
-        instance.game.backend.press :q
+        instance.game.context.press :q
         instance.control 'position.y', :q, 2
         instance.position.y.should eq 2
       end
@@ -169,13 +169,13 @@ describe Entity do
       end
 
       it "adds to attribute if first is pressed" do
-        instance.game.backend.press :q
+        instance.game.context.press :q
         instance.control 'position.y', [:q, :e], 2
         instance.position.y.should eq 2
       end
 
       it "subtracts from attribute if second is pressed" do
-        instance.game.backend.press :e
+        instance.game.context.press :e
         instance.control 'position.y', [:q, :e], 2
         instance.position.y.should eq -2
       end
