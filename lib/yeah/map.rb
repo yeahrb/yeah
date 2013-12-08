@@ -2,6 +2,30 @@
 class Yeah::Map
   include Yeah
 
+  def self.key(value=nil)
+    @@key ||= {}
+    return @@key unless value
+    @@key = value
+  end
+
+  def self.tile_size(value=nil)
+    @@tile_size ||= 0
+    return @@tile_size unless value
+    @@tile_size = value
+  end
+
+  def self.tiles(value=nil)
+    @@tiles ||= []
+    return @@tiles unless value
+    @@tiles = value
+  end
+
+  def self.background(value=nil)
+    @@background ||= Color[]
+    return @@background unless value
+    @@background = value
+  end
+
   def initialize
     @background = self.class.background
     @entities = entities_from_tiles
@@ -65,29 +89,5 @@ class Yeah::Map
     end
 
     surface
-  end
-
-  def self.key(value=nil)
-    @@key ||= {}
-    return @@key unless value
-    @@key = value
-  end
-
-  def self.tile_size(value=nil)
-    @@tile_size ||= 0
-    return @@tile_size unless value
-    @@tile_size = value
-  end
-
-  def self.tiles(value=nil)
-    @@tiles ||= []
-    return @@tiles unless value
-    @@tiles = value
-  end
-
-  def self.background(value=nil)
-    @@background ||= Color[]
-    return @@background unless value
-    @@background = value
   end
 end
