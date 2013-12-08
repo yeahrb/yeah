@@ -1,4 +1,3 @@
-# Color.
 class Yeah::Color
   def inspect
     "#{self.class.name}#{rgba_bytes.inspect}"
@@ -14,9 +13,7 @@ class Yeah::Color
     self.class == other.class && @rgba_bytes == other.rgba_bytes
   end
 
-  # @!attribute rgba_bytes
-  #   @return [Array<(Integer, Integer, Integer, Integer)>] red, green, blue,
-  #     alpha bytes
+  # @return [Array<(Integer x4)>] red, green, blue, alpha bytes
   attr_accessor :rgba_bytes
 
   class << self

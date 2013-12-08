@@ -20,8 +20,7 @@ class Yeah::Vector
     self.new(*components)
   end
 
-  # @!attribute components
-  #   @return [Array<(Numeric, Numeric, Numeric)>]
+  # @return [Array<(Numeric x3)>]
   attr_reader :components
   def components=(values)
     if values.size > 3
@@ -31,18 +30,15 @@ class Yeah::Vector
 
     @components = values + [0] * (3 - values.size)
   end
-
-  # @!attribute [r] to_a
-  #   @see components
   alias_method :to_a, :components
 
   def ==(other)
     other.class == self.class && @components == other.components ? true : false
   end
 
-  # @!attribute []
-  #   @param [Integer] *n* of component
-  #   @return [Numeric] *n*th component
+  # Gets component at index.
+  # @param [Integer] index
+  # @return [Numeric] component
   def [](index)
     @components[index]
   end
@@ -82,17 +78,8 @@ class Yeah::Vector
   def magnitude
     Math.sqrt(@components.reduce(0) { |m, c| m + c*c })
   end
-
-  # @!attribute length
-  #   @see magnitude
   alias_method :length, :magnitude
-
-  # @!attribute distance
-  #   @see magnitude
   alias_method :distance, :magnitude
-
-  # @!attribute speed
-  #   @see magnitude
   alias_method :speed, :magnitude
 
   # Reset every component to 0.

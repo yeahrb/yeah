@@ -1,4 +1,4 @@
-# A map of entities for a Game.
+# A playable map.
 class Yeah::Map
   include Yeah
 
@@ -31,12 +31,12 @@ class Yeah::Map
     @entities = entities_from_tiles
   end
 
-  # @!attribute background
-  #   @return [Color] background color
+  # Background color.
+  # @return [Color]
   attr_accessor :background
 
-  # @!attribute entities
-  #   @return [Array] active entities
+  # Active entities.
+  # @return [Array]
   def entities
     @entities ||= []
   end

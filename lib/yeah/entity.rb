@@ -6,8 +6,8 @@ class Yeah::Entity
     @position = position
   end
 
-  # @!attribute map
-  #   @return [Map] map to which this belongs to
+  # The map this is in.
+  # @return [Map]
   attr_reader :map
   def map=(value)
     @map = value
@@ -18,65 +18,65 @@ class Yeah::Entity
     @map && @map.game
   end
 
-  # @!attribute position
-  #   @return [Vector] position within a map
+  # Position within the map.
+  # @return [Vector]
   attr_accessor :position
 
-  # @!attribute size
-  #   @return [NilClass|Vector] visual size
+  # Physical size.
+  # @return [NilClass|Vector]
   def size
     @size || visual && visual.size || V[]
   end
   attr_writer :size
 
-  # @!attribute visual
-  #   @return [Visual] visual representation within a map
+  # Graphical representation.
+  # @return [Visual]
   attr_accessor :visual
 
   # X of right edge.
-  #   @return [Integer]
+  # @return [Integer]
   def right
     position.x + size.x
   end
 
   # X of left edge.
-  #   @return [Integer]
+  # @return [Integer]
   def left
     position.x
   end
 
   # Y of top edge.
-  #   @return [Integer]
+  # @return [Integer]
   def top
     position.y + size.y
   end
 
   # Y of bottom edge.
-  #   @return [Integer]
+  # @return [Integer]
   def bottom
     position.y
   end
 
   # Z of front edge.
-  #   @return [Integer]
+  # @return [Integer]
   def front
     position.z + size.z
   end
 
   # Z of back edge.
-  #   @return [Integer]
+  # @return [Integer]
   def back
     position.z
   end
 
   # Coordinate of center.
-  #   @return [Vector]
+  # @return [Vector]
   def center
     position + size / 2
   end
 
   # Is intersected with other entity or entity of subclass?
-  #   @return [Boolean]
+  # @return [Boolean]
   def touching?(other)
     return false if other == self
 
@@ -98,6 +98,9 @@ class Yeah::Entity
     !(not_touching_x && not_touching_y && not_touching_z)
   end
 
+  # Is a key or button being pressed?
+  # @param [Pressable]
+  # @return [Boolean]
   def pressing?(pressable)
     game.pressing? pressable
   end

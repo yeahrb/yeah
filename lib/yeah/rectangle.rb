@@ -7,12 +7,10 @@ class Yeah::Rectangle
     @color = color
   end
 
-  # @!attribute size
-  #   @return [Vector]
+  # @return [Vector]
   attr_accessor :size
 
-  # @!attribute color
-  #   @return [Color]
+  # @return [Color]
   attr_accessor :color
 
   # Surface representation.

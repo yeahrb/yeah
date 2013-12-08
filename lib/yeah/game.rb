@@ -1,4 +1,4 @@
-# Manages entities.
+# Manages maps and context.
 class Yeah::Game
   include Yeah
 
@@ -6,8 +6,7 @@ class Yeah::Game
     @resolution = V[320, 180]
   end
 
-  # @!attribute [r] context
-  #   @return [context]
+  # @return [Context]
   attr_reader :context
 
   attr_reader :map
@@ -16,11 +15,11 @@ class Yeah::Game
     @map.game = self unless @map.game == self
   end
 
-  # @!attribute resolution
-  #   @return [Vector] size of screen
+  # Size of screen.
+  # @return [Vector]
   attr_accessor :resolution
 
-  # Start the game.
+  # Spawn a context and start a game loop.
   def start
     @context = DesktopWindow.new
 
@@ -31,7 +30,7 @@ class Yeah::Game
     end
   end
 
-  # Stop the game.
+  # Kill the context and stop the game loop.
   def stop
     @context = nil
     @stopped = true

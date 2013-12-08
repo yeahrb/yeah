@@ -1,6 +1,6 @@
 require 'rubygame'
 
-# Bindings to the native desktop powered by Rubygame.
+# Desktop window context powered by Rubygame.
 class Yeah::DesktopWindow
   include Yeah
 
@@ -16,12 +16,10 @@ class Yeah::DesktopWindow
     pressables_keys.each { |pk| @pressables[pk] = false }
   end
 
-  # @!attribute [r] screen
-  #   @return [Rubygame::Screen]
+  # @return [Rubygame::Screen]
   attr_reader :screen
 
-  # @!attribute resolution
-  #   @return [Vector] size of game window
+  # @return [Vector] size of game window
   attr_reader :resolution
 
   def resolution=(value)
@@ -29,8 +27,7 @@ class Yeah::DesktopWindow
     @resolution = value
   end
 
-  # @!attribute tickrate
-  #   @return [Integer] target ticks per second
+  # @return [Integer] target ticks per second
   attr_reader :tickrate
 
   def tickrate=(value)
@@ -45,19 +42,19 @@ class Yeah::DesktopWindow
     pressables.any? { |p| @pressables[p] }
   end
 
-  # Press a key or button.
+  # Simulate a key or button press.
   # @param [Symbol|Integer] key or button
   def press(pressable)
     @pressables[pressable] = true
   end
 
-  # Release a key or button.
+  # Simulate a key or button release.
   # @param [Symbol|Integer] key or button
   def release(pressable)
     @pressables[pressable] = false
   end
 
-  # Project a surface onto screen.
+  # Project a surface onto the screen.
   # @param [Surface]
   def render(surface)
     masks = [0x0000ff,  0x00ff00,  0xff0000, 0]
