@@ -4,7 +4,6 @@ class Yeah::Screen
 
   def initialize
     @resolution = V[320, 180]
-    @surface = Surface.new(@resolution)
   end
 
   # @!attribute [r] backend
