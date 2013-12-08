@@ -101,25 +101,25 @@ describe Map do
     end
   end
 
-  describe '#game' do
-    subject { instance.game }
+  describe '#screen' do
+    subject { instance.screen }
     it { should eq nil }
   end
 
-  describe '#game=' do
-    subject { instance.method(:game=) }
-    it_behaves_like 'writer', Game.new
+  describe '#screen=' do
+    subject { instance.method(:screen=) }
+    it_behaves_like 'writer', Screen.new
 
-    it "sets #game's map as self" do
-      instance.game = Game.new
-      instance.game.map.should eq instance
+    it "sets #screen's map as self" do
+      instance.screen = Screen.new
+      instance.screen.map.should eq instance
     end
 
-    it "does not set game's map as self twice" do
-      instance.game = Game.new
-      instance.game.should_not receive(:map=)
+    it "does not set screen's map as self twice" do
+      instance.screen = Screen.new
+      instance.screen.should_not receive(:map=)
 
-      instance.game = instance.game
+      instance.screen = instance.screen
     end
   end
 
@@ -161,11 +161,11 @@ describe Map do
 
     it { should be_instance_of Surface }
 
-    it "has a size that matches game resolution if it exists" do
+    it "has a size that matches screen resolution if it exists" do
       test_map = Map.new
-      test_map.game = Game.new
-      test_map.game.resolution = V.random(5, 5) + V[5, 5]
-      test_map.draw.size.should eq test_map.game.resolution
+      test_map.screen = Screen.new
+      test_map.screen.resolution = V.random(5, 5) + V[5, 5]
+      test_map.draw.size.should eq test_map.screen.resolution
     end
 
     it "has a size that matches tile data otherwise" do

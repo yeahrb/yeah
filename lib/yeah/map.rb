@@ -1,4 +1,4 @@
-# A map of entities for a Game.
+# A map of entities for a Screen.
 class Yeah::Map
   include Yeah
 
@@ -21,10 +21,10 @@ class Yeah::Map
     @entities.each { |e| e.map = self }
   end
 
-  attr_reader :game
-  def game=(value)
-    @game = value
-    @game.map = self unless @game.map == self
+  attr_reader :screen
+  def screen=(value)
+    @screen = value
+    @screen.map = self unless @screen.map == self
   end
 
   def entities_from_tiles
@@ -49,8 +49,8 @@ class Yeah::Map
   def draw
     surface = Surface.new
 
-    if game && game.resolution
-      surface.size = game.resolution
+    if screen && screen.resolution
+      surface.size = screen.resolution
     elsif self.class.tiles.any?
       tile_columns = self.class.tiles.first.length
       tile_rows = self.class.tiles.length
