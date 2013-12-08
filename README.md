@@ -12,23 +12,23 @@ Install Yeah with `gem install yeah`.
 
 Overview
 --------
-Yeah is a collection of utilities and abstractions around media and input APIs that aid in the creation of compelling video games.
+Yeah is a collection of utilities and abstractions that aid in the creation of compelling video games.
 
 Commands perform common utility tasks.
 
   * `yeah new <project name>` generates the files and folders for a project.
   * `yeah run` runs a game project.
-  * `yeah build` will build ready-to-go packages for every platform available.
+  * `yeah build` builds ready-to-go packages for every platform available.
 
-Intuitive abstractions that are a good fit for many types of games.
+These intuitive abstractions are a good fit for many types of games.
 
-  * Game - a container for entities, communicates with a backend, can load maps.
-  * Entity - something that can be represented by a visual in a game.
-  * Visual - something that is rendered onto a screen.
-  * Backend - bindings to media and input APIs for a particular platform.
-  * Vector - used to represent position, size, velocity...
-  * Color - will accept hex, RGB, HSV, and Wikipedia names.
-  * Map - will be arrangement of entities in space.
+  * Platform - bindings to a particular platform, mixed into Screen.
+  * Screen - manages I/O and a map.
+  * Map - manages entities in space.
+  * Entity - acts within a map.
+  * Visual - visual representation of an entity.
+  * Vector - for representing position, size, velocity...
+  * Color - accepts hex, RGB, HSV, and Wikipedia names.
 
 Roadmap
 -------
@@ -39,4 +39,4 @@ Roadmap
 
 Contributing
 ------------
-Do you have an idea that could potentially improve Yeah? You are encouraged to open an issue!
+Do you know how to improve Yeah? Open an issue!
