@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Screen do
+describe Game do
   let(:klass) { described_class }
   let(:instance) { klass.new }
 

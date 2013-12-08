@@ -23,5 +23,5 @@ end
 
   desktop_backend
 
-  screen
+  game
 ].each { |r| require "yeah/#{r}" }
