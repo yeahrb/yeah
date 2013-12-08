@@ -6,7 +6,7 @@ describe Screen do
 
   it { klass.should be_instance_of Class }
 
-  # For testing purposes, we don't want our thread to enter a screen loop.
+  # For testing purposes, we don't want our thread to enter a game loop.
   before(:all) { DesktopBackend.class_eval "def each_tick; yield; end" }
 
   describe '#backend' do
@@ -61,16 +61,16 @@ describe Screen do
 
     it_behaves_like 'writer', Map.new
 
-    it "sets map's screen as self" do
+    it "sets map's game as self" do
       instance.map = Map.new
-      instance.map.screen.should eq instance
+      instance.map.game.should eq instance
 
       instance.map = instance.map
     end
 
-    it "does not set map's screen as self twice" do
+    it "does not set map's game as self twice" do
       instance.map = Map.new
-      instance.map.should_not receive(:screen=)
+      instance.map.should_not receive(:game=)
 
       instance.map = instance.map
     end

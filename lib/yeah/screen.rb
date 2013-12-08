@@ -13,14 +13,14 @@ class Yeah::Screen
   attr_reader :map
   def map=(value)
     @map = value
-    @map.screen = self unless @map.screen == self
+    @map.game = self unless @map.game == self
   end
 
   # @!attribute resolution
   #   @return [Vector] size of screen
   attr_accessor :resolution
 
-  # Start the screen loop.
+  # Start the game loop.
   def start
     @backend = DesktopBackend.new
 
@@ -31,7 +31,7 @@ class Yeah::Screen
     end
   end
 
-  # Stop the screen loop.
+  # Stop the game loop.
   def stop
     @backend = nil
     @stopped = true

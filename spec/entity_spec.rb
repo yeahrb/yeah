@@ -35,14 +35,14 @@ describe Entity do
     end
   end
 
-  describe '#screen' do
-    subject(:screen) { instance.screen }
+  describe '#game' do
+    subject(:game) { instance.game }
 
     it { should eq nil }
 
-    it "is #map's screen" do
+    it "is #map's game" do
       instance.map = Map.new
-      instance.screen.should eq instance.map.screen
+      instance.game.should eq instance.map.game
     end
   end
 
@@ -132,10 +132,10 @@ describe Entity do
 
     it { expect {instance.send(:pressing?)}.to raise_error ArgumentError }
 
-    it "defers to #screen#pressing?" do
+    it "defers to #game#pressing?" do
       instance.map = Map.new
-      instance.map.screen = Screen.new
-      instance.screen.should receive(:pressing?).with(:e)
+      instance.map.game = Game.new
+      instance.game.should receive(:pressing?).with(:e)
       instance.send(:pressing?, :e)
     end
   end
@@ -144,14 +144,14 @@ describe Entity do
     # TODO: make this unnecessary
     before do
       instance.map = Map.new
-      instance.map.screen = Screen.new
+      instance.map.game = Game.new
       DesktopBackend.class_eval "def each_tick; yield; end"
-      instance.screen.start
+      instance.game.start
     end
 
     describe "one pressable" do
       it "adds to attribute if pressed" do
-        instance.screen.backend.press :q
+        instance.game.backend.press :q
         instance.control 'position.y', :q, 2
         instance.position.y.should eq 2
       end
@@ -169,13 +169,13 @@ describe Entity do
       end
 
       it "adds to attribute if first is pressed" do
-        instance.screen.backend.press :q
+        instance.game.backend.press :q
         instance.control 'position.y', [:q, :e], 2
         instance.position.y.should eq 2
       end
 
       it "subtracts from attribute if second is pressed" do
-        instance.screen.backend.press :e
+        instance.game.backend.press :e
         instance.control 'position.y', [:q, :e], 2
         instance.position.y.should eq -2
       end

@@ -1,4 +1,4 @@
-# Actor.
+# Game object.
 class Yeah::Entity
   include Yeah
 
@@ -14,8 +14,8 @@ class Yeah::Entity
     @map.entities << self unless @map.entities.include? self
   end
 
-  def screen
-    @map && @map.screen
+  def game
+    @map && @map.game
   end
 
   # @!attribute position
@@ -99,16 +99,16 @@ class Yeah::Entity
   end
 
   def pressing?(pressable)
-    screen.pressing? pressable
+    game.pressing? pressable
   end
 
   def control(attr_name, input, value)
     if input.class == Array
       polarity = 0
-      polarity += 1 if screen.backend.pressing?(input.first)
-      polarity -= 1 if screen.backend.pressing?(input.last)
+      polarity += 1 if game.backend.pressing?(input.first)
+      polarity -= 1 if game.backend.pressing?(input.last)
     else
-      polarity = screen.backend.pressing?(input) ? 1 : -1
+      polarity = game.backend.pressing?(input) ? 1 : -1
     end
 
     self.instance_eval("#{attr_name} += #{value} * #{polarity}")
