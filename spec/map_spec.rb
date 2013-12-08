@@ -165,7 +165,7 @@ describe Map do
       test_map = Map.new
       test_map.game = Game.new
       test_map.game.resolution = V.random(5, 5) + V[5, 5]
-      test_map.draw.size.should eq test_map.game.resolution
+      test_map.render.size.should eq test_map.game.resolution
     end
 
     it "has a size that matches tile data otherwise" do
