@@ -70,7 +70,7 @@ class Yeah::Map
     entities.each(&:update)
   end
 
-  def draw
+  def render
     surface = Surface.new
 
     if screen && screen.resolution
@@ -85,7 +85,7 @@ class Yeah::Map
     end
 
     entities.each do |entity|
-      surface.draw(entity.surface, entity.position) unless entity.surface.nil?
+      surface.draw(entity.render, entity.position) unless entity.render.nil?
     end
 
     surface

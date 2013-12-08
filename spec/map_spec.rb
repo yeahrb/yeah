@@ -156,8 +156,8 @@ describe Map do
     end
   end
 
-  describe '#draw' do
-    subject { instance.draw }
+  describe '#render' do
+    subject { instance.render }
 
     it { should be_instance_of Surface }
 
@@ -165,7 +165,7 @@ describe Map do
       test_map = Map.new
       test_map.screen = Screen.new
       test_map.screen.resolution = V.random(5, 5) + V[5, 5]
-      test_map.draw.size.should eq test_map.screen.resolution
+      test_map.render.size.should eq test_map.screen.resolution
     end
 
     it "has a size that matches tile data otherwise" do
@@ -174,21 +174,21 @@ describe Map do
       test_map.tiles ["   ",
                       "   "]
 
-      test_map.new.draw.size.should eq V[48, 32]
+      test_map.new.render.size.should eq V[48, 32]
 
       test_map.tiles ["  ",
                       "  ",
                       "  "]
-      test_map.new.draw.size.should eq V[32, 48]
+      test_map.new.render.size.should eq V[32, 48]
     end
 
-    it "draws map entities" do
+    it "renders map entities" do
       color = Color[0, 255, 0, 255]
       entity = Entity.new
       entity.visual = Rectangle.new(V[1, 1], color)
       entity.position = V[Random.rand(10), Random.rand(10)]
       instance.entities << entity
-      instance.draw.color_at(entity.position).should eq color
+      instance.render.color_at(entity.position).should eq color
     end
   end
 end

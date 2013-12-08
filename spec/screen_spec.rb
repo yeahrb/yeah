@@ -33,7 +33,7 @@ describe Screen do
     end
   end
 
-  describe '#draw' do
+  describe '#render' do
     before do
       instance.map = Map.new
       surface = Surface.new(V[10, 10])
@@ -42,10 +42,10 @@ describe Screen do
     context "after start" do
       before { instance.start }
 
-      it "renders map's draw" do
-        instance.map.stub(:draw).and_return("the map")
+      it "renders map's render" do
+        instance.map.stub(:render).and_return("the map")
         instance.backend.should receive(:render).with("the map")
-        instance.send(:draw)
+        instance.send(:render)
       end
     end
   end
@@ -82,9 +82,9 @@ describe Screen do
       instance.backend.should be_instance_of DesktopBackend
     end
 
-    it "calls #backend#each_tick with a block with #update and #draw calls" do
+    it "calls #backend#each_tick with a block with #update and #render calls" do
       instance.should receive(:update)
-      instance.should receive(:draw)
+      instance.should receive(:render)
       instance.start
     end
   end
@@ -96,9 +96,9 @@ describe Screen do
       instance.backend.should be_nil
     end
 
-    it "breaks out of #update/#draw loop initialized by #start" do
+    it "breaks out of #update/#render loop initialized by #start" do
       instance.instance_eval "def update; stop; end"
-      instance.should receive(:draw).once
+      instance.should receive(:render).once
       instance.start
     end
   end

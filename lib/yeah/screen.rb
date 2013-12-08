@@ -27,7 +27,7 @@ class Yeah::Screen
 
     backend.each_tick do
       update
-      draw
+      render
       break if @stopped
     end
   end
@@ -42,9 +42,9 @@ class Yeah::Screen
     @map.update if @map
   end
 
-  def draw
-    backend.render(@map.draw) if @map
+  def render
+    backend.render(@map.render) if @map
   end
 
-  protected :update, :draw
+  protected :update, :render
 end
