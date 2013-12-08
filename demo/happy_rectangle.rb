@@ -16,7 +16,7 @@ class HappyRectangle < Entity
     @visual = Rectangle.new(Vector[16, 24], Color[255, 255, 0, 255])
     @updates = 0
     @radius = 60
-    @center = (Screen.new.resolution - @visual.size) / 2
+    @center = (Game.new.resolution - @visual.size) / 2
   end
 
   def update
@@ -26,7 +26,7 @@ class HappyRectangle < Entity
   end
 end
 
-class HappyRectangleScreen < Screen
+class HappyRectangleGame < Game
   def initialize
     super
     @updates = 0
@@ -45,6 +45,6 @@ end
 
 Benchmark.bmbm do |bm|
   bm.report do
-    HappyRectangleScreen.new.start
+    HappyRectangleGame.new.start
   end
 end
