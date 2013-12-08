@@ -1,5 +1,5 @@
-# Manages entities.
-class Yeah::Game
+# Manages I/O and a map.
+class Yeah::Screen
   include Yeah
 
   def initialize
