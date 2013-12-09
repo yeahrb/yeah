@@ -23,9 +23,9 @@ Commands perform common utility tasks.
 These intuitive abstractions are a good fit for many types of games.
 
   * Context - interface to media and input layers for a platform.
-  * Game - manages context and maps.
-  * Map - manages entities in space.
-  * Entity - acts within a map.
+  * Game - manages context and stages.
+  * Stage - manages entities in space.
+  * Entity - acts within a stage.
   * Visual - graphical representation of an entity.
   * Vector - for representing position, size, velocity...
   * Color - accepts hex, RGB, HSV, and Wikipedia names.
