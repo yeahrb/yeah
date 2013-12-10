@@ -1,4 +1,4 @@
-# Manages maps and context.
+# Manages stages and context.
 class Yeah::Game
   include Yeah
 
@@ -9,10 +9,10 @@ class Yeah::Game
   # @return [Context]
   attr_reader :context
 
-  attr_reader :map
-  def map=(value)
-    @map = value
-    @map.game = self unless @map.game == self
+  attr_reader :stage
+  def stage=(value)
+    @stage = value
+    @stage.game = self unless @stage.game == self
   end
 
   # Size of screen.
@@ -37,11 +37,11 @@ class Yeah::Game
   end
 
   def update
-    @map.update if @map
+    @stage.update if @stage
   end
 
   def render
-    context.render(@map.render) if @map
+    context.render(@stage.render) if @stage
   end
 
   protected :update, :render

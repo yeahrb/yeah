@@ -6,19 +6,19 @@ class Yeah::Entity
     @position = position
   end
 
-  # The map this is in.
-  # @return [Map]
-  attr_reader :map
-  def map=(value)
-    @map = value
-    @map.entities << self unless @map.entities.include? self
+  # The stage this is in.
+  # @return [Stage]
+  attr_reader :stage
+  def stage=(value)
+    @stage = value
+    @stage.entities << self unless @stage.entities.include? self
   end
 
   def game
-    @map && @map.game
+    @stage && @stage.game
   end
 
-  # Position within the map.
+  # Position within the stage.
   # @return [Vector]
   attr_accessor :position
 
@@ -81,8 +81,8 @@ class Yeah::Entity
     return false if other == self
 
     if other.is_a?(Class)
-      if map
-        return map.entities.select { |e| e.is_a? other }
+      if stage
+        return stage.entities.select { |e| e.is_a? other }
                             .any? { |e| touching? e }
       else
         return false

@@ -25,54 +25,54 @@ describe Game do
   end
 
   describe '#update' do
-    before { instance.map = Map.new }
+    before { instance.stage = Stage.new }
 
-    it "calls #map's update" do
-      instance.map.should receive(:update)
+    it "calls #stage's update" do
+      instance.stage.should receive(:update)
       instance.send(:update)
     end
   end
 
   describe '#render' do
     before do
-      instance.map = Map.new
+      instance.stage = Stage.new
       surface = Surface.new(V[10, 10])
     end
 
     context "after start" do
       before { instance.start }
 
-      it "renders map's render" do
-        instance.map.stub(:render).and_return("the map")
-        instance.context.should receive(:render).with("the map")
+      it "renders stage's render" do
+        instance.stage.stub(:render).and_return("the stage")
+        instance.context.should receive(:render).with("the stage")
         instance.send(:render)
       end
     end
   end
 
-  describe '#map' do
-    subject { instance.map }
+  describe '#stage' do
+    subject { instance.stage }
 
     it { should be_nil }
   end
 
-  describe '#map=' do
-    subject { instance.method(:map=) }
+  describe '#stage=' do
+    subject { instance.method(:stage=) }
 
-    it_behaves_like 'writer', Map.new
+    it_behaves_like 'writer', Stage.new
 
-    it "sets map's game as self" do
-      instance.map = Map.new
-      instance.map.game.should eq instance
+    it "sets stage's game as self" do
+      instance.stage = Stage.new
+      instance.stage.game.should eq instance
 
-      instance.map = instance.map
+      instance.stage = instance.stage
     end
 
-    it "does not set map's game as self twice" do
-      instance.map = Map.new
-      instance.map.should_not receive(:game=)
+    it "does not set stage's game as self twice" do
+      instance.stage = Stage.new
+      instance.stage.should_not receive(:game=)
 
-      instance.map = instance.map
+      instance.stage = instance.stage
     end
   end
 

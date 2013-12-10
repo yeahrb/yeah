@@ -19,7 +19,7 @@ end
   entity
   basic_physics
 
-  map
+  stage
 
   desktop_window
 

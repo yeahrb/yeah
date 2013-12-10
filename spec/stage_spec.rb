@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Map do
+describe Stage do
   let(:klass) { described_class }
   let(:instance) { klass.new }
 
@@ -93,11 +93,11 @@ describe Map do
     subject { instance.method(:entities=) }
     it_behaves_like 'writer', [Entity.new(Random.rand(10))]
 
-    it "assigns each item's #map as self" do
+    it "assigns each item's #stage as self" do
       entities = [Entity.new, Entity.new]
       instance.entities = entities
 
-      entities.each { |e| e.map.should eq instance }
+      entities.each { |e| e.stage.should eq instance }
     end
   end
 
@@ -110,14 +110,14 @@ describe Map do
     subject { instance.method(:game=) }
     it_behaves_like 'writer', Game.new
 
-    it "sets #game's map as self" do
+    it "sets #game's stage as self" do
       instance.game = Game.new
-      instance.game.map.should eq instance
+      instance.game.stage.should eq instance
     end
 
-    it "does not set game's map as self twice" do
+    it "does not set game's stage as self twice" do
       instance.game = Game.new
-      instance.game.should_not receive(:map=)
+      instance.game.should_not receive(:stage=)
 
       instance.game = instance.game
     end
@@ -130,15 +130,15 @@ describe Map do
 
     # TODO eep
     it "generates entities based on tile class variables" do
-      test_map = Class.new(Map)
+      test_stage = Class.new(Stage)
       test_entity_a = Class.new(Entity)
       test_entity_b = Class.new(Entity)
-      test_map.key({ 'a' => test_entity_a, 'b' => test_entity_b })
-      test_map.tile_size 16
-      test_map.tiles ['aa b',
+      test_stage.key({ 'a' => test_entity_a, 'b' => test_entity_b })
+      test_stage.tile_size 16
+      test_stage.tiles ['aa b',
                       ' ba ']
 
-      eft = test_map.new.entities_from_tiles
+      eft = test_stage.new.entities_from_tiles
       eft.count.should eq 5
       eft.reject { |e| e.is_a? test_entity_a }.count.should eq 2
       eft.reject { |e| e.is_a? test_entity_b }.count.should eq 3
@@ -162,27 +162,27 @@ describe Map do
     it { should be_instance_of Surface }
 
     it "has a size that matches game resolution if it exists" do
-      test_map = Map.new
-      test_map.game = Game.new
-      test_map.game.resolution = V.random(5, 5) + V[5, 5]
-      test_map.render.size.should eq test_map.game.resolution
+      test_stage = Stage.new
+      test_stage.game = Game.new
+      test_stage.game.resolution = V.random(5, 5) + V[5, 5]
+      test_stage.render.size.should eq test_stage.game.resolution
     end
 
     it "has a size that matches tile data otherwise" do
-      test_map = Class.new(Map)
-      test_map.tile_size 16
-      test_map.tiles ["   ",
+      test_stage = Class.new(Stage)
+      test_stage.tile_size 16
+      test_stage.tiles ["   ",
                       "   "]
 
-      test_map.new.render.size.should eq V[48, 32]
+      test_stage.new.render.size.should eq V[48, 32]
 
-      test_map.tiles ["  ",
+      test_stage.tiles ["  ",
                       "  ",
                       "  "]
-      test_map.new.render.size.should eq V[32, 48]
+      test_stage.new.render.size.should eq V[32, 48]
     end
 
-    it "renders map entities" do
+    it "renders stage entities" do
       color = Color[0, 255, 0, 255]
       entity = Entity.new
       entity.visual = Rectangle.new(V[1, 1], color)

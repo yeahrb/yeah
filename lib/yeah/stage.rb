@@ -1,5 +1,4 @@
-# A playable map.
-class Yeah::Map
+class Yeah::Stage
   include Yeah
 
   def self.key(value=nil)
@@ -42,13 +41,13 @@ class Yeah::Map
   end
   def entities=(value)
     @entities = value
-    @entities.each { |e| e.map = self }
+    @entities.each { |e| e.stage = self }
   end
 
   attr_reader :game
   def game=(value)
     @game = value
-    @game.map = self unless @game.map == self
+    @game.stage = self unless @game.stage == self
   end
 
   def entities_from_tiles
