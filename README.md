@@ -6,7 +6,7 @@ Any version below 1.0.0 is unstable and lacks backward compatibility.
 
 Installing
 ----------
-Yeah depends on SDL, so you must install it. [Here are helpful instructions for installing SDL](https://github.com/rubygame/rubygame/wiki/Install).
+Yeah currently depends on SDL, so you must install it. [Here are helpful instructions for installing SDL](https://github.com/rubygame/rubygame/wiki/Install).
 
 Install Yeah with `gem install yeah`.
 
@@ -20,7 +20,7 @@ Commands perform common utility tasks.
   * `yeah run` runs a game project.
   * `yeah build` builds ready-to-go packages for every platform available.
 
-These intuitive abstractions are a good fit for many types of games.
+These abstractions are helpful for building video games.
 
   * Context - interface to media and input layers for a platform.
   * Game - manages context and stages.
@@ -32,10 +32,10 @@ These intuitive abstractions are a good fit for many types of games.
 
 Roadmap
 -------
-  1. Get this to the point where one can gracefully hack on crude games.
-  2. Make the code clean and robust.
-  3. Make the creation of retro 2D games feasible.
-  4. Write the HTML5 backend.
+  1. Get this to the point where one can easily hack on crude games.
+  2. Make the framework code clean and robust.
+  3. Make the creation of low-res 2D games feasible.
+  4. Write the web canvas context.
 
 Contributing
 ------------
