@@ -8,9 +8,9 @@ class Yeah::Vector
     self.components = comps
   end
 
-  def self.random(*component_maxes)
-    components = component_maxes.map { |cm| Random.rand(cm) }
-    self.new(*components)
+  def self.random(*comp_maxes)
+    comps = comp_maxes.map { |cm| Random.rand(cm) }
+    self.new(*comps)
   end
 
   # @return [Array<(Numeric x3)>]
