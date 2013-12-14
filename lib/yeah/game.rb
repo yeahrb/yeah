@@ -19,7 +19,7 @@ class Yeah::Game
   # @return [Vector]
   attr_accessor :resolution
 
-  # Spawn a context and start a game loop.
+  # Start the game.
   def start
     @context = DesktopWindow.new
 
@@ -30,7 +30,7 @@ class Yeah::Game
     end
   end
 
-  # Kill the context and stop the game loop.
+  # Stop the game.
   def stop
     @context = nil
     @stopped = true
