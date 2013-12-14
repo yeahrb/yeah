@@ -4,7 +4,7 @@ module Yeah
   VERSION = '0.2.2'
 end
 
-%i[numeric string].each { |r| require "monkey/#{r}" }
+%i[numeric string].each { |r| require "patch/#{r}" }
 
 %i[
   utility
