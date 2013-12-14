@@ -30,7 +30,7 @@ class Yeah::Vector
   alias_method :to_a, :components
 
   def ==(other)
-    other.class == self.class && @components == other.components ? true : false
+    self.class == other.class && self.components == other.components
   end
 
   # Gets component at index.
