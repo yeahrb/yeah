@@ -4,15 +4,8 @@ class Yeah::Vector
     "#{self.class.name}#{components.inspect}"
   end
 
-  def initialize(*components)
-    components = components.first.to_a if components.first.respond_to?(:to_a)
-
-    if components.size > 3
-      error_message = "too many arguments (#{components.size} for up to 3)"
-      raise ArgumentError, error_message
-    end
-
-    self.components = components
+  def initialize(*comps)
+    self.components = comps
   end
 
   def self.random(*component_maxes)
@@ -22,13 +15,17 @@ class Yeah::Vector
 
   # @return [Array<(Numeric x3)>]
   attr_reader :components
-  def components=(values)
-    if values.size > 3
-      error_message = "too many elements (#{values.size} for up to 3)"
+  def components=(value)
+    value = value.first if value.respond_to?(:size) && value.size == 1
+    value = value.to_a if value.respond_to?(:to_a)
+    value = [value].flatten
+
+    if value.size > 3
+      error_message = "too many elements (#{value.size} for up to 3)"
       raise ArgumentError, error_message
     end
 
-    @components = values + [0] * (3 - values.size)
+    @components = value + [0] * (3 - value.size)
   end
   alias_method :to_a, :components
 
