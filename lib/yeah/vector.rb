@@ -56,22 +56,6 @@ class Yeah::Vector
   end
   private :operate
 
-  def +(addend)
-    operate(addend, :+)
-  end
-
-  def -(subtrahend)
-    operate(subtrahend, :-)
-  end
-
-  def *(multiple)
-    operate(multiple, :*)
-  end
-
-  def /(divisor)
-    operate(divisor, :/)
-  end
-
   # @return [Numeric]
   def magnitude
     Math.sqrt(@components.reduce(0) { |m, c| m + c*c })
@@ -95,14 +79,23 @@ class Yeah::Vector
 
       name_sets.each_with_index do |set, n|
         set.each do |name|
-          define_method(name) { @components[n] }
-          define_method("#{name}=") { |val| @components[n] = val }
+          define_method(name) { components[n] }
+          define_method("#{name}=") { |val| self.components[n] = val }
         end
+      end
+    end
+
+    def define_operators
+      operators = %i[+ - * /]
+
+      operators.each do |op|
+        define_method(op) { |val| operate(val, op) }
       end
     end
   end
 
   define_component_shorthands
+  define_operators
 end
 
 # Shorthand for Vector.
