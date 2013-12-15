@@ -73,22 +73,22 @@ class Yeah::Vector
     alias_method :[], :new
 
     def define_component_shorthands
-      name_sets = [[:x, :width],
-                   [:y, :height],
-                   [:z, :depth]]
+      sets = [
+        %i[x width],
+        %i[y height],
+        %i[z depth]
+      ]
 
-      name_sets.each_with_index do |set, n|
+      sets.each_with_index do |set, i|
         set.each do |name|
-          define_method(name) { components[n] }
-          define_method("#{name}=") { |val| self.components[n] = val }
+          define_method(name) { components[i] }
+          define_method("#{name}=") { |val| self.components[i] = val }
         end
       end
     end
 
     def define_operators
-      operators = %i[+ - * /]
-
-      operators.each do |op|
+      %i[+ - * /].each do |op|
         define_method(op) { |val| operate(val, op) }
       end
     end
