@@ -1,16 +1,17 @@
-# Three-dimensional geometric vector. Used as position or size.
+# Three-dimensional geometric vector. Used for position, velocity, size...
 class Yeah::Vector
   def inspect
     "#{self.class.name}#{components.inspect}"
   end
 
-  def initialize(*comps)
-    self.components = comps
-  end
-
+  # @return [Vector]
   def self.random(*comp_maxes)
     comps = comp_maxes.map { |cm| Random.rand(cm) }
     self.new(*comps)
+  end
+
+  def initialize(*comps)
+    self.components = comps
   end
 
   # @return [Array<(Numeric x3)>]
@@ -37,11 +38,10 @@ class Yeah::Vector
   # @param [Integer] index
   # @return [Numeric] component
   def [](index)
-    @components[index]
+    components[index]
   end
-
   def []=(index, value)
-    @components[index] = value
+    self.components[index] = value
   end
 
   def operate(operand, operator)
@@ -51,9 +51,10 @@ class Yeah::Vector
       operand = Array.new(3, operand)
     end
 
-    components = @components.zip(operand).map { |cs| cs.reduce(operator) }
-    self.class[components]
+    comps = components.zip(operand).map { |cs| cs.reduce(operator) }
+    self.class.new(comps)
   end
+  private :operate
 
   def +(addend)
     operate(addend, :+)
@@ -81,7 +82,7 @@ class Yeah::Vector
 
   # Reset every component to 0.
   def reset
-    @components = [0, 0, 0]
+    self.components = [0, 0, 0]
   end
 
   class << self
@@ -102,8 +103,6 @@ class Yeah::Vector
   end
 
   define_component_shorthands
-
-  private :operate
 end
 
 # Shorthand for Vector.
