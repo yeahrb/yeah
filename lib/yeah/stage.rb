@@ -31,10 +31,12 @@ class Yeah::Stage
   end
 
   # Background color.
+  #
   # @return [Color]
   attr_accessor :background
 
   # Active entities.
+  #
   # @return [Array]
   def entities
     @entities ||= []

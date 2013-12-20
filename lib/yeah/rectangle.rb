@@ -14,6 +14,7 @@ class Yeah::Rectangle
   attr_accessor :color
 
   # Surface representation.
+  #
   # @return [Surface]
   def render
     surface = Surface.new(size)

@@ -1,13 +1,12 @@
 module Yeah::BasicPhysics
   include Yeah
 
-  attr_writer :velocity
-
   def velocity
     @velocity ||= V[0, 0, 0]
   end
+  attr_writer :velocity
 
   def move
-    self.position += @velocity
+    self.position += self.velocity
   end
 end

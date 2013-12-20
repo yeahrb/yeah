@@ -1,9 +1,5 @@
 # Three-dimensional geometric vector. Used as position, velocity, size...
 class Yeah::Vector
-  def inspect
-    "#{self.class.name}#{components.inspect}"
-  end
-
   class << self
     alias_method :[], :new
   end
@@ -16,6 +12,10 @@ class Yeah::Vector
 
   def initialize(*comps)
     self.components = comps
+  end
+
+  def inspect
+    "#{self.class.name}#{components.inspect}"
   end
 
   # @return [Array<(Numeric x3)>]

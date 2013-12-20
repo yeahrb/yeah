@@ -1,4 +1,4 @@
-# Rectangular pixel data.
+# Pixel data.
 class Yeah::Surface
   include Yeah
 
@@ -13,11 +13,13 @@ class Yeah::Surface
     @data = "\x00" * 4 * size.x * size.y
   end
 
-  # Pixel data as byte string.
+  # Byte string representation.
+  #
   # @return [String]
   attr_accessor :data
 
-  # Color of pixel at a position.
+  # Color of a pixel somewhere.
+  #
   # @param [Vector] position
   # @return [Color]
   def color_at(position)
@@ -30,7 +32,8 @@ class Yeah::Surface
     Color[*color_bytes]
   end
 
-  # Fill a rectangular area with a color.
+  # Fill a rectangular area with color.
+  #
   # @param [Color] color
   # @param [Vector] position of one corner
   # @param [Vector] position of other corner
@@ -49,6 +52,7 @@ class Yeah::Surface
   end
 
   # Draw onto a surface.
+  #
   # @param [Surface] surface
   # @param [Vector] position of bottom-left corner on other surface
   def draw(surface, position=V[0, 0])

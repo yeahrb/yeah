@@ -16,6 +16,7 @@ class Yeah::Game
   end
 
   # Size of screen.
+  #
   # @return [Vector]
   attr_accessor :resolution
 

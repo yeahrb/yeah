@@ -1,4 +1,4 @@
-# Game object.
+# Acts and interacts with other Entities within a Stage.
 class Yeah::Entity
   include Yeah
 
@@ -7,6 +7,7 @@ class Yeah::Entity
   end
 
   # The stage this is in.
+  #
   # @return [Stage]
   attr_reader :stage
   def stage=(value)
@@ -19,10 +20,21 @@ class Yeah::Entity
   end
 
   # Position within the stage.
+  #
   # @return [Vector]
   attr_accessor :position
 
+  def x; self.position[0]; end
+  def x=(v); self.position[0] = v; end
+
+  def y; self.position[1]; end
+  def y=(v); self.position[1] = v; end
+
+  def z; self.position[2]; end
+  def z=(v); self.position[2] = v; end
+
   # Physical size.
+  #
   # @return [NilClass|Vector]
   def size
     @size || visual && visual.size || V[]
@@ -30,52 +42,62 @@ class Yeah::Entity
   attr_writer :size
 
   # Graphical representation.
+  #
   # @return [Visual]
   attr_accessor :visual
 
-  # X of right edge.
+  # X position of right side.
+  #
   # @return [Integer]
   def right
     position.x + size.x
   end
 
-  # X of left edge.
+  # X position of left side.
+  #
   # @return [Integer]
   def left
     position.x
   end
 
-  # Y of top edge.
+  # Y position of top side.
+  #
   # @return [Integer]
   def top
     position.y + size.y
   end
 
-  # Y of bottom edge.
+  # Y position of bottom side.
+  #
   # @return [Integer]
   def bottom
     position.y
   end
 
-  # Z of front edge.
+  # Z position of front side.
+  #
   # @return [Integer]
   def front
     position.z + size.z
   end
 
-  # Z of back edge.
+  # Z position of back side.
+  #
   # @return [Integer]
   def back
     position.z
   end
 
-  # Coordinate of center.
+  # Position of center.
+  #
   # @return [Vector]
   def center
     position + size / 2
   end
 
-  # Is intersected with other entity or entity of subclass?
+  # Is intersected with instance or type of entity?
+  #
+  # @param [Entity|Entity class]
   # @return [Boolean]
   def touching?(other)
     return false if other == self
@@ -98,13 +120,6 @@ class Yeah::Entity
     !(not_touching_x && not_touching_y && not_touching_z)
   end
 
-  # Is a key or button being pressed?
-  # @param [Pressable]
-  # @return [Boolean]
-  def pressing?(pressable)
-    game.pressing? pressable
-  end
-
   def control(attr_name, input, value)
     if input.class == Array
       polarity = 0
@@ -121,28 +136,20 @@ class Yeah::Entity
   def update
   end
 
-  # Get visual representation from visual.
-  #   @return [Surface] visual representation
+  # Visual render.
+  #
+  # @return [Surface]
   def render
     visual.render if visual
   end
 
-  class << self
-    def define_position_helpers
-      %w(x y z).each_with_index do |coord, i|
-        define_method(coord) { @position[i] }
-        define_method("#{coord}=") { |val| @position[i] = val }
-      end
-    end
+  protected
+
+  # Is a key or button being pressed?
+  #
+  # @param [Pressable]
+  # @return [Boolean]
+  def pressing?(pressable)
+    game.pressing? pressable
   end
-
-  # @!attribute x
-  #   @return [Vector] position.x
-  # @!attribute y
-  #   @return [Vector] position.y
-  # @!attribute z
-  #   @return [Vector] position.z
-  define_position_helpers
-
-  protected :pressing?
 end
