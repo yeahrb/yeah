@@ -34,7 +34,8 @@ class Yeah::Vector
     self.class == other.class && self.components == other.components
   end
 
-  # Gets component at index.
+  # Component (dimension) at index.
+  #
   # @param [Integer] index
   # @return [Numeric] component
   def [](index)
