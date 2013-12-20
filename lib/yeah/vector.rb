@@ -101,6 +101,3 @@ class Yeah::Vector
     self.class.new(comps)
   end
 end
-
-# Shorthand for Vector.
-Yeah::V = Yeah::Vector

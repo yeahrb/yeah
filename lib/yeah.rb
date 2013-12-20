@@ -10,7 +10,7 @@ end
   utility
   command
 
-  vector
+  vector v
   color
 
   surface
