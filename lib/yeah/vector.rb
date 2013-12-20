@@ -1,7 +1,11 @@
-# Three-dimensional geometric vector. Used for position, velocity, size...
+# Three-dimensional geometric vector. Used as position, velocity, size...
 class Yeah::Vector
   def inspect
     "#{self.class.name}#{components.inspect}"
+  end
+
+  class << self
+    alias_method :[], :new
   end
 
   # @return [Vector]
@@ -34,10 +38,18 @@ class Yeah::Vector
     self.class == other.class && self.components == other.components
   end
 
+  def +(v); operate(v, :+); end
+
+  def -(v); operate(v, :-); end
+
+  def *(v); operate(v, :*); end
+
+  def /(v); operate(v, :/); end
+
   # Component (dimension) at index.
   #
   # @param [Integer] index
-  # @return [Numeric] component
+  # @return [Numeric]
   def [](index)
     components[index]
   end
@@ -45,17 +57,23 @@ class Yeah::Vector
     self.components[index] = value
   end
 
-  def operate(operand, operator)
-    if operand.respond_to? :to_a
-      operand = operand.to_a
-    else
-      operand = Array.new(3, operand)
-    end
+  def x; self.components[0]; end
+  def x=(v); self.components[0] = v; end
 
-    comps = components.zip(operand).map { |cs| cs.reduce(operator) }
-    self.class.new(comps)
-  end
-  private :operate
+  def width; self.components[0]; end
+  def width=(v); self.components[0] = v; end
+
+  def y; self.components[1]; end
+  def y=(v); self.components[1] = v; end
+
+  def height; self.components[1]; end
+  def height=(v); self.components[1] = v; end
+
+  def z; self.components[2]; end
+  def z=(v); self.components[2] = v; end
+
+  def depth; self.components[2]; end
+  def depth=(v); self.components[2] = v; end
 
   # @return [Numeric]
   def magnitude
@@ -70,33 +88,18 @@ class Yeah::Vector
     self.components = [0, 0, 0]
   end
 
-  class << self
-    alias_method :[], :new
+  private
 
-    def define_component_shorthands
-      sets = [
-        %i[x width],
-        %i[y height],
-        %i[z depth]
-      ]
-
-      sets.each_with_index do |set, i|
-        set.each do |name|
-          define_method(name) { components[i] }
-          define_method("#{name}=") { |val| self.components[i] = val }
-        end
-      end
+  def operate(operand, operator)
+    if operand.respond_to? :to_a
+      operand = operand.to_a
+    else
+      operand = Array.new(3, operand)
     end
 
-    def define_operators
-      %i[+ - * /].each do |op|
-        define_method(op) { |val| operate(val, op) }
-      end
-    end
+    comps = components.zip(operand).map { |cs| cs.reduce(operator) }
+    self.class.new(comps)
   end
-
-  define_component_shorthands
-  define_operators
 end
 
 # Shorthand for Vector.
