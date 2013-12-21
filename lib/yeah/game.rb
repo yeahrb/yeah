@@ -3,7 +3,7 @@ class Yeah::Game
   include Yeah
 
   def initialize
-    @resolution = V[320, 180]
+    self.resolution = V[320, 180]
   end
 
   # @return [Context]
@@ -12,7 +12,7 @@ class Yeah::Game
   attr_reader :stage
   def stage=(value)
     @stage = value
-    @stage.game = self unless @stage.game == self
+    @stage.game = self if stage.game != self
   end
 
   # Size of screen.
@@ -38,11 +38,11 @@ class Yeah::Game
   end
 
   def update
-    @stage.update if @stage
+    stage.update if stage
   end
 
   def render
-    context.render(@stage.render) if @stage
+    context.render(stage.render) if stage
   end
 
   protected :update, :render

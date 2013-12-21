@@ -7,6 +7,6 @@ module Yeah::BasicPhysics
   attr_writer :velocity
 
   def move
-    self.position += self.velocity
+    self.position += velocity
   end
 end

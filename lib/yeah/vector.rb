@@ -57,22 +57,22 @@ class Yeah::Vector
     self.components[index] = value
   end
 
-  def x; self.components[0]; end
+  def x; components[0]; end
   def x=(v); self.components[0] = v; end
 
-  def width; self.components[0]; end
+  def width; components[0]; end
   def width=(v); self.components[0] = v; end
 
-  def y; self.components[1]; end
+  def y; components[1]; end
   def y=(v); self.components[1] = v; end
 
-  def height; self.components[1]; end
+  def height; components[1]; end
   def height=(v); self.components[1] = v; end
 
-  def z; self.components[2]; end
+  def z; components[2]; end
   def z=(v); self.components[2] = v; end
 
-  def depth; self.components[2]; end
+  def depth; components[2]; end
   def depth=(v); self.components[2] = v; end
 
   # @return [Numeric]

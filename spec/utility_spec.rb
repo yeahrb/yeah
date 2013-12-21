@@ -5,8 +5,31 @@ describe Utility do
 
   it { modjul.should be_instance_of Module }
 
+  describe '::project_structure' do
+    subject { modjul.project_structure('peppe_roni') }
+
+    it "generates a hash representing a project's file structure" do
+      subject.should eq({
+        peppe_roni: {
+          entities: {},
+          visuals: {},
+          maps: {},
+          assets: {},
+          config: {},
+          'game.rb' => <<-eoc.unindent
+            require "yeah"
+            include Yeah
+
+            class PeppeRoniGame < Game
+            end
+          eoc
+        }
+      })
+    end
+  end
+
   describe '::make_project' do
-    let(:name) { 'pepperoni' }
+    let(:name) { "yo_sho_ya_am_sho" }
 
     it "creates project file structure" do
       Dir.should receive(:mkdir).with("#{name}/")
@@ -22,7 +45,7 @@ describe Utility do
     end
   end
 
-  describe '::make_file_structure' do
+  describe '::generate_files_from_structure' do
     before do
       Dir.stub(:mkdir)
       File.stub(:open)
@@ -37,7 +60,7 @@ describe Utility do
 
       structure.keys.each { |k| Dir.should receive(:mkdir).with("#{k}/") }
 
-      modjul.make_file_structure(structure)
+      modjul.generate_files_from_structure(structure)
     end
 
     it "creates a file for each key with a content of the value" do
@@ -51,7 +74,7 @@ describe Utility do
         # TODO: test that it writes
       end
 
-      modjul.make_file_structure(structure)
+      modjul.generate_files_from_structure(structure)
     end
 
     it "accepts symbols as file keys" do
@@ -59,7 +82,7 @@ describe Utility do
         hello: 'sup man'
       }
 
-      expect { modjul.make_file_structure(structure) }.to_not raise_error
+      expect { modjul.generate_files_from_structure(structure) }.to_not raise_error
     end
 
     it "recursively creates directories" do
@@ -72,7 +95,7 @@ describe Utility do
         Dir.should receive(:mkdir).with(dir)
       end
 
-      modjul.make_file_structure(structure)
+      modjul.generate_files_from_structure(structure)
     end
 
     it "creates files inside directories" do
@@ -84,7 +107,7 @@ describe Utility do
 
       File.should receive(:open).with('i_am_a_directory/and_i_am_a_file', 'w')
 
-      modjul.make_file_structure(structure)
+      modjul.generate_files_from_structure(structure)
     end
   end
 
