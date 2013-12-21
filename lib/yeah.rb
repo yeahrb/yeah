@@ -2,7 +2,7 @@ require 'naught'
 require 'pow'
 
 module Yeah
-  include Naught.build { |c| c.black_hole }::Conversions
+  include Naught.build(&:black_hole)::Conversions
 
   VERSION = '0.2.2'
 end
