@@ -18,11 +18,6 @@ describe Vector do
       it { method.call(7).components.should eq [7, 0, 0] }
       it { method.call([9, 5]).components.should eq [9, 5, 0] }
       it { method.call(V[2, 3, 4]).components.should eq [2, 3, 4] }
-
-      it "complains with 4 arguments" do
-        expect { method.call(7, 8, 9, 10) }.
-          to raise_error ArgumentError, /too many arguments/
-      end
     end
   end
 
@@ -55,7 +50,7 @@ describe Vector do
   end
 
   describe '#components=' do
-    it "assigns array of up to 3 elements and uses 0 for missing elements" do
+    it "assigns array with up to 3 numerics" do
       instance.components = [4, 5, 6]
       instance.components.should eq [4, 5, 6]
 
@@ -66,7 +61,25 @@ describe Vector do
       instance.components.should eq [0, 0, 0]
     end
 
-    it "complains with 4-element array" do
+    it "assigns Vector" do
+      instance.components = V[9, 9, 9]
+      instance.components.should eq [9, 9, 9]
+    end
+
+    it "assigns up to 3 numeric arguments" do
+      instance.components = 6, 5, 4
+      instance.components.should eq [6, 5, 4]
+
+      instance.components = 8
+      instance.components.should eq [8, 0, 0]
+    end
+
+    it "assigns an array containing a Vector" do
+      instance.components = [V[8, 7, 8]]
+      instance.components.should eq [8, 7, 8]
+    end
+
+    it "complains when given a 4-element array" do
       expect { instance.components = [7, 8, 9, 10] }.
         to raise_error ArgumentError, /too many elements/
     end

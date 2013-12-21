@@ -7,10 +7,10 @@ describe Game do
   it { klass.should be_instance_of Class }
 
   # For testing purposes, we don't want our thread to enter a game loop.
-  before(:all) { DesktopBackend.class_eval "def each_tick; yield; end" }
+  before(:all) { DesktopWindow.class_eval "def each_tick; yield; end" }
 
-  describe '#backend' do
-    subject { instance.backend }
+  describe '#context' do
+    subject { instance.context }
     it { should be_nil }
   end
 
@@ -25,87 +25,66 @@ describe Game do
   end
 
   describe '#update' do
-    before do
-      instance.map = Map.new
-      instance.map.entities = (1..3).map { Entity.new }
-    end
+    before { instance.stage = Stage.new }
 
-    it "calls #update of each element in #map#entities" do
-      instance.map.entities.each { |e| e.should receive(:update) }
+    it "calls #stage's update" do
+      instance.stage.should receive(:update)
       instance.send(:update)
     end
   end
 
-  describe '#draw' do
+  describe '#render' do
+    before do
+      instance.stage = Stage.new
+      surface = Surface.new(V[10, 10])
+    end
+
     context "after start" do
-      before do
-        instance.map = Map.new
-        instance.start
-      end
+      before { instance.start }
 
-      it "clears #surface" do
-        instance.surface.should receive(:fill).with(Color[0, 0, 0, 0])
-        instance.send(:draw)
-      end
-
-      it "gets #surface of each element in #map#entities" do
-        instance.map.entities = (1..3).map { Entity.new }
-        instance.map.entities.each { |e| e.should receive(:surface) }
-        instance.send(:draw)
-      end
-
-      it "draws map entities on #surface" do
-        color = Color[0, 255, 0, 255]
-        entity = Entity.new
-        entity.visual = Rectangle.new(V[1, 1], color)
-        entity.position = V[Random.rand(10), Random.rand(10)]
-        instance.map.entities << entity
-        instance.send(:draw)
-        instance.surface.color_at(entity.position).should eq color
-      end
-
-      it "writes to #backend#screen#struct#pixels" do
-        instance.send(:draw)
-        pixels = instance.backend.screen.send(:struct).pixels
-        pixel_data = pixels.read_string(instance.surface.data.length)
-        pixel_data.should eq instance.surface.data
-      end
-
-      it "calls #backend#screen#update" do
-        instance.backend.screen.should receive(:update)
-        instance.send(:draw)
+      it "renders stage's render" do
+        instance.stage.stub(:render).and_return("the stage")
+        instance.context.should receive(:render).with("the stage")
+        instance.send(:render)
       end
     end
   end
 
-  describe '#surface' do
-    subject { instance.surface }
-
-    it { should be_instance_of Surface }
-    its(:size) { should eq instance.resolution }
-  end
-
-  describe '#map' do
-    subject { instance.map }
+  describe '#stage' do
+    subject { instance.stage }
 
     it { should be_nil }
   end
 
-  describe '#map=' do
-    subject { instance.method(:map=) }
+  describe '#stage=' do
+    subject { instance.method(:stage=) }
 
-    it_behaves_like 'writer', Map.new
+    it_behaves_like 'writer', Stage.new
+
+    it "sets stage's game as self" do
+      instance.stage = Stage.new
+      instance.stage.game.should eq instance
+
+      instance.stage = instance.stage
+    end
+
+    it "does not set stage's game as self twice" do
+      instance.stage = Stage.new
+      instance.stage.should_not receive(:game=)
+
+      instance.stage = instance.stage
+    end
   end
 
   describe '#start' do
-    it "instantiates a DesktopBackend for #backend" do
+    it "instantiates a DesktopBackend for #context" do
       instance.start
-      instance.backend.should be_instance_of DesktopBackend
+      instance.context.should be_instance_of DesktopWindow
     end
 
-    it "calls #backend#each_tick with a block with #update and #draw calls" do
+    it "calls #context#each_tick with a block with #update and #render calls" do
       instance.should receive(:update)
-      instance.should receive(:draw)
+      instance.should receive(:render)
       instance.start
     end
   end
@@ -114,12 +93,12 @@ describe Game do
     it "makes #screen nil" do
       instance.start
       instance.stop
-      instance.backend.should be_nil
+      instance.context.should be_nil
     end
 
-    it "breaks out of #update/#draw loop initialized by #start" do
+    it "breaks out of #update/#render loop initialized by #start" do
       instance.instance_eval "def update; stop; end"
-      instance.should receive(:draw).once
+      instance.should receive(:render).once
       instance.start
     end
   end

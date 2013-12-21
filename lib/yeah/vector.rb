@@ -1,55 +1,94 @@
-# Three-dimensional geometric vector. Used as position or size.
+# Three-dimensional geometric vector. Used as position, velocity, size...
 class Yeah::Vector
+  class << self
+    alias_method :[], :new
+  end
+
+  # @return [Vector]
+  def self.random(*comp_maxes)
+    comps = comp_maxes.map { |cm| Random.rand(cm) }
+    self.new(*comps)
+  end
+
+  def initialize(*comps)
+    self.components = comps
+  end
+
   def inspect
     "#{self.class.name}#{components.inspect}"
   end
 
-  def initialize(*components)
-    components = components.first.to_a if components.first.respond_to?(:to_a)
-
-    if components.size > 3
-      error_message = "too many arguments (#{components.size} for up to 3)"
-      raise ArgumentError, error_message
-    end
-
-    self.components = components
-  end
-
-  def self.random(*component_maxes)
-    components = component_maxes.map { |cm| Random.rand(cm) }
-    self.new(*components)
-  end
-
-  # @!attribute components
-  #   @return [Array<(Numeric, Numeric, Numeric)>]
+  # @return [Array<(Numeric x3)>]
   attr_reader :components
-  def components=(values)
-    if values.size > 3
-      error_message = "too many elements (#{values.size} for up to 3)"
+  def components=(value)
+    value = value.first if value.respond_to?(:size) && value.size == 1
+    value = value.to_a if value.respond_to?(:to_a)
+    value = [value].flatten
+
+    if value.size > 3
+      error_message = "too many elements (#{value.size} for up to 3)"
       raise ArgumentError, error_message
     end
 
-    @components = values + [0] * (3 - values.size)
+    @components = value + [0] * (3 - value.size)
   end
-
-  # @!attribute [r] to_a
-  #   @see components
   alias_method :to_a, :components
 
   def ==(other)
-    other.class == self.class && @components == other.components ? true : false
+    self.class == other.class && self.components == other.components
   end
 
-  # @!attribute []
-  #   @param [Integer] *n* of component
-  #   @return [Numeric] *n*th component
+  def +(v); operate(v, :+); end
+
+  def -(v); operate(v, :-); end
+
+  def *(v); operate(v, :*); end
+
+  def /(v); operate(v, :/); end
+
+  # Component (dimension) at index.
+  #
+  # @param [Integer] index
+  # @return [Numeric]
   def [](index)
-    @components[index]
+    components[index]
+  end
+  def []=(index, value)
+    self.components[index] = value
   end
 
-  def []=(index, value)
-    @components[index] = value
+  def x; self.components[0]; end
+  def x=(v); self.components[0] = v; end
+
+  def width; self.components[0]; end
+  def width=(v); self.components[0] = v; end
+
+  def y; self.components[1]; end
+  def y=(v); self.components[1] = v; end
+
+  def height; self.components[1]; end
+  def height=(v); self.components[1] = v; end
+
+  def z; self.components[2]; end
+  def z=(v); self.components[2] = v; end
+
+  def depth; self.components[2]; end
+  def depth=(v); self.components[2] = v; end
+
+  # @return [Numeric]
+  def magnitude
+    Math.sqrt(@components.reduce(0) { |m, c| m + c*c })
   end
+  alias_method :length, :magnitude
+  alias_method :distance, :magnitude
+  alias_method :speed, :magnitude
+
+  # Reset every component to 0.
+  def reset
+    self.components = [0, 0, 0]
+  end
+
+  private
 
   def operate(operand, operator)
     if operand.respond_to? :to_a
@@ -58,69 +97,7 @@ class Yeah::Vector
       operand = Array.new(3, operand)
     end
 
-    components = @components.zip(operand).map { |cs| cs.reduce(operator) }
-    self.class[components]
+    comps = components.zip(operand).map { |cs| cs.reduce(operator) }
+    self.class.new(comps)
   end
-
-  def +(addend)
-    operate(addend, :+)
-  end
-
-  def -(subtrahend)
-    operate(subtrahend, :-)
-  end
-
-  def *(multiple)
-    operate(multiple, :*)
-  end
-
-  def /(divisor)
-    operate(divisor, :/)
-  end
-
-  # @return [Numeric]
-  def magnitude
-    Math.sqrt(@components.reduce(0) { |m, c| m + c*c })
-  end
-
-  # @!attribute length
-  #   @see magnitude
-  alias_method :length, :magnitude
-
-  # @!attribute distance
-  #   @see magnitude
-  alias_method :distance, :magnitude
-
-  # @!attribute speed
-  #   @see magnitude
-  alias_method :speed, :magnitude
-
-  # Reset every component to 0.
-  def reset
-    @components = [0, 0, 0]
-  end
-
-  class << self
-    alias_method :[], :new
-
-    def define_component_shorthands
-      name_sets = [[:x, :width],
-                   [:y, :height],
-                   [:z, :depth]]
-
-      name_sets.each_with_index do |set, n|
-        set.each do |name|
-          define_method(name) { @components[n] }
-          define_method("#{name}=") { |val| @components[n] = val }
-        end
-      end
-    end
-  end
-
-  define_component_shorthands
-
-  private :operate
 end
-
-# Shorthand for Vector.
-Yeah::V = Yeah::Vector

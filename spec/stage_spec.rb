@@ -1,0 +1,194 @@
+require 'spec_helper'
+
+describe Stage do
+  let(:klass) { described_class }
+  let(:instance) { klass.new }
+
+  it { klass.should be_instance_of Class }
+
+  describe '::background' do
+    subject { klass.background }
+    after(:each) { klass.class_variable_set :@@background, nil }
+
+    it { should eq Color[] }
+
+    it "assigns itself" do
+      background = :black
+      klass.background background
+      klass.background.should eq background
+    end
+
+    it "assigns #background in instances" do
+      background = :black
+      klass.background(background)
+      klass.new.background.should eq background
+    end
+  end
+
+  describe '::key' do
+    subject { klass.key }
+    after(:each) { klass.class_variable_set :@@key, nil }
+
+    it { should eq Hash.new }
+
+    it "assigns itself" do
+      key = { '#' => Entity }
+      klass.key key
+      klass.key.should eq key
+    end
+  end
+
+  describe '::tile_size' do
+    subject { klass.tile_size }
+    after(:each) { klass.class_variable_set :@@tile_size, nil }
+
+    it { should eq 0 }
+
+    it "assigns itself" do
+      tile_size = V[5, 5]
+      klass.tile_size tile_size
+      klass.tile_size.should eq tile_size
+    end
+  end
+
+  describe '::tiles' do
+    subject { klass.tiles }
+    after(:each) { klass.class_variable_set :@@tiles, nil }
+
+    it { should eq [] }
+
+    it "assigns itself" do
+      tiles = ["###"]
+      klass.tiles tiles
+      klass.tiles.should eq tiles
+    end
+  end
+
+  describe '#background' do
+    subject { instance.background }
+    after(:each) { klass.class_variable_set :@@background, nil }
+
+    it "is @@background" do
+      klass.background :orange
+      klass.new.background.should eq :orange
+    end
+  end
+
+  describe '#background=' do
+    subject { instance.method(:background=) }
+    it_behaves_like 'writer', Color[*[Random.rand(255)]*4]
+  end
+
+  describe '#entities' do
+    subject { instance.entities }
+
+    it { should eq [] }
+
+    it "is generated from tiles" do
+      # TODO
+    end
+  end
+
+  describe '#entities=' do
+    subject { instance.method(:entities=) }
+    it_behaves_like 'writer', [Entity.new(Random.rand(10))]
+
+    it "assigns each item's #stage as self" do
+      entities = [Entity.new, Entity.new]
+      instance.entities = entities
+
+      entities.each { |e| e.stage.should eq instance }
+    end
+  end
+
+  describe '#game' do
+    subject { instance.game }
+    it { should eq nil }
+  end
+
+  describe '#game=' do
+    subject { instance.method(:game=) }
+    it_behaves_like 'writer', Game.new
+
+    it "sets #game's stage as self" do
+      instance.game = Game.new
+      instance.game.stage.should eq instance
+    end
+
+    it "does not set game's stage as self twice" do
+      instance.game = Game.new
+      instance.game.should_not receive(:stage=)
+
+      instance.game = instance.game
+    end
+  end
+
+  describe '#entities_from_tiles' do
+    subject { instance.send(:entities_from_tiles) }
+
+    it { should eq [] }
+
+    # TODO eep
+    it "generates entities based on tile class variables" do
+      test_stage = Class.new(Stage)
+      test_entity_a = Class.new(Entity)
+      test_entity_b = Class.new(Entity)
+      test_stage.key({ 'a' => test_entity_a, 'b' => test_entity_b })
+      test_stage.tile_size 16
+      test_stage.tiles ['aa b',
+                      ' ba ']
+
+      eft = test_stage.new.entities_from_tiles
+      eft.count.should eq 5
+      eft.reject { |e| e.is_a? test_entity_a }.count.should eq 2
+      eft.reject { |e| e.is_a? test_entity_b }.count.should eq 3
+      b_positions = eft.reject { |e| e.is_a? test_entity_a }.map(&:position)
+      b_positions.should eq [V[16, 0], V[48, 16]]
+    end
+  end
+
+  describe '#update' do
+    before { instance.entities = (1..3).map { Entity.new } }
+
+    it "calls #update on each entity in #entities" do
+      instance.entities.each { |e| e.should receive(:update) }
+      instance.update
+    end
+  end
+
+  describe '#render' do
+    subject { instance.render }
+
+    it { should be_instance_of Surface }
+
+    it "has a size that matches game resolution if it exists" do
+      test_stage = Stage.new
+      test_stage.game = Game.new
+      test_stage.game.resolution = V.random(5, 5) + V[5, 5]
+      test_stage.render.size.should eq test_stage.game.resolution
+    end
+
+    it "has a size that matches tile data otherwise" do
+      test_stage = Class.new(Stage)
+      test_stage.tile_size 16
+      test_stage.tiles ["   ",
+                      "   "]
+
+      test_stage.new.render.size.should eq V[48, 32]
+
+      test_stage.tiles ["  ",
+                      "  ",
+                      "  "]
+      test_stage.new.render.size.should eq V[32, 48]
+    end
+
+    it "renders stage entities" do
+      color = Color[0, 255, 0, 255]
+      entity = Entity.new
+      entity.visual = Rectangle.new(V[1, 1], color)
+      entity.position = V[Random.rand(10), Random.rand(10)]
+      instance.entities << entity
+      instance.render.color_at(entity.position).should eq color
+    end
+  end
+end

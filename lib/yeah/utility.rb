@@ -19,7 +19,7 @@ module Yeah::Utility
     make_file_structure(structure)
   end
 
-  # TODO: clean up this monster
+  # TODO: clean this up
   def self.make_file_structure(structure)
     make_recursively = lambda do |struct, base_loc=""|
       struct.each do |key, value|
@@ -62,6 +62,7 @@ module Yeah::Utility
     project_game.new.start
   end
 
+  # TODO: do Game#map_queue instead.
   def self.first_map
     map_class_name = Dir['maps/*'].first[5..-4].classify
     Kernel.const_get(map_class_name)

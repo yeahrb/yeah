@@ -1,7 +1,7 @@
 require 'rubygame'
 
-# Bindings to the native desktop powered by Rubygame.
-class Yeah::DesktopBackend
+# Desktop window context.
+class Yeah::DesktopWindow
   include Yeah
 
   def initialize(resolution=V[320, 180])
@@ -16,12 +16,12 @@ class Yeah::DesktopBackend
     pressables_keys.each { |pk| @pressables[pk] = false }
   end
 
-  # @!attribute [r] screen
-  #   @return [Rubygame::Screen]
+  # @return [Rubygame::Screen]
   attr_reader :screen
 
-  # @!attribute resolution
-  #   @return [Vector] size of game window
+  # Size of game window.
+  #
+  # @return [Vector]
   attr_reader :resolution
 
   def resolution=(value)
@@ -29,8 +29,9 @@ class Yeah::DesktopBackend
     @resolution = value
   end
 
-  # @!attribute tickrate
-  #   @return [Integer] target ticks per second
+  # Target ticks per second.
+  #
+  # @return [Integer
   attr_reader :tickrate
 
   def tickrate=(value)
@@ -39,31 +40,39 @@ class Yeah::DesktopBackend
   end
 
   # Is a key or button being pressed?
+
   # @param [Symbol|Integer] key or button
   def pressing?(*pressables)
     raise ArgumentError if pressables.empty?
     pressables.any? { |p| @pressables[p] }
   end
 
-  # Press a key or button.
+  # Simulate a key or button press.
+  #
   # @param [Symbol|Integer] key or button
   def press(pressable)
     @pressables[pressable] = true
   end
 
-  # Release a key or button.
+  # Simulate a key or button release.
+  #
   # @param [Symbol|Integer] key or button
   def release(pressable)
     @pressables[pressable] = false
   end
 
-  # Project a surface onto screen.
+  # Project a surface onto the screen.
+  #
   # @param [Surface]
   def render(surface)
     masks = [0x0000ff,  0x00ff00,  0xff0000, 0]
-    rg_surface = Rubygame::Surface.new(surface.size.to_a[0..1], masks: masks)
-    rg_surface.pixels = surface.data
-    rg_surface.blit(screen, [0, 0])
+
+    if surface && surface.size != V[]
+      rg_surface = Rubygame::Surface.new(surface.size.to_a[0..1], masks: masks)
+      rg_surface.pixels = surface.data
+      rg_surface.blit(screen, [0, 0])
+    end
+
     screen.update
   end
 

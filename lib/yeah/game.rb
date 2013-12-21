@@ -1,62 +1,49 @@
-# Manages entities.
+# Manages stages and context.
 class Yeah::Game
   include Yeah
 
   def initialize
     @resolution = V[320, 180]
-    @surface = Surface.new(@resolution)
   end
 
-  # @!attribute [r] backend
-  #   @return [Platform] platform bindings
-  attr_reader :backend
+  # @return [Context]
+  attr_reader :context
 
-  # @!attribute surface
-  #   @return [Surface] visual render
-  attr_accessor :surface
+  attr_reader :stage
+  def stage=(value)
+    @stage = value
+    @stage.game = self unless @stage.game == self
+  end
 
-  attr_accessor :map
-
-  # @!attribute resolution
-  #   @return [Vector] size of screen
+  # Size of screen.
+  #
+  # @return [Vector]
   attr_accessor :resolution
 
-  # Start the game loop.
+  # Start the game.
   def start
-    @backend = DesktopBackend.new
+    @context = DesktopWindow.new
 
-    backend.each_tick do
+    context.each_tick do
       update
-      draw
+      render
       break if @stopped
     end
   end
 
-  # Stop the game loop.
+  # Stop the game.
   def stop
-    @backend = nil
+    @context = nil
     @stopped = true
   end
 
   def update
-    # TODO: Clean
-    return unless @map
-
-    @map.entities.each { |e| e.update }
+    @stage.update if @stage
   end
 
-  def draw
-    surface.fill(Color[0, 0, 0, 0])
-
-    # TODO: Clean
-    return unless @map
-
-    @map.entities.each do |entity|
-      surface.draw(entity.surface, entity.position) unless entity.surface.nil?
-    end
-
-    backend.render(surface)
+  def render
+    context.render(@stage.render) if @stage
   end
 
-  protected :update, :draw
+  protected :update, :render
 end

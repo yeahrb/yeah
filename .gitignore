@@ -1,7 +1,12 @@
-*.gem
 tmp/
-.bundle/
-bin/
-vendor/bundle/
-.yardoc/
+
+*.gem
+
+bin/*
+!bin/yeah
+
 doc/
+.yardoc/
+
+.bundle/
+vendor/bundle/

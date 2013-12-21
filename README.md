@@ -6,37 +6,37 @@ Any version below 1.0.0 is unstable and lacks backward compatibility.
 
 Installing
 ----------
-Yeah depends on SDL, so you must install it. [Here are helpful instructions for installing SDL](https://github.com/rubygame/rubygame/wiki/Install).
+Yeah currently depends on SDL, so you must install it. [Here are helpful instructions for installing SDL](https://github.com/rubygame/rubygame/wiki/Install).
 
 Install Yeah with `gem install yeah`.
 
 Overview
 --------
-Yeah is a collection of utilities and abstractions around media and input APIs that aid in the creation of compelling video games.
+Yeah is a collection of utilities and abstractions that aid in the creation of compelling video games.
 
 Commands perform common utility tasks.
 
   * `yeah new <project name>` generates the files and folders for a project.
   * `yeah run` runs a game project.
-  * `yeah build` will build ready-to-go packages for every platform available.
+  * `yeah build` builds ready-to-go packages for every platform available.
 
-Intuitive abstractions that are a good fit for many types of games.
+These abstractions are helpful for building video games.
 
-  * Game - a container for entities, communicates with a backend, can load maps.
-  * Entity - something that can be represented by a visual in a game.
-  * Visual - something that is rendered onto a screen.
-  * Backend - bindings to media and input APIs for a particular platform.
-  * Vector - used to represent position, size, velocity...
-  * Color - will accept hex, RGB, HSV, and Wikipedia names.
-  * Map - will be arrangement of entities in space.
+  * Context - interface to media and input layers for a platform.
+  * Game - manages context and stages.
+  * Stage - manages entities in space.
+  * Entity - acts within a stage.
+  * Visual - graphical representation of an entity.
+  * Vector - for representing position, size, velocity...
+  * Color - accepts hex, RGB, HSV, and Wikipedia names.
 
 Roadmap
 -------
-  1. Get this to the point where one can gracefully hack on crude games.
-  2. Make the code clean and robust.
-  3. Make the creation of retro 2D games feasible.
-  4. Write the HTML5 backend.
+  1. Get this to the point where one can easily hack on crude games.
+  2. Make the framework code clean and robust.
+  3. Make the creation of low-res 2D games feasible.
+  4. Write the web canvas context.
 
 Contributing
 ------------
-Do you have an idea that could potentially improve Yeah? You are encouraged to open an issue!
+Do you know how to improve Yeah? Open an issue!

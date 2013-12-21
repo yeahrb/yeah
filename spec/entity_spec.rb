@@ -12,26 +12,26 @@ describe Entity do
     it { klass.new(V[2, 4, 8]).position.should eq V[2, 4, 8] }
   end
 
-  describe '#map' do
-    subject { instance.map }
+  describe '#stage' do
+    subject { instance.stage }
 
     it { should eq nil }
   end
 
-  describe '#map=' do
-    subject { instance.method(:map=) }
-    it_behaves_like 'writer', Map.new
+  describe '#stage=' do
+    subject { instance.method(:stage=) }
+    it_behaves_like 'writer', Stage.new
 
     it "pushes self to value's #entities" do
-      instance.map = Map.new
-      instance.map.entities.last.should eq instance
+      instance.stage = Stage.new
+      instance.stage.entities.last.should eq instance
     end
 
     it "doesn't push self to value's #entities if already there" do
-      map = Map.new
-      map.entities << instance
-      instance.map = map
-      map.entities.count.should eq 1
+      stage = Stage.new
+      stage.entities << instance
+      instance.stage = stage
+      stage.entities.count.should eq 1
     end
   end
 
@@ -40,9 +40,9 @@ describe Entity do
 
     it { should eq nil }
 
-    it "is #map's game" do
-      instance.map = Map.new
-      instance.game.should eq instance.map.game
+    it "is #stage's game" do
+      instance.stage = Stage.new
+      instance.game.should eq instance.stage.game
     end
   end
 
@@ -113,15 +113,15 @@ describe Entity do
     its(:call) { should eq nil }
   end
 
-  describe '#surface' do
-    subject { instance.method(:surface) }
+  describe '#render' do
+    subject { instance.method(:render) }
 
     its(:call) { should eq nil }
 
-    it "gets #surface of #visual if it exists" do
+    it "gets #render of #visual if it exists" do
       instance.visual = Rectangle.new
-      instance.visual.should receive(:surface)
-      instance.surface
+      instance.visual.should receive(:render)
+      instance.render
     end
   end
 
@@ -133,8 +133,8 @@ describe Entity do
     it { expect {instance.send(:pressing?)}.to raise_error ArgumentError }
 
     it "defers to #game#pressing?" do
-      instance.map = Map.new
-      instance.map.game = Game.new
+      instance.stage = Stage.new
+      instance.stage.game = Game.new
       instance.game.should receive(:pressing?).with(:e)
       instance.send(:pressing?, :e)
     end
@@ -143,15 +143,15 @@ describe Entity do
   describe '#control' do
     # TODO: make this unnecessary
     before do
-      instance.map = Map.new
-      instance.map.game = Game.new
-      DesktopBackend.class_eval "def each_tick; yield; end"
+      instance.stage = Stage.new
+      instance.stage.game = Game.new
+      DesktopWindow.class_eval "def each_tick; yield; end"
       instance.game.start
     end
 
     describe "one pressable" do
       it "adds to attribute if pressed" do
-        instance.game.backend.press :q
+        instance.game.context.press :q
         instance.control 'position.y', :q, 2
         instance.position.y.should eq 2
       end
@@ -169,13 +169,13 @@ describe Entity do
       end
 
       it "adds to attribute if first is pressed" do
-        instance.game.backend.press :q
+        instance.game.context.press :q
         instance.control 'position.y', [:q, :e], 2
         instance.position.y.should eq 2
       end
 
       it "subtracts from attribute if second is pressed" do
-        instance.game.backend.press :e
+        instance.game.context.press :e
         instance.control 'position.y', [:q, :e], 2
         instance.position.y.should eq -2
       end
@@ -186,8 +186,8 @@ describe Entity do
     describe '#right' do
       it { instance.right.should eq 0 }
 
-      it "is x of right edge within map" do
-        instance.map = Map.new
+      it "is x of right edge within stage" do
+        instance.stage = Stage.new
         instance.position = V[10, 10]
         instance.size = V[4, 2]
         instance.right.should eq 14
@@ -197,8 +197,8 @@ describe Entity do
     describe '#left' do
       it { instance.left.should eq 0 }
 
-      it "is x of left edge within map" do
-        instance.map = Map.new
+      it "is x of left edge within stage" do
+        instance.stage = Stage.new
         instance.position = V[10, 10]
         instance.size = V[4, 2]
         instance.left.should eq 10
@@ -208,8 +208,8 @@ describe Entity do
     describe '#top' do
       it { instance.top.should eq 0 }
 
-      it "is y of top edge within map" do
-        instance.map = Map.new
+      it "is y of top edge within stage" do
+        instance.stage = Stage.new
         instance.position = V[10, 10]
         instance.size = V[4, 2]
         instance.top.should eq 12
@@ -219,8 +219,8 @@ describe Entity do
     describe '#bottom' do
       it { instance.bottom.should eq 0 }
 
-      it "is y of bottom edge within map" do
-        instance.map = Map.new
+      it "is y of bottom edge within stage" do
+        instance.stage = Stage.new
         instance.position = V[10, 10]
         instance.size = V[4, 2]
         instance.bottom.should eq 10
@@ -230,8 +230,8 @@ describe Entity do
     describe '#front' do
       it { instance.front.should eq 0 }
 
-      it "is y of front edge within map" do
-        instance.map = Map.new
+      it "is y of front edge within stage" do
+        instance.stage = Stage.new
         instance.position = V[10, 10, 10]
         instance.size = V[4, 2, 8]
         instance.front.should eq 18
@@ -241,8 +241,8 @@ describe Entity do
     describe '#back' do
       it { instance.back.should eq 0 }
 
-      it "is y of back edge within map" do
-        instance.map = Map.new
+      it "is y of back edge within stage" do
+        instance.stage = Stage.new
         instance.position = V[10, 10, 10]
         instance.size = V[4, 2, 8]
         instance.back.should eq 10
@@ -252,8 +252,8 @@ describe Entity do
     describe '#center' do
       it { instance.center.should eq V[] }
 
-      it "is position of center within map" do
-        instance.map = Map.new
+      it "is position of center within stage" do
+        instance.stage = Stage.new
         instance.position = V[10, 10]
         instance.size = V[4, 2]
         instance.center.should eq V[12, 11]
@@ -316,12 +316,12 @@ describe Entity do
   describe "with Entity subclass" do
     it "is true when edges touch any instance of given class" do
       instance2 = Entity.new
-      instance2.map = instance.map = Map.new
+      instance2.stage = instance.stage = Stage.new
       instance2.size = instance.size = V[5, 5]
       instance.touching?(Entity).should eq true
     end
 
-    it "is false without a map" do
+    it "is false without a stage" do
       instance2 = Entity.new
       instance2.size = instance.size = V[5, 5]
       instance.touching?(Entity).should eq false
@@ -339,7 +339,7 @@ describe Entity do
     it "is false for instances of any class other than the given one" do
       subentity_class = Class.new(Entity)
       instance2 = subentity_class.new
-      instance2.map = instance.map = Map.new
+      instance2.stage = instance.stage = Stage.new
       instance2.size = instance.size = V[5, 5]
       instance2.touching?(subentity_class).should eq false
     end

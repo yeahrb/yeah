@@ -7,13 +7,13 @@ module Yeah
   VERSION = '0.2.2'
 end
 
-%i[numeric string].each { |r| require "monkey/#{r}" }
+%i[numeric string].each { |r| require "patch/#{r}" }
 
 %i[
   utility
   command
 
-  vector
+  vector v
   color
 
   surface
@@ -22,9 +22,9 @@ end
   entity
   basic_physics
 
-  map
+  stage
 
-  desktop_backend
+  desktop_window
 
   game
 ].each { |r| require "yeah/#{r}" }
