@@ -6,13 +6,11 @@ Any version below 1.0.0 is unstable and lacks backward compatibility.
 
 Installing
 ----------
-Yeah currently depends on SDL, so you must install it. [Here are helpful instructions for installing SDL](https://github.com/rubygame/rubygame/wiki/Install).
-
 Install Yeah with `gem install yeah`.
 
 Overview
 --------
-Yeah is a collection of utilities and abstractions that aid in the creation of compelling video games.
+Yeah is a collection of utilities and abstractions designed to aid in the creation of compelling video games.
 
 Commands perform common utility tasks.
 
@@ -30,13 +28,8 @@ These abstractions are helpful for building video games.
   * Vector - for representing position, size, velocity...
   * Color - accepts hex, RGB, HSV, and Wikipedia names.
 
-Roadmap
--------
-  1. Get this to the point where one can easily hack on crude games.
-  2. Make the framework code clean and robust.
-  3. Make the creation of low-res 2D games feasible.
-  4. Write the web canvas context.
-
-Contributing
-------------
-Do you know how to improve Yeah? Open an issue!
+The Plan
+--------
+  1. Game data logistics
+  2. WebCanvas context
+  3. Continuous improvement of framework code and API
