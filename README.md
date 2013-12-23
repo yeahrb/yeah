@@ -13,7 +13,7 @@ Overview
 Yeah is designed to be the ideal base on which to build compelling video games.
 
   * Favors convention over configuration
-  * Prioritizes maximally clean and readable code
+  * Prioritizes clean and readable code
   * Comprehensively unit tested
 
 ### Command-line utilities
