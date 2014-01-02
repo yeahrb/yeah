@@ -10,11 +10,11 @@ Install Yeah with `gem install yeah`.
 
 Overview
 --------
-Yeah is designed to be the ideal base on which to build compelling video games.
+Yeah helps you build video games while keeping you as happy as possible.
 
-  * Favors convention over configuration
-  * Prioritizes clean and readable code
-  * Comprehensively unit tested
+  * Convention over configuration - *focus on things that matter*
+  * Clean, tight, unit-tested codebase - *maximum hackability*
+  * Portable and open source - *lock-in is lame*
 
 ### Command-line utilities
 
@@ -31,9 +31,3 @@ Yeah is designed to be the ideal base on which to build compelling video games.
   * Visual - graphical representation of an entity.
   * Vector - used to represent position, size, velocity...
   * Color - accepts hex, RGB, HSV, and Wikipedia names.
-
-The Plan
---------
-  1. Game data logistics
-  2. WebCanvas context
-  3. Continuous improvement of framework code and API
