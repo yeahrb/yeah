@@ -1,5 +1,5 @@
-shared_examples_for :vector_class_new do |subject_name|
-  subject { described_class.method(subject_name) }
+shared_examples_for :vector_class_new do |method_name|
+  subject { described_class.method(method_name) }
 
   it { subject.call.should be_instance_of described_class }
   it { subject.call.components.should eq [0, 0, 0] }
