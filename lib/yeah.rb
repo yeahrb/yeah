@@ -1,11 +1,4 @@
-require 'naught'
-require 'pow'
-
-module Yeah
-  include Naught.build(&:black_hole)::Conversions
-
-  VERSION = '0.2.2'
-end
+module Yeah; end
 
 %i[numeric string].each { |r| require "patch/#{r}" }
 

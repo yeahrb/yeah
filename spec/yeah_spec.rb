@@ -5,9 +5,6 @@ describe Yeah do
 
   it { modjul.should be_instance_of Module }
 
-  it { modjul.should respond_to :Maybe, :Just, :Null, :Actual }
-  it { modjul.Maybe(nil).is.a.black.hole.should be_falsy }
-
   describe '::VERSION' do
     subject { modjul::VERSION }
 

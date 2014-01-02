@@ -3,7 +3,7 @@
 lib = File.expand_path('../lib/', __FILE__)
 $:.unshift lib unless $:.include?(lib)
 
-require 'yeah'
+require 'yeah/version'
 
 Gem::Specification.new do |s|
   s.name = 'yeah'
@@ -20,8 +20,7 @@ Gem::Specification.new do |s|
   s.homepage = 'https://github.com/skofo/yeah'
   s.license = 'MIT'
 
-  s.add_runtime_dependency 'rubygame', '~> 2.7.0'
-  s.add_runtime_dependency 'naught', '~> 0.0.2'
+  s.add_runtime_dependency 'rubygame', '2.7.0.unofficial'
   s.add_runtime_dependency 'pow', '~> 0.2.2'
   s.add_development_dependency 'rspec', '~> 2.14.1'
   s.add_development_dependency 'guard-rspec', '~> 3.1.0'
