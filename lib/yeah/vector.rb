@@ -38,13 +38,13 @@ class Yeah::Vector
     self.class == other.class && self.components == other.components
   end
 
-  def +(v); operate(v, :+); end
+  def +(v); operate(:+, v); end
 
-  def -(v); operate(v, :-); end
+  def -(v); operate(:-, v); end
 
-  def *(v); operate(v, :*); end
+  def *(v); operate(:*, v); end
 
-  def /(v); operate(v, :/); end
+  def /(v); operate(:/, v); end
 
   # Component (dimension) at index.
   #
@@ -90,7 +90,7 @@ class Yeah::Vector
 
   private
 
-  def operate(operand, operator)
+  def operate(operator, operand)
     if operand.respond_to? :to_a
       operand = operand.to_a
     else

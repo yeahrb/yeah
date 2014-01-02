@@ -1,15 +1,14 @@
 describe Vector, '#operate' do
+  subject { V.random(20, 20, 20) + V[1, 1, 1] }
   let(:operators) { [:+, :-, :*, :/] }
 
   it { subject.private_methods.should include(:operate) }
 
   it "operates on Numeric" do
     operand = Random.rand(50) + 1
-    subject = V[99, 2, -5]
-
     operators.each do |operator|
       expected = V[*subject.components.map { |c| c.send(operator, operand)}]
-      subject.send(:operate, operand, operator).should eq expected
+      subject.send(:operate, operator, operand).should eq expected
     end
   end
 
@@ -17,7 +16,7 @@ describe Vector, '#operate' do
     operand = V.random(20, 20, 20) + V[1, 1, 1]
 
     operators.each do |operator|
-      result = subject.send(operator, operand)
+      result = subject.send(:operate, operator, operand)
 
       result.components.each_with_index do |component, i|
         comp1 = subject.components[i]
