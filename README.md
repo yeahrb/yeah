@@ -22,12 +22,12 @@ Yeah helps you build video games while keeping you as happy as possible.
   * `yeah run` runs a game project.
   * `yeah build` builds ready-to-go packages for every platform available.
 
-### Abstractions
+### Types
 
   * Context - interface to media and input layers for a platform.
-  * Game - manages context and stages.
+  * Game - manages context and active stage.
   * Stage - manages entities in space.
   * Entity - acts within a stage.
-  * Visual - graphical representation of an entity.
+  * Visual - graphical representation for an entity.
   * Vector - used to represent position, size, velocity...
   * Color - accepts hex, RGB, HSV, and Wikipedia names.
