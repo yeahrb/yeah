@@ -35,7 +35,7 @@ class Yeah::Vector
   alias_method :to_a, :components
 
   def ==(other)
-    self.class == other.class && self.components == other.components
+    self.class == other.class && components == other.components
   end
 
   def +(v); operate(:+, v); end
