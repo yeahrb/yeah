@@ -1,7 +1,7 @@
 describe Entity, '#back' do
   it { subject.back.should eq 0 }
 
-  it "is y of back edge within stage" do
+  it "is z of back edge within stage" do
     subject.stage = Stage.new
     subject.position = V[10, 10, 10]
     subject.size = V[4, 2, 8]
