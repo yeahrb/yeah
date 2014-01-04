@@ -24,13 +24,13 @@ class Yeah::Entity
   # @return [Vector]
   attr_accessor :position
 
-  def x; self.position[0]; end
+  def x; position[0]; end
   def x=(v); self.position[0] = v; end
 
-  def y; self.position[1]; end
+  def y; position[1]; end
   def y=(v); self.position[1] = v; end
 
-  def z; self.position[2]; end
+  def z; position[2]; end
   def z=(v); self.position[2] = v; end
 
   # Physical size.
