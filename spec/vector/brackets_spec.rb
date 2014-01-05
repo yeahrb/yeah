@@ -3,9 +3,9 @@ describe Vector do
   subject { described_class.new(arguments) }
 
   describe '#[]' do
-    it { subject[0].should eq arguments[0] }
-    it { subject[1].should eq arguments[1] }
-    it { subject[2].should eq arguments[2] }
+    3.times do |n|
+      it { expect(subject[n]).to eq arguments[n] }
+    end
   end
 
   describe '#[]=' do
@@ -13,7 +13,7 @@ describe Vector do
       3.times do |i|
         old_val = subject[i]
         subject[i] = subject[i] + 5
-        subject[i].should eq arguments[i] + 5
+        expect(subject[i]).to eq arguments[i] + 5
       end
     end
   end

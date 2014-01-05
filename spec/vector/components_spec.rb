@@ -6,38 +6,38 @@ describe Vector do
   end
 
   describe '#components=' do
-    it "assigns array with up to 3 numerics" do
+    it "assigns array with up to 3 numbers" do
       subject.components = [4, 5, 6]
-      subject.components.should eq [4, 5, 6]
+      expect(subject.components).to eq [4, 5, 6]
 
       subject.components = [8, 9]
-      subject.components.should eq [8, 9, 0]
+      expect(subject.components).to eq [8, 9, 0]
 
       subject.components = []
-      subject.components.should eq [0, 0, 0]
+      expect(subject.components).to eq [0, 0, 0]
     end
 
     it "assigns Vector" do
       subject.components = V[9, 9, 9]
-      subject.components.should eq [9, 9, 9]
+      expect(subject.components).to eq [9, 9, 9]
     end
 
     it "assigns up to 3 numeric arguments" do
       subject.components = 6, 5, 4
-      subject.components.should eq [6, 5, 4]
+      expect(subject.components).to eq [6, 5, 4]
 
       subject.components = 8
-      subject.components.should eq [8, 0, 0]
+      expect(subject.components).to eq [8, 0, 0]
     end
 
     it "assigns an array containing a Vector" do
       subject.components = [V[8, 7, 8]]
-      subject.components.should eq [8, 7, 8]
+      expect(subject.components).to eq [8, 7, 8]
     end
 
     it "complains when given a 4-element array" do
-      expect { subject.components = [7, 8, 9, 10] }.
-        to raise_error ArgumentError, /too many elements/
+      assign_four = lambda { subject.components = [7, 8, 9, 10] }
+      expect(assign_four).to raise_error ArgumentError, /too many elements/
     end
   end
 end

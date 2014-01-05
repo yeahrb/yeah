@@ -3,6 +3,7 @@ describe Vector, '#inspect' do
   subject { described_class.new(components) }
 
   it "is a human-friendly representation of self" do
-    subject.inspect.should eq "#{described_class.name}[#{subject.components.join(', ')}]"
+    represent = "#{described_class.name}[#{subject.components.join(', ')}]"
+    expect(subject.inspect).to eq represent
   end
 end
