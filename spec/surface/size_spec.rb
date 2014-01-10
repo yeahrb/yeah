@@ -1,5 +1,5 @@
 describe Surface do
-  let(:vector) { V.random(48, 48) + V[2, 2] }
+  let(:vector) { random_vector }
 
   describe '#size' do
     subject { described_class.new(vector).size }
@@ -10,6 +10,6 @@ describe Surface do
   describe '#size=' do
     subject { described_class.new.method(:size=) }
 
-    it_behaves_like 'writer', V[20, 20]
+    it_behaves_like 'writer', random_vector
   end
 end

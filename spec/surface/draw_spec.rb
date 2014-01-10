@@ -1,6 +1,6 @@
 describe Surface, '#draw' do
   let(:color) { Color[0, Random.rand(255), Random.rand(255), 255] }
-  let(:vector) { V.random(48, 48) + V[2, 2] }
+  let(:vector) { random_vector }
   subject { described_class.new(vector) }
 
   it { expect {subject.draw}.to raise_error ArgumentError }

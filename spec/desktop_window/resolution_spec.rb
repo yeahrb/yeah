@@ -9,10 +9,10 @@ describe DesktopWindow do
   describe '#resolution=' do
     subject { instance.method(:resolution=) }
 
-    it_behaves_like 'writer', V.random(250, 250)
+    it_behaves_like 'writer', random_vector
 
     it "changes screen size" do
-      resolution = V.random(250, 250) + V[1, 1]
+      resolution = random_vector
       instance.resolution = resolution
       instance.screen.size.should eq resolution.components[0..1]
     end

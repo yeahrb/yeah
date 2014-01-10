@@ -2,7 +2,7 @@ describe Rectangle, '#render' do
   it { subject.render.should be_instance_of Surface }
 
   it "matches size" do
-    subject.size = V.random(50, 50) + V[1, 1]
+    subject.size = random_vector
     subject.render.size.should eq subject.size
   end
 

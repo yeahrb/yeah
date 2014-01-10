@@ -4,12 +4,6 @@ class Yeah::Vector
     alias_method :[], :new
   end
 
-  # @return [Vector]
-  def self.random(*comp_maxes)
-    comps = comp_maxes.map { |cm| Random.rand(cm) }
-    self.new(*comps)
-  end
-
   def initialize(*comps)
     self.components = comps
   end

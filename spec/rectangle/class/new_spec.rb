@@ -4,7 +4,7 @@ describe Rectangle, '::new' do
   it { described_class.new.color.should eq Color[255, 255, 255, 255] }
 
   it "assigns V first argument as #size" do
-    vector = V.random(40)
+    vector = random_vector
     described_class.new(vector).size.should eq vector
   end
 

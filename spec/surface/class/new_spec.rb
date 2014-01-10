@@ -1,5 +1,5 @@
 describe Surface, '::new' do
-  let(:vector) { V.random(48, 48) + V[2, 2] }
+  let(:vector) { random_vector }
 
   it { described_class.new.size.should eq V[] }
 

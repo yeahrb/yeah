@@ -1,5 +1,5 @@
 describe Surface, '#fill' do
-  let(:vector) { V.random(48, 48) + V[2, 2] }
+  let(:vector) { random_vector }
   let(:color) { Color[0, 255, 0, 255] }
   subject { described_class.new(vector) }
 

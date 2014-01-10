@@ -9,6 +9,6 @@ describe Entity do
   describe '#position=' do
     subject { described_class.new.method(:position=) }
 
-    it_behaves_like 'writer', V.random(100)
+    it_behaves_like 'writer', random_vector
   end
 end

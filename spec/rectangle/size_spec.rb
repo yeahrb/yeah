@@ -8,6 +8,6 @@ describe Rectangle do
   describe '#size=' do
     subject { described_class.new.method(:size=) }
 
-    it_behaves_like 'writer', V.random(40)
+    it_behaves_like 'writer', random_vector
   end
 end

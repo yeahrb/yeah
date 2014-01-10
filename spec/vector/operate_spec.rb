@@ -1,6 +1,5 @@
 describe Vector, '#operate' do
   let(:operators) { [:+, :-, :*, :/] }
-  let(:random_vector) { V.random(20, 20, 20) + V[1, 1, 1] }
   subject { random_vector }
 
   it { subject.private_methods.should include(:operate) }

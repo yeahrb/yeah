@@ -7,7 +7,7 @@ describe Stage, '#render' do
   it "has a size that matches game resolution if it exists" do
     test_stage = Stage.new
     test_stage.game = Game.new
-    test_stage.game.resolution = V.random(5, 5) + V[5, 5]
+    test_stage.game.resolution = random_vector
     test_stage.render.size.should eq test_stage.game.resolution
   end
 
@@ -29,7 +29,7 @@ describe Stage, '#render' do
     color = Color[0, 255, 0, 255]
     entity = Entity.new
     entity.visual = Rectangle.new(V[1, 1], color)
-    entity.position = V[Random.rand(10), Random.rand(10)]
+    entity.position = random_vector
     instance.entities << entity
     instance.render.color_at(entity.position).should eq color
   end

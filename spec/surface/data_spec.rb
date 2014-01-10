@@ -1,5 +1,5 @@
 describe Surface do
-  let(:vector) { V.random(48, 48) + V[2, 2] }
+  let(:vector) { random_vector }
   subject { described_class.new(vector) }
 
   describe '#data' do
