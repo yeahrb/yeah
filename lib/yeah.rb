@@ -13,7 +13,6 @@ module Yeah; end
   rectangle
 
   entity
-  basic_physics
 
   stage
 
