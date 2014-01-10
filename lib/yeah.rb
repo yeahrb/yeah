@@ -9,9 +9,6 @@ module Yeah; end
   vector v
   color
 
-  surface
-  rectangle
-
   entity
 
   stage
