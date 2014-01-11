@@ -124,13 +124,6 @@ class Yeah::Entity
   def update
   end
 
-  # Visual render.
-  #
-  # @return [Surface]
-  def render
-    visual.render if visual
-  end
-
   protected
 
   # Is a key or button being pressed?

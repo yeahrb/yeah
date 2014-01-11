@@ -7,14 +7,14 @@ describe Entity do
 
     it "is implied by visual size" do
       size = random_vector
-      instance.visual = Rectangle.new(size)
+      instance.visual = Struct.new(:size).new(size) # todo: use null visual
       instance.size.should eq size
     end
 
     it "is not implied by visual size after size is explicitly set" do
       size = random_vector
       instance.size = size
-      instance.visual = Rectangle.new(size*2)
+      instance.visual = Struct.new(:size).new(size) # todo: use null visual
       instance.size.should eq size
     end
   end
