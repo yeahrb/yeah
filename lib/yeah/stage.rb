@@ -70,25 +70,4 @@ class Yeah::Stage
   def update
     entities.each(&:update)
   end
-
-  def render
-    surface = Surface.new
-
-    if game && game.resolution
-      surface.size = game.resolution
-    elsif self.class.tiles.any?
-      tile_columns = self.class.tiles.first.length
-      tile_rows = self.class.tiles.length
-      tile_size = self.class.tile_size
-      surface.size = V[tile_columns * tile_size, tile_rows * tile_size]
-    else
-      return surface
-    end
-
-    entities.each do |entity|
-      surface.draw(entity.render, entity.position) unless entity.render.nil?
-    end
-
-    surface
-  end
 end
