@@ -42,7 +42,7 @@ class Yeah::Game
   end
 
   def render
-    context.render(stage.render) if stage
+    context.render(stage) if stage
   end
 
   protected :update, :render

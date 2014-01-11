@@ -5,16 +5,16 @@ describe Game, '#render' do
 
   before do
     subject.stage = Stage.new
-    surface = Surface.new(V[10, 10])
   end
 
   context "after start" do
+    let(:render) { subject.send(:render) }
+
     before { subject.start }
 
-    it "renders stage's render" do
-      subject.stage.stub(:render).and_return("the stage")
-      subject.context.should receive(:render).with("the stage")
-      subject.send(:render)
+    it "passes stage into context's render" do
+      expect { subject.context }.to_receive(:render).with(subject.stage)
+      render
     end
   end
 end
