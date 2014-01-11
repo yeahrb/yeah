@@ -61,19 +61,10 @@ class Yeah::DesktopWindow
     @pressables[pressable] = false
   end
 
-  # Project a surface onto the screen.
+  # Renders a stage onto the screen.
   #
-  # @param [Surface]
-  def render(surface)
-    masks = [0x0000ff,  0x00ff00,  0xff0000, 0]
-
-    if surface && surface.size != V[]
-      rg_surface = Rubygame::Surface.new(surface.size.to_a[0..1], masks: masks)
-      rg_surface.pixels = surface.data
-      rg_surface.blit(screen, [0, 0])
-    end
-
-    screen.update
+  # @param [Stage]
+  def render(stage)
   end
 
   # Execute passed block on each tick.
