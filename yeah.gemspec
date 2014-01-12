@@ -22,6 +22,7 @@ Gem::Specification.new do |s|
 
   s.add_runtime_dependency 'rubygame', '2.7.0.unofficial'
   s.add_runtime_dependency 'pow', '~> 0.2.2'
+  s.add_runtime_dependency 'naught', '~> 0.0.3'
   s.add_development_dependency 'rspec', '~> 2.14.1'
   s.add_development_dependency 'guard-rspec', '~> 3.1.0'
   s.add_development_dependency 'libnotify', '~> 0.8.2'
