@@ -7,6 +7,8 @@ module Yeah; end
   command
 
   null_context
+  null_stage
+
   preferred_context
 
   vector v

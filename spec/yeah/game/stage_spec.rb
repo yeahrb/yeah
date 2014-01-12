@@ -4,7 +4,7 @@ describe Game do
   describe '#stage' do
     subject { instance.stage }
 
-    it { should be_nil }
+    it { should be_instance_of NullStage }
   end
 
   describe '#stage=' do
