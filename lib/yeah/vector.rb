@@ -8,8 +8,12 @@ class Yeah::Vector
     self.components = comps
   end
 
-  def inspect
-    "#{self.class.name}#{components.inspect}"
+  def to_s
+    "#{self.class.name}#{components}"
+  end
+
+  def to_a
+    components
   end
 
   # @return [Array<(Numeric x3)>]
@@ -26,7 +30,6 @@ class Yeah::Vector
 
     @components = value + [0] * (3 - value.size)
   end
-  alias_method :to_a, :components
 
   def ==(other)
     self.class == other.class && components == other.components
