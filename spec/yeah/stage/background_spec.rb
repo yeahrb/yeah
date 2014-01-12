@@ -1,12 +1,8 @@
 describe Stage do
   describe '#background' do
     subject { described_class.new.background }
-    after(:each) { described_class.class_variable_set :@@background, nil }
 
-    it "is @@background" do
-      described_class.background :orange
-      described_class.new.background.should eq :orange
-    end
+    it { should eq Color[] }
   end
 
   describe '#background=' do

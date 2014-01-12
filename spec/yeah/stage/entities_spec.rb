@@ -5,10 +5,6 @@ describe Stage do
     subject { instance.entities }
 
     it { should eq [] }
-
-    it "is generated from tiles" do
-      # TODO
-    end
   end
 
   describe '#entities=' do
