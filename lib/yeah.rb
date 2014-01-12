@@ -3,7 +3,6 @@ module Yeah; end
 %i[numeric string].each { |r| require "patch/#{r}" }
 
 %i[
-
   utility
   command
 
