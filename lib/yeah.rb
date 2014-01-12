@@ -3,12 +3,11 @@ module Yeah; end
 %i[numeric string].each { |r| require "patch/#{r}" }
 
 %i[
-  null_object
-  black_hole
 
   utility
   command
 
+  null_context
   preferred_context
 
   vector v
