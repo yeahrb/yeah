@@ -1,3 +1,5 @@
 describe V do
-  it { described_class.should eq Vector }
+  subject { described_class }
+
+  it { should eq Vector }
 end
