@@ -32,7 +32,7 @@ class Yeah::Vector
   end
 
   def ==(other)
-    self.class == other.class && components == other.components
+    other.respond_to?(:components) && components == other.components
   end
 
   def +(v); operate(:+, v); end
