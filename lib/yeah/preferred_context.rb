@@ -1,0 +1,1 @@
+Yeah::PreferredContext = Yeah::NullObject

@@ -9,6 +9,8 @@ module Yeah; end
   utility
   command
 
+  preferred_context
+
   vector v
   color
 
