@@ -13,7 +13,5 @@ module Yeah; end
 
   stage
 
-  desktop_window
-
   game
 ].each { |r| require "yeah/#{r}" }
