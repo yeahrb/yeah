@@ -1,10 +1,10 @@
 describe Game, '#start' do
-  it "instantiates a DesktopBackend for #context" do
+  it "sets context to PreferredContext" do
     subject.start
-    subject.context.should be_instance_of DesktopWindow
+    subject.context.should be_instance_of PreferredContext
   end
 
-  it "calls #context#each_tick with a block with #update and #render calls" do
+  it "calls #context.each_tick with a block with #update and #render calls" do
     subject.should receive(:update)
     subject.should receive(:render)
     subject.start

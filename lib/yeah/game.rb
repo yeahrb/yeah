@@ -22,7 +22,7 @@ class Yeah::Game
 
   # Start the game.
   def start
-    @context = DesktopWindow.new
+    @context = PreferredContext.new
 
     context.each_tick do
       update
