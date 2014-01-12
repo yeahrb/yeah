@@ -1,8 +1,4 @@
-require_relative 'safe_loop_context'
-
 describe Game, '#render' do
-  include_context :safe_loop
-
   before do
     subject.stage = Stage.new
   end

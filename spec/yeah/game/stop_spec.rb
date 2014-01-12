@@ -1,8 +1,4 @@
-require_relative 'safe_loop_context'
-
 describe Game, '#stop' do
-  include_context :safe_loop
-
   it "makes #screen nil" do
     subject.start
     subject.stop

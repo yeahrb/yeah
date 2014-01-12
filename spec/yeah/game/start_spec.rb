@@ -1,8 +1,4 @@
-require_relative 'safe_loop_context'
-
 describe Game, '#start' do
-  include_context :safe_loop
-
   it "instantiates a DesktopBackend for #context" do
     subject.start
     subject.context.should be_instance_of DesktopWindow
