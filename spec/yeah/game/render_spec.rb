@@ -9,7 +9,7 @@ describe Game, '#render' do
     before { subject.start }
 
     it "passes stage into context's render" do
-      expect { subject.context }.to_receive(:render).with(subject.stage)
+      expect { subject.context }.to receive(:render).with(subject.stage)
       render
     end
   end
