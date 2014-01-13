@@ -1,9 +1,18 @@
 require_relative 'shared/coordinate'
 
-describe Entity, '#z' do
-  it_behaves_like :entity_coordinate, :z
-end
+describe Entity do
+  let(:instance) { described_class.new }
+  before { instance.position = random_vector }
 
-describe Entity, '#z=' do
-  it_behaves_like :entity_coordinate=, :z
+  describe '#z' do
+    subject { instance.z }
+
+    it { should eq instance.position[2] }
+  end
+
+  describe '#z=' do
+    subject { instance.method(:z=) }
+
+    it_behaves_like 'writer', Random.rand(10)
+  end
 end
