@@ -39,14 +39,17 @@ class Yeah::Entity
   #
   # @return [NilClass|Vector]
   def size
-    @size || visual && visual.size || V[]
+    @size || visual.size || V[]
   end
   attr_writer :size
 
   # Graphical representation.
   #
   # @return [Visual]
-  attr_accessor :visual
+  def visual
+    @visual ||= NullVisual.new
+  end
+  attr_writer :visual
 
   # X position of right side.
   #

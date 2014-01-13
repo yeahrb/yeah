@@ -8,6 +8,7 @@ module Yeah; end
 
   null_context
   null_stage
+  null_visual
 
   preferred_context
 

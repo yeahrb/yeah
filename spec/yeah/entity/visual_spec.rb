@@ -2,7 +2,7 @@ describe Entity do
   describe '#visual' do
     subject { described_class.new.visual }
 
-    it { should eq nil }
+    it { should be_instance_of NullVisual }
   end
 
   describe '#visual=' do
