@@ -9,14 +9,16 @@ class Yeah::Entity
   # The stage this is in.
   #
   # @return [Stage]
-  attr_reader :stage
+  def stage
+    @stage ||= NullStage.new
+  end
   def stage=(value)
     @stage = value
     @stage.entities << self unless @stage.entities.include? self
   end
 
   def game
-    @stage && @stage.game
+    stage.game
   end
 
   # Position within the stage.
@@ -103,12 +105,9 @@ class Yeah::Entity
     return false if other == self
 
     if other.is_a?(Class)
-      if stage
-        return stage.entities.select { |e| e.is_a? other }
-                            .any? { |e| touching? e }
-      else
-        return false
-      end
+      return stage.entities
+        .select { |e| e.is_a? other }
+        .any? { |e| touching? e }
     end
 
     return false if size == V[] || other.size == V[]
@@ -121,8 +120,7 @@ class Yeah::Entity
   end
 
   # Update entity.
-  def update
-  end
+  def update; end
 
   protected
 

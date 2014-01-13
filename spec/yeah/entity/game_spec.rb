@@ -5,7 +5,6 @@ describe Entity, '#game' do
   it { should eq nil }
 
   it "is #stage's game" do
-    instance.stage = Stage.new
     instance.game.should eq instance.stage.game
   end
 end
