@@ -54,32 +54,6 @@ class Yeah::Vector
     self.components[index] = value
   end
 
-  def x; components[0]; end
-  def x=(v); self.components[0] = v; end
-
-  def width; components[0]; end
-  def width=(v); self.components[0] = v; end
-
-  def y; components[1]; end
-  def y=(v); self.components[1] = v; end
-
-  def height; components[1]; end
-  def height=(v); self.components[1] = v; end
-
-  def z; components[2]; end
-  def z=(v); self.components[2] = v; end
-
-  def depth; components[2]; end
-  def depth=(v); self.components[2] = v; end
-
-  # @return [Numeric]
-  def magnitude
-    Math.sqrt(@components.reduce(0) { |m, c| m + c*c })
-  end
-  alias_method :length, :magnitude
-  alias_method :distance, :magnitude
-  alias_method :speed, :magnitude
-
   # Reset every component to 0.
   def reset
     self.components = [0, 0, 0]
