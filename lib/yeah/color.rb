@@ -9,8 +9,8 @@ class Yeah::Color
     self.rgba_bytes = values
   end
 
-  def inspect
-    "#{self.class.name}#{rgba_bytes.inspect}"
+  def to_s
+    "#{self.class.name}#{rgba_bytes.to_s}"
   end
 
   def ==(other)
