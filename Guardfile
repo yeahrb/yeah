@@ -1,6 +1,6 @@
 guard :rspec do
   watch('spec/spec_helper.rb')
   watch(%r{^spec/.+_spec\.rb$})
-  watch(%r{^lib(\/\w+)?\/(.+)\.rb$}) { |m| "spec/#{m[1]}/#{m[2]}/" }
+  watch(%r{^lib/((\w+\/)*)(.+).rb$}) { |m| "spec/#{m[1]}#{m[3]}/" }
 end
 
