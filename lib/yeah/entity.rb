@@ -3,7 +3,7 @@ class Yeah::Entity
   include Yeah
 
   def initialize(position=V[])
-    @position = position
+    self.position = position
   end
 
   # The stage this is in.
@@ -60,53 +60,61 @@ class Yeah::Entity
   end
   attr_writer :visual
 
+  # Origin point within bounds.
+  #
+  # @return [Vector]
+  def anchor
+    @anchor ||= V[]
+  end
+  attr_writer :anchor
+
   # X position of right side.
   #
   # @return [Integer]
   def right
-    x + width
+    x + width * (1 - anchor[0])
   end
 
   # X position of left side.
   #
   # @return [Integer]
   def left
-    x
+    x + width * anchor[0]
   end
 
   # Y position of top side.
   #
   # @return [Integer]
   def top
-    y + height
+    y + height * (1 - anchor[1])
   end
 
   # Y position of bottom side.
   #
   # @return [Integer]
   def bottom
-    y
+    y + height * anchor[1]
   end
 
   # Z position of front side.
   #
   # @return [Integer]
   def front
-    z + depth
+    z + depth * (1 - anchor[2])
   end
 
   # Z position of back side.
   #
   # @return [Integer]
   def back
-    z
+    z + depth * anchor[2]
   end
 
   # Position of center.
   #
   # @return [Vector]
   def center
-    position + size / 2
+    position + size * anchor
   end
 
   # Is intersected with instance or type of entity?
