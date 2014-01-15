@@ -15,6 +15,9 @@ module Yeah; end
   vector v
   color
 
+  position
+  boundary
+
   entity
 
   stage
