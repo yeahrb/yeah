@@ -15,9 +15,6 @@ module Yeah; end
   vector v
   color
 
-  position
-  size
-
   entity
 
   stage
