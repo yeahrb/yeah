@@ -1,7 +1,7 @@
 require_relative 'shared/klass'
 
-describe Boundary do
-  include_context :boundary_klass
+describe Size do
+  include_context :size_klass
   let(:instance) { klass.new }
   before { instance.size = random_vector }
 

@@ -3,12 +3,12 @@ require_relative 'shared/klass'
 describe Position do
   include_context :position_klass
   let(:instance) { klass.new }
-  before { instance.coordinates = random_vector }
+  before { instance.position = random_vector }
 
   describe '#z' do
     subject { instance.z }
 
-    it { should eq instance.coordinates[2] }
+    it { should eq instance.position[2] }
   end
 
   describe '#z=' do

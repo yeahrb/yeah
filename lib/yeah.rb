@@ -16,7 +16,7 @@ module Yeah; end
   color
 
   position
-  boundary
+  size
 
   entity
 

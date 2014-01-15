@@ -1,4 +1,4 @@
-module Boundary
+module Size
   def size
     @size ||= V[]
   end
