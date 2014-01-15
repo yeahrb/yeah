@@ -14,7 +14,7 @@ class Yeah::Color
   end
 
   def ==(other)
-    self.class == other.class && self.bytes == other.bytes
+    other.respond_to?(:bytes) && self.bytes == other.bytes
   end
 
   # Color bytes in RGBA format.
