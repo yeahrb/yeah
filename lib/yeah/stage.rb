@@ -1,15 +1,13 @@
 class Yeah::Stage
   include Yeah
 
-  def initialize
-    @background = Color[]
-    @entities = []
-  end
-
   # Background color.
   #
   # @return [Color]
-  attr_accessor :background
+  def background
+    @background ||= Color[]
+  end
+  attr_writer :background
 
   # Active entities.
   #
