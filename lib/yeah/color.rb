@@ -28,6 +28,11 @@ class Yeah::Color
   end
   attr_writer :green
 
+  def alpha
+    @alpha ||= 1
+  end
+  attr_writer :alpha
+
   def ==(other)
     other.respond_to?(:bytes) && self.bytes == other.bytes
   end
