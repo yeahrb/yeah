@@ -4,6 +4,7 @@ class Yeah::Color
   end
 
   def initialize(*args)
+    args = args.first.rgba if args.first.respond_to?(:rgba)
     args.flatten!
 
     self.rgba = args
