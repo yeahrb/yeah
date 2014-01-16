@@ -13,14 +13,6 @@ class Yeah::Game
     @stage.game = self if stage.game != self
   end
 
-  # Size of screen.
-  #
-  # @return [Vector]
-  def resolution
-    @resolution ||= V[320, 180]
-  end
-  attr_writer :resolution
-
   # Start the game.
   def start
     @context = PreferredContext.new
