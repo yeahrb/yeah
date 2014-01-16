@@ -22,19 +22,24 @@ module Yeah::Utility
 
   def project_structure(name)
     structure = {}
+
+    game_class_root = extend_string(name).classify
+    game_rb = <<-eoc
+      require "yeah"
+      include Yeah
+
+      class #{game_class_root}Game < Game
+      end
+    eoc
+    game_rb = extend_string(game_rb).unindent
+
     structure[name.to_sym] = {
       entities: {},
       visuals: {},
       maps: {},
       assets: {},
       config: {},
-      'game.rb' => <<-eoc.unindent
-        require "yeah"
-        include Yeah
-
-        class #{name.classify}Game < Game
-        end
-      eoc
+      'game.rb' => game_rb
     }
 
     structure
@@ -73,5 +78,17 @@ module Yeah::Utility
   def project_game
     game_class_name = Object.constants.find { |c| c[-4..-1] == "Game" }
     Kernel.const_get(game_class_name)
+  end
+
+  def extend_string(string)
+    def string.unindent
+      gsub(/^#{self[/\A\s*/]}/, '').strip
+    end
+
+    def string.classify
+      split('_').collect { |w| w.sub(/\A(.)/){ $1.upcase } }.join
+    end
+
+    string
   end
 end
