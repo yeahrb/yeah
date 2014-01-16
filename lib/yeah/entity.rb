@@ -33,7 +33,9 @@ class Yeah::Entity
   def position
     @position ||= V[]
   end
-  attr_writer :position
+  def position=(value)
+    @position = V[value]
+  end
 
   def x; position[0]; end
   def x=(v); self.position[0] = v; end
@@ -50,7 +52,9 @@ class Yeah::Entity
   def size
     @size || visual.size || V[]
   end
-  attr_writer :size
+  def size=(value)
+    @size = V[value]
+  end
 
   def width; size[0]; end
   def width=(v); self.size[0] = v; end
@@ -75,7 +79,9 @@ class Yeah::Entity
   def anchor
     @anchor ||= V[]
   end
-  attr_writer :anchor
+  def anchor=(value)
+    @anchor = V[value]
+  end
 
   # X position of right side.
   #
