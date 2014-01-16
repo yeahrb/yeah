@@ -54,11 +54,6 @@ class Yeah::Vector
     self.components[index] = value
   end
 
-  # Reset every component to 0.
-  def reset
-    self.components = [0, 0, 0]
-  end
-
   private
 
   def operate(operator, operand)
