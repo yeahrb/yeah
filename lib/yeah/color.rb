@@ -3,8 +3,10 @@ class Yeah::Color
     alias_method :[], :new
   end
 
-  def initialize(re = 0, gr = 0, bl = 0, al = 1)
-    self.rgba = re, gr, bl, al
+  def initialize(*args)
+    args.flatten!
+
+    self.rgba = args
   end
 
   def to_s
