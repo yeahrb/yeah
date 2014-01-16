@@ -2,8 +2,14 @@
 class Yeah::Entity
   include Yeah
 
-  def initialize(position=V[])
-    self.position = position
+  def initialize(properties=V[])
+    properties = { position: properties } unless properties.respond_to?(:to_h)
+    properties = properties.to_h
+
+    properties.each do |key, val|
+      writer = "#{key}="
+      send(writer, val)
+    end
   end
 
   # The stage this is in.
@@ -24,7 +30,10 @@ class Yeah::Entity
   # Position within the stage.
   #
   # @return [Vector]
-  attr_accessor :position
+  def position
+    @position ||= V[]
+  end
+  attr_writer :position
 
   def x; position[0]; end
   def x=(v); self.position[0] = v; end
