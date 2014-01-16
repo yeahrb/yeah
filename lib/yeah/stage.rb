@@ -1,6 +1,13 @@
 class Yeah::Stage
   include Yeah
 
+  def initialize(properties={})
+    properties.each do |key, val|
+      writer = "#{key}="
+      send(writer, val)
+    end
+  end
+
   # Background color.
   #
   # @return [Color]
