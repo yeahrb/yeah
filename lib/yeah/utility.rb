@@ -81,6 +81,8 @@ module Yeah::Utility
   end
 
   def extend_string(string)
+    string = String.new(string)
+
     def string.unindent
       gsub(/^#{self[/\A\s*/]}/, '').strip
     end

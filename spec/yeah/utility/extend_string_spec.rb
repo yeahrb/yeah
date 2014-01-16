@@ -1,6 +1,11 @@
 describe Utility, '#extend_string' do
   let(:extend_string) { subject.method(:extend_string) }
 
+  it "accepts frozen string" do
+    frozen = "brr".freeze
+    expect { extend_string.call(frozen) }.to_not raise_error
+  end
+
   describe 'String#classify' do
     it { extend_string.call('ultra_class').classify.should eq 'UltraClass' }
     it { extend_string.call('CoolClass').classify.should eq 'CoolClass' }
