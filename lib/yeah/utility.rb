@@ -1,3 +1,5 @@
+require 'pow'
+
 module Yeah::Utility
   module_function
 
