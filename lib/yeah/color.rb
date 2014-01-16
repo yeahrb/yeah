@@ -13,6 +13,21 @@ class Yeah::Color
     "#{self.class.name}#{bytes.to_s}"
   end
 
+  def red
+    @red ||= 0
+  end
+  attr_writer :red
+
+  def blue
+    @blue ||= 0
+  end
+  attr_writer :blue
+
+  def green
+    @green ||= 0
+  end
+  attr_writer :green
+
   def ==(other)
     other.respond_to?(:bytes) && self.bytes == other.bytes
   end
