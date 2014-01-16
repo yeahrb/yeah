@@ -3,14 +3,12 @@ class Yeah::Color
     alias_method :[], :new
   end
 
-  def initialize(*values)
-    default_values = [0, 0, 0, 255]
-    values += default_values[values.size..-1]
-    self.bytes = values
+  def initialize(re = 0, gr = 0, bl = 0, al = 1)
+    self.rgba = re, gr, bl, al
   end
 
   def to_s
-    "#{self.class.name}#{bytes.to_s}"
+    "#{self.class.name}#{rgba.to_s}"
   end
 
   def red
@@ -33,11 +31,14 @@ class Yeah::Color
   end
   attr_writer :alpha
 
-  def ==(other)
-    other.respond_to?(:bytes) && self.bytes == other.bytes
+  def rgba
+    [red, green, blue, alpha]
+  end
+  def rgba=(value)
+    self.red, self.green, self.blue, self.alpha = value
   end
 
-  # Color bytes in RGBA format.
-  # @return [Array<(Integer x4)>]
-  attr_accessor :bytes
+  def ==(other)
+    other.respond_to?(:rgba) && self.rgba == other.rgba
+  end
 end
