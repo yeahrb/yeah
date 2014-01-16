@@ -1,6 +1,8 @@
 module Yeah; end
 
-%i[numeric].each { |r| require "patch/#{r}" }
+%i[
+  numeric
+].each { |r| require "monkey/#{r}" }
 
 %i[
   utility
