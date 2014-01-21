@@ -1,8 +1,8 @@
 describe Color, '#==' do
-  let(:value) { [0.5, 1, 1, 0] }
+  let(:value) { [0.5, 1, 1] }
 
   it "is true for itself" do
-    color = described_class[0.0, 0.1, 0.2, 0.3]
+    color = described_class[0.0, 0.1, 0.2]
     (color == color).should be_true
   end
 
@@ -15,7 +15,7 @@ describe Color, '#==' do
   end
 
   it "is true for any class of matching value" do
-    matching_struct = Struct.new(:rgba).new(value)
+    matching_struct = Struct.new(:rgb).new(value)
     expect { matching_struct == described_class[*value] }.to be_true
   end
 

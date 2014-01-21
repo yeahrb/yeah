@@ -4,14 +4,14 @@ class Yeah::Color
   end
 
   def initialize(*args)
-    args = args.first.rgba if args.first.respond_to?(:rgba)
+    args = args.first.rgb if args.first.respond_to?(:rgb)
     args.flatten!
 
-    self.rgba = args
+    self.rgb = args
   end
 
   def to_s
-    "#{self.class.name}#{rgba.to_s}"
+    "#{self.class.name}#{rgb.to_s}"
   end
 
   def red
@@ -29,19 +29,14 @@ class Yeah::Color
   end
   attr_writer :green
 
-  def alpha
-    @alpha ||= 1
+  def rgb
+    [red, green, blue]
   end
-  attr_writer :alpha
-
-  def rgba
-    [red, green, blue, alpha]
-  end
-  def rgba=(value)
-    self.red, self.green, self.blue, self.alpha = value
+  def rgb=(value)
+    self.red, self.green, self.blue = value
   end
 
   def ==(other)
-    other.respond_to?(:rgba) && self.rgba == other.rgba
+    other.respond_to?(:rgb) && self.rgb == other.rgb
   end
 end
