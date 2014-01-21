@@ -1,7 +1,7 @@
 class Yeah::Stage
   include Yeah
 
-  def initialize(properties={})
+  def initialize(properties = {})
     properties.each do |key, val|
       writer = "#{key}="
       send(writer, val)
