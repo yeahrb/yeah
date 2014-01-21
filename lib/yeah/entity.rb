@@ -2,7 +2,7 @@
 class Yeah::Entity
   include Yeah
 
-  def initialize(properties=V[])
+  def initialize(properties = V[])
     properties = { position: properties } unless properties.respond_to?(:to_h)
     properties = properties.to_h
 
