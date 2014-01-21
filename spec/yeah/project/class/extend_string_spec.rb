@@ -1,5 +1,7 @@
-describe Utility, '#extend_string' do
-  let(:extend_string) { subject.method(:extend_string) }
+describe Project, '::extend_string' do
+  let(:extend_string) { described_class.method(:extend_string) }
+
+  it { described_class.private_methods.should include :extend_string }
 
   it "accepts frozen string" do
     frozen = "brr".freeze

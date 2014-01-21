@@ -4,11 +4,10 @@ module Yeah::Command
   module_function
 
   def new(project_name)
-    Utility.make_project(project_name)
+    Project.generate(project_name)
   end
 
   def run
-    Utility.load_project
-    Utility.run_project
+    Project.load.run
   end
 end

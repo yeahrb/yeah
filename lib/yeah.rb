@@ -5,7 +5,7 @@ module Yeah; end
 ].each { |r| require "monkey/#{r}" }
 
 %i[
-  utility
+  project
   command
 
   null_context

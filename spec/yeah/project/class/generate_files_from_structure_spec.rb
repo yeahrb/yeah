@@ -1,8 +1,10 @@
-describe Utility, '::generate_files_from_structure' do
+describe Project, '::generate_files_from_structure' do
   before do
     Dir.stub(:mkdir)
     File.stub(:open)
   end
+
+  it { described_class.private_methods.should include :generate_files_from_structure }
 
   it "creates a directory for each key with an empty hash value" do
     structure = {
@@ -13,7 +15,7 @@ describe Utility, '::generate_files_from_structure' do
 
     structure.keys.each { |k| Dir.should receive(:mkdir).with("#{k}/") }
 
-    described_class.generate_files_from_structure(structure)
+    described_class.send(:generate_files_from_structure, structure)
   end
 
   it "creates a file for each key with a content of the value" do
@@ -27,7 +29,7 @@ describe Utility, '::generate_files_from_structure' do
       # TODO: test that it writes
     end
 
-    described_class.generate_files_from_structure(structure)
+    described_class.send(:generate_files_from_structure, structure)
   end
 
   it "accepts symbols as file keys" do
@@ -35,7 +37,7 @@ describe Utility, '::generate_files_from_structure' do
       hello: 'sup man'
     }
 
-    expect { described_class.generate_files_from_structure(structure) }.to_not raise_error
+    expect { described_class.send(:generate_files_from_structure, structure) }.to_not raise_error
   end
 
   it "recursively creates directories" do
@@ -48,7 +50,7 @@ describe Utility, '::generate_files_from_structure' do
       Dir.should receive(:mkdir).with(dir)
     end
 
-    described_class.generate_files_from_structure(structure)
+    described_class.send(:generate_files_from_structure, structure)
   end
 
   it "creates files inside directories" do
@@ -60,6 +62,6 @@ describe Utility, '::generate_files_from_structure' do
 
     File.should receive(:open).with('i_am_a_directory/and_i_am_a_file', 'w')
 
-    described_class.generate_files_from_structure(structure)
+    described_class.send(:generate_files_from_structure, structure)
   end
 end
