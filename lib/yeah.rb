@@ -12,8 +12,6 @@ module Yeah; end
   null_stage
   null_visual
 
-  preferred_context
-
   vector v
   color
 

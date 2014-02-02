@@ -15,7 +15,7 @@ class Yeah::Game
 
   # Start the game.
   def start
-    @context = PreferredContext.new
+    @context = NullContext.new
 
     context.each_tick do
       update
