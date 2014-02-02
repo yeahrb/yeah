@@ -17,10 +17,9 @@ class Project
     private
 
     def require_recursively(dir)
+      alias_extention = "alias_method :extension, :extention"
       pow_spells_correctly = Pow::Base.method_defined? :extension
-      if !pow_spells_correctly
-        Pow::Base.class_eval "alias_method :extension, :extention"
-      end
+      Pow::Base.class_eval(alias_extention) unless pow_spells_correctly
 
       Pow(dir).files.select { |f| f.extension == 'rb' }.each { |f| require f }
       Pow(dir).directories.each { |sd| require_recursively(sd) }
