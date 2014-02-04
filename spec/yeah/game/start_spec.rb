@@ -1,7 +1,7 @@
 describe Game, '#start' do
   it "sets context to PreferredContext" do
     subject.start
-    subject.context.should be_instance_of PreferredContext
+    subject.context.should be_instance_of NullContext
   end
 
   it "calls #context.each_tick with a block with #update and #render calls" do
