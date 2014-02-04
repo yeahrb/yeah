@@ -1,14 +1,17 @@
 require 'fileutils'
 
 class Project
+  def initialize(dir)
+  end
+
   class << self
-    def create(name, dir)
+    alias_method :run, :new
+
+    def generate(name, dir)
       project_dir = copy_template(name, dir)
       compile_template(project_dir, name)
       delete_keep_files(project_dir)
     end
-
-    alias_method :run, :new
 
     private
 
@@ -62,8 +65,5 @@ class Project
         }
         .join
     end
-  end
-
-  def initialize(dir)
   end
 end

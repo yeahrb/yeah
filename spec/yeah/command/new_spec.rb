@@ -3,7 +3,7 @@ describe Command, '::new' do
   let(:dir) { '/dev/null/' }
 
   it "generates a project" do
-    Project.should receive(:create).with(project_name, dir)
+    Project.should receive(:generate).with(project_name, dir)
     subject.new(project_name, dir)
   end
 end

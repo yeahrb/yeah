@@ -4,7 +4,7 @@ module Yeah::Command
   module_function
 
   def new(project_name, dir = Dir.pwd)
-    Project.create(project_name, dir)
+    Project.generate(project_name, dir)
   end
 
   def run(dir = '.')
