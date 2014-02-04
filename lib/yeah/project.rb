@@ -44,7 +44,8 @@ class Project
     end
 
     def deep_files(dir)
-      Dir.glob("#{dir}**/*", File::FNM_DOTMATCH).select { |f| File.file? f }
+      deep_paths = Dir.glob("**/*", File::FNM_DOTMATCH) - %w[. ..]
+      deep_paths.select { |f| File.file? f }
     end
 
     def game_classify(name)
