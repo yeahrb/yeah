@@ -1,5 +1,5 @@
 describe Game, '#start' do
-  it "sets context to PreferredContext" do
+  it "sets context" do
     subject.start
     subject.context.should be_instance_of NullContext
   end
