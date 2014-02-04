@@ -3,11 +3,11 @@ module Yeah::Command
 
   module_function
 
-  def new(project_name)
-    Project.generate(project_name)
+  def new(project_name, dir = Dir.pwd)
+    Project.create(project_name, dir)
   end
 
-  def run
-    Project.load.run
+  def run(dir = '.')
+    Project.run(dir)
   end
 end

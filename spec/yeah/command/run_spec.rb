@@ -1,9 +1,8 @@
 describe Command, '::run' do
-  it "loads project" do
-    # TODO
-  end
+  let(:dir) { '/dev/null/' }
 
-  it "runs project" do
-    # TODO
+  it "runs a project" do
+    Project.should receive(:run).with(dir)
+    subject.run(dir)
   end
 end
