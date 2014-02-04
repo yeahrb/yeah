@@ -1,17 +1,14 @@
 require 'fileutils'
 
 class Project
-  def initialize(dir)
-  end
-
   class << self
-    alias_method :run, :new
-
     def generate(name, dir)
       project_dir = copy_template(name, dir)
       compile_template(project_dir, name)
       delete_keep_files(project_dir)
     end
+
+    alias_method :run, :new
 
     private
 
@@ -47,8 +44,15 @@ class Project
     end
 
     def deep_files(dir)
-      deep_paths = Dir.glob("**/*", File::FNM_DOTMATCH) - %w[. ..]
       deep_paths.select { |f| File.file? f }
+    end
+
+    def deep_directories(dir)
+      deep_paths.select { |f| File.directory? f }
+    end
+
+    def deep_paths(dir)
+      Dir.glob("**/*", File::FNM_DOTMATCH) - %w[. ..]
     end
 
     def game_classify(name)
@@ -65,5 +69,8 @@ class Project
         }
         .join
     end
+  end
+
+  def initialize(dir)
   end
 end
