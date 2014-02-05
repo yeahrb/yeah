@@ -1,20 +1,10 @@
 Yeah
 ====
-A practical Ruby game framework in its early stages.
+Practical Ruby video game framework in pre-alpha stage.
 
-Any version below 1.0.0 should be considered unstable and lacking backward compatibility.
-
-Installing
-----------
+Installation
+------------
 Install Yeah with `gem install yeah`.
-
-Overview
---------
-Yeah helps you build video games while keeping you as happy as possible.
-
-  * Convention over configuration - *focus on things that matter*
-  * Clean, tight, unit-tested codebase - *maximum hackability*
-  * Portable and open source - *lock-in is lame*
 
 ### Command-line utilities
 
