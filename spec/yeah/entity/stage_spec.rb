@@ -2,7 +2,7 @@ describe Entity do
   describe '#stage' do
     subject { described_class.new.stage }
 
-    it { should be_instance_of NullStage }
+    it { should be_instance_of Stage }
   end
 
   describe '#stage=' do

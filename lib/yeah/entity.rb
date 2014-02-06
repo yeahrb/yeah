@@ -16,7 +16,7 @@ class Yeah::Entity
   #
   # @return [Stage]
   def stage
-    @stage ||= NullStage.new
+    @stage ||= Stage.new
   end
   def stage=(value)
     @stage = value

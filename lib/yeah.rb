@@ -9,7 +9,6 @@ module Yeah; end
   command
 
   null_context
-  null_stage
   null_visual
 
   vector v

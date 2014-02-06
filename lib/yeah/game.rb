@@ -6,7 +6,7 @@ class Yeah::Game
   attr_reader :context
 
   def stage
-    @stage ||= NullStage.new
+    @stage ||= Stage.new
   end
   def stage=(value)
     @stage = value
