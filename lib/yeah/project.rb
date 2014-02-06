@@ -8,8 +8,6 @@ class Project
       delete_keep_files(project_dir)
     end
 
-    alias_method :run, :new
-
     private
 
     def copy_template(name, dir)
@@ -63,8 +61,8 @@ class Project
       string
         .split('_')
         .collect { |w| w
-          .sub(/\A(.)/) {
-            $1.upcase
+          .sub(/\A(.)/) { $1
+            .upcase
           }
         }
         .join
@@ -72,5 +70,8 @@ class Project
   end
 
   def initialize(dir)
+  end
+
+  def run
   end
 end
