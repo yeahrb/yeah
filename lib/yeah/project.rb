@@ -3,14 +3,14 @@ require 'fileutils'
 class Project
   class << self
     def generate(name, dir)
-      project_dir = copy_template(name, dir)
+      project_dir = copy_template(dir, name)
       compile_template(project_dir, name)
       delete_keep_files(project_dir)
     end
 
     private
 
-    def copy_template(name, dir)
+    def copy_template(dir, name)
       yeah_dir = File.expand_path('../../../', __FILE__)
       template_dir = "#{yeah_dir}/lib/template/"
       project_dir = "#{dir}/#{name}/"
@@ -42,15 +42,15 @@ class Project
     end
 
     def deep_files(dir)
-      deep_paths.select { |f| File.file? f }
+      deep_paths(dir).select { |f| File.file? f }
     end
 
     def deep_directories(dir)
-      deep_paths.select { |f| File.directory? f }
+      deep_paths(dir).select { |f| File.directory? f }
     end
 
     def deep_paths(dir)
-      Dir.glob("**/*", File::FNM_DOTMATCH) - %w[. ..]
+      Dir.glob("#{dir}**/*", File::FNM_DOTMATCH) - %w[. ..]
     end
 
     def game_classify(name)
