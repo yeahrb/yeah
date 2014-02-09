@@ -8,6 +8,6 @@ module Yeah::Command
   end
 
   def run(dir = '.')
-    Project.run(dir)
+    Project.load(dir).run
   end
 end
