@@ -1,22 +1,16 @@
 module Yeah; end
 
-%i[
-  numeric
-].each { |r| require "monkey/#{r}" }
+require 'monkey/numeric'
 
-%i[
-  project
-  command
+require 'yeah/null_visual'
+require 'yeah/null_context'
 
-  null_context
-  null_visual
+require 'yeah/vector'
+require 'yeah/v'
+require 'yeah/color'
 
-  vector v
-  color
+require 'yeah/entity'
 
-  entity
+require 'yeah/stage'
 
-  stage
-
-  game
-].each { |r| require "yeah/#{r}" }
+require 'yeah/game'
