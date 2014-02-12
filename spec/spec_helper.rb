@@ -1,4 +1,6 @@
 require 'yeah'
+require 'yeah/project'
+require 'yeah/command'
 include Yeah
 
 shared_examples 'writer' do |value|
