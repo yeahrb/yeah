@@ -1,7 +1,5 @@
 module Yeah; end
 
-require 'monkey/numeric'
-
 require 'yeah/null_visual'
 require 'yeah/null_context'
 
