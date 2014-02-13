@@ -11,7 +11,7 @@ class Yeah::Project
     private
 
     def copy_template(dir, name)
-      yeah_dir = File.expand_path('../../../', __FILE__)
+      yeah_dir = File.expand_path('../../../../', __FILE__)
       template_dir = "#{yeah_dir}/lib/yeah/util/template/"
       project_dir = "#{dir}/#{name}/"
 
