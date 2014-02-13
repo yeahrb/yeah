@@ -1,11 +1,7 @@
-require 'naught'
-
-Yeah::NullContext = Naught.build do |config|
+class Yeah::NullContext
   def each_tick(&block)
     yield
   end
 
-  def instance_of?(klass)
-    klass == NullContext
-  end
+  def method_missing(*args, &block); end
 end

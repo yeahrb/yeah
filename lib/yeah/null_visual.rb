@@ -1,7 +1,3 @@
-require 'naught'
-
-Yeah::NullVisual = Naught.build do |config|
-  def instance_of?(klass)
-    klass == NullVisual
-  end
+class Yeah::NullVisual
+  def method_missing(*args, &block); end
 end
