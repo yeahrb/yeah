@@ -4,7 +4,7 @@ describe Entity, '#game' do
 
   it { should eq nil }
 
-  it "is #stage's game" do
-    instance.game.should eq instance.stage.game
+  it "is #area's game" do
+    instance.game.should eq instance.area.game
   end
 end

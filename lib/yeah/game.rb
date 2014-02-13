@@ -1,16 +1,16 @@
-# Manages stages and context.
+# Manages areas and context.
 class Yeah::Game
   include Yeah
 
   # @return [Context]
   attr_reader :context
 
-  def stage
-    @stage ||= Stage.new
+  def area
+    @area ||= Area.new
   end
-  def stage=(value)
-    @stage = value
-    @stage.game = self if stage.game != self
+  def area=(value)
+    @area = value
+    @area.game = self if area.game != self
   end
 
   # Start the game.
@@ -33,10 +33,10 @@ class Yeah::Game
   protected
 
   def update
-    stage.update
+    area.update
   end
 
   def render
-    context.render(stage)
+    context.render(area)
   end
 end

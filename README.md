@@ -15,9 +15,9 @@ Install Yeah with `gem install yeah`.
 ### Types
 
   * Context - interface to media and input layers for a platform.
-  * Game - manages context and active stage.
-  * Stage - manages entities in space.
-  * Entity - acts within a stage.
-  * Visual - graphical representation for an entity.
-  * Vector - used to represent position, size, velocity...
+  * Game - manages context and area.
+  * Area - manages entities in space.
+  * Entity - acts within an area.
+  * Visual - entity's graphical representation.
+  * Vector - represents position, size, velocity...
   * Color - accepts hex, RGB, HSV, and Wikipedia names.

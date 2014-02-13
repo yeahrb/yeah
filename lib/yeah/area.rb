@@ -1,4 +1,4 @@
-class Yeah::Stage
+class Yeah::Area
   include Yeah
 
   def initialize(properties = {})
@@ -24,13 +24,13 @@ class Yeah::Stage
   end
   def entities=(value)
     @entities = value
-    @entities.each { |e| e.stage = self }
+    @entities.each { |e| e.area = self }
   end
 
   attr_reader :game
   def game=(value)
     @game = value
-    @game.stage = self unless @game.stage == self
+    @game.area = self unless @game.area == self
   end
 
   def update

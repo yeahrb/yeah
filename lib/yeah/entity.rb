@@ -1,4 +1,4 @@
-# Acts and interacts with other Entities within a Stage.
+# Acts and interacts with other Entities within an Area.
 class Yeah::Entity
   include Yeah
 
@@ -12,22 +12,22 @@ class Yeah::Entity
     end
   end
 
-  # The stage this is in.
+  # The area this is in.
   #
-  # @return [Stage]
-  def stage
-    @stage ||= Stage.new
+  # @return [Area]
+  def area
+    @area ||= Area.new
   end
-  def stage=(value)
-    @stage = value
-    @stage.entities << self unless @stage.entities.include? self
+  def area=(value)
+    @area = value
+    @area.entities << self unless @area.entities.include? self
   end
 
   def game
-    stage.game
+    area.game
   end
 
-  # Position within the stage.
+  # Position within the area.
   #
   # @return [Vector]
   def position
@@ -140,7 +140,7 @@ class Yeah::Entity
     return false if other == self
 
     if other.is_a?(Class)
-      return stage.entities
+      return area.entities
         .select { |e| e.is_a? other }
         .any? { |e| touching? e }
     end

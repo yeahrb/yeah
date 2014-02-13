@@ -1,4 +1,4 @@
-describe Stage do
+describe Area do
   describe '#background' do
     subject { described_class.new.background }
 

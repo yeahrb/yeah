@@ -1,4 +1,4 @@
-describe Stage do
+describe Area do
   let(:instance) { described_class.new }
 
   describe '#entities' do
@@ -12,11 +12,11 @@ describe Stage do
 
     it_behaves_like 'writer', [Entity.new(Random.rand(10))]
 
-    it "assigns each item's #stage as self" do
+    it "assigns each item's #area as self" do
       entities = [Entity.new, Entity.new]
       instance.entities = entities
 
-      entities.each { |e| e.stage.should eq instance }
+      entities.each { |e| e.area.should eq instance }
     end
   end
 end

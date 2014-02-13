@@ -1,4 +1,4 @@
-describe Stage, '#update' do
+describe Area, '#update' do
   subject { described_class.new }
 
   before { subject.entities = (1..3).map { Entity.new } }

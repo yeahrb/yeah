@@ -54,12 +54,12 @@ describe Entity, '#touching?' do
   describe "with Entity subclass" do
     it "is true when edges touch any instance of given class" do
       instance2 = Entity.new
-      instance2.stage = instance.stage = Stage.new
+      instance2.area = instance.area = Area.new
       instance2.size = instance.size = V[5, 5]
       instance.touching?(Entity).should eq true
     end
 
-    it "is false without a stage" do
+    it "is false without a area" do
       instance2 = Entity.new
       instance2.size = instance.size = V[5, 5]
       instance.touching?(Entity).should eq false
@@ -77,7 +77,7 @@ describe Entity, '#touching?' do
     it "is false for instances of any class other than the given one" do
       subentity_class = Class.new(Entity)
       instance2 = subentity_class.new
-      instance2.stage = instance.stage = Stage.new
+      instance2.area = instance.area = Area.new
       instance2.size = instance.size = V[5, 5]
       instance2.touching?(subentity_class).should eq false
     end
