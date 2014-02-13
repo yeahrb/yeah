@@ -1,8 +1,5 @@
 #!/usr/bin/env ruby
 
-module Yeah; end
-
-require 'yeah/project'
-require 'yeah/command'
+require 'yeah/util'
 
 Yeah::Command.send(*ARGV)

@@ -1,6 +1,6 @@
 require 'fileutils'
 
-class Project
+class Yeah::Project
   class << self
     def generate(name, dir)
       project_dir = copy_template(dir, name)
@@ -12,7 +12,7 @@ class Project
 
     def copy_template(dir, name)
       yeah_dir = File.expand_path('../../../', __FILE__)
-      template_dir = "#{yeah_dir}/lib/template/"
+      template_dir = "#{yeah_dir}/lib/yeah/util/template/"
       project_dir = "#{dir}/#{name}/"
 
       FileUtils.cp_r(template_dir, project_dir)
