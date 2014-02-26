@@ -119,7 +119,7 @@ class Yeah::WebPlayer
     formatting = "  %s\n"
 
     script_paths.inject("") do |markup, script_path|
-      element = "<script src=\"#{script_path}\"></script>"
+      element = "<script src=\"/assets/#{script_path}\"></script>"
       formatted_element = formatting % element
       markup << formatted_element
     end.chomp
