@@ -86,42 +86,48 @@ Yeah::WebServer = Rack::Builder.new do
   yeah_dir = File.expand_path('../../../../', __FILE__) # TODO: DRY
 
   map '/' do
-    run Yeah::WebPlayer.new
+    run Player.new
   end
 
   map '/assets' do
-    sprockets = Opal::Environment.new
-    sprockets.use_gem 'yeah'
-    sprockets.append_path '.'
-    run sprockets
-  end
-end
-
-class Yeah::WebPlayer
-  def call(env)
-    [200, { 'Content-Type' => 'text/html' }, [html]]
+    run Assets.new
   end
 
-  def html
-    yeah_dir = File.expand_path('../../../../', __FILE__) # TODO: DRY
-    player_path = "#{yeah_dir}/lib/yeah/utility/player.html"
-    player_template = File.read(player_path)
-    params = {
-      game_name: "Game",
-      game_assets: game_assets
-    }
+  class Player
+    def call(env)
+      [200, { 'Content-Type' => 'text/html' }, [html]]
+    end
 
-    player_template % params
+    def html
+      yeah_dir = File.expand_path('../../../../', __FILE__) # TODO: DRY
+      player_path = "#{yeah_dir}/lib/yeah/utility/player.html"
+      player_template = File.read(player_path)
+      params = {
+        game_name: "Game",
+        game_assets: game_assets
+      }
+
+      player_template % params
+    end
+
+    def game_assets
+      script_paths = Dir.glob('**/*.rb')
+      formatting = "  %s\n"
+
+      script_paths.inject("") do |markup, script_path|
+        element = "<script src=\"/assets/#{script_path}\"></script>"
+        formatted_element = formatting % element
+        markup << formatted_element
+      end.chomp
+    end
   end
 
-  def game_assets
-    script_paths = Dir.glob('**/*.rb')
-    formatting = "  %s\n"
+  class Assets < Opal::Environment
+    def initialize(*args)
+      super
 
-    script_paths.inject("") do |markup, script_path|
-      element = "<script src=\"/assets/#{script_path}\"></script>"
-      formatted_element = formatting % element
-      markup << formatted_element
-    end.chomp
+      use_gem 'yeah'
+      append_path '.'
+    end
   end
 end
