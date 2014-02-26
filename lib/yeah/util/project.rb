@@ -15,7 +15,7 @@ class Yeah::Project
     private
 
     def copy_template(dir, name)
-      yeah_dir = File.expand_path('../../../../', __FILE__)
+      yeah_dir = File.expand_path('../../../../', __FILE__) # TODO: DRY
       template_dir = "#{yeah_dir}/lib/yeah/util/template/"
       project_dir = "#{dir}/#{name}/"
 
@@ -83,7 +83,7 @@ class Yeah::Project
 end
 
 Yeah::WebServer = Rack::Builder.new do
-  yeah_dir = File.expand_path('../../../../', __FILE__)
+  yeah_dir = File.expand_path('../../../../', __FILE__) # TODO: DRY
 
   map '/' do
     run Yeah::WebPlayer.new
@@ -103,13 +103,25 @@ class Yeah::WebPlayer
   end
 
   def html
-    yeah_dir = File.expand_path('../../../../', __FILE__)
+    yeah_dir = File.expand_path('../../../../', __FILE__) # TODO: DRY
     player_path = "#{yeah_dir}/lib/yeah/util/player.html"
     player_template = File.read(player_path)
     params = {
-      game_name: "Game"
+      game_name: "Game",
+      game_assets: game_assets
     }
 
     player_template % params
+  end
+
+  def game_assets
+    script_paths = Dir.glob('**/*.rb')
+    formatting = "  %s\n"
+
+    script_paths.inject("") do |markup, script_path|
+      element = "<script src=\"#{script_path}\"></script>"
+      formatted_element = formatting % element
+      markup << formatted_element
+    end.chomp
   end
 end
