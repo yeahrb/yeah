@@ -78,21 +78,22 @@ class Yeah::Project
   end
 
   def run
-    Rack::Server.start(app: Yeah::WebRunner.new, Port: 1234)
+    Rack::Server.start(app: Yeah::WebRackApp, Port: 1234)
   end
 end
 
-class Yeah::WebRunner
-  def call(env)
-    yeah_dir = File.expand_path('../../../../', __FILE__)
+Yeah::WebRackApp = Rack::Builder.new do
+  yeah_dir = File.expand_path('../../../../', __FILE__)
+
+  map '/' do
     player_path = "#{yeah_dir}/lib/yeah/util/player.html"
-    player_template = File.open(player_path).read
-    game_player = player_template # TODO: compile
+    run Rack::File.new(player_path)
+  end
 
-    request = Rack::Request.new(env)
-
-    response = Rack::Response.new
-    response.write game_player
-    response.finish
+  map '/assets' do
+    sprockets = Opal::Environment.new
+    sprockets.use_gem 'yeah'
+    sprockets.append_path '.'
+    run sprockets
   end
 end
