@@ -78,16 +78,15 @@ class Yeah::Project
   end
 
   def run
-    Rack::Server.start(app: Yeah::WebRackApp, Port: 1234)
+    Rack::Server.start(app: Yeah::WebServer, Port: 1234)
   end
 end
 
-Yeah::WebRackApp = Rack::Builder.new do
+Yeah::WebServer = Rack::Builder.new do
   yeah_dir = File.expand_path('../../../../', __FILE__)
 
   map '/' do
-    player_path = "#{yeah_dir}/lib/yeah/util/player.html"
-    run Rack::File.new(player_path)
+    run Yeah::WebPlayer.new
   end
 
   map '/assets' do
@@ -95,5 +94,22 @@ Yeah::WebRackApp = Rack::Builder.new do
     sprockets.use_gem 'yeah'
     sprockets.append_path '.'
     run sprockets
+  end
+end
+
+class Yeah::WebPlayer
+  def call(env)
+    [200, { 'Content-Type' => 'text/html' }, [html]]
+  end
+
+  def html
+    yeah_dir = File.expand_path('../../../../', __FILE__)
+    player_path = "#{yeah_dir}/lib/yeah/util/player.html"
+    player_template = File.read(player_path)
+    params = {
+      game_name: "Game"
+    }
+
+    player_template % params
   end
 end
