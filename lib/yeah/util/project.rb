@@ -1,4 +1,6 @@
 require 'fileutils'
+require 'opal'
+require 'rack'
 
 class Yeah::Project
   class << self
@@ -7,6 +9,8 @@ class Yeah::Project
       compile_template(project_dir, name)
       delete_keep_files(project_dir)
     end
+
+    alias_method :load, :new
 
     private
 
@@ -70,8 +74,25 @@ class Yeah::Project
   end
 
   def initialize(dir)
+    @dir = dir
   end
 
   def run
+    Rack::Server.start(app: Yeah::WebRunner.new, Port: 1234)
+  end
+end
+
+class Yeah::WebRunner
+  def call(env)
+    yeah_dir = File.expand_path('../../../../', __FILE__)
+    player_path = "#{yeah_dir}/lib/yeah/util/player.html"
+    player_template = File.open(player_path).read
+    game_player = player_template # TODO: compile
+
+    request = Rack::Request.new(env)
+
+    response = Rack::Response.new
+    response.write game_player
+    response.finish
   end
 end
