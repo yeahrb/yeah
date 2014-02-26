@@ -1,8 +1,10 @@
 require 'fileutils'
-require 'opal'
 require 'rack'
+require 'opal'
 
 class Yeah::Project
+  include Yeah
+
   class << self
     def generate(name, dir)
       project_dir = copy_template(dir, name)
@@ -15,8 +17,7 @@ class Yeah::Project
     private
 
     def copy_template(dir, name)
-      yeah_dir = File.expand_path('../../../../', __FILE__) # TODO: DRY
-      template_dir = "#{yeah_dir}/lib/yeah/utility/template/"
+      template_dir = "#{PATH}/lib/yeah/utility/template/"
       project_dir = "#{dir}/#{name}/"
 
       FileUtils.cp_r(template_dir, project_dir)
@@ -83,8 +84,6 @@ class Yeah::Project
 end
 
 Yeah::WebServer = Rack::Builder.new do
-  yeah_dir = File.expand_path('../../../../', __FILE__) # TODO: DRY
-
   map '/' do
     run Player.new
   end
@@ -94,13 +93,14 @@ Yeah::WebServer = Rack::Builder.new do
   end
 
   class Player
+    include Yeah
+
     def call(env)
       [200, { 'Content-Type' => 'text/html' }, [html]]
     end
 
     def html
-      yeah_dir = File.expand_path('../../../../', __FILE__) # TODO: DRY
-      player_path = "#{yeah_dir}/lib/yeah/utility/player.html"
+      player_path = "#{PATH}/lib/yeah/utility/player.html"
       player_template = File.read(player_path)
       params = {
         game_name: "Game",
