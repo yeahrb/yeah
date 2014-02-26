@@ -16,7 +16,7 @@ class Yeah::Project
 
     def copy_template(dir, name)
       yeah_dir = File.expand_path('../../../../', __FILE__) # TODO: DRY
-      template_dir = "#{yeah_dir}/lib/yeah/util/template/"
+      template_dir = "#{yeah_dir}/lib/yeah/utility/template/"
       project_dir = "#{dir}/#{name}/"
 
       FileUtils.cp_r(template_dir, project_dir)
@@ -104,7 +104,7 @@ class Yeah::WebPlayer
 
   def html
     yeah_dir = File.expand_path('../../../../', __FILE__) # TODO: DRY
-    player_path = "#{yeah_dir}/lib/yeah/util/player.html"
+    player_path = "#{yeah_dir}/lib/yeah/utility/player.html"
     player_template = File.read(player_path)
     params = {
       game_name: "Game",

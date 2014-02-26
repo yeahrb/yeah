@@ -1,5 +1,5 @@
 #!/usr/bin/env ruby
 
-require 'yeah/util'
+require 'yeah/utility'
 
 Yeah::Command.send(*ARGV)
