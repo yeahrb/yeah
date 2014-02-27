@@ -17,7 +17,7 @@ Yeah::Web::Server = Rack::Builder.new do
     end
 
     def html
-      player_path = "#{PATH}/lib/yeah/utility/player.html"
+      player_path = "#{PATH}/lib/yeah/web/player.html"
       player_template = File.read(player_path)
       params = {
         game_name: "Game",

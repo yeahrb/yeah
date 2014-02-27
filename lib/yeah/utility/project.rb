@@ -1,5 +1,5 @@
 require 'fileutils'
-require 'yeah/utility/web'
+require 'yeah/web'
 
 class Yeah::Project
   include Yeah
