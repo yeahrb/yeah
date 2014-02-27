@@ -1,4 +1,5 @@
 require 'fileutils'
+require 'pathname'
 require 'yeah/web'
 
 class Yeah::Project
@@ -74,11 +75,18 @@ class Yeah::Project
   end
 
   def initialize(dir)
-    @dir = dir
+    @dir = Pathname.new(dir)
   end
 
   def run
     @runner = Web::Runner.new
+  end
+
+  private
+
+  def game_class_name
+    game_code = File.read(@dir.join('game.rb'))
+    game_code.match(/class (\w+)/)[1]
   end
 end
 
