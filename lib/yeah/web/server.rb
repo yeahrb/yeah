@@ -41,7 +41,7 @@ Yeah::Web::Server = Rack::Builder.new do
 
     def initializer
       element = "<script>\n%s</script>"
-      ruby_initializer = "#{game_class_name}.new"
+      ruby_initializer = "#{game_class_name}.new(Yeah::Web::Context.new)"
       js_initializer = Opal.compile(ruby_initializer)
 
       element % js_initializer
