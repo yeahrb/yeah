@@ -2,11 +2,6 @@
 class Yeah::Game
   include Yeah
 
-  # TODO: Humanize
-  def name
-    self.class.name
-  end
-
   # @return [Context]
   attr_reader :context
 
