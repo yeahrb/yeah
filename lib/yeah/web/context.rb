@@ -1,5 +1,6 @@
 module Yeah::Web; class Context
   def initialize
-    puts "Web::Context!!!"
+    @canvas = $document['game']
+    p @canvas
   end
 end; end

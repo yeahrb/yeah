@@ -1,4 +1,5 @@
 source 'http://rubygems.org'
 
-gem 'opal', github: 'opal/opal'
 gem 'yeah', github: 'skofo/yeah'
+gem 'opal', github: 'opal/opal'
+gem 'opal-browser', github: 'opal/opal-browser'

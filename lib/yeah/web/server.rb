@@ -41,10 +41,14 @@ Yeah::Web::Server = Rack::Builder.new do
 
     def initializer
       element = "<script>\n%s</script>"
-      ruby_initializer = "#{game_class_name}.new(Yeah::Web::Context.new)"
-      js_initializer = Opal.compile(ruby_initializer)
+      initializer = <<-ruby
+        $document.ready do
+          #{game_class_name}.new(Yeah::Web::Context.new)
+        end
+      ruby
+      compiled_initializer = Opal.compile(initializer)
 
-      element % js_initializer
+      element % compiled_initializer
     end
 
     # TODO: Improve
@@ -59,8 +63,14 @@ Yeah::Web::Server = Rack::Builder.new do
     def initialize(*args)
       super
 
+      use_gem 'paggio'
+      #use_gem 'opal-browser'
+      opal_browser_dir = Gem::Specification.find_by_name('opal-browser').gem_dir
+      append_path File.join(opal_browser_dir, 'opal')
       use_gem 'yeah'
       append_path '.'
+
+      puts self.instance_variable_get(:@assets)
     end
   end
 end
