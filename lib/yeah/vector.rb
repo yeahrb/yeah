@@ -1,5 +1,6 @@
 # Three-dimensional geometric vector. Used as position, velocity, size...
-class Yeah::Vector
+module Yeah
+class Vector
   class << self
     alias_method :[], :new
   end
@@ -66,4 +67,5 @@ class Yeah::Vector
     comps = components.zip(operand).map { |cs| cs.reduce(operator) }
     self.class.new(comps)
   end
+end
 end

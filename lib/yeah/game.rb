@@ -1,5 +1,6 @@
 # Manages areas and context.
-class Yeah::Game
+module Yeah
+class Game
   include Yeah
 
   def initialize(context = NullContext.new)
@@ -41,4 +42,5 @@ class Yeah::Game
   def render
     context.render(area)
   end
+end
 end

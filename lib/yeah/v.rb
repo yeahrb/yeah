@@ -1,2 +1,4 @@
 # Shorthand for Vector.
-Yeah::V = Yeah::Vector
+module Yeah
+  V = Vector
+end

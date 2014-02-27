@@ -2,9 +2,8 @@ require 'fileutils'
 require 'pathname'
 require 'yeah/web'
 
-class Yeah::Project
-  include Yeah
-
+module Yeah
+class Project
   class << self
     def generate(name, dir)
       project_dir = copy_template(dir, name)
@@ -87,4 +86,4 @@ class Yeah::Project
     game_code.match(/class (\w+)/)[1]
   end
 end
-
+end

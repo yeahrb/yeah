@@ -1,6 +1,8 @@
-module Yeah::Web; class Context
+module Yeah
+class Web::Context
   def initialize
     @canvas = $document['game']
     p @canvas
   end
-end; end
+end
+end

@@ -1,6 +1,5 @@
-class Yeah::Area
-  include Yeah
-
+module Yeah
+class Area
   def initialize(properties = {})
     properties.each do |key, val|
       writer = "#{key}="
@@ -36,4 +35,5 @@ class Yeah::Area
   def update
     entities.each(&:update)
   end
+end
 end

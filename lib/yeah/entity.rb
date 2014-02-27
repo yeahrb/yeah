@@ -1,7 +1,6 @@
 # Acts and interacts with other Entities within an Area.
-class Yeah::Entity
-  include Yeah
-
+module Yeah
+class Entity
   def initialize(properties = V[])
     properties = { position: properties } unless properties.respond_to?(:to_h)
     properties = properties.to_h
@@ -166,4 +165,5 @@ class Yeah::Entity
   def pressing?(pressable)
     game.pressing? pressable
   end
+end
 end

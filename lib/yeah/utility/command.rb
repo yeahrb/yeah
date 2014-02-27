@@ -1,6 +1,5 @@
-module Yeah::Command
-  include Yeah
-
+module Yeah
+class Command
   module_function
 
   def new(project_name, dir = Dir.pwd)
@@ -10,4 +9,5 @@ module Yeah::Command
   def run(dir = '.')
     Project.load(dir).run
   end
+end
 end

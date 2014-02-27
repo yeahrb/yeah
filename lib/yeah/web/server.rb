@@ -1,6 +1,7 @@
 require 'opal'
 
-Yeah::Web::Server = Rack::Builder.new do
+module Yeah
+Web::Server = Rack::Builder.new do
   map '/' do
     run Player.new
   end
@@ -73,4 +74,5 @@ Yeah::Web::Server = Rack::Builder.new do
       puts self.instance_variable_get(:@assets)
     end
   end
+end
 end

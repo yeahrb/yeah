@@ -1,4 +1,5 @@
-class Yeah::Color
+module Yeah
+class Color
   class << self
     alias_method :[], :new
   end
@@ -39,4 +40,5 @@ class Yeah::Color
   def ==(other)
     other.respond_to?(:rgb) && self.rgb == other.rgb
   end
+end
 end
