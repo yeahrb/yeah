@@ -1,5 +1,5 @@
 require 'yeah'
-require 'yeah/util'
+require 'yeah/utility'
 include Yeah
 
 shared_examples 'writer' do |value|
