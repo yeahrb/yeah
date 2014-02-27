@@ -21,7 +21,8 @@ Yeah::Web::Server = Rack::Builder.new do
       player_template = File.read(player_path)
       params = {
         game_name: "Game",
-        game_assets: game_assets
+        game_assets: game_assets,
+        initializer: initializer
       }
 
       player_template % params
@@ -36,6 +37,19 @@ Yeah::Web::Server = Rack::Builder.new do
         formatted_element = formatting % element
         markup << formatted_element
       end.chomp
+    end
+
+    def initializer
+      element = "<script>\n%s</script>"
+      ruby_initializer = "#{game_class_name}.new"
+      js_initializer = Opal.compile(ruby_initializer)
+      element % js_initializer
+    end
+
+    # TODO: Improve
+    def game_class_name
+      require 'yeah/utility/project'
+      Yeah::Project.new.game_class_name
     end
   end
 

@@ -74,15 +74,13 @@ class Yeah::Project
     end
   end
 
-  def initialize(dir)
+  def initialize(dir='.')
     @dir = Pathname.new(dir)
   end
 
   def run
     @runner = Web::Runner.new
   end
-
-  private
 
   def game_class_name
     game_code = File.read(@dir.join('game.rb'))
