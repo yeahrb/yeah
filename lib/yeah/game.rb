@@ -2,6 +2,12 @@
 class Yeah::Game
   include Yeah
 
+  def initialize(context_type = NullContext)
+    @context_type = context_type
+  end
+
+  attr_reader :context_type
+
   # @return [Context]
   attr_reader :context
 
@@ -15,7 +21,7 @@ class Yeah::Game
 
   # Start the game.
   def start
-    @context = NullContext.new
+    @context = context_type.new
 
     context.each_tick do
       update
