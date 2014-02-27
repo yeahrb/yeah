@@ -1,12 +1,12 @@
 describe Game, '::new' do
-  it "has NullContext context type by default" do
-    described_class.new.context_type.should eq NullContext
+  it "has NullContext context by default" do
+    described_class.new.context.should be_instance_of NullContext
   end
 
-  it "accepts context type" do
-    whatever_class = Class.new
-    instance = described_class.new(whatever_class)
+  it "accepts context" do
+    whatever_context = Object.new
+    instance = described_class.new(whatever_context)
 
-    instance.context_type.should eq whatever_class
+    instance.context.should eq whatever_context
   end
 end
