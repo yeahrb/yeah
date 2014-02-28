@@ -34,6 +34,7 @@ Web::Server = Rack::Builder.new do
       formatting = "  %s\n"
 
       script_paths.inject("") do |markup, script_path|
+        script_path.gsub!(/\.rb$/, ".js")
         element = "<script src=\"/assets/#{script_path}\"></script>"
         formatted_element = formatting % element
         markup << formatted_element
