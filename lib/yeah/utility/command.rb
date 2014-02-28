@@ -1,5 +1,5 @@
 module Yeah
-class Command
+module Command
   module_function
 
   def new(project_name, dir = Dir.pwd)
