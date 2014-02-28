@@ -65,14 +65,15 @@ Web::Server = Rack::Builder.new do
     def initialize(*args)
       super
 
-      use_gem 'paggio'
-      #use_gem 'opal-browser'
-      opal_browser_dir = Gem::Specification.find_by_name('opal-browser').gem_dir
-      append_path File.join(opal_browser_dir, 'opal')
+      use_gem 'opal'
+      append_opal_stdlib
       use_gem 'yeah'
       append_path '.'
+    end
 
-      puts self.instance_variable_get(:@assets)
+    def append_opal_stdlib
+      opal_dir = Gem::Specification.find_by_name('opal').gem_dir
+      append_path File.join(opal_dir, 'stdlib')
     end
   end
 end
