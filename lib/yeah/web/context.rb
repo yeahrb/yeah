@@ -1,8 +1,14 @@
 module Yeah
-class Web::Context
+module Web
+
+class Context
+  include Opal
+
   def initialize
-    @canvas = $document['game']
-    p @canvas
+    @canvas = Native::Object.new(`document.getElementsByTagName('canvas')[0]`)
+    @gl = @canvas.getContext('webgl')
   end
+end
+
 end
 end
