@@ -42,11 +42,12 @@ Web::Server = Rack::Builder.new do
 
     def initializer
       element = "<script>\n%s</script>"
-      initializer = <<-ruby
-        $document.ready do
-          #{game_class_name}.new(Yeah::Web::Context.new)
-        end
-      ruby
+      initializer_path = "#{PATH}/lib/yeah/web/initializer.rb"
+      initializer_template = File.read(initializer_path)
+      initializer_params = {
+        game_class_name: game_class_name
+      }
+      initializer = initializer_template % initializer_params
       compiled_initializer = Opal.compile(initializer)
 
       element % compiled_initializer
