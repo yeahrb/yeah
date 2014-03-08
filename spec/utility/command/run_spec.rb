@@ -2,7 +2,8 @@ describe Command, '::run' do
   let(:dir) { '/dev/null/' }
 
   it "loads a project" do
-    Project.should receive(:load).with(dir)
+    project_stub = Struct.new(:run)
+    Project.should receive(:load).with(dir).and_return(project_stub.new)
     described_class.run(dir)
   end
 
