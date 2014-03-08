@@ -43,7 +43,7 @@ Web::Server = Rack::Builder.new do
 
     def initializer
       element = "<script>\n%s</script>"
-      initializer_path = "#{PATH}/lib/yeah/web/initializer.rb"
+      initializer_path = "#{PATH}/lib/yeah/web/initializer.opal"
       initializer_template = File.read(initializer_path)
       initializer_params = {
         game_class_name: game_class_name
