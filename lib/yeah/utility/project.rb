@@ -77,8 +77,10 @@ class Project
     @dir = Pathname.new(dir)
   end
 
-  def run
-    @runner = Web::Runner.new
+  def build
+    Web::Builder.build
+
+    puts "Built project to /build."
   end
 
   def game_class_name

@@ -6,8 +6,8 @@ module Command
     Project.generate(project_name, dir)
   end
 
-  def run(dir = '.')
-    Project.load(dir).run
+  def build(dir = '.')
+    Project.load(dir).build
   end
 end
 end

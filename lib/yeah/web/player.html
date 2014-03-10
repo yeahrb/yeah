@@ -1,7 +1,7 @@
 <html>
 
 <head>
-  <title>%{game_name}</title>
+  <title>Yeah Game</title>
 
   <style>
     body {
@@ -10,17 +10,22 @@
     }
 
     canvas {
-      width: 100%%;
-      height: 100%%;
+      width: 100%;
+      height: 100%;
     }
   </style>
 
-  <script src="/assets/opal.js"></script>
-  <script src="/assets/native.js"></script>
-  <script src="/assets/yeah.js"></script>
-  <script src="/assets/yeah/web/context.js"></script>
-%{game_assets}
-%{initializer}
+  <script src="./opal.js"></script>
+  <script src="./opal_native.js"></script>
+  <script src="./yeah.js"></script>
+  <script src="./yeah_web_context.js"></script>
+  <script src="./project.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function(evt) {
+      var context = Opal.Yeah.Web.Context.$new();
+      Opal.YEAH_PROJECT_GAME.$new(context);
+    });
+  </script>
 </head>
 
 <body>
