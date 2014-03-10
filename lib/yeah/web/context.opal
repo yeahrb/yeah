@@ -10,9 +10,9 @@ class Context
   end
 
   def background(*color)
-    color = Color[color].rgb
+    rgb = Color[color].rgb
 
-    @gl.clearColor(*color, 1)
+    @gl.clearColor(*rgb, 1)
     @gl.clear(@gl.COLOR_BUFFER_BIT)
   end
 end
