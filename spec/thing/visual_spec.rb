@@ -1,4 +1,4 @@
-describe Entity do
+describe Thing do
   describe '#visual' do
     subject { described_class.new.visual }
 

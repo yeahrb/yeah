@@ -1,4 +1,4 @@
-describe Entity do
+describe Thing do
   let(:instance) { described_class.new }
 
   describe '#anchor' do

@@ -1,4 +1,4 @@
-describe Entity, '#bottom' do
+describe Thing, '#bottom' do
   it { subject.bottom.should eq 0 }
 
   context "with area" do

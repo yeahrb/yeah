@@ -1,4 +1,4 @@
-describe Entity, '#right' do
+describe Thing, '#right' do
   it { subject.right.should eq 0 }
 
   it "is x of right edge within area" do

@@ -1,4 +1,4 @@
-describe Entity, '#pressing?' do
+describe Thing, '#pressing?' do
   let(:instance) { described_class.new }
   subject { instance.method(:pressing?) }
 

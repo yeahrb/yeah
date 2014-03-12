@@ -1,4 +1,4 @@
-describe Entity do
+describe Thing do
   describe '#size' do
     let(:instance) { described_class.new }
     subject { instance.size }

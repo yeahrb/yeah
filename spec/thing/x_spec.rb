@@ -1,6 +1,6 @@
 require_relative 'shared/coordinate'
 
-describe Entity do
+describe Thing do
   let(:instance) { described_class.new }
   before { instance.position = random_vector }
 

@@ -15,15 +15,15 @@ class Area
   end
   attr_writer :background
 
-  # Active entities.
+  # Active things.
   #
   # @return [Array]
-  def entities
-    @entities ||= []
+  def things
+    @things ||= []
   end
-  def entities=(value)
-    @entities = value
-    @entities.each { |e| e.area = self }
+  def things=(value)
+    @things = value
+    @things.each { |e| e.area = self }
   end
 
   attr_reader :game
@@ -33,7 +33,7 @@ class Area
   end
 
   def update
-    entities.each(&:update)
+    things.each(&:update)
   end
 end
 end

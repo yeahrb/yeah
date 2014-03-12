@@ -44,7 +44,7 @@ class Builder
     def build_project
       project_code = ""
 
-      Dir['entities/*.rb'].each { |f| project_code << File.read(f) }
+      Dir['things/*.rb'].each { |f| project_code << File.read(f) }
       Dir['areas/*.rb'].each { |f| project_code << File.read(f) }
       project_code << File.read('game.rb')
 

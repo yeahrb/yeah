@@ -9,7 +9,7 @@ require 'yeah/vector'
 require 'yeah/v'
 require 'yeah/color'
 
-require 'yeah/entity'
+require 'yeah/thing'
 
 require 'yeah/area'
 

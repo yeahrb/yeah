@@ -1,17 +1,17 @@
 require_relative 'shared/coordinate'
 
-describe Entity do
+describe Thing do
   let(:instance) { described_class.new }
   before { instance.size = random_vector }
 
-  describe '#width' do
-    subject { instance.width }
+  describe '#depth' do
+    subject { instance.depth }
 
-    it { should eq instance.size[0] }
+    it { should eq instance.size[2] }
   end
 
-  describe '#width=' do
-    subject { instance.method(:width=) }
+  describe '#depth=' do
+    subject { instance.method(:depth=) }
 
     it_behaves_like 'writer', Random.rand(10)
   end

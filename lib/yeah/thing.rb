@@ -1,6 +1,7 @@
-# Acts and interacts with other Entities within an Area.
+# Acts and interacts with other Things within an Area.
 module Yeah
-class Entity
+
+class Thing
   def initialize(properties = V[])
     properties = { position: properties } unless properties.respond_to?(:to_h)
     properties = properties.to_h
@@ -19,7 +20,7 @@ class Entity
   end
   def area=(value)
     @area = value
-    @area.entities << self unless @area.entities.include? self
+    @area.things << self unless @area.things.include? self
   end
 
   def game
@@ -131,15 +132,15 @@ class Entity
     position + size * anchor
   end
 
-  # Is intersected with instance or type of entity?
+  # Is intersected with instance or type of thing?
   #
-  # @param [Entity|Entity class]
+  # @param [Thing|Thing class]
   # @return [Boolean]
   def touching?(other)
     return false if other == self
 
     if other.is_a?(Class)
-      return area.entities
+      return area.things
         .select { |e| e.is_a? other }
         .any? { |e| touching? e }
     end
@@ -153,7 +154,7 @@ class Entity
     !(not_touching_x && not_touching_y && not_touching_z)
   end
 
-  # Update entity.
+  # Update thing.
   def update; end
 
   protected
@@ -166,4 +167,5 @@ class Entity
     game.pressing? pressable
   end
 end
+
 end

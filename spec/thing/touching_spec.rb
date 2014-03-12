@@ -1,7 +1,7 @@
-describe Entity, '#touching?' do
+describe Thing, '#touching?' do
   let(:instance) { described_class.new }
 
-  describe "with Entity instance" do
+  describe "with Thing instance" do
     let(:instance2) { described_class.new }
 
     it { instance.touching?(instance2).should eq false }
@@ -51,35 +51,35 @@ describe Entity, '#touching?' do
     end
   end
 
-  describe "with Entity subclass" do
+  describe "with Thing subclass" do
     it "is true when edges touch any instance of given class" do
-      instance2 = Entity.new
+      instance2 = Thing.new
       instance2.area = instance.area = Area.new
       instance2.size = instance.size = V[5, 5]
-      instance.touching?(Entity).should eq true
+      instance.touching?(Thing).should eq true
     end
 
     it "is false without a area" do
-      instance2 = Entity.new
+      instance2 = Thing.new
       instance2.size = instance.size = V[5, 5]
-      instance.touching?(Entity).should eq false
+      instance.touching?(Thing).should eq false
     end
 
     it "is false when edges don't touch an instance of given class" do
-      instance2 = Entity.new
-      instance.touching?(Entity).should eq false
+      instance2 = Thing.new
+      instance.touching?(Thing).should eq false
 
       instance2.size = instance.size = V[5, 5]
       instance2.position = V[6, 6]
-      instance.touching?(Entity).should eq false
+      instance.touching?(Thing).should eq false
     end
 
     it "is false for instances of any class other than the given one" do
-      subentity_class = Class.new(Entity)
-      instance2 = subentity_class.new
+      subthing_class = Class.new(Thing)
+      instance2 = subthing_class.new
       instance2.area = instance.area = Area.new
       instance2.size = instance.size = V[5, 5]
-      instance2.touching?(subentity_class).should eq false
+      instance2.touching?(subthing_class).should eq false
     end
   end
 end

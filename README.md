@@ -16,8 +16,8 @@ Install Yeah with `gem install yeah`.
 
   * Context - interface to media and input layers for a platform.
   * Game - manages context and area.
-  * Area - manages entities in space.
-  * Entity - acts within an area.
-  * Visual - entity's graphical representation.
+  * Area - manages things in space.
+  * Thing - acts within an area.
+  * Visual - thing's graphical representation.
   * Vector - represents position, size, velocity...
   * Color - accepts hex, RGB, HSV, and Wikipedia names.

@@ -1,4 +1,4 @@
-describe Entity, '#game' do
+describe Thing, '#game' do
   let(:instance) { described_class.new }
   subject { instance.game }
 

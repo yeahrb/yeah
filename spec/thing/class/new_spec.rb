@@ -1,4 +1,4 @@
-describe Entity, '::new' do
+describe Thing, '::new' do
   it { described_class.new.should be_instance_of described_class }
 
   it "accepts position" do

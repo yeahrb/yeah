@@ -1,4 +1,4 @@
-describe Entity, '#center' do
+describe Thing, '#center' do
   it { subject.center.should eq V[] }
 
   context "with area" do

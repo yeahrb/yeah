@@ -1,22 +1,22 @@
 describe Area do
   let(:instance) { described_class.new }
 
-  describe '#entities' do
-    subject { instance.entities }
+  describe '#things' do
+    subject { instance.things }
 
     it { should eq [] }
   end
 
-  describe '#entities=' do
-    subject { instance.method(:entities=) }
+  describe '#things=' do
+    subject { instance.method(:things=) }
 
-    it_behaves_like 'writer', [Entity.new(Random.rand(10))]
+    it_behaves_like 'writer', [Thing.new(Random.rand(10))]
 
     it "assigns each item's #area as self" do
-      entities = [Entity.new, Entity.new]
-      instance.entities = entities
+      things = [Thing.new, Thing.new]
+      instance.things = things
 
-      entities.each { |e| e.area.should eq instance }
+      things.each { |e| e.area.should eq instance }
     end
   end
 end
