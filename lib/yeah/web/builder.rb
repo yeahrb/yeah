@@ -45,7 +45,7 @@ class Builder
       project_code = ""
 
       Dir['things/*.rb'].each { |f| project_code << File.read(f) }
-      Dir['areas/*.rb'].each { |f| project_code << File.read(f) }
+      Dir['levels/*.rb'].each { |f| project_code << File.read(f) }
       project_code << File.read('game.rb')
 
       wrapper_path = PATH.join('lib', 'yeah', 'web', 'wrapper.rb')

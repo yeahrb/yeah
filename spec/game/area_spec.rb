@@ -1,29 +1,29 @@
 describe Game do
   let(:instance) { described_class.new }
 
-  describe '#area' do
-    subject { instance.area }
+  describe '#level' do
+    subject { instance.level }
 
-    it { should be_instance_of Area }
+    it { should be_instance_of Level }
   end
 
-  describe '#area=' do
-    subject { instance.method(:area=) }
+  describe '#level=' do
+    subject { instance.method(:level=) }
 
-    it_behaves_like 'writer', Area.new
+    it_behaves_like 'writer', Level.new
 
-    it "sets area's game as self" do
-      instance.area = Area.new
-      instance.area.game.should eq instance
+    it "sets level's game as self" do
+      instance.level = Level.new
+      instance.level.game.should eq instance
 
-      instance.area = instance.area
+      instance.level = instance.level
     end
 
-    it "does not set area's game as self twice" do
-      instance.area = Area.new
-      instance.area.should_not receive(:game=)
+    it "does not set level's game as self twice" do
+      instance.level = Level.new
+      instance.level.should_not receive(:game=)
 
-      instance.area = instance.area
+      instance.level = instance.level
     end
   end
 end

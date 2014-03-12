@@ -1,14 +1,14 @@
 describe Thing, '#center' do
   it { subject.center.should eq V[] }
 
-  context "with area" do
+  context "with level" do
     before do
-      subject.area = Area.new
+      subject.level = Level.new
       subject.position = V[10, 10, 10]
       subject.size = V[4, 2, 8]
     end
 
-    it "is position of center within area based on anchor" do
+    it "is position of center within level based on anchor" do
       subject.anchor = V[0, 0, 0]
       subject.center.should eq V[10, 10, 10]
 

@@ -54,12 +54,12 @@ describe Thing, '#touching?' do
   describe "with Thing subclass" do
     it "is true when edges touch any instance of given class" do
       instance2 = Thing.new
-      instance2.area = instance.area = Area.new
+      instance2.level = instance.level = Level.new
       instance2.size = instance.size = V[5, 5]
       instance.touching?(Thing).should eq true
     end
 
-    it "is false without a area" do
+    it "is false without a level" do
       instance2 = Thing.new
       instance2.size = instance.size = V[5, 5]
       instance.touching?(Thing).should eq false
@@ -77,7 +77,7 @@ describe Thing, '#touching?' do
     it "is false for instances of any class other than the given one" do
       subthing_class = Class.new(Thing)
       instance2 = subthing_class.new
-      instance2.area = instance.area = Area.new
+      instance2.level = instance.level = Level.new
       instance2.size = instance.size = V[5, 5]
       instance2.touching?(subthing_class).should eq false
     end

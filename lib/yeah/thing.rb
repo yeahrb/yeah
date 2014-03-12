@@ -1,4 +1,4 @@
-# Acts and interacts with other Things within an Area.
+# Acts and interacts with other Things within a Level.
 module Yeah
 
 class Thing
@@ -12,22 +12,22 @@ class Thing
     end
   end
 
-  # The area this is in.
+  # The level this is in.
   #
-  # @return [Area]
-  def area
-    @area ||= Area.new
+  # @return [Level]
+  def level
+    @level ||= Level.new
   end
-  def area=(value)
-    @area = value
-    @area.things << self unless @area.things.include? self
+  def level=(value)
+    @level = value
+    @level.things << self unless @level.things.include? self
   end
 
   def game
-    area.game
+    level.game
   end
 
-  # Position within the area.
+  # Position within the level.
   #
   # @return [Vector]
   def position
@@ -140,7 +140,7 @@ class Thing
     return false if other == self
 
     if other.is_a?(Class)
-      return area.things
+      return level.things
         .select { |e| e.is_a? other }
         .any? { |e| touching? e }
     end

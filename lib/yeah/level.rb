@@ -1,5 +1,6 @@
 module Yeah
-class Area
+
+class Level
   def initialize(properties = {})
     properties.each do |key, val|
       writer = "#{key}="
@@ -23,17 +24,18 @@ class Area
   end
   def things=(value)
     @things = value
-    @things.each { |e| e.area = self }
+    @things.each { |e| e.level = self }
   end
 
   attr_reader :game
   def game=(value)
     @game = value
-    @game.area = self unless @game.area == self
+    @game.level = self unless @game.level == self
   end
 
   def update
     things.each(&:update)
   end
 end
+
 end

@@ -1,4 +1,4 @@
-# Manages areas and context.
+# Manages levels and context.
 module Yeah
 
 class Game
@@ -9,12 +9,12 @@ class Game
   # @return [Context]
   attr_reader :context
 
-  def area
-    @area ||= Area.new
+  def level
+    @level ||= Level.new
   end
-  def area=(value)
-    @area = value
-    @area.game = self if area.game != self
+  def level=(value)
+    @level = value
+    @level.game = self if level.game != self
   end
 
   # Start the game.
@@ -35,11 +35,11 @@ class Game
   protected
 
   def update
-    area.update
+    level.update
   end
 
   def render
-    context.render(area)
+    context.render(level)
   end
 end
 

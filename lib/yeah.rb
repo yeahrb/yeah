@@ -11,6 +11,6 @@ require 'yeah/color'
 
 require 'yeah/thing'
 
-require 'yeah/area'
+require 'yeah/level'
 
 require 'yeah/game'

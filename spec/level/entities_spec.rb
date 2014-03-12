@@ -1,4 +1,4 @@
-describe Area do
+describe Level do
   let(:instance) { described_class.new }
 
   describe '#things' do
@@ -12,11 +12,11 @@ describe Area do
 
     it_behaves_like 'writer', [Thing.new(Random.rand(10))]
 
-    it "assigns each item's #area as self" do
+    it "assigns each item's #level as self" do
       things = [Thing.new, Thing.new]
       instance.things = things
 
-      things.each { |e| e.area.should eq instance }
+      things.each { |e| e.level.should eq instance }
     end
   end
 end

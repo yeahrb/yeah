@@ -1,4 +1,4 @@
-describe Area do
+describe Level do
   describe '#background' do
     subject { described_class.new.background }
 
