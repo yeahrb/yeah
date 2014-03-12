@@ -44,10 +44,11 @@ class Builder
     def build_project
       project_code = ""
 
+      # Combine all project code.
       Dir['things/*.rb'].each { |f| project_code << File.read(f) }
-      Dir['levels/*.rb'].each { |f| project_code << File.read(f) }
       project_code << File.read('game.rb')
 
+      # Put it in a wrapper that makes it web-playable.
       wrapper_path = PATH.join('lib', 'yeah', 'web', 'wrapper.rb')
       wrapper = File.read(wrapper_path)
       wrapper_params = {
@@ -56,10 +57,11 @@ class Builder
       }
       project_code = wrapper % wrapper_params
 
+      # Compile it into JavaScript.
       compiled_code = Opal.compile(project_code)
-      compiled_code_path = @build_path.join('project.js')
 
-      File.write(compiled_code_path, compiled_code)
+      # Save the result.
+      File.write(@build_path.join('project.js'), compiled_code)
     end
 
     def make_player
