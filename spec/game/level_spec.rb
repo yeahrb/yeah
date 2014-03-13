@@ -10,7 +10,7 @@ describe Game do
   describe '#level=' do
     subject { instance.method(:level=) }
 
-    it_behaves_like 'writer', Level.new
+    it_behaves_like :writer, Level.new
 
     it "sets level's game as self" do
       instance.level = Level.new

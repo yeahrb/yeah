@@ -10,7 +10,7 @@ describe Level do
   describe '#things=' do
     subject { instance.method(:things=) }
 
-    it_behaves_like 'writer', [Thing.new(Random.rand(10))]
+    it_behaves_like :writer, [Thing.new(Random.rand(10))]
 
     it "assigns each item's #level as self" do
       things = [Thing.new, Thing.new]

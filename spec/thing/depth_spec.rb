@@ -13,6 +13,6 @@ describe Thing do
   describe '#depth=' do
     subject { instance.method(:depth=) }
 
-    it_behaves_like 'writer', Random.rand(10)
+    it_behaves_like :writer, Random.rand(10)
   end
 end

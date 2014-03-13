@@ -22,7 +22,7 @@ describe Thing do
   describe 'size=' do
     subject { described_class.new.method(:size=) }
 
-    it_behaves_like 'writer', random_vector
+    it_behaves_like :writer, random_vector
     it_behaves_like :coerces_to_vector, random_vector.to_a
   end
 end

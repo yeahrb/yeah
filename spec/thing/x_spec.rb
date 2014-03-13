@@ -13,6 +13,6 @@ describe Thing do
   describe '#x=' do
     subject { instance.method(:x=) }
 
-    it_behaves_like 'writer', Random.rand(10)
+    it_behaves_like :writer, Random.rand(10)
   end
 end

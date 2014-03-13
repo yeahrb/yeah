@@ -9,7 +9,7 @@ describe Thing do
     let(:instance) { described_class.new }
     subject { instance.method(:level=) }
 
-    it_behaves_like 'writer', Level.new
+    it_behaves_like :writer, Level.new
 
     it "pushes self to value's #things" do
       instance.level = Level.new

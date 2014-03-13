@@ -13,6 +13,6 @@ describe Thing do
   describe '#height=' do
     subject { instance.method(:height=) }
 
-    it_behaves_like 'writer', Random.rand(10)
+    it_behaves_like :writer, Random.rand(10)
   end
 end

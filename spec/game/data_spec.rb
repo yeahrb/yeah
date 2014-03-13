@@ -10,6 +10,6 @@ describe Game do
   describe '#data=' do
     subject { instance.method(:data=) }
 
-    it_behaves_like 'writer', { stuff: "lorem ipsum" }
+    it_behaves_like :writer, { stuff: "lorem ipsum" }
   end
 end

@@ -10,6 +10,6 @@ describe Color do
   describe '#red=' do
     subject { instance.method(:red=) }
 
-    it_behaves_like 'writer', 0.5
+    it_behaves_like :writer, 0.5
   end
 end
