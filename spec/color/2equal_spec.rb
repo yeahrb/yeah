@@ -16,8 +16,19 @@ describe Color, '#==' do
 
   it "is true for any class of matching value" do
     matching_struct = Struct.new(:rgb).new(value)
-    expect { matching_struct == described_class[*value] }.to be_true
+    expect( described_class[*value] == matching_struct ).to be_true
   end
 
-  it { (described_class[] == nil).should be_false }
+  it "is false for any class of non-matching value" do
+    unmatching_struct = Struct.new(:rgb).new(value.reverse)
+    expect( described_class[*value] == unmatching_struct ).to be_false
+  end
+
+  it "is true for matching RGB array" do
+    expect { described_class[value] == value }.to be_true
+  end
+
+  it { expect(described_class[value] == nil).to eq false }
+
+  it { expect(described_class[value] == 5).to eq false }
 end
