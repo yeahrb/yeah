@@ -2,7 +2,7 @@ require 'yeah'
 require 'yeah/utility'
 include Yeah
 
-shared_examples 'writer' do |value|
+shared_examples :writer do |value|
   it "assigns its reader" do
     writer = subject
     reader_name = writer.name[0..-2].to_sym
