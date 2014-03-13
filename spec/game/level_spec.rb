@@ -25,5 +25,19 @@ describe Game do
 
       instance.level = instance.level
     end
+
+    it "accepts level data key" do
+      background = [0.5, 0.25, 0.125]
+      instance.data = {
+        levels: {
+          some_level: {
+            background: background
+          }
+        }
+      }
+      instance.level = :some_level
+
+      instance.level.background.should eq background
+    end
   end
 end

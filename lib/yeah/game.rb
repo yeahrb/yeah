@@ -16,6 +16,11 @@ class Game
     @level ||= Level.new
   end
   def level=(value)
+    if value.respond_to?(:to_sym)
+      level_data = data[:levels][value]
+      value = Level.new(level_data)
+    end
+
     @level = value
     @level.game = self if level.game != self
   end
