@@ -2,6 +2,7 @@
 
 require 'pathname'
 require 'fileutils'
+require 'json'
 require 'yeah/utility'
 require 'opal'
 require 'opal/sprockets'
@@ -45,14 +46,26 @@ class Builder
       project_code = ""
 
       # Combine all project code.
-      Dir['things/*.rb'].each { |f| project_code << File.read(f) }
+      Dir['things/*.rb'].each { |p| project_code << File.read(p) }
       project_code << File.read('game.rb')
 
-      # Put it in a wrapper that makes it web-playable.
+      # Parse project data.
+      project_data = {}
+      project_data[:levels] = {}
+      Dir['data/levels/*.json'].each do |path|
+        json = File.read(path)
+        key = Pathname(path).basename('.*').to_s.to_sym
+        data = JSON.parse(json, symbolize_names: true)
+
+        project_data[:levels][key] = data
+      end
+
+      # Put it all in a wrapper that makes it web-playable.
       wrapper_path = PATH.join('lib', 'yeah', 'web', 'wrapper.rb')
       wrapper = File.read(wrapper_path)
       wrapper_params = {
         project_code: project_code,
+        project_data: project_data.to_s,
         project_game: game_class_name
       }
       project_code = wrapper % wrapper_params
