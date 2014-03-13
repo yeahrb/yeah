@@ -2,12 +2,18 @@
 module Yeah
 
 class Game
-  def initialize(context = NullContext.new)
+  def initialize(context = NullContext.new, data = {})
     @context = context
+    @data = data
   end
 
   # @return [Context]
   attr_reader :context
+
+  def data
+    @data ||= {}
+  end
+  attr_writer :data
 
   def level
     @level ||= Level.new

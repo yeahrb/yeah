@@ -9,4 +9,12 @@ describe Game, '::new' do
 
     instance.context.should eq whatever_context
   end
+
+  it "accepts data" do
+    context = NullContext.new
+    data = { they_call_me: "Jack" }
+    instance = described_class.new(context, data)
+
+    instance.data.should eq data
+  end
 end
