@@ -2,9 +2,16 @@
 module Yeah
 
 class Game
+  def self.level(value)
+    @level = value
+  end
+
   def initialize(context = NullContext.new, data = {})
     @context = context
     @data = data
+
+    class_level = self.class.instance_variable_get(:@level)
+    self.level = class_level || Level.new
   end
 
   # @return [Context]
@@ -12,9 +19,7 @@ class Game
 
   attr_accessor :data
 
-  def level
-    @level ||= Level.new
-  end
+  attr_reader :level
   def level=(value)
     if value.respond_to?(:to_sym)
       level_data = data[:levels][value]
