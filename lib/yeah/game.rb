@@ -41,7 +41,6 @@ class Game
 
   # Stop the game.
   def stop
-    @context = nil
     @stopped = true
   end
 
