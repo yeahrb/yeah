@@ -10,10 +10,7 @@ class Game
   # @return [Context]
   attr_reader :context
 
-  def data
-    @data ||= {}
-  end
-  attr_writer :data
+  attr_accessor :data
 
   def level
     @level ||= Level.new
