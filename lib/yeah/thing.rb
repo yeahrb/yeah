@@ -136,22 +136,22 @@ class Thing
   #
   # @param [Thing|Thing class]
   # @return [Boolean]
-  def touching?(other)
+  def colliding?(other)
     return false if other == self
 
     if other.is_a?(Class)
       return level.things
         .select { |e| e.is_a? other }
-        .any? { |e| touching? e }
+        .any? { |e| colliding? e }
     end
 
     return false if size == V[] || other.size == V[]
 
-    not_touching_x = left > other.right || right < other.left
-    not_touching_y = bottom > other.top || top < other.bottom
-    not_touching_z = back > other.front || front < other.back
+    not_colliding_x = left > other.right || right < other.left
+    not_colliding_y = bottom > other.top || top < other.bottom
+    not_colliding_z = back > other.front || front < other.back
 
-    !(not_touching_x && not_touching_y && not_touching_z)
+    !(not_colliding_x && not_colliding_y && not_colliding_z)
   end
 
   # Update thing.
