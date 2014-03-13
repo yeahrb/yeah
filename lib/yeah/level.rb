@@ -14,7 +14,9 @@ class Level
   def background
     @background ||= Color[]
   end
-  attr_writer :background
+  def background=(value)
+    @background = Color[value]
+  end
 
   # Active things.
   #
