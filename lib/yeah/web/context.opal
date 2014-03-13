@@ -9,8 +9,16 @@ class Context
     @gl = @canvas.getContext('webgl')
   end
 
+  def each_tick(&block)
+    yield
+  end
+
+  def render(level)
+    background(level.background)
+  end
+
   def background(*color)
-    rgb = Color[color].rgb
+    rgb = Color[*color].rgb
 
     @gl.clearColor(*rgb, 1)
     @gl.clear(@gl.COLOR_BUFFER_BIT)
