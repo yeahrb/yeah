@@ -37,6 +37,8 @@ class Color
     self.red, self.green, self.blue = value
   end
 
+  alias_method :to_a, :rgb
+
   def ==(other)
     other.respond_to?(:rgb) && self.rgb == other.rgb
   end

@@ -1,19 +1,10 @@
+require_relative 'shared/rgb'
+
 describe Color do
   let(:instance) { described_class.new }
 
   describe '#rgb' do
-    it "matches corresponding color methods" do
-      methods = %i[red green blue]
-
-      methods.each do |method|
-        writer = "#{method}="
-        instance.send(writer, Random.rand(10))
-      end
-
-      rgb = methods.map { |m| instance.send(m) }
-
-      expect(instance.rgb).to eq rgb
-    end
+    it_behaves_like :color_rgb, :rgb
   end
 
   describe '#rgb=' do
