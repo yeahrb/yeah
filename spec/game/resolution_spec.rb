@@ -11,5 +11,6 @@ describe Game do
     subject { instance.method(:resolution=) }
 
     it_behaves_like :writer, V[256, 240]
+    it_behaves_like :coerces_to_vector, [100, 100]
   end
 end

@@ -17,7 +17,9 @@ class Game
   def resolution
     @resolution ||= V[1280, 720]
   end
-  attr_writer :resolution
+  def resolution=(value)
+    @resolution = V[value]
+  end
 
   # @return [Context]
   attr_reader :context
