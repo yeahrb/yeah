@@ -9,6 +9,16 @@ class Context
     @gl = @canvas.getContext('webgl')
   end
 
+  def resolution
+    V[@canvas.width, @canvas.height]
+  end
+  def resolution=(value)
+    value = V[value]
+
+    @canvas.width = value[0]
+    @canvas.height = value[1]
+  end
+
   def each_tick(&block)
     yield
   end
