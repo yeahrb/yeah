@@ -14,6 +14,11 @@ class Game
     self.level = class_level || Level.new
   end
 
+  def resolution
+    @resolution ||= V[1280, 720]
+  end
+  attr_writer :resolution
+
   # @return [Context]
   attr_reader :context
 
