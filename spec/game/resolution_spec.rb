@@ -10,8 +10,13 @@ describe Game do
   end
 
   describe '#resolution=' do
-    it "sets context's resolution" do
+    it "sets Vector as context's resolution" do
       instance.resolution = V[100, 100]
+      expect(mock_context.resolution).to eq V[100, 100]
+    end
+
+    it "sets splatted array as context's resolution" do
+      instance.resolution = 100, 100
       expect(mock_context.resolution).to eq V[100, 100]
     end
   end

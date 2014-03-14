@@ -20,6 +20,7 @@ class Vector
   # @return [Array<(Numeric x3)>]
   attr_reader :components
   def components=(value)
+    value = value.flatten if value.respond_to?(:flatten)
     value = value.first if value.respond_to?(:size) && value.size == 1
     value = value.to_a if value.respond_to?(:to_a)
     value = [value].flatten

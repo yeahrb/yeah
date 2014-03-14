@@ -2,6 +2,10 @@
 module Yeah
 
 class Game
+  def self.resolution(*value)
+    @resolution = value
+  end
+
   def self.level(value)
     @level = value
   end
@@ -9,6 +13,9 @@ class Game
   def initialize(context = NullContext.new, data = {})
     @context = context
     @data = data
+
+    class_resolution = self.class.instance_variable_get(:@resolution)
+    self.resolution = class_resolution if class_resolution
 
     class_level = self.class.instance_variable_get(:@level)
     self.level = class_level || Level.new
@@ -20,8 +27,8 @@ class Game
   def resolution
     @context.resolution
   end
-  def resolution=(value)
-    @context.resolution = value
+  def resolution=(*value)
+    @context.resolution = V[*value]
   end
 
   attr_accessor :data

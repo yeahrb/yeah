@@ -8,4 +8,5 @@ shared_examples_for :vector_class_new do |method_name|
   it { subject.call(7).components.should eq [7, 0, 0] }
   it { subject.call([9, 5]).components.should eq [9, 5, 0] }
   it { subject.call(V[2, 3, 4]).components.should eq [2, 3, 4] }
+  it { subject.call([V[4, 3, 2]]).components.should eq [4, 3, 2] }
 end
