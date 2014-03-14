@@ -1,16 +1,18 @@
 describe Game do
-  let(:instance) { described_class.new }
+  let(:resolution) { V[256, 240] }
+  let(:mock_context) { Struct.new(:resolution).new(resolution) }
+  let(:instance) { described_class.new(mock_context) }
 
   describe '#resolution' do
-    subject { instance.resolution }
-
-    it { should eq V[1280, 720] }
+    it "is context's resolution" do
+      expect(instance.resolution).to eq resolution
+    end
   end
 
   describe '#resolution=' do
-    subject { instance.method(:resolution=) }
-
-    it_behaves_like :writer, V[256, 240]
-    it_behaves_like :coerces_to_vector, [100, 100]
+    it "sets context's resolution" do
+      instance.resolution = V[100, 100]
+      expect(mock_context.resolution).to eq V[100, 100]
+    end
   end
 end

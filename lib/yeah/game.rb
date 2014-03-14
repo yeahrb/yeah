@@ -14,15 +14,15 @@ class Game
     self.level = class_level || Level.new
   end
 
-  def resolution
-    @resolution ||= V[1280, 720]
-  end
-  def resolution=(value)
-    @resolution = V[value]
-  end
-
   # @return [Context]
   attr_reader :context
+
+  def resolution
+    @context.resolution
+  end
+  def resolution=(value)
+    @context.resolution = value
+  end
 
   attr_accessor :data
 
