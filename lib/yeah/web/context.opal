@@ -5,27 +5,18 @@ class Context
   include Opal
 
   VERTEX_SHADER = <<-glsl
-    attribute vec3 a_vertex_position;
-    attribute vec4 a_vertex_color;
-
-    uniform mat4 u_mv_matrix;
-    uniform mat4 u_p_matrix;
-
-    varying vec4 v_color;
+    attribute vec2 a_position;
 
     void main(void) {
-      gl_Position = u_p_matrix * u_mv_matrix * vec4(a_vertex_position, 1.0);
-      v_color = a_vertex_color;
+      gl_Position = vec4(a_position, 0, 1);
     }
   glsl
 
   FRAGMENT_SHADER = <<-glsl
     precision mediump float;
 
-    varying vec4 v_color;
-
     void main(void) {
-      gl_FragColor = v_color;
+      gl_FragColor = vec4(0.2, 0.8, 0.2, 1.0);
     }
   glsl
 
@@ -34,12 +25,6 @@ class Context
     @gl = @canvas.getContext('webgl')
 
     setup_shaders
-
-    @gl.enable(@gl.DEPTH_TEST)
-
-    @mat4 = Native::Object.new(`mat4`)
-    @mv_matrix = @mat4.create
-    @p_matrix = @mat4.create
   end
 
   def resolution
@@ -65,38 +50,17 @@ class Context
   end
 
   def test
-    @mat4.perspective(45, @canvas.width / @canvas.height, 0.1, 100, @p_matrix)
-
-    @mat4.identity(@mv_matrix)
-
-    square_vertex_pos_buffer = @gl.createBuffer
-    @gl.bindBuffer(@gl.ARRAY_BUFFER, square_vertex_pos_buffer)
-    square_vertices = [
-       1,  1, 0,
-      -1,  1, 0,
-       1, -1, 0,
-      -1, -1, 0
+    pos_buffer = @gl.createBuffer
+    @gl.bindBuffer(@gl.ARRAY_BUFFER, pos_buffer)
+    vertices = [
+       1,  1,
+      -1,  1,
+       1, -1,
+      -1, -1
     ]
-    gl_square_vertices = Native::Object.new(`new Float32Array(#{square_vertices})`)
-    @gl.bufferData(@gl.ARRAY_BUFFER, gl_square_vertices, @gl.STATIC_DRAW)
-
-    square_vertex_col_buffer = @gl.createBuffer
-    @gl.bindBuffer(@gl.ARRAY_BUFFER, square_vertex_col_buffer)
-    square_colors = [1, 0.3, 0.3, 1] * 4
-    gl_square_colors = Native::Object.new(`new Float32Array(#{square_colors})`)
-    @gl.bufferData(@gl.ARRAY_BUFFER, gl_square_colors, @gl.STATIC_DRAW)
-
-    @mat4.translate(@mv_matrix, @mv_matrix, [-1, -1, 0])
-
-    @gl.bindBuffer(@gl.ARRAY_BUFFER, square_vertex_pos_buffer)
-    @gl.vertexAttribPointer(@vertex_pos_attr, 3, @gl.FLOAT, false, 0, 0)
-
-    @gl.bindBuffer(@gl.ARRAY_BUFFER, square_vertex_col_buffer)
-    @gl.vertexAttribPointer(@vertex_col_attr, 4, @gl.FLOAT, false, 0, 0)
-
-    @gl.uniformMatrix4fv(@p_matrix_unif, false, @p_matrix)
-    @gl.uniformMatrix4fv(@mv_matrix_unif, false, @mv_matrix)
-
+    gl_vertices = Native::Object.new(`new Float32Array(#{vertices})`)
+    @gl.bufferData(@gl.ARRAY_BUFFER, gl_vertices, @gl.STATIC_DRAW)
+    @gl.vertexAttribPointer(@pos_attr, 2, @gl.FLOAT, false, 0, 0)
     @gl.drawArrays(@gl.TRIANGLE_STRIP, 0, 4)
   end
 
@@ -123,16 +87,17 @@ class Context
     @gl.attachShader(@shader_program, fragment_shader)
 
     @gl.linkProgram(@shader_program)
+    linked = @gl.getProgramParameter(@shader_program, @gl.LINK_STATUS)
+    if !linked
+      error = @gl.getProgramInfoLog(@shader_program)
+      puts "GL program link error: #{error}"
+      return
+    end
+
     @gl.useProgram(@shader_program)
 
-    @vertex_pos_attr = @gl.getAttribLocation(@shader_program, 'a_vertex_position')
-    @gl.enableVertexAttribArray(@vertex_pos_attr)
-
-    @vertex_col_attr = @gl.getAttribLocation(@shader_program, 'a_vertex_color')
-    @gl.enableVertexAttribArray(@vertex_col_attr)
-
-    @p_matrix_unif = @gl.getUniformLocation(@shader_program, 'u_p_matrix')
-    @mv_matrix_unif = @gl.getUniformLocation(@shader_program, 'u_mv_matrix')
+    @pos_attr = @gl.getAttribLocation(@shader_program, 'a_position')
+    @gl.enableVertexAttribArray(@pos_attr)
   end
 end
 
