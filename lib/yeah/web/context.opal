@@ -19,8 +19,10 @@ class Context
   FRAGMENT_SHADER = <<-glsl
     precision mediump float;
 
+    uniform vec3 u_color;
+
     void main(void) {
-      gl_FragColor = vec4(0.2, 0.8, 0.2, 1.0);
+      gl_FragColor = vec4(u_color, 1.0);
     }
   glsl
 
@@ -55,7 +57,7 @@ class Context
     background(level.background)
 
     level.things.each do |thing|
-      rectangle(thing.position, thing.size)
+      rectangle(thing.position, thing.visual.size, thing.visual.color)
     end
   end
 
@@ -66,7 +68,7 @@ class Context
     @gl.clear(@gl.COLOR_BUFFER_BIT)
   end
 
-  def rectangle(position, size)
+  def rectangle(position, size, color)
     res = @gl.getUniformLocation(@shader_program, 'u_resolution')
     @gl.uniform2f(res, resolution[0], resolution[1])
 
@@ -87,7 +89,10 @@ class Context
     @gl.bindBuffer(@gl.ARRAY_BUFFER, pos_buffer)
     gl_vertices = Native::Object.new(`new Float32Array(#{vertices})`)
     @gl.bufferData(@gl.ARRAY_BUFFER, gl_vertices, @gl.STATIC_DRAW)
-    @gl.vertexAttribPointer(@pos_attr, 2, @gl.FLOAT, false, 0, 0)
+    @gl.vertexAttribPointer(@pos_loc, 2, @gl.FLOAT, false, 0, 0)
+
+    @gl.uniform3f(@col_loc, *color.rgb)
+
     @gl.drawArrays(@gl.TRIANGLE_STRIP, 0, 4)
   end
 
@@ -116,8 +121,10 @@ class Context
 
     @gl.useProgram(@shader_program)
 
-    @pos_attr = @gl.getAttribLocation(@shader_program, 'a_position')
-    @gl.enableVertexAttribArray(@pos_attr)
+    @pos_loc = @gl.getAttribLocation(@shader_program, 'a_position')
+    @gl.enableVertexAttribArray(@pos_loc)
+
+    @col_loc = @gl.getUniformLocation(@shader_program, 'u_color')
   end
 end
 
