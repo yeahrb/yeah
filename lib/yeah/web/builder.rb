@@ -12,7 +12,7 @@ module Web
 
 class Builder
   class << self
-    def build(path = './build/web/')
+    def build(path = './builds/web/')
       @build_path = Pathname.new(path)
 
       make_build_path

@@ -80,7 +80,7 @@ class Project
   def build
     Web::Builder.build
 
-    puts "Built project to /build."
+    puts "Built project to /builds/web/."
   end
 
   def game_class_name
