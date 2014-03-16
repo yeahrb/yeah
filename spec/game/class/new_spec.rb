@@ -1,6 +1,6 @@
 describe Game, '::new' do
   it "accepts context" do
-    whatever_context = Object.new
+    whatever_context = NullContext.new
     instance = described_class.new(whatever_context)
 
     instance.context.should eq whatever_context

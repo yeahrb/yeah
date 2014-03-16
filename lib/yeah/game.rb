@@ -15,7 +15,7 @@ class Game
     @data = data
 
     class_resolution = self.class.instance_variable_get(:@resolution)
-    self.resolution = class_resolution if class_resolution
+    self.resolution = class_resolution || V[1280, 720]
 
     class_level = self.class.instance_variable_get(:@level)
     self.level = class_level || Level.new

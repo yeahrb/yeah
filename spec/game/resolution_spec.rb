@@ -1,11 +1,14 @@
 describe Game do
-  let(:resolution) { V[256, 240] }
-  let(:mock_context) { Struct.new(:resolution).new(resolution) }
+  let(:mock_context) { Struct.new(:resolution).new(V[256, 240]) }
   let(:instance) { described_class.new(mock_context) }
 
   describe '#resolution' do
     it "is context's resolution" do
-      expect(instance.resolution).to eq resolution
+      expect(instance.resolution).to eq mock_context.resolution
+    end
+
+    it "defaults to 720p" do
+      expect(instance.resolution).to eq V[1280, 720]
     end
   end
 
