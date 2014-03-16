@@ -59,6 +59,13 @@ class Context
     end
   end
 
+  def background(*color)
+    rgb = Color[*color].rgb
+
+    @gl.clearColor(*rgb, 1)
+    @gl.clear(@gl.COLOR_BUFFER_BIT)
+  end
+
   def rectangle(position, size)
     res = @gl.getUniformLocation(@shader_program, 'u_resolution')
     @gl.uniform2f(res, resolution[0], resolution[1])
@@ -82,13 +89,6 @@ class Context
     @gl.bufferData(@gl.ARRAY_BUFFER, gl_vertices, @gl.STATIC_DRAW)
     @gl.vertexAttribPointer(@pos_attr, 2, @gl.FLOAT, false, 0, 0)
     @gl.drawArrays(@gl.TRIANGLE_STRIP, 0, 4)
-  end
-
-  def background(*color)
-    rgb = Color[*color].rgb
-
-    @gl.clearColor(*rgb, 1)
-    @gl.clear(@gl.COLOR_BUFFER_BIT)
   end
 
   private
