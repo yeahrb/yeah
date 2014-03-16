@@ -7,8 +7,12 @@ class Context
   VERTEX_SHADER = <<-glsl
     attribute vec2 a_position;
 
+    uniform vec2 u_resolution;
+
     void main(void) {
-      gl_Position = vec4(a_position, 0, 1);
+      vec2 clipspace = a_position / u_resolution * 2.0 - 1.0;
+
+      gl_Position = vec4(clipspace, 0, 1);
     }
   glsl
 
@@ -50,13 +54,22 @@ class Context
   end
 
   def test
+    res = @gl.getUniformLocation(@shader_program, 'u_resolution')
+    @gl.uniform2f(res, resolution[0], resolution[1])
+
     pos_buffer = @gl.createBuffer
     @gl.bindBuffer(@gl.ARRAY_BUFFER, pos_buffer)
+    rect = {
+      top: 100,
+      bottom: 50,
+      left: 150,
+      right: 200
+    }
     vertices = [
-       1,  1,
-      -1,  1,
-       1, -1,
-      -1, -1
+      rect[:left], rect[:bottom],
+      rect[:left], rect[:top],
+      rect[:right], rect[:bottom],
+      rect[:right], rect[:top]
     ]
     gl_vertices = Native::Object.new(`new Float32Array(#{vertices})`)
     @gl.bufferData(@gl.ARRAY_BUFFER, gl_vertices, @gl.STATIC_DRAW)
