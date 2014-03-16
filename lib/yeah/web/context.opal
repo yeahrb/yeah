@@ -25,6 +25,7 @@ class Context
   glsl
 
   def initialize
+    @window = Native::Object.new(`window`)
     @canvas = Native::Object.new(`document.getElementsByTagName('canvas')[0]`)
     @gl = @canvas.getContext('webgl')
 
@@ -42,7 +43,10 @@ class Context
   end
 
   def each_tick(&block)
-    yield
+    @window.requestAnimationFrame do
+      yield
+      each_tick(&block)
+    end
   end
 
   def render(level)
