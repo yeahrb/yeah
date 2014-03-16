@@ -2,6 +2,11 @@ Yeah
 ====
 Practical Ruby video game framework in pre-alpha stage.
 
+* Developer happiness!
+* Convention over configuration!
+* Platform agnostic!
+* Open source!
+
 Installation
 ------------
 Install Yeah with `gem install yeah`.
@@ -9,15 +14,13 @@ Install Yeah with `gem install yeah`.
 ### Command-line utilities
 
   * `yeah new <project name>` generates the files and folders for a project.
-  * `yeah run` runs a game project.
   * `yeah build` builds ready-to-go packages for every platform available.
 
-### Types
+### Core types
 
-  * Context - interface to media and input layers for a platform.
-  * Game - manages context and level.
+  * Game - manages context and active level.
   * Level - manages things in space.
   * Thing - acts within a level.
-  * Visual - thing's graphical representation.
+  * Visual - graphical representation for a thing.
   * Vector - represents position, size, velocity...
-  * Color - accepts hex, RGB, HSV, and Wikipedia names.
+  * Color - represents a turtle.
