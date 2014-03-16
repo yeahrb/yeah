@@ -54,20 +54,20 @@ class Context
 
     background(level.background)
 
-    test
+    level.things.each do |thing|
+      rectangle(thing.position, thing.size)
+    end
   end
 
-  def test
+  def rectangle(position, size)
     res = @gl.getUniformLocation(@shader_program, 'u_resolution')
     @gl.uniform2f(res, resolution[0], resolution[1])
 
-    @position ||= V[]
-    @position += V[1, 1]
     rect = {
-      bottom: @position[0],
-      left: @position[1],
-      width: 100,
-      height: 100
+      bottom: position[0],
+      left: position[1],
+      width: size[0],
+      height: size[1]
     }
     vertices = [
       rect[:left], rect[:bottom],
