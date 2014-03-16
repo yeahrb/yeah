@@ -17,7 +17,6 @@ class Builder
 
       make_build_path
       build_dependencies
-      copy_js_dependencies
       build_project
       copy_player
     end
@@ -41,14 +40,6 @@ class Builder
       File.write(@build_path.join('opal_native.js'), opal_native)
       File.write(@build_path.join('yeah.js'), yeah)
       File.write(@build_path.join('yeah_web_context.js'), yeah_web_context)
-    end
-
-    def copy_js_dependencies
-      # TODO: Make obsolete
-      gl_matrix_path = PATH.join('lib', 'yeah', 'web', 'gl-matrix.js')
-      gl_matrix = File.read(gl_matrix_path)
-
-      File.write(@build_path.join('gl-matrix.js'), gl_matrix)
     end
 
     def build_project
