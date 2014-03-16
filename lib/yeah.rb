@@ -9,6 +9,8 @@ require 'yeah/vector'
 require 'yeah/v'
 require 'yeah/color'
 
+require 'yeah/colored_box'
+
 require 'yeah/thing'
 
 require 'yeah/level'
