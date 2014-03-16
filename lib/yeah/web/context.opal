@@ -57,20 +57,23 @@ class Context
     res = @gl.getUniformLocation(@shader_program, 'u_resolution')
     @gl.uniform2f(res, resolution[0], resolution[1])
 
-    pos_buffer = @gl.createBuffer
-    @gl.bindBuffer(@gl.ARRAY_BUFFER, pos_buffer)
+    @position ||= V[]
+    @position += V[1, 1]
     rect = {
-      top: 100,
-      bottom: 50,
-      left: 150,
-      right: 200
+      bottom: @position[0],
+      left: @position[1],
+      width: 100,
+      height: 100
     }
     vertices = [
       rect[:left], rect[:bottom],
-      rect[:left], rect[:top],
-      rect[:right], rect[:bottom],
-      rect[:right], rect[:top]
+      rect[:left], rect[:bottom] + rect[:height],
+      rect[:left] + rect[:width], rect[:bottom],
+      rect[:left] + rect[:width], rect[:bottom] + rect[:height]
     ]
+
+    pos_buffer = @gl.createBuffer
+    @gl.bindBuffer(@gl.ARRAY_BUFFER, pos_buffer)
     gl_vertices = Native::Object.new(`new Float32Array(#{vertices})`)
     @gl.bufferData(@gl.ARRAY_BUFFER, gl_vertices, @gl.STATIC_DRAW)
     @gl.vertexAttribPointer(@pos_attr, 2, @gl.FLOAT, false, 0, 0)
