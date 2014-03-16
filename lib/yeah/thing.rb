@@ -2,14 +2,20 @@
 module Yeah
 
 class Thing
+  def self.visual(value)
+    @visual = value
+  end
+
   def initialize(properties = V[])
     properties = { position: properties } unless properties.respond_to?(:to_h)
     properties = properties.to_h
-
     properties.each do |key, val|
       writer = "#{key}="
       send(writer, val)
     end
+
+    class_visual = self.class.instance_variable_get(:@visual)
+    self.visual = class_visual || NullVisual.new
   end
 
   # The level this is in.
@@ -68,10 +74,7 @@ class Thing
   # Graphical representation.
   #
   # @return [Visual]
-  def visual
-    @visual ||= NullVisual.new
-  end
-  attr_writer :visual
+  attr_accessor :visual
 
   # Origin point within bounds.
   #
