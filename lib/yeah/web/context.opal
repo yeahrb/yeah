@@ -32,6 +32,13 @@ class Context
     setup_shaders
   end
 
+  def each_tick(&block)
+    @window.requestAnimationFrame do
+      yield
+      each_tick(&block)
+    end
+  end
+
   def resolution
     V[@canvas.width, @canvas.height]
   end
@@ -40,13 +47,6 @@ class Context
 
     @canvas.width = value[0]
     @canvas.height = value[1]
-  end
-
-  def each_tick(&block)
-    @window.requestAnimationFrame do
-      yield
-      each_tick(&block)
-    end
   end
 
   def render(level)
