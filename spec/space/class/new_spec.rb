@@ -1,4 +1,4 @@
-describe Level, '::new' do
+describe Space, '::new' do
   it { described_class.new.should be_instance_of described_class }
 
   it "accepts properties hash" do

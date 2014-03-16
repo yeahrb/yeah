@@ -1,4 +1,4 @@
-describe Level, '#update' do
+describe Space, '#update' do
   subject { described_class.new }
 
   before { subject.things = (1..3).map { Thing.new } }

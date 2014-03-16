@@ -1,21 +1,21 @@
 describe Thing, '#right' do
   it { subject.right.should eq 0 }
 
-  it "is x of right edge within level" do
-    subject.level = Level.new
+  it "is x of right edge within space" do
+    subject.space = Space.new
     subject.position = V[10, 10]
     subject.size = V[4, 2]
     subject.right.should eq 14
   end
 
-  context "with level" do
+  context "with space" do
     before do
-      subject.level = Level.new
+      subject.space = Space.new
       subject.position = V[10, 10, 10]
       subject.size = V[4, 2, 8]
     end
 
-    it "is x of right edge within level based on anchor" do
+    it "is x of right edge within space based on anchor" do
       subject.anchor[0] = 0
       subject.right.should eq 14
 

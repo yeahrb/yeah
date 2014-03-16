@@ -14,9 +14,9 @@ Install Yeah with `gem install yeah`.
   * `yeah build` builds ready-to-go packages for every platform available.
 
 ## Core types
-  * Game - manages context and active level.
-  * Level - contains things in space.
-  * Thing - acts in the space of a level.
+  * Game - manages context and active space.
+  * Space - contains things.
+  * Thing - acts in a space.
   * Visual - graphical representation for a thing.
   * Vector - represents position, size, velocity...
   * Color

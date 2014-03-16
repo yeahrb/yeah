@@ -54,12 +54,12 @@ describe Thing, '#colliding?' do
   describe "with Thing subclass" do
     it "is true when edges touch any instance of given class" do
       instance2 = Thing.new
-      instance2.level = instance.level = Level.new
+      instance2.space = instance.space = Space.new
       instance2.size = instance.size = V[5, 5]
       instance.colliding?(Thing).should eq true
     end
 
-    it "is false without a level" do
+    it "is false without a space" do
       instance2 = Thing.new
       instance2.size = instance.size = V[5, 5]
       instance.colliding?(Thing).should eq false
@@ -77,7 +77,7 @@ describe Thing, '#colliding?' do
     it "is false for instances of any class other than the given one" do
       subthing_class = Class.new(Thing)
       instance2 = subthing_class.new
-      instance2.level = instance.level = Level.new
+      instance2.space = instance.space = Space.new
       instance2.size = instance.size = V[5, 5]
       instance2.colliding?(subthing_class).should eq false
     end

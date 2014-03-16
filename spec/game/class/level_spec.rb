@@ -1,13 +1,13 @@
-describe Game, '::level' do
-  let(:level_a) do {} end
-  let(:level_b) do { background: [0.2, 0.2, 0.2] } end
-  let(:data) do { levels: { level_a: level_a, level_b: level_b } } end
+describe Game, '::space' do
+  let(:space_a) do {} end
+  let(:space_b) do { background: [0.2, 0.2, 0.2] } end
+  let(:data) do { spaces: { space_a: space_a, space_b: space_b } } end
 
-  it "sets first level" do
+  it "sets first space" do
     game_subclass = Class.new(Game)
-    game_subclass.level(:level_b)
+    game_subclass.space(:space_b)
     game = game_subclass.new(NullContext.new, data)
 
-    expect(game.level.background).to eq level_b[:background]
+    expect(game.space.background).to eq space_b[:background]
   end
 end

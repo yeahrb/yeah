@@ -1,4 +1,4 @@
-describe Level do
+describe Space do
   let(:instance) { described_class.new }
 
   describe '#background' do

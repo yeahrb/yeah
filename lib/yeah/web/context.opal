@@ -51,12 +51,12 @@ class Context
     @canvas.height = value[1]
   end
 
-  def render(level)
+  def render(space)
     @gl.viewport(0, 0, @canvas.width, @canvas.height)
 
-    background(level.background)
+    background(space.background)
 
-    level.things.each do |thing|
+    space.things.each do |thing|
       rectangle(thing.position, thing.visual.size, thing.visual.color)
     end
   end

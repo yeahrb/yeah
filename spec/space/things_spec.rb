@@ -1,4 +1,4 @@
-describe Level do
+describe Space do
   let(:instance) { described_class.new }
 
   describe '#things' do
@@ -12,11 +12,11 @@ describe Level do
 
     it_behaves_like :writer, [Thing.new(Random.rand(10))]
 
-    it "assigns each item's #level as self" do
+    it "assigns each item's #space as self" do
       things = [Thing.new, Thing.new]
       instance.things = things
 
-      things.each { |e| e.level.should eq instance }
+      things.each { |e| e.space.should eq instance }
     end
 
     it "accepts a representative hash" do

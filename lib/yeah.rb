@@ -13,6 +13,6 @@ require 'yeah/colored_box'
 
 require 'yeah/thing'
 
-require 'yeah/level'
+require 'yeah/space'
 
 require 'yeah/game'

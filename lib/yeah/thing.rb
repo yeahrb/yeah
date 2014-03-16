@@ -1,4 +1,4 @@
-# Acts and interacts with other Things within a Level.
+# Acts and interacts with other Things within a Space.
 module Yeah
 
 class Thing
@@ -18,22 +18,22 @@ class Thing
     self.visual = class_visual || NullVisual.new
   end
 
-  # The level this is in.
+  # The space this is in.
   #
-  # @return [Level]
-  def level
-    @level ||= Level.new
+  # @return [Space]
+  def space
+    @space ||= Space.new
   end
-  def level=(value)
-    @level = value
-    @level.things << self unless @level.things.include? self
+  def space=(value)
+    @space = value
+    @space.things << self unless @space.things.include? self
   end
 
   def game
-    level.game
+    space.game
   end
 
-  # Position within the level.
+  # Position within the space.
   #
   # @return [Vector]
   def position
@@ -143,7 +143,7 @@ class Thing
     return false if other == self
 
     if other.is_a?(Class)
-      return level.things
+      return space.things
         .select { |e| e.is_a? other }
         .any? { |e| colliding? e }
     end

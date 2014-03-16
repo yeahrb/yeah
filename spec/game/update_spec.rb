@@ -1,8 +1,8 @@
 describe Game, '#update' do
-  before { subject.level = Level.new }
+  before { subject.space = Space.new }
 
-  it "calls #level's update" do
-    subject.level.should receive(:update)
+  it "calls #space's update" do
+    subject.space.should receive(:update)
     subject.send(:update)
   end
 end

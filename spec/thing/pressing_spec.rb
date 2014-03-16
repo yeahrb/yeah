@@ -7,8 +7,8 @@ describe Thing, '#pressing?' do
   it { expect {instance.send(:pressing?)}.to raise_error ArgumentError }
 
   it "defers to #game#pressing?" do
-    instance.level = Level.new
-    instance.level.game = Game.new
+    instance.space = Space.new
+    instance.space.game = Game.new
     instance.game.should receive(:pressing?).with(:e)
     instance.send(:pressing?, :e)
   end

@@ -51,13 +51,13 @@ class Builder
 
       # Parse project data.
       project_data = {}
-      project_data[:levels] = {}
-      Dir['data/levels/*.json'].each do |path|
+      project_data[:spaces] = {}
+      Dir['data/spaces/*.json'].each do |path|
         json = File.read(path)
         key = Pathname(path).basename('.*').to_s.to_sym
         data = JSON.parse(json, symbolize_names: true)
 
-        project_data[:levels][key] = data
+        project_data[:spaces][key] = data
       end
 
       # Put it all in a wrapper that makes it web-playable.

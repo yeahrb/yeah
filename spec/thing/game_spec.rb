@@ -4,7 +4,7 @@ describe Thing, '#game' do
 
   it { should eq nil }
 
-  it "is #level's game" do
-    instance.game.should eq instance.level.game
+  it "is #space's game" do
+    instance.game.should eq instance.space.game
   end
 end
