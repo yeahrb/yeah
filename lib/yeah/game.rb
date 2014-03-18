@@ -15,7 +15,7 @@ class Game
     @data = data
 
     class_resolution = self.class.instance_variable_get(:@resolution)
-    self.resolution = class_resolution || V[1280, 720]
+    self.resolution = class_resolution || V[640, 360]
 
     class_space = self.class.instance_variable_get(:@space)
     self.space = class_space || Space.new

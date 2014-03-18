@@ -7,8 +7,8 @@ describe Game do
       expect(instance.resolution).to eq mock_context.resolution
     end
 
-    it "defaults to 720p" do
-      expect(instance.resolution).to eq V[1280, 720]
+    it "defaults to 720p / 2" do
+      expect(instance.resolution).to eq V[640, 360]
     end
   end
 
