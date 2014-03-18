@@ -16,6 +16,8 @@ class Thing
 
     class_visual = self.class.instance_variable_get(:@visual)
     self.visual = class_visual || NullVisual.new
+
+    setup
   end
 
   # The space this is in.
@@ -157,7 +159,10 @@ class Thing
     !(not_colliding_x && not_colliding_y && not_colliding_z)
   end
 
-  # Update thing.
+  # Setup at the end of initialization. Meant to be overwritten.
+  def setup; end
+
+  # Behavior for each tick. Meant to be overwritten.
   def update; end
 
   protected
