@@ -1,4 +1,4 @@
-describe ColoredBox, '::new' do
+describe Box, '::new' do
   it "accepts a size" do
     size = random_vector
     instance = described_class.new(size)

@@ -1,4 +1,4 @@
-describe ColoredBox do
+describe Box do
   let(:instance) { described_class.new }
 
   describe '#size' do
