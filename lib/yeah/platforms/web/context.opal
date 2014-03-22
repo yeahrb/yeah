@@ -57,7 +57,8 @@ class Context
     background(space.background)
 
     space.things.each do |thing|
-      rectangle(thing.position, thing.visual.size, thing.visual.color)
+      color(thing.visual.color)
+      rectangle(thing.position, thing.visual.size)
     end
   end
 
@@ -68,7 +69,11 @@ class Context
     @gl.clear(@gl.COLOR_BUFFER_BIT)
   end
 
-  def rectangle(position, size, color)
+  def color(color)
+    @gl.uniform3f(@col_loc, *color.rgb)
+  end
+
+  def rectangle(position, size)
     res = @gl.getUniformLocation(@shader_program, 'u_resolution')
     @gl.uniform2f(res, resolution[0], resolution[1])
 
@@ -90,8 +95,6 @@ class Context
     gl_vertices = Native::Object.new(`new Float32Array(#{vertices})`)
     @gl.bufferData(@gl.ARRAY_BUFFER, gl_vertices, @gl.STATIC_DRAW)
     @gl.vertexAttribPointer(@pos_loc, 2, @gl.FLOAT, false, 0, 0)
-
-    @gl.uniform3f(@col_loc, *color.rgb)
 
     @gl.drawArrays(@gl.TRIANGLE_STRIP, 0, 4)
   end
