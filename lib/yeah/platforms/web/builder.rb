@@ -34,7 +34,7 @@ class Builder
       opal = env['opal'].to_s
       opal_native = env['native'].to_s
       yeah = env['yeah'].to_s
-      yeah_web_context = env['yeah/web/context'].to_s
+      yeah_web_context = env['yeah/platforms/web/context'].to_s
 
       File.write(@build_path.join('opal.js'), opal)
       File.write(@build_path.join('opal_native.js'), opal_native)
@@ -61,7 +61,7 @@ class Builder
       end
 
       # Put it all in a wrapper that makes it web-playable.
-      wrapper_path = PATH.join('lib', 'yeah', 'web', 'wrapper.rb')
+      wrapper_path = PATH.join('lib', 'yeah', 'platforms', 'web', 'wrapper.rb')
       wrapper = File.read(wrapper_path)
       wrapper_params = {
         project_code: project_code,
@@ -78,7 +78,7 @@ class Builder
     end
 
     def copy_player
-      player_path = PATH.join('lib', 'yeah', 'web', 'player.html')
+      player_path = PATH.join('lib', 'yeah', 'platforms', 'web', 'player.html')
       player = File.read(player_path)
 
       File.write(@build_path.join('player.html'), player)

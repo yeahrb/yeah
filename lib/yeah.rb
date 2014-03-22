@@ -15,4 +15,4 @@ require 'yeah/space'
 
 require 'yeah/game'
 
-require 'yeah/null_context'
+require 'yeah/platforms/null_context'

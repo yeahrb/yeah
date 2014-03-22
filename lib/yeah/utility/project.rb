@@ -1,6 +1,6 @@
 require 'fileutils'
 require 'pathname'
-require 'yeah/web'
+require 'yeah/platforms/web'
 
 module Yeah
 class Project
