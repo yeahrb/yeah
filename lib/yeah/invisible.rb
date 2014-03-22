@@ -1,5 +1,7 @@
 module Yeah
-class NullVisual
+
+class Invisible
   def method_missing(*args, &block); end
 end
+
 end

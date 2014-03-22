@@ -1,5 +1,5 @@
 describe Thing, '::visual' do
-  let(:visual) { NullVisual.new }
+  let(:visual) { Invisible.new }
   let(:thing_subclass) { Class.new(Thing) }
   let(:thing) { thing_subclass.new }
 

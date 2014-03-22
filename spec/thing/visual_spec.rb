@@ -2,7 +2,7 @@ describe Thing do
   describe '#visual' do
     subject { described_class.new.visual }
 
-    it { should be_instance_of NullVisual }
+    it { should be_instance_of Invisible }
   end
 
   describe '#visual=' do

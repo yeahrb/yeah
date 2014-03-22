@@ -2,7 +2,7 @@ module Yeah; end
 
 require 'yeah/version'
 
-require 'yeah/null_visual'
+require 'yeah/invisible'
 require 'yeah/null_context'
 
 require 'yeah/vector'

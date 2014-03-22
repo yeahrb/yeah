@@ -15,7 +15,7 @@ class Thing
     end
 
     class_visual = self.class.instance_variable_get(:@visual)
-    self.visual = class_visual || NullVisual.new
+    self.visual = class_visual || Invisible.new
 
     setup
   end
