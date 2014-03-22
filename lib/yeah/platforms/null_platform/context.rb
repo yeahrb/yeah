@@ -1,6 +1,7 @@
 module Yeah
+module NullPlatform
 
-class NullContext
+class Context
   def each_tick(&block)
     yield
   end
@@ -8,4 +9,5 @@ class NullContext
   def method_missing(*args, &block); end
 end
 
+end
 end
