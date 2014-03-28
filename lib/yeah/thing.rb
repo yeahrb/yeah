@@ -2,10 +2,6 @@
 module Yeah
 
 class Thing
-  def self.visual(value)
-    @visual = value
-  end
-
   def initialize(properties = V[])
     properties = { position: properties } unless properties.respond_to?(:to_h)
     properties = properties.to_h
@@ -14,9 +10,7 @@ class Thing
       send(writer, val)
     end
 
-    class_visual = self.class.instance_variable_get(:@visual)
-
-    self.visual = class_visual || visual_class.new
+    self.visual = visual_class.new
 
     setup
   end
