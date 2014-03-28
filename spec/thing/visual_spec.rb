@@ -3,6 +3,13 @@ describe Thing do
     subject { described_class.new.visual }
 
     it { should be_instance_of Invisible }
+
+    it "defaults to <class name>Visual if it exists" do
+      class Stuff < described_class; end
+      class StuffVisual; end
+
+      Stuff.new.visual.should be_instance_of StuffVisual
+    end
   end
 
   describe '#visual=' do

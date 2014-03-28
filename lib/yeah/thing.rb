@@ -15,7 +15,14 @@ class Thing
     end
 
     class_visual = self.class.instance_variable_get(:@visual)
-    self.visual = class_visual || Invisible.new
+
+    class_name = self.class.name.split('::').last if self.class.name
+    vis_class_name = "#{class_name}Visual"
+    vis_class_defined = Object.const_defined?(vis_class_name)
+    vis_class = Object.const_get(vis_class_name) if vis_class_defined
+    vis_class_instance = vis_class.new if vis_class
+
+    self.visual = class_visual || vis_class_instance || Invisible.new
 
     setup
   end
