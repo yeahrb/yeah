@@ -6,7 +6,7 @@ describe Game, '::space' do
   it "sets first space" do
     game_subclass = Class.new(Game)
     game_subclass.space(:space_b)
-    game = game_subclass.new(NullPlatform::Context.new, data)
+    game = game_subclass.new(Unplatform::Context.new, data)
 
     expect(game.space.background).to eq space_b[:background]
   end

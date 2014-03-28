@@ -1,7 +1,7 @@
 describe Game, '#start' do
   it "sets context" do
     subject.start
-    subject.context.should be_instance_of NullPlatform::Context
+    subject.context.should be_instance_of Unplatform::Context
   end
 
   it "calls #context.each_tick with a block with #update and #render calls" do

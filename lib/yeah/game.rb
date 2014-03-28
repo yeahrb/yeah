@@ -10,7 +10,7 @@ class Game
     @space = value
   end
 
-  def initialize(context = NullPlatform::Context.new, data = {})
+  def initialize(context = Unplatform::Context.new, data = {})
     @context = context
     @data = data
 

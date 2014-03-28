@@ -1,5 +1,5 @@
 module Yeah
-module NullPlatform
+module Unplatform
 
 class Context
   def each_tick(&block)
