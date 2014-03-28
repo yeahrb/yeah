@@ -16,15 +16,22 @@ class Thing
 
     class_visual = self.class.instance_variable_get(:@visual)
 
-    class_name = self.class.name.split('::').last if self.class.name
-    vis_class_name = "#{class_name}Visual"
-    vis_class_defined = Object.const_defined?(vis_class_name)
-    vis_class = Object.const_get(vis_class_name) if vis_class_defined
-    vis_class_instance = vis_class.new if vis_class
-
-    self.visual = class_visual || vis_class_instance || Invisible.new
+    self.visual = class_visual || visual_class.new
 
     setup
+  end
+
+  def visual_class
+    return Invisible unless self.class.name
+
+    thing_class_name = self.class.name.split('::').last
+    class_name = "#{thing_class_name}Visual"
+
+    if Object.const_defined?(class_name)
+      Object.const_get(class_name)
+    else
+      Invisible
+    end
   end
 
   # The space this is in.
