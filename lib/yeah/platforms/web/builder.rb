@@ -46,7 +46,9 @@ class Builder
       project_code = ""
 
       # Combine all project code.
-      Dir['things/*.rb'].each { |p| project_code << File.read(p) }
+      %i[visuals things].each do |code_type|
+        Dir["#{code_type}/*.rb"].each { |p| project_code << File.read(p) }
+      end
       project_code << File.read('game.rb')
 
       # Parse project data.
@@ -68,6 +70,7 @@ class Builder
         project_data: project_data.to_s,
         project_game: game_class_name
       }
+
       project_code = wrapper % wrapper_params
 
       # Compile it into JavaScript.
