@@ -7,8 +7,8 @@ class Character < Thing
   def update
     @updates += 1
 
-    @direction[0] *= -1 if @updates % 150 == 0
-    @direction[1] *= -1 if @updates % 200 == 0
+    @direction.x *= -1 if @updates % 150 == 0
+    @direction.y *= -1 if @updates % 200 == 0
 
     self.position += @direction
   end
