@@ -1,0 +1,2 @@
+class Block < Thing
+end
