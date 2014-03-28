@@ -5,11 +5,16 @@ class Box
     @size = value
   end
 
+  def self.color(value)
+    @color = value
+  end
+
   def initialize(size = V[], color = Color[0, 0, 0])
     class_size = self.class.instance_variable_get(:@size)
     self.size = class_size || size
 
-    @color = color
+    class_color = self.class.instance_variable_get(:@color)
+    self.color = class_color || color
   end
 
   attr_accessor :size
