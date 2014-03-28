@@ -4,7 +4,8 @@ Project used to demonstrate Yeah's API and features.
 
 ## Instructions
 
-1. Install Ruby 2 or higher.
-2. `bundle`
-3. `yeah build`
-4. `chromium builds/web/player.html`
+1. `git clone git@github.com:skofo/yeah.git`
+2. `cd yeah/examples/testbed`
+3. `bundle`
+4. `yeah build`
+5. `chromium builds/web/player.html`
