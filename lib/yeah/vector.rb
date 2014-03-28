@@ -33,6 +33,15 @@ class Vector
     @components = value + [0] * (3 - value.size)
   end
 
+  def x; components[0]; end
+  def x=(v); self.components[0] = v; end
+
+  def y; components[1]; end
+  def y=(v); self.components[1] = v; end
+
+  def z; components[2]; end
+  def z=(v); self.components[2] = v; end
+
   def ==(other)
     other.respond_to?(:components) && components == other.components
   end
