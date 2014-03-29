@@ -1,11 +1,15 @@
-describe Box, '::size' do
-  let(:size) { random_vector }
-  let(:box_subclass) { Class.new(Box) }
-  let(:box) { box_subclass.new }
+describe Box do
+  let(:subclass) { Class.new(described_class) }
 
-  it "sets instance size" do
-    box_subclass.size(size)
+  describe '::size' do
+    subject { subclass.size }
 
-    expect(box.size).to eq size
+    it { should eq nil }
+  end
+
+  describe '::size=' do
+    subject { subclass.method(:size=) }
+
+    it_behaves_like :writer, V[1, 2, 3]
   end
 end

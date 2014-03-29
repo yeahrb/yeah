@@ -1,11 +1,15 @@
-describe Box, '::color' do
-  let(:color) { Color[0.1, 0.2, 0.3] }
-  let(:box_subclass) { Class.new(Box) }
-  let(:box) { box_subclass.new }
+describe Box do
+  let(:subclass) { Class.new(described_class) }
 
-  it "sets instance color" do
-    box_subclass.color(color)
+  describe '::color' do
+    subject { subclass.color }
 
-    expect(box.color).to eq color
+    it { should eq nil }
+  end
+
+  describe '::color=' do
+    subject { subclass.method(:color=) }
+
+    it_behaves_like :writer, Color[0.1, 0.2, 0.3]
   end
 end

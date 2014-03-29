@@ -1,20 +1,23 @@
 module Yeah
 
 class Box
-  def self.size(value)
+  def self.size
+    @size
+  end
+  def self.size=(value)
     @size = value
   end
 
-  def self.color(value)
+  def self.color
+    @color
+  end
+  def self.color=(value)
     @color = value
   end
 
   def initialize(size = V[], color = Color[0, 0, 0])
-    class_size = self.class.instance_variable_get(:@size)
-    self.size = class_size || size
-
-    class_color = self.class.instance_variable_get(:@color)
-    self.color = class_color || color
+    self.size = self.class.size || size
+    self.color = self.class.color || color
   end
 
   attr_accessor :size
