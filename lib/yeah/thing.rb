@@ -10,22 +10,9 @@ class Thing
       send(writer, val)
     end
 
-    self.visual = visual_class.new
+    self.visual = project_visual_type.new
 
     setup
-  end
-
-  def visual_class
-    return Invisible unless self.class.name
-
-    thing_class_name = self.class.name.split('::').last
-    class_name = "#{thing_class_name}Visual"
-
-    if Object.const_defined?(class_name)
-      Object.const_get(class_name)
-    else
-      Invisible
-    end
   end
 
   # The space this is in.
@@ -181,6 +168,21 @@ class Thing
   # @return [Boolean]
   def pressing?(pressable)
     game.pressing? pressable
+  end
+
+  private
+
+  def project_visual_type
+    return Invisible unless self.class.name
+
+    thing_class_name = self.class.name.split('::').last
+    class_name = "#{thing_class_name}Visual"
+
+    if Object.const_defined?(class_name)
+      Object.const_get(class_name)
+    else
+      Invisible
+    end
   end
 end
 
