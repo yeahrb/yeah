@@ -10,6 +10,17 @@ describe Game do
     it "defaults to 720p / 2" do
       expect(instance.resolution).to eq V[640, 360]
     end
+
+    it "defaults to class resolution if it exists" do
+      resolution = V[21, 32]
+
+      mock_context = Struct.new(:resolution).new
+      subclass = Class.new(described_class)
+
+      subclass.new(mock_context).resolution.should eq V[640, 360]
+      subclass.resolution = resolution
+      subclass.new(mock_context).resolution.should eq resolution
+    end
   end
 
   describe '#resolution=' do

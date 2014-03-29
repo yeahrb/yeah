@@ -2,11 +2,17 @@
 module Yeah
 
 class Game
-  def self.resolution(*value)
+  def self.resolution
+    @resolution
+  end
+  def self.resolution=(value)
     @resolution = value
   end
 
-  def self.space(value)
+  def self.space
+    @space
+  end
+  def self.space=(value)
     @space = value
   end
 
@@ -14,11 +20,9 @@ class Game
     @context = context
     @data = data
 
-    class_resolution = self.class.instance_variable_get(:@resolution)
-    self.resolution = class_resolution || V[640, 360]
+    self.resolution = self.class.resolution || V[640, 360]
 
-    class_space = self.class.instance_variable_get(:@space)
-    self.space = class_space || Space.new
+    self.space = self.class.space || Space.new
   end
 
   # @return [Context]

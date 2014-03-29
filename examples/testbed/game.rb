@@ -1,3 +1,3 @@
 class TestbedGame < Game
-  space :test
+  self.space = :test
 end

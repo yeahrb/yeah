@@ -5,6 +5,19 @@ describe Game do
     subject { instance.space }
 
     it { should be_instance_of Space }
+
+    it "defaults to data space by key of class space if it is defined" do
+      subclass = Class.new(described_class)
+
+      subclass.new.space.background.should eq Color[]
+
+      background = [0.1, 0.2, 0.9]
+      data = { spaces: { some_space: { background: background } } }
+      subclass.space = :some_space
+      instance = subclass.new(Unplatform::Context.new, data)
+
+      instance.space.background.should eq background
+    end
   end
 
   describe '#space=' do

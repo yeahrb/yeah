@@ -1,18 +1,15 @@
-describe Game, '::resolution' do
-  let(:resolution) { V[320, 240] }
-  let(:mock_context) { Struct.new(:resolution).new(V[1280, 720]) }
-  let(:game_subclass) { Class.new(Game) }
-  let(:game) { game_subclass.new(mock_context) }
+describe Game do
+  let(:subclass) { Class.new(described_class) }
 
-  it "sets Vector as instance resolution" do
-    game_subclass.resolution(resolution)
+  describe '::resolution' do
+    subject { subclass.resolution }
 
-    expect(game.context.resolution).to eq resolution
+    it { should eq nil }
   end
 
-  it "sets splatted array as instance resolution" do
-    game_subclass.resolution(*resolution.to_a)
+  describe '::resolution=' do
+    subject { subclass.method(:resolution=) }
 
-    expect(game.context.resolution).to eq resolution
+    it_behaves_like :writer, V[200, 300]
   end
 end
