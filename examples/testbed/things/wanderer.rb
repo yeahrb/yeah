@@ -1,4 +1,4 @@
-class Character < Thing
+class Wanderer < Thing
   def setup
     @direction = V[1, 1]
     @updates = 0

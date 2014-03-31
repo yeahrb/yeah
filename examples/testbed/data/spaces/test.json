@@ -2,7 +2,9 @@
   "background": [0.3, 0.7, 0.3],
 
   "things": {
-    "Character": [120, 120],
+    "Wanderer": [120, 120],
+
+    "Follower": [240, 240],
 
     "Block": [
       [0, 0],
