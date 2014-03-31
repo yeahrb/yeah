@@ -1,6 +1,6 @@
 describe Game do
   let(:mock_context) { Struct.new(:resolution).new(V[256, 240]) }
-  let(:instance) { described_class.new(mock_context) }
+  let(:instance) { described_class.new({}, mock_context) }
 
   describe '#resolution' do
     it "is context's resolution" do
@@ -17,9 +17,9 @@ describe Game do
       mock_context = Struct.new(:resolution).new
       subclass = Class.new(described_class)
 
-      subclass.new(mock_context).resolution.should eq V[640, 360]
+      subclass.new({}, mock_context).resolution.should eq V[640, 360]
       subclass.resolution = resolution
-      subclass.new(mock_context).resolution.should eq resolution
+      subclass.new({}, mock_context).resolution.should eq resolution
     end
   end
 

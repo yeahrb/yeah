@@ -14,7 +14,7 @@ describe Game do
       background = [0.1, 0.2, 0.9]
       data = { spaces: { some_space: { background: background } } }
       subclass.space = :some_space
-      instance = subclass.new(Unplatform::Context.new, data)
+      instance = subclass.new(data)
 
       instance.space.background.should eq background
     end

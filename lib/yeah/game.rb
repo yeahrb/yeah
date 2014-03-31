@@ -16,9 +16,9 @@ class Game
     @space = value
   end
 
-  def initialize(context = Unplatform::Context.new, data = {})
-    @context = context
+  def initialize(data = {}, context = Unplatform::Context.new)
     @data = data
+    @context = context
 
     self.resolution = self.class.resolution || V[640, 360]
 
