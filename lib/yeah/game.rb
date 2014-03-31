@@ -29,10 +29,10 @@ class Game
   attr_reader :context
 
   def resolution
-    @context.resolution
+    @context.screen.resolution
   end
   def resolution=(*value)
-    @context.resolution = V[*value]
+    @context.screen.resolution = V[*value]
   end
 
   attr_accessor :data
@@ -69,7 +69,7 @@ class Game
   end
 
   def render
-    context.render(space)
+    context.screen.render(space)
   end
 end
 

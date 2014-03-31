@@ -34,7 +34,13 @@ class Builder
       opal = env['opal'].to_s
       opal_native = env['native'].to_s
       yeah = env['yeah'].to_s
-      yeah_web_context = env['yeah/platforms/web/context'].to_s
+
+      # Combine web context's files.
+      yeah_web_context = ''
+      %i[screen mouse].each do |file|
+        yeah_web_context << env["yeah/platforms/web/context/#{file}"].to_s
+      end
+      yeah_web_context << env["yeah/platforms/web/context"].to_s
 
       File.write(@build_path.join('opal.js'), opal)
       File.write(@build_path.join('opal_native.js'), opal_native)
