@@ -23,6 +23,11 @@ class Box
   attr_accessor :size
 
   attr_accessor :color
+
+  def render(context, position)
+    context.color(color)
+    context.rectangle(position, size)
+  end
 end
 
 end

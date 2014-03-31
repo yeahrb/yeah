@@ -57,8 +57,7 @@ class Context
     background(space.background)
 
     space.things.each do |thing|
-      color(thing.visual.color)
-      rectangle(thing.position, thing.visual.size)
+      thing.visual.render(self, thing.position)
     end
   end
 
