@@ -32,6 +32,8 @@ class Context
     @gl = @canvas.getContext('webgl')
 
     setup_shaders
+
+    setup_mouse
   end
 
   def on_tick(&block)
@@ -128,6 +130,20 @@ class Context
     @gl.enableVertexAttribArray(@pos_loc)
 
     @col_loc = @gl.getUniformLocation(@shader_program, 'u_color')
+  end
+
+  def setup_mouse
+    @mouse = V[]
+
+    @canvas.addEventListener('mousemove') do |event|
+      canvas_bounds = @canvas.getBoundingClientRect
+      canvas_size = V[canvas_bounds.width, canvas_bounds.height]
+      canvas_offset = V[canvas_bounds.left, canvas_bounds.top]
+      real_mouse_pos = V[`event.clientX`, `event.clientY`]
+      canvas_mouse_pos = real_mouse_pos - canvas_offset
+
+      @mouse = canvas_mouse_pos * resolution / canvas_size
+    end
   end
 end
 
