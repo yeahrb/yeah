@@ -34,10 +34,11 @@ class Context
     setup_shaders
   end
 
-  def each_tick(&block)
+  def on_tick(&block)
     @window.requestAnimationFrame do
       yield
-      each_tick(&block)
+
+      on_tick(&block)
     end
   end
 

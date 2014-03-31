@@ -50,7 +50,7 @@ class Game
 
   # Start the game.
   def start
-    context.each_tick do
+    context.on_tick do
       update
       render
       break if @stopped

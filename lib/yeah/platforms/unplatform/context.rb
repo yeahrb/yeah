@@ -2,7 +2,7 @@ module Yeah
 module Unplatform
 
 class Context
-  def each_tick(&block)
+  def on_tick(&block)
     yield
   end
 
