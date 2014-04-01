@@ -3,6 +3,17 @@ module Web
 
 class Mouse
   def initialize(screen)
+    setup_position_listener(screen)
+  end
+
+  def position
+    @position ||= V[]
+  end
+
+  private
+
+  # TODO: cleanup
+  def setup_position_listener(screen)
     screen.canvas.addEventListener('mousemove') do |event|
       canvas_bounds = screen.canvas.getBoundingClientRect
       canvas_size = V[canvas_bounds.width, canvas_bounds.height]
@@ -13,10 +24,6 @@ class Mouse
 
       @position = canvas_mouse_pos * screen.resolution / canvas_size
     end
-  end
-
-  def position
-    @position ||= V[]
   end
 end
 
