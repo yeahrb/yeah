@@ -71,8 +71,8 @@ class Screen
     @gl.uniform2f(res, resolution[0], resolution[1])
 
     rect = {
-      bottom: position[0],
-      left: position[1],
+      left: position[0],
+      bottom: position[1],
       width: size[0],
       height: size[1]
     }
