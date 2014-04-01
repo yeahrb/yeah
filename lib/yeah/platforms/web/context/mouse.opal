@@ -9,6 +9,7 @@ class Mouse
       canvas_offset = V[canvas_bounds.left, canvas_bounds.top]
       real_mouse_pos = V[`event.clientX`, `event.clientY`]
       canvas_mouse_pos = real_mouse_pos - canvas_offset
+      canvas_mouse_pos.y = canvas_size.y - canvas_mouse_pos.y
 
       @position = canvas_mouse_pos * screen.resolution / canvas_size
     end
