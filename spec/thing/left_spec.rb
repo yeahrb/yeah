@@ -9,13 +9,13 @@ describe Thing, '#left' do
     end
 
     it "is x of left edge within space based on anchor" do
-      subject.anchor[0] = 0
+      subject.anchor.x = 0
       subject.left.should eq 10
 
-      subject.anchor[0] = 1
+      subject.anchor.x = 1
       subject.left.should eq 14
 
-      subject.anchor[0] = 0.5
+      subject.anchor.x = 0.5
       subject.left.should eq 12
     end
   end

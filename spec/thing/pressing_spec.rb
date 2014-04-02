@@ -1,15 +1,12 @@
 describe Thing, '#pressing?' do
-  let(:instance) { described_class.new }
-  subject { instance.method(:pressing?) }
+  it { subject.protected_methods.should include :pressing? }
 
-  it { instance.protected_methods.should include :pressing? }
-
-  it { expect {instance.send(:pressing?)}.to raise_error ArgumentError }
+  it { expect {subject.send(:pressing?)}.to raise_error ArgumentError }
 
   it "defers to #game#pressing?" do
-    instance.space = Space.new
-    instance.space.game = Game.new
-    instance.game.should receive(:pressing?).with(:e)
-    instance.send(:pressing?, :e)
+    subject.space = Space.new
+    subject.space.game = Game.new
+    subject.game.should receive(:pressing?).with(:e)
+    subject.send(:pressing?, :e)
   end
 end

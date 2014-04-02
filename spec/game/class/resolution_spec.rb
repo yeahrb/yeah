@@ -1,15 +1,8 @@
 describe Game do
-  let(:subclass) { Class.new(described_class) }
+  subject { Class.new(described_class) }
 
-  describe '::resolution' do
-    subject { subclass.resolution }
-
-    it { should eq nil }
-  end
-
-  describe '::resolution=' do
-    subject { subclass.method(:resolution=) }
-
-    it_behaves_like :writer, V[200, 300]
+  include_examples :has_accessor, :resolution do
+    let(:default) { nil }
+    let(:assignables) { [V[200, 300]] }
   end
 end

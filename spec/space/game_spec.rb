@@ -1,25 +1,20 @@
 describe Space do
-  let(:instance) { described_class.new }
-
-  describe '#game' do
-    subject { instance.game }
-    it { should eq nil }
+  include_examples :has_accessor, :game do
+    let(:default) { nil }
+    let(:assignables) { [Game.new] }
   end
 
   describe '#game=' do
-    subject { instance.method(:game=) }
-    it_behaves_like :writer, Game.new
-
     it "sets #game's space as self" do
-      instance.game = Game.new
-      instance.game.space.should eq instance
+      subject.game = Game.new
+      subject.game.space.should eq subject
     end
 
     it "does not set game's space as self twice" do
-      instance.game = Game.new
-      instance.game.should_not receive(:space=)
+      subject.game = Game.new
+      subject.game.should_not receive(:space=)
 
-      instance.game = instance.game
+      subject.game = subject.game
     end
   end
 end

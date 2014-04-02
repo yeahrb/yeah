@@ -1,9 +1,10 @@
 describe Thing do
+  include_examples :has_accessor, :visual do
+    let(:default_type) { Invisible }
+    let(:assignables) { [Box.new] }
+  end
+
   describe '#visual' do
-    subject { described_class.new.visual }
-
-    it { should be_instance_of Invisible }
-
     it "defaults to <class name>Visual if it exists" do
       class Stuff < described_class; end
       class StuffVisual; end
@@ -17,11 +18,5 @@ describe Thing do
 
       thing_subclass.new.visual.should_not be_instance_of Visual
     end
-  end
-
-  describe '#visual=' do
-    subject { described_class.new.method(:visual=) }
-
-    it_behaves_like :writer, Object.new # todo: use null visual
   end
 end

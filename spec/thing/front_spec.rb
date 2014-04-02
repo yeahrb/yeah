@@ -9,13 +9,13 @@ describe Thing, '#front' do
     end
 
     it "is z of front edge within space based on anchor" do
-      subject.anchor[2] = 0
+      subject.anchor.z = 0
       subject.front.should eq 18
 
-      subject.anchor[2] = 1
+      subject.anchor.z = 1
       subject.front.should eq 10
 
-      subject.anchor[2] = 0.5
+      subject.anchor.z = 0.5
       subject.front.should eq 14
     end
   end

@@ -1,10 +1,7 @@
 describe Thing, '#game' do
-  let(:instance) { described_class.new }
-  subject { instance.game }
-
-  it { should eq nil }
-
   it "is #space's game" do
-    instance.game.should eq instance.space.game
+    subject.space.game = Game.new
+
+    subject.game.should eq subject.space.game
   end
 end

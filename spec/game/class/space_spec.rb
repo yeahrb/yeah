@@ -1,15 +1,8 @@
 describe Game do
-  let(:subclass) { Class.new(described_class) }
+  subject { Class.new(described_class) }
 
-  describe '::space' do
-    subject { subclass.space }
-
-    it { should eq nil }
-  end
-
-  describe '::space=' do
-    subject { subclass.method(:space=) }
-
-    it_behaves_like :writer, Space
+  include_examples :has_accessor, :space do
+    let(:default) { nil }
+    let(:assignables) { [Space] }
   end
 end

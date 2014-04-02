@@ -1,22 +1,15 @@
 describe Space do
-  let(:instance) { described_class.new }
-
-  describe '#things' do
-    subject { instance.things }
-
-    it { should eq [] }
+  include_examples :has_accessor, :things do
+    let(:default) { [] }
+    let(:assignables) { [[Thing.new]] }
   end
 
   describe '#things=' do
-    subject { instance.method(:things=) }
-
-    it_behaves_like :writer, [Thing.new(Random.rand(10))]
-
     it "assigns each item's #space as self" do
       things = [Thing.new, Thing.new]
-      instance.things = things
+      subject.things = things
 
-      things.each { |e| e.space.should eq instance }
+      things.each { |e| e.space.should eq subject }
     end
 
     it "accepts a representative hash" do
@@ -31,15 +24,15 @@ describe Space do
         ]
       }
 
-      instance.things = things_hash
+      subject.things = things_hash
 
-      expect(instance.things[0]).to be_instance_of SubThingA
-      expect(instance.things[1]).to be_instance_of SubThingB
-      expect(instance.things[2]).to be_instance_of SubThingB
+      expect(subject.things[0]).to be_instance_of SubThingA
+      expect(subject.things[1]).to be_instance_of SubThingB
+      expect(subject.things[2]).to be_instance_of SubThingB
 
-      expect(instance.things[0].position).to eq V[50, 50]
-      expect(instance.things[1].position).to eq V[25, 25]
-      expect(instance.things[2].position).to eq V[75, 75]
+      expect(subject.things[0].position).to eq V[50, 50]
+      expect(subject.things[1].position).to eq V[25, 25]
+      expect(subject.things[2].position).to eq V[75, 75]
     end
   end
 end

@@ -1,15 +1,12 @@
 require_relative 'shared/rgb'
 
 describe Color do
-  let(:instance) { described_class.new }
+  include_examples :has_accessor, :rgb do
+    let(:default) { [0, 0, 0] }
+    let(:assignables) { [[0.25, 0.5, 1.0]] }
+  end
 
   describe '#rgb' do
     it_behaves_like :color_rgb, :rgb
-  end
-
-  describe '#rgb=' do
-    subject { instance.method(:rgb=) }
-
-    it_behaves_like :writer, [0.25, 0.5, 1.0]
   end
 end

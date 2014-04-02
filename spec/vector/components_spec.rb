@@ -1,6 +1,11 @@
 require_relative 'shared/components'
 
 describe Vector do
+  include_examples :has_accessor, :components do
+    let(:default) { [0, 0, 0] }
+    let(:assignables) { [[9, 9, 9], V[9, 9, 9], [V[9, 9, 9]]] }
+  end
+
   describe '#components' do
     it_behaves_like :vector_components, :components
   end
@@ -17,22 +22,12 @@ describe Vector do
       expect(subject.components).to eq [0, 0, 0]
     end
 
-    it "assigns Vector" do
-      subject.components = V[9, 9, 9]
-      expect(subject.components).to eq [9, 9, 9]
-    end
-
     it "assigns up to 3 numeric arguments" do
       subject.components = 6, 5, 4
       expect(subject.components).to eq [6, 5, 4]
 
       subject.components = 8
       expect(subject.components).to eq [8, 0, 0]
-    end
-
-    it "assigns an array containing a Vector" do
-      subject.components = [V[8, 7, 8]]
-      expect(subject.components).to eq [8, 7, 8]
     end
 
     it "complains when given a 4-element array" do

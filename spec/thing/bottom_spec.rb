@@ -9,13 +9,13 @@ describe Thing, '#bottom' do
     end
 
     it "is y of bottom edge within space based on anchor" do
-      subject.anchor[1] = 0
+      subject.anchor.y = 0
       subject.bottom.should eq 10
 
-      subject.anchor[1] = 1
+      subject.anchor.y = 1
       subject.bottom.should eq 12
 
-      subject.anchor[1] = 0.5
+      subject.anchor.y = 0.5
       subject.bottom.should eq 11
     end
   end

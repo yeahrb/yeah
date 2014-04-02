@@ -9,13 +9,13 @@ describe Thing, '#back' do
     end
 
     it "is z of back edge within space based on anchor" do
-      subject.anchor[2] = 0
+      subject.anchor.z = 0
       subject.back.should eq 10
 
-      subject.anchor[2] = 1
+      subject.anchor.z = 1
       subject.back.should eq 18
 
-      subject.anchor[2] = 0.5
+      subject.anchor.z = 0.5
       subject.back.should eq 14
     end
   end

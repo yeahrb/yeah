@@ -16,13 +16,13 @@ describe Thing, '#right' do
     end
 
     it "is x of right edge within space based on anchor" do
-      subject.anchor[0] = 0
+      subject.anchor.x = 0
       subject.right.should eq 14
 
-      subject.anchor[0] = 1
+      subject.anchor.x = 1
       subject.right.should eq 10
 
-      subject.anchor[0] = 0.5
+      subject.anchor.x = 0.5
       subject.right.should eq 12
     end
   end
