@@ -41,6 +41,7 @@ class Mouse
     end
   end
 
+  # TODO: cleanup
   def setup_click_listeners
     @screen.canvas.addEventListener('mousedown') do |event|
       case `event.button`
