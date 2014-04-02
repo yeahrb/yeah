@@ -1,17 +1,14 @@
 # Yeah
 Practical Ruby video game framework in pre-alpha stage.
 
-* Developer happiness!
-* Convention over configuration!
-* Platform agnostic!
-* Open source!
+It maximizes game development by having the ideal interface for creating games. It takes care of the drudgery and lets you focus on the design.
 
 ## Installation
-Install Yeah with `gem install yeah`.
+Get the latest version with `git clone git@github.com:skofo/yeah.git`. Check out the example/s!
 
-## Terminal commands
-  * `yeah new <project name>` generates the files and folders for a project.
-  * `yeah build` builds ready-to-go packages for every platform available.
+## Commands
+  * `yeah new <game name>` generates a project.
+  * `yeah build` builds runnables for every platform available (currently just the web).
 
 ## Core types
   * Game - manages context and active space.
