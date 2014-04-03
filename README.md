@@ -1,7 +1,7 @@
 # Yeah
 Practical Ruby video game framework in pre-alpha stage.
 
-It maximizes game development by having the ideal interface for creating games. It takes care of the drudgery and lets you focus on the design.
+It aims to be the most productive interface for creating games. It takes care of the drudgery and lets you focus on the design.
 
 ## Installation
 Get the latest version with `git clone git@github.com:skofo/yeah.git`. Check out the example/s!
