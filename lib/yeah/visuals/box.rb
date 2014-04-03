@@ -1,13 +1,6 @@
 module Yeah
 
 class Box < Invisible
-  def self.size
-    @size
-  end
-  def self.size=(value)
-    @size = value
-  end
-
   def self.color
     @color
   end
@@ -15,12 +8,10 @@ class Box < Invisible
     @color = value
   end
 
-  def initialize(size = V[], color = Color[0, 0, 0])
-    self.size = self.class.size || size
+  def initialize(size = nil, color = Color[0, 0, 0])
+    self.size = size if size
     self.color = self.class.color || color
   end
-
-  attr_accessor :size
 
   attr_accessor :color
 
