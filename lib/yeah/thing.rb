@@ -53,7 +53,7 @@ class Thing
   #
   # @return [NilClass|Vector]
   def size
-    @size || visual.size || V[]
+    @size ||= visual.size || V[]
   end
   def size=(value)
     @size = V[value]
