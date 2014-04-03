@@ -10,8 +10,6 @@ class Thing
       send(writer, val)
     end
 
-    #self.visual = project_visual_type.new
-
     setup
   end
 
@@ -72,7 +70,9 @@ class Thing
   #
   # @return [Visual]
   def visual
-    @visual ||= project_visual_type.new
+    return @visual if @visual
+
+    self.visual = project_visual_instance || Invisible.new
   end
   def visual=(val)
     @visual = val
@@ -182,17 +182,17 @@ class Thing
     game.context.mouse
   end
 
-  def project_visual_type
-    return Invisible unless self.class.name
+  def project_visual
+    return unless self.class.name
 
     thing_class_name = self.class.name.split('::').last
     class_name = "#{thing_class_name}Visual"
 
-    if Object.const_defined?(class_name)
-      Object.const_get(class_name)
-    else
-      Invisible
-    end
+    Object.const_get(class_name) if Object.const_defined?(class_name)
+  end
+
+  def project_visual_instance
+    @project_visual_instance ||= project_visual.new if project_visual
   end
 end
 

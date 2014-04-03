@@ -7,7 +7,7 @@ describe Thing do
   describe '#visual' do
     it "defaults to <class name>Visual if it exists" do
       class Stuff < described_class; end
-      class StuffVisual; end
+      class StuffVisual < Invisible; end
 
       Stuff.new.visual.should be_instance_of StuffVisual
     end
@@ -23,6 +23,10 @@ describe Thing do
   describe '#visual=' do
     it "sets #visual's thing as self" do
       subject.visual = Invisible.new
+      subject.visual.thing.should eq subject
+    end
+
+    it "sets default #visual's thing as self" do
       subject.visual.thing.should eq subject
     end
   end
