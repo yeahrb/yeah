@@ -10,7 +10,7 @@ class Thing
       send(writer, val)
     end
 
-    self.visual = project_visual_type.new
+    #self.visual = project_visual_type.new
 
     setup
   end
@@ -53,7 +53,7 @@ class Thing
   #
   # @return [NilClass|Vector]
   def size
-    @size ||= visual.size || V[]
+    @size ||= visual.size
   end
   def size=(value)
     @size = V[value]
@@ -71,7 +71,13 @@ class Thing
   # Graphical representation.
   #
   # @return [Visual]
-  attr_accessor :visual
+  def visual
+    @visual ||= project_visual_type.new
+  end
+  def visual=(val)
+    @visual = val
+    @visual.thing = self unless @visual.thing == self
+  end
 
   # Origin point within bounds.
   #

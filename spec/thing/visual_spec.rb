@@ -19,4 +19,11 @@ describe Thing do
       thing_subclass.new.visual.should_not be_instance_of Visual
     end
   end
+
+  describe '#visual=' do
+    it "sets #visual's thing as self" do
+      subject.visual = Invisible.new
+      subject.visual.thing.should eq subject
+    end
+  end
 end
