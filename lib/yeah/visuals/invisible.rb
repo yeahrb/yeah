@@ -22,6 +22,12 @@ class Invisible
   end
 
   def render; end
+
+  private
+
+  def screen
+    thing.game.context.screen
+  end
 end
 
 end
