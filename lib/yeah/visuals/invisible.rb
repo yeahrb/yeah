@@ -1,8 +1,15 @@
 module Yeah
 
 class Invisible
+  def self.size
+    @size
+  end
+  def self.size=(value)
+    @size = value
+  end
+
   def size
-    @size ||= V[]
+    @size ||= self.class.size || V[]
   end
   attr_writer :size
 
