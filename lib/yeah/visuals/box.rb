@@ -1,6 +1,6 @@
 module Yeah
 
-class Box
+class Box < Invisible
   def self.size
     @size
   end
