@@ -45,7 +45,7 @@ class Game
     end
 
     @space = value
-    @space.game = self if space.game != self
+    @space.game = self unless space.game == self
   end
 
   # Start the game.
