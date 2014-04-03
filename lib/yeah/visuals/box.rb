@@ -15,9 +15,9 @@ class Box < Invisible
 
   attr_accessor :color
 
-  def render(context, position)
-    context.color(color)
-    context.rectangle(position, size)
+  def render
+    screen.color(color)
+    screen.rectangle(thing.position, thing.size)
   end
 end
 

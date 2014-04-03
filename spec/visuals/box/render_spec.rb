@@ -1,13 +1,11 @@
 describe Box, '#render' do
-  let(:instance) { described_class.new }
-
   it "uses context to draw a rectangle with own color at position" do
-    context = Unplatform::Context.new
-    position = random_vector
+    screen = subject.send(:screen)
+    thing = subject.thing
 
-    context.should_receive(:color).with(instance.color)
-    context.should_receive(:rectangle).with(position, instance.size)
+    screen.should_receive(:color).with(subject.color)
+    screen.should_receive(:rectangle).with(thing.position, thing.size)
 
-    instance.render(context, position)
+    subject.render
   end
 end
