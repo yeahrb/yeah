@@ -1,6 +1,6 @@
 describe Space do
   include_examples :has_accessor, :game do
-    let(:default) { nil }
+    let(:default_type) { Game }
     let(:assignables) { [Game.new] }
   end
 

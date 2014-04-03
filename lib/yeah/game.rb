@@ -22,7 +22,7 @@ class Game
 
     self.resolution = self.class.resolution || V[640, 360]
 
-    self.space = self.class.space || Space.new
+    self.space = self.class.space if self.class.space
   end
 
   # @return [Context]
@@ -37,7 +37,9 @@ class Game
 
   attr_accessor :data
 
-  attr_reader :space
+  def space
+    @space ||= Space.new
+  end
   def space=(value)
     if value.respond_to?(:to_sym)
       space_data = data[:spaces][value]

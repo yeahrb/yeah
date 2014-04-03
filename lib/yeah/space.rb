@@ -45,10 +45,12 @@ class Space
     @things.each { |t| t.space = self }
   end
 
-  attr_reader :game
+  def game
+    @game ||= Game.new
+  end
   def game=(value)
     @game = value
-    @game.space = self unless @game.space == self
+    @game.space = self unless game.space == self
   end
 
   def update

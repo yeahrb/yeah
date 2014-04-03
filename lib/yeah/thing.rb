@@ -172,6 +172,10 @@ class Thing
 
   private
 
+  def mouse
+    game.context.mouse
+  end
+
   def project_visual_type
     return Invisible unless self.class.name
 
