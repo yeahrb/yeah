@@ -12,7 +12,7 @@ describe Thing do
       Stuff.new.visual.should be_instance_of StuffVisual
     end
 
-    it "does not default to Visual without a class name" do
+    it "does not default to Visual when lacking a class name" do
       class Visual; end
       thing_subclass = Class.new(described_class)
 
