@@ -3,15 +3,15 @@ class Follower < Thing
     self.position = mouse.position
     self.position.x -= size.x / 2 # TODO: use anchor for this sort of thing
 
-    if mouse.left_clicked? && !@clicking
+    if mouse.left_clicking? && !@clicking
       @clicking = true
       Wanderer.new(space: space, position: position)
     end
 
-    @clicking = false unless mouse.left_clicked?
+    @clicking = false unless mouse.left_clicking?
   end
 
   def charged?
-    mouse.left_clicked?
+    mouse.left_clicking?
   end
 end

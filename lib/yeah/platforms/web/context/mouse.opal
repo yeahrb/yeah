@@ -13,16 +13,16 @@ class Mouse
     @position ||= V[]
   end
 
-  def left_clicked?
-    @left_clicked || false
+  def left_clicking?
+    @left_clicking || false
   end
 
-  def middle_clicked?
-    @middle_clicked || false
+  def middle_clicking?
+    @middle_clicking || false
   end
 
-  def right_clicked?
-    @right_clicked || false
+  def right_clicking?
+    @right_clicking || false
   end
 
   private
@@ -46,22 +46,22 @@ class Mouse
     @screen.canvas.addEventListener('mousedown') do |event|
       case `event.button`
       when 0:
-        @left_clicked = true
+        @left_clicking = true
       when 1:
-        @middle_clicked = true
+        @middle_clicking = true
       when 2:
-        @right_clicked = true
+        @right_clicking = true
       end
     end
 
     @screen.canvas.addEventListener('mouseup') do |event|
       case `event.button`
       when 0:
-        @left_clicked = false
+        @left_clicking = false
       when 1:
-        @middle_clicked = false
+        @middle_clicking = false
       when 2:
-        @right_clicked = false
+        @right_clicking = false
       end
     end
   end
