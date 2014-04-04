@@ -2,7 +2,7 @@
 (function($opal) {
   var self = $opal.top, $scope = $opal, nil = $opal.nil, $breaker = $opal.breaker, $slice = $opal.slice, $klass = $opal.klass, $hash2 = $opal.hash2;
 
-  $opal.add_stubs(['$include', '$[]', '$size=', '$charged?', '$thing', '$color=', '$position=', '$position', '$mouse', '$x=', '$-', '$x', '$/', '$size', '$left_clicked?', '$+', '$==', '$%', '$*', '$y=', '$y', '$space=']);
+  $opal.add_stubs(['$include', '$[]', '$size=', '$charged?', '$thing', '$color=', '$position=', '$position', '$mouse', '$x=', '$-', '$x', '$/', '$size', '$left_clicked?', '$!', '$new', '$space', '$+', '$==', '$%', '$*', '$y=', '$y', '$space=']);
   self.$include($scope.Yeah);
   (function($base, $super) {
     function $FollowerVisual(){};
@@ -50,11 +50,20 @@
 
     var def = self._proto, $scope = self._scope;
 
+    def.clicking = nil;
     def.$update = function() {
-      var $a, self = this;
+      var $a, $b, self = this;
 
       self['$position='](self.$mouse().$position());
-      return ($a = self.$position(), $a['$x=']($a.$x()['$-'](self.$size().$x()['$/'](2))));
+      ($a = self.$position(), $a['$x=']($a.$x()['$-'](self.$size().$x()['$/'](2))));
+      if ((($a = ($b = self.$mouse()['$left_clicked?'](), $b !== false && $b !== nil ?self.clicking['$!']() : $b)) !== nil && (!$a._isBoolean || $a == true))) {
+        self.clicking = true;
+        $scope.Wanderer.$new($hash2(["space", "position"], {"space": self.$space(), "position": self.$position()}));};
+      if ((($a = self.$mouse()['$left_clicked?']()) !== nil && (!$a._isBoolean || $a == true))) {
+        return nil
+        } else {
+        return self.clicking = false
+      };
     };
 
     return (def['$charged?'] = function() {
