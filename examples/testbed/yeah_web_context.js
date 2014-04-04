@@ -145,7 +145,7 @@ if (thing == null) thing = nil;
 
         var def = self._proto, $scope = self._scope;
 
-        def.position = def.left_clicked = def.middle_clicked = def.right_clicked = def.screen = nil;
+        def.position = def.left_clicking = def.middle_clicking = def.right_clicking = def.screen = nil;
         def.$initialize = function(screen) {
           var self = this;
 
@@ -160,22 +160,22 @@ if (thing == null) thing = nil;
           return ((($a = self.position) !== false && $a !== nil) ? $a : self.position = (($b = $scope.V) == null ? $opal.cm('V') : $b)['$[]']());
         };
 
-        def['$left_clicked?'] = function() {
+        def['$left_clicking?'] = function() {
           var $a, self = this;
 
-          return ((($a = self.left_clicked) !== false && $a !== nil) ? $a : false);
+          return ((($a = self.left_clicking) !== false && $a !== nil) ? $a : false);
         };
 
-        def['$middle_clicked?'] = function() {
+        def['$middle_clicking?'] = function() {
           var $a, self = this;
 
-          return ((($a = self.middle_clicked) !== false && $a !== nil) ? $a : false);
+          return ((($a = self.middle_clicking) !== false && $a !== nil) ? $a : false);
         };
 
-        def['$right_clicked?'] = function() {
+        def['$right_clicking?'] = function() {
           var $a, self = this;
 
-          return ((($a = self.right_clicked) !== false && $a !== nil) ? $a : false);
+          return ((($a = self.right_clicking) !== false && $a !== nil) ? $a : false);
         };
 
         self.$private();
@@ -200,10 +200,10 @@ if (event == null) event = nil;
 
           ($a = ($b = self.screen.$canvas()).$addEventListener, $a._p = (TMP_2 = function(event){var self = TMP_2._s || this, $case = nil;
 if (event == null) event = nil;
-          return (function() {$case = event.button;if ((0)['$===']($case)) {return self.left_clicked = true}else if ((1)['$===']($case)) {return self.middle_clicked = true}else if ((2)['$===']($case)) {return self.right_clicked = true}else { return nil }})()}, TMP_2._s = self, TMP_2), $a).call($b, "mousedown");
+          return (function() {$case = event.button;if ((0)['$===']($case)) {return self.left_clicking = true}else if ((1)['$===']($case)) {return self.middle_clicking = true}else if ((2)['$===']($case)) {return self.right_clicking = true}else { return nil }})()}, TMP_2._s = self, TMP_2), $a).call($b, "mousedown");
           return ($a = ($c = self.screen.$canvas()).$addEventListener, $a._p = (TMP_3 = function(event){var self = TMP_3._s || this, $case = nil;
 if (event == null) event = nil;
-          return (function() {$case = event.button;if ((0)['$===']($case)) {return self.left_clicked = false}else if ((1)['$===']($case)) {return self.middle_clicked = false}else if ((2)['$===']($case)) {return self.right_clicked = false}else { return nil }})()}, TMP_3._s = self, TMP_3), $a).call($c, "mouseup");
+          return (function() {$case = event.button;if ((0)['$===']($case)) {return self.left_clicking = false}else if ((1)['$===']($case)) {return self.middle_clicking = false}else if ((2)['$===']($case)) {return self.right_clicking = false}else { return nil }})()}, TMP_3._s = self, TMP_3), $a).call($c, "mouseup");
         }, nil) && 'setup_click_listeners';
       })(self, null)
       
