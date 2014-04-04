@@ -72,7 +72,7 @@ class Thing
   def visual
     return @visual if @visual
 
-    self.visual = project_visual_instance || Invisible.new
+    self.visual = project_visual_instance || Visual.new
 
     @visual # TODO: do a spec for this; can't reference Thing#size without this
   end

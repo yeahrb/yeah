@@ -6,7 +6,7 @@ require 'yeah/vector'
 require 'yeah/v'
 require 'yeah/color'
 
-require 'yeah/visuals/invisible'
+require 'yeah/visuals/visual'
 require 'yeah/visuals/box'
 
 require 'yeah/thing'

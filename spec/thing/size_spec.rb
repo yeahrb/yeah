@@ -8,13 +8,13 @@ describe Thing do
     let(:size) { random_vector }
 
     it "is implied by visual size" do
-      subject.visual = Invisible.new
+      subject.visual = Visual.new
       subject.size.should eq subject.visual.size
     end
 
     it "is not implied by visual size after size is explicitly set" do
       subject.size = size
-      subject.visual = Invisible.new
+      subject.visual = Visual.new
       subject.size.should eq size
     end
   end

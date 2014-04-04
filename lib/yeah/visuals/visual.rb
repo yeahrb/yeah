@@ -1,6 +1,6 @@
 module Yeah
 
-class Invisible
+class Visual
   def self.size
     @size
   end

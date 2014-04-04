@@ -1,4 +1,4 @@
-describe Invisible do
+describe Visual do
   include_examples :has_accessor, :thing do
     let(:default_type) { Thing }
     let(:assignables) { [Thing.new] }
