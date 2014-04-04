@@ -2,7 +2,7 @@
 (function($opal) {
   var self = $opal.top, $scope = $opal, nil = $opal.nil, $breaker = $opal.breaker, $slice = $opal.slice, $module = $opal.module, $klass = $opal.klass, $hash2 = $opal.hash2;
 
-  $opal.add_stubs(['$include', '$new', '$getContext', '$setup_shaders', '$attr_reader', '$[]', '$width', '$height', '$width=', '$height=', '$viewport', '$background', '$each', '$render', '$visual', '$position', '$things', '$rgb', '$clearColor', '$clear', '$COLOR_BUFFER_BIT', '$uniform3f', '$getUniformLocation', '$uniform2f', '$resolution', '$+', '$createBuffer', '$bindBuffer', '$ARRAY_BUFFER', '$bufferData', '$STATIC_DRAW', '$vertexAttribPointer', '$FLOAT', '$drawArrays', '$TRIANGLE_STRIP', '$private', '$createProgram', '$createShader', '$VERTEX_SHADER', '$shaderSource', '$compileShader', '$attachShader', '$FRAGMENT_SHADER', '$linkProgram', '$getProgramParameter', '$LINK_STATUS', '$!', '$getProgramInfoLog', '$puts', '$useProgram', '$getAttribLocation', '$enableVertexAttribArray']);
+  $opal.add_stubs(['$include', '$new', '$getContext', '$setup_shaders', '$attr_reader', '$[]', '$width', '$height', '$width=', '$height=', '$tickStart', '$viewport', '$background', '$each', '$render', '$visual', '$position', '$things', '$tick', '$rgb', '$clearColor', '$clear', '$COLOR_BUFFER_BIT', '$uniform3f', '$getUniformLocation', '$uniform2f', '$resolution', '$+', '$createBuffer', '$bindBuffer', '$ARRAY_BUFFER', '$bufferData', '$STATIC_DRAW', '$vertexAttribPointer', '$FLOAT', '$drawArrays', '$TRIANGLE_STRIP', '$private', '$createProgram', '$createShader', '$VERTEX_SHADER', '$shaderSource', '$compileShader', '$attachShader', '$FRAGMENT_SHADER', '$linkProgram', '$getProgramParameter', '$LINK_STATUS', '$!', '$getProgramInfoLog', '$puts', '$useProgram', '$getAttribLocation', '$enableVertexAttribArray']);
   return (function($base) {
     var self = $module($base, 'Yeah');
 
@@ -19,7 +19,7 @@
 
         var def = self._proto, $scope = self._scope, $a;
 
-        def.canvas = def.gl = def.col_loc = def.shader_program = def.pos_loc = nil;
+        def.canvas = def.meter = def.gl = def.col_loc = def.shader_program = def.pos_loc = nil;
         self.$include((($a = $scope.Opal) == null ? $opal.cm('Opal') : $a));
 
         $opal.cdecl($scope, 'VERTEX_SHADER', "    attribute vec2 a_position;\n\n    uniform vec2 u_resolution;\n\n    void main(void) {\n      vec2 clipspace = a_position / u_resolution * 2.0 - 1.0;\n\n      gl_Position = vec4(clipspace, 0, 1);\n    }\n");
@@ -31,6 +31,7 @@
 
           self.canvas = (($a = ((($b = $scope.Native) == null ? $opal.cm('Native') : $b))._scope).Object == null ? $a.cm('Object') : $a.Object).$new(document.getElementsByTagName('canvas')[0]);
           self.gl = self.canvas.$getContext("webgl");
+          self.meter = (($a = ((($b = $scope.Native) == null ? $opal.cm('Native') : $b))._scope).Object == null ? $a.cm('Object') : $a.Object).$new(new FPSMeter());
           return self.$setup_shaders();
         };
 
@@ -53,11 +54,13 @@
         def.$render = function(space) {
           var $a, $b, TMP_1, self = this;
 
+          self.meter.$tickStart();
           self.gl.$viewport(0, 0, self.canvas.$width(), self.canvas.$height());
           self.$background(space.$background());
-          return ($a = ($b = space.$things()).$each, $a._p = (TMP_1 = function(thing){var self = TMP_1._s || this;
+          ($a = ($b = space.$things()).$each, $a._p = (TMP_1 = function(thing){var self = TMP_1._s || this;
 if (thing == null) thing = nil;
           return thing.$visual().$render(self, thing.$position())}, TMP_1._s = self, TMP_1), $a).call($b);
+          return self.meter.$tick();
         };
 
         def.$background = function(color) {
