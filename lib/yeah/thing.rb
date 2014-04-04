@@ -168,16 +168,6 @@ class Thing
   # Behavior for each tick. Meant to be overwritten.
   def update; end
 
-  protected
-
-  # Is a key or button being pressed?
-  #
-  # @param [Pressable]
-  # @return [Boolean]
-  def pressing?(pressable)
-    game.pressing? pressable
-  end
-
   private
 
   def mouse
