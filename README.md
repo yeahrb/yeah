@@ -1,5 +1,5 @@
 # Yeah
-Practical Ruby video game framework in pre-alpha stage.
+Practical Ruby video game framework in alpha stage.
 
 It is designed to be the most productive interface for creating modern games. It takes care of the drudgery and lets you focus on the design.
 
