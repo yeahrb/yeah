@@ -8,12 +8,19 @@ class Box < Visual
     @color = value
   end
 
-  def initialize(size = nil, color = Color[0, 0, 0])
+  def initialize(size = nil, color = nil)
     self.size = size if size
-    self.color = self.class.color || color
+
+    self.color = self.class.color if self.class.color
+    self.color = color if color
   end
 
-  attr_accessor :color
+  def color
+    @color ||= Color[0, 0, 0]
+  end
+  def color=(value)
+    @color = Color[value]
+  end
 
   def render
     screen.color(color)
