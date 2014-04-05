@@ -19,6 +19,7 @@ class Builder
       build_dependencies
       build_project
       copy_player
+      copy_js_dependencies
     end
 
     private
@@ -91,6 +92,15 @@ class Builder
       player = File.read(player_path)
 
       File.write(@build_path.join('player.html'), player)
+    end
+
+    def copy_js_dependencies
+      # Only GLMatrix for now.
+      web_path = PATH.join('lib', 'yeah', 'platforms', 'web')
+      gl_matrix_path = web_path.join('gl-matrix.js')
+      gl_matrix = File.read(gl_matrix_path)
+
+      File.write(@build_path.join('gl-matrix.js'), gl_matrix)
     end
 
     def game_class_name
