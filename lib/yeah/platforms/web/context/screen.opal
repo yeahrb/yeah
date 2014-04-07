@@ -13,7 +13,7 @@ class Screen
     void main(void) {
       vec2 clipspace = a_position / u_resolution * 2.0 - 1.0;
 
-      gl_Position = u_transformation * vec4(clipspace, 1.0, 1.0);
+      gl_Position = u_transformation * vec4(a_position, 1, 1);
     }
   glsl
 
@@ -53,6 +53,7 @@ class Screen
     background(space.background)
 
     @mat4.identity(@transformation)
+    perspective
 
     space.things.each do |thing|
       thing.visual.render(self, thing.position)
@@ -113,6 +114,7 @@ class Screen
 
   def setup_transformation
     @mat4 = Native::Object.new(`mat4`)
+    @vec3 = Native::Object.new(`vec3`)
 
     @transformation = @mat4.create
     @transformation_stack = []
@@ -147,6 +149,16 @@ class Screen
     @col_loc = @gl.getUniformLocation(@shader_program, 'u_color')
 
     @trans_loc = @gl.getUniformLocation(@shader_program, 'u_transformation')
+  end
+
+  def perspective
+    translate = @vec3.create
+    @vec3.set(translate, -1, -1, 0)
+    @mat4.translate(@transformation, @transformation, translate)
+
+    scale = @vec3.create
+    @vec3.set(scale, 2 / @canvas.width, 2 / @canvas.height, 1)
+    @mat4.scale(@transformation, @transformation, scale)
   end
 end
 
