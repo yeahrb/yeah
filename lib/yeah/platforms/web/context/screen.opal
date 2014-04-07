@@ -56,7 +56,9 @@ class Screen
     perspective
 
     space.things.each do |thing|
+      push
       thing.visual.render(self, thing.position)
+      pop
     end
   end
 
@@ -99,9 +101,12 @@ class Screen
   end
 
   def push
+    copy = @mat4.clone(@transformation)
+    @transformation_stack.push(copy)
   end
 
   def pop
+    @transformation = @transformation_stack.pop
   end
 
   def translate(*amount)
