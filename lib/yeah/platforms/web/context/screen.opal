@@ -57,8 +57,6 @@ class Screen
     space.things.each do |thing|
       thing.visual.render(self, thing.position)
     end
-
-    @mat4.perspective(45, @canvas.width / @canvas.height, 0.1, 100, @transformation)
   end
 
   def background(*color)
