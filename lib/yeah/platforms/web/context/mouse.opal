@@ -38,6 +38,7 @@ class Mouse
       canvas_mouse_pos.y = canvas_size.y - canvas_mouse_pos.y
 
       @position = canvas_mouse_pos * @screen.resolution / canvas_size
+      @position.z = 0
     end
   end
 
