@@ -115,6 +115,19 @@ class Screen
     @mat4.translate(@transformation, @transformation, amount)
   end
 
+  def rotate(amount)
+    @mat4.rotateZ(@transformation, @transformation, amount)
+  end
+
+  def scale(*amount)
+    amount = V[*amount]
+
+    scale = @vec3.create
+    @vec3.set(scale, amount.x, amount.y, 1)
+
+    @mat4.scale(@transformation, @transformation, scale)
+  end
+
   private
 
   def setup_transformation
