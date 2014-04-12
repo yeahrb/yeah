@@ -13,6 +13,11 @@ class Visual
   end
   attr_writer :size
 
+  def anchor
+    @anchor ||= V[]
+  end
+  attr_writer :anchor
+
   def thing
     @thing ||= Thing.new
   end
