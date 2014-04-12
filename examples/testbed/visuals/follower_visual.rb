@@ -5,6 +5,7 @@ class FollowerVisual < Box
   }
 
   self.size = V[24, 48]
+  self.anchor = V[size.x / 2, 0]
 
   def color
     thing.charged? ? COLORS[:charged] : COLORS[:default]
