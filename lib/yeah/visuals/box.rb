@@ -25,7 +25,7 @@ class Box < Visual
   def render
     screen.color(color)
     screen.translate(thing.position)
-    screen.rectangle(V[], thing.size)
+    screen.rectangle(anchor * -1, thing.size)
   end
 end
 

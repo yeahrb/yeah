@@ -8,13 +8,20 @@ class Visual
     @size = value
   end
 
+  def self.anchor
+    @anchor
+  end
+  def self.anchor=(value)
+    @anchor = value
+  end
+
   def size
     @size ||= self.class.size || V[]
   end
   attr_writer :size
 
   def anchor
-    @anchor ||= V[]
+    @anchor ||= self.class.anchor || V[]
   end
   attr_writer :anchor
 
