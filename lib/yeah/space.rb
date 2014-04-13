@@ -1,6 +1,6 @@
 module Yeah
 
-class Space
+class Space < Base
   def initialize(properties = {})
     properties.each do |key, val|
       writer = "#{key}="

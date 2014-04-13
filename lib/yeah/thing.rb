@@ -1,7 +1,7 @@
 # Acts and interacts with other Things within a Space.
 module Yeah
 
-class Thing
+class Thing < Base
   def initialize(properties = V[])
     properties = { position: properties } unless properties.respond_to?(:to_h)
     properties = properties.to_h

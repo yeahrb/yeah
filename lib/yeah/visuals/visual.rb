@@ -1,6 +1,6 @@
 module Yeah
 
-class Visual
+class Visual < Base
   def self.size
     @size
   end

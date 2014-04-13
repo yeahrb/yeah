@@ -1,7 +1,7 @@
 # Manages spaces and context.
 module Yeah
 
-class Game
+class Game < Base
   def self.resolution
     @resolution
   end

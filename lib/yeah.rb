@@ -6,6 +6,8 @@ require 'yeah/vector'
 require 'yeah/v'
 require 'yeah/color'
 
+require 'yeah/base'
+
 require 'yeah/visuals/visual'
 require 'yeah/visuals/box'
 
