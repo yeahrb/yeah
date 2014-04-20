@@ -16,6 +16,6 @@ Get the latest version with `git clone git@github.com:skofo/yeah.git`. Check out
   * Game - manages context and active space.
   * Space - contains things.
   * Thing - acts in a space.
-  * Visual - graphical representation for a thing.
+  * Look - visual representation for a thing.
   * Vector - represents position, size, velocity...
   * Color

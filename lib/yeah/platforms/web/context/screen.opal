@@ -57,7 +57,7 @@ class Screen
 
     space.things.each do |thing|
       push
-      thing.visual.render(self, thing.position)
+      thing.look.render(self, thing.position)
       pop
     end
   end

@@ -1,4 +1,4 @@
-describe Visual do
+describe Look do
   include_examples :has_accessor, :anchor do
     let(:default) { V[] }
     let(:assignables) { [V[3, 5, 9]] }
@@ -6,7 +6,7 @@ describe Visual do
 
   describe '#anchor' do
     it "defaults to class anchor if it is defined" do
-      subclass = Class.new(Visual)
+      subclass = Class.new(Look)
       subclass.anchor = random_vector
       instance = subclass.new
 

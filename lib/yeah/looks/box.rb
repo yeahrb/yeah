@@ -1,6 +1,6 @@
 module Yeah
 
-class Box < Visual
+class Box < Look
   def self.color
     @color
   end

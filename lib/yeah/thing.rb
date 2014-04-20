@@ -51,7 +51,7 @@ class Thing < Base
   #
   # @return [NilClass|Vector]
   def size
-    @size ||= visual.size
+    @size ||= look.size
   end
   def size=(value)
     @size = V[value]
@@ -66,19 +66,19 @@ class Thing < Base
   def depth; size[2]; end
   def depth=(v); self.size[2] = v; end
 
-  # Graphical representation.
+  # Visual representation.
   #
-  # @return [Visual]
-  def visual
-    return @visual if @visual
+  # @return [Look]
+  def look
+    return @look if @look
 
-    self.visual = project_visual_instance || Visual.new
+    self.look = project_look_instance || Look.new
 
-    @visual # TODO: do a spec for this; can't reference Thing#size without this
+    @look # TODO: do a spec for this; can't reference Thing#size without this
   end
-  def visual=(val)
-    @visual = val
-    @visual.thing = self unless @visual.thing == self
+  def look=(val)
+    @look = val
+    @look.thing = self unless @look.thing == self
   end
 
   # Origin point within bounds.
@@ -174,17 +174,17 @@ class Thing < Base
     game.context.mouse
   end
 
-  def project_visual
+  def project_look
     return unless self.class.name
 
     thing_class_name = self.class.name.split('::').last
-    class_name = "#{thing_class_name}Visual"
+    class_name = "#{thing_class_name}Look"
 
     Object.const_get(class_name) if Object.const_defined?(class_name)
   end
 
-  def project_visual_instance
-    @project_visual_instance ||= project_visual.new if project_visual
+  def project_look_instance
+    @project_look_instance ||= project_look.new if project_look
   end
 end
 

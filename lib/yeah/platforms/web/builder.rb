@@ -53,7 +53,7 @@ class Builder
       project_code = ""
 
       # Combine all project code.
-      %i[visuals things].each do |code_type|
+      %i[looks things].each do |code_type|
         Dir["#{code_type}/*.rb"].each { |p| project_code << File.read(p) }
       end
       project_code << File.read('game.rb')

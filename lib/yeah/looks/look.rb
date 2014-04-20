@@ -1,6 +1,6 @@
 module Yeah
 
-class Visual < Base
+class Look < Base
   def self.size
     @size
   end
@@ -30,7 +30,7 @@ class Visual < Base
   end
   def thing=(val)
     @thing = val
-    @thing.visual = self unless @thing.visual == self
+    @thing.look = self unless @thing.look == self
   end
 
   def render; end

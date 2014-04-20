@@ -1,5 +1,5 @@
 describe Box, '::new' do
-  it { described_class.new.should be_kind_of Visual }
+  it { described_class.new.should be_kind_of Look }
 
   it "accepts a size" do
     size = random_vector

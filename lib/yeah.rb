@@ -8,8 +8,8 @@ require 'yeah/color'
 
 require 'yeah/base'
 
-require 'yeah/visuals/visual'
-require 'yeah/visuals/box'
+require 'yeah/looks/look'
+require 'yeah/looks/box'
 
 require 'yeah/thing'
 

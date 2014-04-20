@@ -1,4 +1,4 @@
-class FollowerVisual < Box
+class FollowerLook < Box
   COLORS = {
     default: Color[0.8, 0.5, 0.3], # orange
     charged: Color[0.3, 0.5, 0.8] # blue

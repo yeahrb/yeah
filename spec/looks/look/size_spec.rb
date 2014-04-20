@@ -1,4 +1,4 @@
-describe Visual do
+describe Look do
   include_examples :has_accessor, :size do
     let(:default) { V[] }
     let(:assignables) { [V[9, 5, 3]] }
@@ -6,7 +6,7 @@ describe Visual do
 
   describe '#size' do
     it "defaults to class size if it is defined" do
-      subclass = Class.new(Visual)
+      subclass = Class.new(Look)
       subclass.size = random_vector
       instance = subclass.new
 

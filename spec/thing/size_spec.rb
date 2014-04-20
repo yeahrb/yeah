@@ -7,14 +7,14 @@ describe Thing do
   describe '#size' do
     let(:size) { random_vector }
 
-    it "is implied by visual size" do
-      subject.visual = Visual.new
-      subject.size.should eq subject.visual.size
+    it "is implied by look size" do
+      subject.look = Look.new
+      subject.size.should eq subject.look.size
     end
 
-    it "is not implied by visual size after size is explicitly set" do
+    it "is not implied by look size after size is explicitly set" do
       subject.size = size
-      subject.visual = Visual.new
+      subject.look = Look.new
       subject.size.should eq size
     end
   end
