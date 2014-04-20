@@ -1,8 +1,11 @@
 describe Look do
   subject { Class.new(described_class) }
 
-  include_examples :has_accessor, :size do
-    let(:default) { nil }
-    let(:assignables) { [V[1, 2, 3]] }
+  describe '::size' do
+    its(:size) { should be_nil }
+  end
+
+  describe '::size=' do
+    include_examples :writer, :size=
   end
 end

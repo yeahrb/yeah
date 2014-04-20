@@ -1,10 +1,11 @@
 describe Thing do
-  include_examples :has_accessor, :space do
-    let(:default_type) { Space }
-    let(:assignables) { [Space.new] }
+  describe '#space' do
+    its(:space) { should be_instance_of Space }
   end
 
   describe '#space=' do
+    include_examples :writer, :space=, Space.new
+
     it "pushes self to value's #things" do
       subject.space = Space.new
       subject.space.things.last.should eq subject

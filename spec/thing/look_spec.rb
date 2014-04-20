@@ -1,10 +1,7 @@
 describe Thing do
-  include_examples :has_accessor, :look do
-    let(:default_type) { Look }
-    let(:assignables) { [Box.new] }
-  end
-
   describe '#look' do
+    its(:look) { should be_instance_of Look }
+
     it "defaults to <class name>Look if it exists" do
       class Stuff < described_class; end
       class StuffLook < Look; end
@@ -14,6 +11,8 @@ describe Thing do
   end
 
   describe '#look=' do
+    include_examples :writer, :look=, Look.new
+
     it "sets #look's thing as self" do
       subject.look = Look.new
       subject.look.thing.should eq subject

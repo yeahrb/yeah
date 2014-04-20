@@ -1,10 +1,7 @@
 describe Look do
-  include_examples :has_accessor, :anchor do
-    let(:default) { V[] }
-    let(:assignables) { [V[3, 5, 9]] }
-  end
-
   describe '#anchor' do
+    its(:anchor) { should eq V[] }
+
     it "defaults to class anchor if it is defined" do
       subclass = Class.new(Look)
       subclass.anchor = random_vector
@@ -12,5 +9,9 @@ describe Look do
 
       instance.anchor.should eq subclass.anchor
     end
+  end
+
+  describe '#anchor=' do
+    include_examples :writer, :anchor=
   end
 end

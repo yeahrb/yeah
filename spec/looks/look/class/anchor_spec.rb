@@ -1,8 +1,11 @@
 describe Look do
   subject { Class.new(described_class) }
 
-  include_examples :has_accessor, :anchor do
-    let(:default) { nil }
-    let(:assignables) { [V[1, 2, 3]] }
+  describe '::anchor' do
+    its(:anchor) { should be_nil }
+  end
+
+  describe '::anchor=' do
+    include_examples :writer, :anchor=
   end
 end

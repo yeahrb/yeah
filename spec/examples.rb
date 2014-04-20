@@ -1,47 +1,12 @@
-# Has an accessor.
-shared_examples :has_accessor do |method_name|
-  let(:reader_name) { method_name }
-  let(:writer_name) { "#{reader_name}=" }
-  let(:reader) { subject.method(reader_name) }
-  let(:writer) { subject.method(writer_name) }
+shared_examples :writer do |writer_name, value|
+  value ||= Object.new
+  instance_var_name = "@#{writer_name[0..-2]}"
 
-  describe "##{method_name}" do # reader
-    it { should respond_to reader_name }
+  it "sets a[n] #{value.class} as #{instance_var_name}" do
+    subject.send(writer_name, value)
 
-    it do # has a default value
-      if defined? default
-        reader.call.should eq default
-      end
-    end
-
-    it do # has a default type
-      if defined? default_type
-        reader.call.should be_instance_of default_type
-      end
-    end
-  end
-
-  describe "##{method_name}=" do # writer
-    it { should respond_to writer_name }
-
-    it do # can assign assignables
-      assignables.each do |assignable|
-        writer.call(assignable)
-
-        # all assignables should match after being assigned
-        reader.call.should eq assignables.first
-      end
-    end
-
-    it do # coerces to type
-      if defined? coerce_type
-        assignables.each do |assignable|
-          writer.call(assignable)
-
-          reader.call.should be_instance_of coerce_type
-        end
-      end
-    end
+    instance_var = subject.instance_variable_get(instance_var_name)
+    expect(instance_var).to eq value
   end
 end
 

@@ -1,6 +1,9 @@
 shared_examples :color_subcolor do |method_name|
-  include_examples :has_accessor, :blue do
-    let(:default) { 0 }
-    let(:assignables) { [0.5] }
+  describe "##{method_name}" do
+    its(method_name) { should eq 0 }
+  end
+
+  describe "##{method_name}=" do
+    include_examples :writer, "#{method_name}="
   end
 end

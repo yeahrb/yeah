@@ -1,16 +1,11 @@
-require_relative 'shared/components'
-
 describe Vector do
-  include_examples :has_accessor, :components do
-    let(:default) { [0, 0, 0] }
-    let(:assignables) { [[9, 9, 9], V[9, 9, 9], [V[9, 9, 9]]] }
-  end
-
   describe '#components' do
-    it_behaves_like :vector_components, :components
+    its(:components) { should eq [0, 0, 0] }
   end
 
   describe '#components=' do
+    include_examples :writer, :components=, [3, 6, 9]
+
     it "assigns array with up to 3 numbers" do
       subject.components = [4, 5, 6]
       expect(subject.components).to eq [4, 5, 6]

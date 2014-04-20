@@ -1,8 +1,15 @@
-require_relative 'shared/coordinate'
-
 describe Thing do
-  include_examples :has_accessor, :depth do
-    let(:default) { subject.size.z }
-    let(:assignables) { [10] }
+  before { subject.size = random_vector }
+
+  describe '#depth' do
+    its(:depth) { should eq subject.size.z }
+  end
+
+  describe '#depth=' do
+    it "writes #size.z" do
+      subject.depth = Random.rand(10)
+
+      expect(subject.size.z).to eq subject.depth
+    end
   end
 end

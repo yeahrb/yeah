@@ -1,8 +1,11 @@
 describe Game do
   subject { Class.new(described_class) }
 
-  include_examples :has_accessor, :space do
-    let(:default) { nil }
-    let(:assignables) { [Space] }
+  describe '::space' do
+    its(:space) { should be_nil }
+  end
+
+  describe '::space=' do
+    include_examples :writer, :space=
   end
 end

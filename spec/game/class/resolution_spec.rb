@@ -1,8 +1,11 @@
 describe Game do
   subject { Class.new(described_class) }
 
-  include_examples :has_accessor, :resolution do
-    let(:default) { nil }
-    let(:assignables) { [V[200, 300]] }
+  describe '::resolution' do
+    its(:resolution) { should be_nil }
+  end
+
+  describe '::resolution=' do
+    include_examples :writer, :resolution=
   end
 end

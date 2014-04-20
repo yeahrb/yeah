@@ -1,6 +1,9 @@
 describe Game do
-  include_examples :has_accessor, :data do
-    let(:default) { Hash.new }
-    let(:assignables) { [{ stuff: "lorem ipsum"}] }
+  describe '#data' do
+    its(:data) { should eq Hash.new }
+  end
+
+  describe '#data=' do
+    include_examples :writer, :data=
   end
 end

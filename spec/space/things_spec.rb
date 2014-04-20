@@ -1,10 +1,11 @@
 describe Space do
-  include_examples :has_accessor, :things do
-    let(:default) { [] }
-    let(:assignables) { [[Thing.new]] }
+  describe '#things' do
+    its(:things) { should be_empty }
   end
 
   describe '#things=' do
+    include_examples :writer, :things=, []
+
     it "assigns each item's #space as self" do
       things = [Thing.new, Thing.new]
       subject.things = things

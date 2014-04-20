@@ -1,7 +1,17 @@
 describe Thing do
-  include_examples :has_accessor, :anchor do
-    let(:default) { V[] }
-    let(:assignables) { [V[5, 4, 9], [5, 4, 9]] }
-    let(:coerce_type) { Vector }
+  describe '#anchor' do
+    its(:anchor) { should eq V[] }
+  end
+
+  describe '#anchor=' do
+    include_examples :writer, :anchor=, random_vector
+
+    #include_examples :coerces_to_vector, :anchor=
+    it "coerces given value to vector" do
+      value = [1, 2, 3]
+      subject.anchor = value
+
+      expect(subject.anchor).to eq Vector[value]
+    end
   end
 end

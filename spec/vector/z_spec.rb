@@ -1,6 +1,17 @@
 describe Vector do
-  include_examples :has_accessor, :z do
-    let(:default) { subject.components[2] }
-    let(:assignables) { [99] }
+  describe '#z' do
+    it "is #components[2]" do
+      subject.components = random_vector
+
+      expect(subject.z).to eq subject.components[2]
+    end
+  end
+
+  describe '#z=' do
+    it "sets #components[2]" do
+      subject.z = Random.rand(10)
+
+      expect(subject.components[2]).to eq subject.z
+    end
   end
 end

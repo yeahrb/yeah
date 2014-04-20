@@ -1,7 +1,17 @@
 describe Space do
-  include_examples :has_accessor, :background do
-    let(:default) { Color[] }
-    let(:assignables) { [Color[0.1, 0.2, 0.4], [0.1, 0.2, 0.4]] }
-    let(:coerce_type) { Color }
+  describe '#background' do
+    its(:background) { should eq Color[] }
+  end
+
+  describe '#background=' do
+    include_examples :writer, :background=, Color[0.1, 0.2, 0.3]
+
+    #include_examples :coerces_to_color, :background=
+    it "coerces given value to color" do
+      value = [0.2, 0.2, 0.2]
+      subject.background = value
+
+      expect(subject.background).to eq Color[value]
+    end
   end
 end

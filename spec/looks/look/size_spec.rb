@@ -1,10 +1,7 @@
 describe Look do
-  include_examples :has_accessor, :size do
-    let(:default) { V[] }
-    let(:assignables) { [V[9, 5, 3]] }
-  end
-
   describe '#size' do
+    its(:size) { should eq V[] }
+
     it "defaults to class size if it is defined" do
       subclass = Class.new(Look)
       subclass.size = random_vector
@@ -12,5 +9,9 @@ describe Look do
 
       instance.size.should eq subclass.size
     end
+  end
+
+  describe '#size=' do
+    include_examples :writer, :size=
   end
 end

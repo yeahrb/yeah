@@ -1,10 +1,11 @@
 describe Space do
-  include_examples :has_accessor, :game do
-    let(:default_type) { Game }
-    let(:assignables) { [Game.new] }
+  describe '#game' do
+    its(:game) { should be_instance_of Game }
   end
 
   describe '#game=' do
+    include_examples :writer, :game=, Game.new
+
     it "sets #game's space as self" do
       subject.game = Game.new
       subject.game.space.should eq subject

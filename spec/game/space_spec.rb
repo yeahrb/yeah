@@ -1,10 +1,7 @@
 describe Game do
-  include_examples :has_accessor, :space do
-    let(:default_type) { Space }
-    let(:assignables) { [Space.new] }
-  end
-
   describe '#space' do
+    its(:space) { should be_instance_of Space }
+
     it "defaults to data space by key of class space if it is defined" do
       subclass = Class.new(described_class)
 
@@ -20,16 +17,20 @@ describe Game do
   end
 
   describe '#space=' do
+    include_examples :writer, :space=, Space.new
+
     it "sets space's game as self" do
       subject.space = Space.new
-      subject.space.game.should eq subject
+
+      expect(subject.space.game).to eq subject
 
       subject.space = subject.space
     end
 
     it "does not set space's game as self twice" do
       subject.space = Space.new
-      subject.space.should_not receive(:game=)
+
+      expect(subject.space).to_not receive(:game=)
 
       subject.space = subject.space
     end
@@ -45,7 +46,7 @@ describe Game do
       }
       subject.space = :some_space
 
-      subject.space.background.should eq background
+      expect(subject.space.background).to eq background
     end
   end
 end

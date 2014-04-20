@@ -1,5 +1,9 @@
-require_relative 'shared/components'
-
 describe Vector, '#to_a' do
-  it_behaves_like :vector_components, :to_a
+  describe '#to_a' do
+    it "is #components" do
+      subject.components = random_vector
+
+      expect(subject.to_a).to eq subject.components
+    end
+  end
 end
