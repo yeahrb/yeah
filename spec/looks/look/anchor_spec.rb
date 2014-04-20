@@ -1,5 +1,7 @@
 describe Look do
   describe '#anchor' do
+    include_examples :reader, :anchor
+
     its(:anchor) { should eq V[] }
 
     it "defaults to class anchor if it is defined" do

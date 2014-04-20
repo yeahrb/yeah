@@ -1,5 +1,7 @@
 describe Space do
   describe '#background' do
+    include_examples :reader, :background
+
     its(:background) { should eq Color[] }
   end
 

@@ -1,5 +1,7 @@
 describe Look do
   describe '#size' do
+    include_examples :reader, :size
+
     its(:size) { should eq V[] }
 
     it "defaults to class size if it is defined" do

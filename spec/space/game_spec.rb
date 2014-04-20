@@ -1,5 +1,7 @@
 describe Space do
   describe '#game' do
+    include_examples :reader, :game
+
     its(:game) { should be_instance_of Game }
   end
 

@@ -1,5 +1,7 @@
 describe Look do
   describe '#thing' do
+    include_examples :reader, :thing
+
     its(:thing) { should be_instance_of Thing }
   end
 

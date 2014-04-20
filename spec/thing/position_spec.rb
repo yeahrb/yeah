@@ -1,5 +1,7 @@
 describe Thing do
   describe '#position' do
+    include_examples :reader, :position
+
     its(:position) { should eq V[] }
   end
 

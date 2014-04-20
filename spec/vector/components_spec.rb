@@ -1,5 +1,7 @@
 describe Vector do
   describe '#components' do
+    include_examples :reader, :components
+
     its(:components) { should eq [0, 0, 0] }
   end
 

@@ -1,5 +1,7 @@
 describe Thing do
   describe '#size' do
+    include_examples :reader, :size
+
     its(:size) { should eq V[] }
 
     it "is implied by look size" do

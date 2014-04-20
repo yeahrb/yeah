@@ -1,5 +1,7 @@
 describe Thing do
   describe '#space' do
+    include_examples :reader, :space
+
     its(:space) { should be_instance_of Space }
   end
 

@@ -1,5 +1,7 @@
 describe Game do
   describe '#space' do
+    include_examples :reader, :space
+
     its(:space) { should be_instance_of Space }
 
     it "defaults to data space by key of class space if it is defined" do

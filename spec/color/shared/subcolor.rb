@@ -1,5 +1,7 @@
 shared_examples :color_subcolor do |method_name|
   describe "##{method_name}" do
+    include_examples :reader, method_name
+
     its(method_name) { should eq 0 }
   end
 

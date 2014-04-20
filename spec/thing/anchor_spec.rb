@@ -1,5 +1,7 @@
 describe Thing do
   describe '#anchor' do
+    include_examples :reader, :anchor
+
     its(:anchor) { should eq V[] }
   end
 

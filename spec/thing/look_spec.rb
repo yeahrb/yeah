@@ -1,5 +1,7 @@
 describe Thing do
   describe '#look' do
+    include_examples :reader, :look
+
     its(:look) { should be_instance_of Look }
 
     it "defaults to <class name>Look if it exists" do

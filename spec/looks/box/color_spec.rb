@@ -1,5 +1,7 @@
 describe Box do
   describe '#color' do
+    include_examples :reader, :color
+
     its(:color) { should eq Color[] }
   end
 

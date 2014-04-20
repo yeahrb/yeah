@@ -1,5 +1,7 @@
 describe Space do
   describe '#things' do
+    include_examples :reader, :things
+
     its(:things) { should be_empty }
   end
 

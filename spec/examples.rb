@@ -10,6 +10,19 @@ shared_examples :writer do |writer_name, value|
   end
 end
 
+shared_examples :reader do |reader_name|
+  instance_var_name = "@#{reader_name}"
+
+  it "is the value of #{instance_var_name}" do
+    value = Object.new
+
+    subject.instance_variable_set(instance_var_name, value)
+
+    instance_var = subject.instance_variable_get(instance_var_name)
+    expect(instance_var).to eq value
+  end
+end
+
 shared_examples :coerces_to_vector do |value|
   it "coerces to vector" do
     writer =  subject
