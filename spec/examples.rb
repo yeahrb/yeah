@@ -23,13 +23,26 @@ shared_examples :reader do |reader_name|
   end
 end
 
-shared_examples :coerces_to_vector do |value|
-  it "coerces to vector" do
-    writer =  subject
-    reader_name = writer.name[0..-2].to_sym
-    reader = writer.receiver.method(reader_name)
+shared_examples :coerces_to_vector do |writer_name|
+  it "coerces given value to a Vector" do
+    instance_var_name = "@#{writer_name[0..-2]}"
+    value = [1, 2, 3]
 
-    writer.call(value)
-    reader.call.should be_instance_of Vector
+    subject.send(writer_name, value)
+
+    instance_var = subject.instance_variable_get(instance_var_name)
+    expect(instance_var).to eq Vector[value]
+  end
+end
+
+shared_examples :coerces_to_color do |writer_name|
+  it "coerces given value to a Color" do
+    instance_var_name = "@#{writer_name[0..-2]}"
+    value = [0.1, 0.2, 0.3]
+
+    subject.send(writer_name, value)
+
+    instance_var = subject.instance_variable_get(instance_var_name)
+    expect(instance_var).to eq Color[value]
   end
 end
