@@ -12,7 +12,7 @@ describe Game do
     end
 
     it "defaults to class resolution if it exists" do
-      resolution = V[21, 32]
+      resolution = random_vector
 
       subclass = Class.new(described_class)
 

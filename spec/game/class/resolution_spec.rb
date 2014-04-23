@@ -4,7 +4,7 @@ describe Game do
   describe '::resolution' do
     include_examples :reader, :resolution
 
-    its(:resolution) { should be_nil }
+    its(:resolution) { should eq V[640, 360] }
   end
 
   describe '::resolution=' do

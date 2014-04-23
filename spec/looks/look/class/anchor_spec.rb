@@ -4,7 +4,7 @@ describe Look do
   describe '::anchor' do
     include_examples :reader, :anchor
 
-    its(:anchor) { should be_nil }
+    its(:anchor) { should eq V[] }
   end
 
   describe '::anchor=' do

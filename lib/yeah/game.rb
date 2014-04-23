@@ -2,13 +2,6 @@
 module Yeah
 
 class Game < Base
-  def self.resolution
-    @resolution
-  end
-  def self.resolution=(value)
-    @resolution = value
-  end
-
   def self.space
     @space
   end
@@ -16,13 +9,14 @@ class Game < Base
     @space = value
   end
 
+  class_attr :resolution, V[640, 360]
+
   def initialize(data = {}, context = Unplatform::Context.new)
     @data = data
     @context = context
 
-    self.resolution = self.class.resolution || V[640, 360]
-
     self.space = self.class.space if self.class.space
+    self.resolution = self.class.resolution
   end
 
   # @return [Context]

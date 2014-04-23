@@ -4,7 +4,7 @@ describe Look do
   describe '::size' do
     include_examples :reader, :size
 
-    its(:size) { should be_nil }
+    its(:size) { should eq V[] }
   end
 
   describe '::size=' do
