@@ -2,6 +2,9 @@
 module Yeah
 
 class Thing < Base
+  # Visual representation.
+  one_to_one :look, :thing
+
   def initialize(properties = V[])
     properties = { position: properties } unless properties.respond_to?(:to_h)
     properties = properties.to_h
@@ -9,6 +12,8 @@ class Thing < Base
       writer = "#{key}="
       send(writer, val)
     end
+
+    self.look = project_look_instance if project_look_instance
 
     setup
   end
@@ -65,21 +70,6 @@ class Thing < Base
 
   def depth; size[2]; end
   def depth=(v); self.size[2] = v; end
-
-  # Visual representation.
-  #
-  # @return [Look]
-  def look
-    return @look if @look
-
-    self.look = project_look_instance || Look.new
-
-    @look # TODO: do a spec for this; can't reference Thing#size without this
-  end
-  def look=(val)
-    @look = val
-    @look.thing = self unless @look.thing == self
-  end
 
   # Origin point within bounds.
   #

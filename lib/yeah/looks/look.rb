@@ -5,13 +5,7 @@ class Look < Base
 
   class_attr :anchor, V[]
 
-  def thing
-    @thing ||= Thing.new
-  end
-  def thing=(val)
-    @thing = val
-    @thing.look = self unless @thing.look == self
-  end
+  one_to_one :thing, :look
 
   def render; end
 

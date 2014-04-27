@@ -59,6 +59,38 @@ class Base
       end
     end
   end
+
+  # Create a one-to-one circular reference property.
+  # TODO: Make more sturdy.
+  def self.one_to_one(other_name, self_name)
+    ivar_name = "@#{other_name}"
+
+    DynamicMethods.module_eval do
+      define_method(other_name) do
+        ivar = instance_variable_get(ivar_name)
+
+        return ivar unless ivar.nil?
+
+        other_class = Kernel.const_get(other_name.capitalize)
+        other = other_class.new
+        other_ivar_name = "@#{self_name}"
+
+        other.instance_variable_set(other_ivar_name, self)
+
+        instance_variable_set(ivar_name, other)
+      end
+
+      define_method("#{other_name}=") do |value|
+        instance_variable_set(ivar_name, value)
+
+        ivar = instance_variable_get(ivar_name)
+
+        if ivar.send(self_name) != self
+          ivar.send("#{self_name}=", self)
+        end
+      end
+    end
+  end
 end
 
 end
