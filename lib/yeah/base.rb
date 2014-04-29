@@ -12,48 +12,26 @@ class Base
     writer_name = "#{name}="
 
     # Class reader
-    #
-    #   def self.<name>
-    #     return @<name> unless @<name>.nil?
-    #     @<name> = default
-    #   end
     define_singleton_method(name) do
       ivar = instance_variable_get(ivar_name)
 
-      return ivar unless ivar.nil?
-
-      instance_variable_set(ivar_name, default)
+      ivar || instance_variable_set(ivar_name, default)
     end
 
     # Class writer
-    #
-    #   def self.<name>=(value)
-    #     @<name> = value
-    #   end
     define_singleton_method(writer_name) do |value|
       instance_variable_set(ivar_name, value)
     end
 
     DynamicMethods.module_eval do
       # Instance reader
-      #
-      #   def <name>
-      #     return @<name> unless @<name>.nil?
-      #     @<name> = self.class.<name>
-      #   end
       define_method(name) do
         ivar = instance_variable_get(ivar_name)
 
-        return ivar unless ivar.nil?
-
-        instance_variable_set(ivar_name, self.class.send(name))
+        ivar || instance_variable_set(ivar_name, self.class.send(name))
       end
 
       # Instance writer
-      #
-      #   def <name>=(value)
-      #     @<name> = value
-      #   end
       define_method(writer_name) do |value|
         instance_variable_set(ivar_name, value)
       end
@@ -66,20 +44,23 @@ class Base
     ivar_name = "@#{other_name}"
 
     DynamicMethods.module_eval do
+      # Reader
       define_method(other_name) do
         ivar = instance_variable_get(ivar_name)
 
-        return ivar unless ivar.nil?
+        if ivar.nil?
+          other_class = Kernel.const_get(other_name.capitalize)
+          other = other_class.new
 
-        other_class = Kernel.const_get(other_name.capitalize)
-        other = other_class.new
-        other_ivar_name = "@#{self_name}"
+          other.instance_variable_set("@#{self_name}", self)
 
-        other.instance_variable_set(other_ivar_name, self)
-
-        instance_variable_set(ivar_name, other)
+          instance_variable_set(ivar_name, other)
+        else
+          ivar
+        end
       end
 
+      # Writer
       define_method("#{other_name}=") do |value|
         instance_variable_set(ivar_name, value)
 
