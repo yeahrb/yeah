@@ -1,0 +1,8 @@
+**/.*
+Gemfile.lock
+*.gem
+doc/
+vendor/bundle/
+bin/*
+!bin/yeah
+tmp/
