@@ -1,2 +1,0 @@
-class Block < Thing
-end
