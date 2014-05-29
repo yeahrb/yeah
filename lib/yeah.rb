@@ -2,4 +2,4 @@ module Yeah; end
 
 require 'yeah/version'
 
-require 'yeah/game'
+require 'yeah/v'
