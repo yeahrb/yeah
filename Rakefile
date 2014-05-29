@@ -1,6 +1,7 @@
 task :default => :test
 
 task :test do
+  require 'yeah'
   require 'minitest/autorun'
   require 'minitest/unit'
 
