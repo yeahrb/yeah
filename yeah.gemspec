@@ -22,8 +22,6 @@ Gem::Specification.new do |s|
   s.license = 'MIT'
 
   s.add_runtime_dependency 'opal', '~> 0.6.2'
-  s.add_development_dependency 'rspec', '~> 2.14.1'
-  s.add_development_dependency 'guard-rspec', '~> 3.1.0'
   s.add_development_dependency 'libnotify', '~> 0.8.2'
   s.add_development_dependency 'yard', '~> 0.8.7.2'
 end
