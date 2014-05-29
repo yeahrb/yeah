@@ -1,11 +1,11 @@
 module Yeah
 module Web
 class Display
-  def initialize(*kargs)
-    @canvas = `document.querySelectorAll(#{kargs.fetch(:canvas)})[0]`
+  def initialize(args = {})
+    @canvas = `document.querySelectorAll(#{args.fetch(:canvas)})[0]`
     @context = `#@canvas.getContext('webgl')`
 
-    @canvas.size = kargs.fetch(:size)
+    @canvas.size = args.fetch(:size)
   end
 
   def size
