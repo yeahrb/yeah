@@ -4,15 +4,15 @@ var Yeah = Opal.Yeah,
 module('Web::Display', {
   setup: function() {
     display = Yeah.Web.Display.$new({
-      size:   Yeah.V['$[]'](400, 400),
-      canvas: 'canvas' });
+      canvas_selector: 'canvas',
+      size:            Yeah.V['$[]'](400, 400) });
 
     display.$clear();
   }
 });
 
 test("implements Display interface", function() {
-  var methods = ['size', 'size=', 'pixel_at', 'clear', 'rect'];
+  var methods = ['size', 'size=', 'color_at', 'clear', 'fill'];
 
   for (var i=0; i < methods.length; i++) {
     ok(display['$responds_to?'](methods[i]));
@@ -32,12 +32,12 @@ test('#clear fills all with black', function() {
   equal(display.$pixel_at(rectPosition), clearColor);
 });
 
-test("#rect draws filled rectangle", function() {
+test("#fill fills area with color", function() {
   var position = Yeah.V['$[]'](100, 200),
       size =     Yeah.V['$[]'](100, 100)
       color =    Yeah.C['$[]'](1, 0.5, 0);
 
-  display.$rect(position, size, color);
+  display.$fill(position, size, color);
 
   equal(display.$pixel_at(100, 200), color);
   equal(display.$pixel_at(150, 250), color);

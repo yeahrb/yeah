@@ -2,8 +2,8 @@ module Yeah
 module Web
 class Display
   def initialize(args = {})
-    @canvas = `document.querySelectorAll(#{args.fetch(:canvas)})[0]`
-    @context = `#@canvas.getContext('webgl')`
+    @canvas = `document.querySelectorAll(#{args.fetch(:canvas_selector)})[0]`
+    @gl = `#@canvas.getContext('webgl')`
 
     @canvas.size = args.fetch(:size)
   end
@@ -16,14 +16,14 @@ class Display
     `#@canvas.height = #{value.y}`
   end
 
-  def pixel_at(position)
+  def color_at(position)
     C[1, 1, 1]
   end
 
   def clear
   end
 
-  def rect
+  def fill(position, size, color)
   end
 end
 end
