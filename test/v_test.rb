@@ -1,4 +1,4 @@
-class VTest < Unit::TestCase
+class VTest < Test
   include Yeah
 
   def setup
