@@ -29,7 +29,7 @@ test('#clear fills all with black', function() {
 
   display.$clear();
 
-  equal(display.$pixel_at(rectPosition), clearColor);
+  equal(display.$color_at(rectPosition), clearColor);
 });
 
 test("#fill fills area with color", function() {
@@ -39,7 +39,7 @@ test("#fill fills area with color", function() {
 
   display.$fill(position, size, color);
 
-  equal(display.$pixel_at(100, 200), color);
-  equal(display.$pixel_at(150, 250), color);
-  equal(display.$pixel_at(199, 299), color);
+  equal(display.$color_at(100, 200), color);
+  equal(display.$color_at(150, 250), color);
+  equal(display.$color_at(199, 299), color);
 });
