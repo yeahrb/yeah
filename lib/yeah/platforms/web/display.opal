@@ -3,7 +3,7 @@ module Web
 class Display
   def initialize(args = {})
     @canvas = `document.querySelectorAll(#{args.fetch(:canvas_selector)})[0]`
-    @gl = `#@canvas.getContext('webgl')`
+    @context = `#@canvas.getContext('2d')`
 
     @canvas.size = args.fetch(:size)
   end
