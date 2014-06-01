@@ -1,0 +1,28 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    <title>Yeah::Web tests</title>
+
+    <link rel="stylesheet" href="/assets/qunit.css">
+  </head>
+
+  <body>
+    <div id="game">
+      <canvas></canvas>
+    </div>
+
+    <div id="qunit"></div>
+
+    <div id="scripts">
+      <% %i[qunit opal yeah].each do |script| %>
+        <script src="/assets/<%= script %>.js"></script>
+      <% end %>
+
+      <% @tests.each do |test| %>
+        <script src="/assets/<%= test %>"></script>
+      <% end %>
+    </div>
+  </body>
+</html>
