@@ -63,6 +63,7 @@ namespace :web do
           append_path 'lib'
           append_path WEB_TEST_PATH
           append_path WEB_TEST_PATH.join('runner', 'assets')
+          $LOAD_PATH.each { |p| append_path(p) }
         end
       end
     end
