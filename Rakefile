@@ -17,7 +17,7 @@ namespace :web do
     require 'rack'
     require 'opal'
 
-    WEB_TEST_PATH = Pathname.new('test/platforms/web')
+    WEB_TEST_PATH = Pathname.new('test/web')
 
     class Server
       def initialize
@@ -39,9 +39,9 @@ namespace :web do
         def initialize(assets)
           @assets = assets
 
-          Dir.chdir('test/platforms/web')
-          @tests = Dir['**/*.js'].reject { |p| p[/runner\/.*/] }
-          Dir.chdir('../../..')
+          Dir.chdir(WEB_TEST_PATH) do
+            @tests = Dir['**/*.js'].reject { |p| p[/runner\/.*/] }
+          end
         end
 
         def call(env)
@@ -52,6 +52,10 @@ namespace :web do
           @content ||= ERB.new(
             File.read(WEB_TEST_PATH.join('runner', 'index.html.erb'))
           ).result(binding)
+        end
+
+        def scripts
+          %i[qunit opal yeah yeah/web]
         end
       end
 

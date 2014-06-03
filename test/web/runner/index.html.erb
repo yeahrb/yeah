@@ -16,11 +16,11 @@
     <div id="qunit"></div>
 
     <div id="scripts">
-      <% %i[qunit opal yeah].each do |script| %>
+      <% scripts.each do |script| %>
         <script src="/assets/<%= script %>.js"></script>
       <% end %>
 
-      <% @tests.each do |test| %>
+      <% tests.each do |test| %>
         <script src="/assets/<%= test %>"></script>
       <% end %>
     </div>
