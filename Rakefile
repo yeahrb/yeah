@@ -1,17 +1,17 @@
 task :default => :test
 
 task :test do
-  require 'yeah'
+  require 'minitest'
   require 'minitest/autorun'
-  require 'minitest/unit'
 
-  include MiniTest
-
-  Dir.glob('test/**/*_test.rb').each { |f| require_relative(f) }
+  Dir.glob('test/**/{test_helper,*_test}.rb').each { |f| require_relative(f) }
 end
 
 namespace :web do
-  task :test do
+  require 'opal/minitest/rake_task'
+  Opal::Minitest::RakeTask.new(:test)
+
+  task :oldtest do
     require 'pathname'
     require 'erb'
     require 'rack'

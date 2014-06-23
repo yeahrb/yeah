@@ -1,5 +1,4 @@
 # -*- encoding: utf-8 -*-
-
 lib = File.expand_path('../lib/', __FILE__)
 $:.unshift lib unless $:.include?(lib)
 
@@ -23,5 +22,7 @@ Gem::Specification.new do |s|
 
   s.add_runtime_dependency 'opal', '~> 0.7.0.dev'
   s.add_development_dependency 'rake', '~> 10.3.1'
+  s.add_development_dependency 'minitest', '~> 5.3.2'
+  s.add_development_dependency 'opal-minitest', '~> 0.0.3'
   s.add_development_dependency 'yard', '~> 0.8.7.2'
 end

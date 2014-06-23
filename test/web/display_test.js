@@ -3,9 +3,9 @@ var Yeah = Opal.Yeah,
 
 module('Web::Display', {
   setup: function() {
-    display = Yeah.Web.Display.$new({
+    display = Yeah.Web.Display.$new(Opal.hash({
       canvas_selector: 'canvas',
-      size:            Yeah.V['$[]'](400, 400) });
+      size:            Yeah.V['$[]'](400, 400) }));
 
     display.$clear();
   }
@@ -15,7 +15,7 @@ test("implements Display interface", function() {
   var methods = ['size', 'size=', 'color_at', 'clear', 'fill'];
 
   for (var i=0; i < methods.length; i++) {
-    ok(display['$responds_to?'](methods[i]));
+    ok(display['$respond_to?'](methods[i]));
   }
 });
 
@@ -25,7 +25,7 @@ test('#clear fills all with black', function() {
       rectColor = Yeah.C['$[]'](1, 1, 1),
       clearColor = Yeah.C['$[]'](0, 0, 0);
 
-  display.$rect(rectPosition, rectSize, rectColor);
+  display.$fill(rectPosition, rectSize, rectColor);
 
   display.$clear();
 

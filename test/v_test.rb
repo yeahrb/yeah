@@ -1,6 +1,4 @@
 class VTest < Test
-  include Yeah
-
   def setup
     @v = V[0, 0, 0]
   end

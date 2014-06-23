@@ -1,6 +1,4 @@
 class CTest < Test
-  include Yeah
-
   def setup
     @c = C[0, 0, 0]
   end
