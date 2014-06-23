@@ -21,5 +21,9 @@ class C
   def to_s
     "#<#{self.class.name} #{value.to_s}>"
   end
+
+  def to_hex
+    "##{value.map { |v| (v * 255.0).round.to_s(16).rjust(2, '0') }.join('')}"
+  end
 end
 end

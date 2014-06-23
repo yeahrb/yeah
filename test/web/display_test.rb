@@ -20,14 +20,14 @@ class DisplayTest < Test
   def test_clear_fills_all_with_black
     rect_position = V[10, 10]
     rect_size =     V[1, 1]
-    rect_color =    V[1, 1, 1]
+    rect_color =    C[1, 1, 1]
     clear_color =   C[0, 0, 0]
 
     @object.fill(rect_position, rect_size, rect_color)
 
     @object.clear
 
-    assert_equal(@object.color_at(rect_position), clear_color)
+    assert_equal(clear_color, @object.color_at(rect_position))
   end
 
   def test_fill_fills_area_with_color
@@ -37,8 +37,8 @@ class DisplayTest < Test
 
     @object.fill(position, size, color)
 
-    assert_equal(@object.color_at(V[100, 200]), color)
-    assert_equal(@object.color_at(V[150, 250]), color)
-    assert_equal(@object.color_at(V[199, 299]), color)
+    assert_equal(color, @object.color_at(position))
+    assert_equal(color, @object.color_at(position + V[size.x / 2, size.y / 2]))
+    assert_equal(color, @object.color_at(position + V[size.y - 1, size.x - 1]))
   end
 end
