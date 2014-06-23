@@ -37,8 +37,11 @@ class DisplayTest < Test
 
     @object.fill(position, size, color)
 
-    assert_equal(color, @object.color_at(position))
-    assert_equal(color, @object.color_at(position + V[size.x / 2, size.y / 2]))
-    assert_equal(color, @object.color_at(position + V[size.y - 1, size.x - 1]))
+    topleft = position
+    middle = V[position.x + size.x / 2, position.y + size.y / 2]
+    bottomright = V[position.x + size.x - 1, position.y + size.y - 1]
+
+    [topleft, middle, bottomright].each { |position|
+      assert_equal(color, @object.color_at(position)) }
   end
 end

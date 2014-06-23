@@ -18,7 +18,7 @@ class Display
 
   def color_at(position)
     data = `#@context.getImageData(#{position.x}, #{position.y}, 1, 1).data`
-    C[`data[0]/255`, `data[1]/255`, `data[2]/255`]
+    C[`data[0] / 255`, `data[1] / 255`, `data[2] / 255`]
   end
 
   def clear
@@ -27,7 +27,7 @@ class Display
   end
 
   def fill(position, size, color)
-    `#@context.fillStyle = '#{color.to_hex}'` # TODO: fix
+    `#@context.fillStyle = #{color.to_hex}`
     `#@context.fillRect(#{position.x}, #{position.y}, #{size.x}, #{size.y})`
   end
 end
