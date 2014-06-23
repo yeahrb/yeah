@@ -17,10 +17,13 @@ class Display
   end
 
   def color_at(position)
-    C[1, 1, 1]
+    data = `#@context.getImageData(#{position.x}, #{position.y}, 1, 1).data`
+    C[`data[0]`, `data[1]`, `data[2]`]
   end
 
   def clear
+    `#@context.fillStyle = '#000'`
+    `#@context.fillRect(0, 0, #{size.x}, #{size.y})`
   end
 
   def fill(position, size, color)

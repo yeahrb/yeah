@@ -37,8 +37,8 @@ class DisplayTest < Test
 
     @object.fill(position, size, color)
 
-    assert_equal(@object.color_at(100, 200), color)
-    assert_equal(@object.color_at(150, 250), color)
-    assert_equal(@object.color_at(199, 299), color)
+    assert_equal(@object.color_at(V[100, 200]), color)
+    assert_equal(@object.color_at(V[150, 250]), color)
+    assert_equal(@object.color_at(V[199, 299]), color)
   end
 end
