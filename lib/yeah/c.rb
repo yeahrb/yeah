@@ -17,5 +17,9 @@ class C
   def ==(other)
     value == other.value
   end
+
+  def to_s
+    "#<#{self.class.name} #{value.to_s}>"
+  end
 end
 end
