@@ -17,6 +17,15 @@ class DisplayTest < Test
     methods.each { |m| assert_respond_to(@object, m) }
   end
 
+  def test_color_at_gets_color_at_position
+    position = V[5, 5]
+
+    @object.fill = C[0, 128, 255]
+    @object.rectangle(position, V[1, 1])
+
+    assert_equal(@object.color_at(position), @object.fill)
+  end
+
   def test_rectangle_fills_area_with_color
     position = V[100, 200]
     size =     V[100, 100]
