@@ -35,7 +35,8 @@ class DisplayTest < Test
     size =     V[100, 100]
     color =    C[255, 128, 0]
 
-    @object.rectangle(position, size, color)
+    @object.fill = color
+    @object.rectangle(position, size)
 
     topleft = position
     middle = V[position.x + size.x / 2, position.y + size.y / 2]
