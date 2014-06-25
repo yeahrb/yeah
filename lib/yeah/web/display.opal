@@ -28,11 +28,6 @@ class Display
     C[`data[0]`, `data[1]`, `data[2]`]
   end
 
-  def clear
-    `#@context.fillStyle = '#000'`
-    `#@context.fillRect(0, 0, #{size.x}, #{size.y})`
-  end
-
   def rectangle(position, size)
     `#@context.fillRect(#{position.x}, #{position.y}, #{size.x}, #{size.y})`
   end
