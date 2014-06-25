@@ -11,7 +11,11 @@ class C
   attr_reader :value
 
   def initialize(*args)
-    @value = args
+    if args.first.respond_to?(:[]) && args.first[0] == '#' # hex string
+      @value = args.first[1..6].scan(/../).map { |h| h.to_i(16) }
+    else
+      @value = args
+    end
   end
 
   def ==(other)

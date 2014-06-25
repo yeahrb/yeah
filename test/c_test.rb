@@ -8,4 +8,12 @@ class CTest < Test
 
     %i[value ==].each { |m| assert_respond_to(@c, m) }
   end
+
+  def test_initializes_with_bytes
+    assert_equal([255, 128, 0], C[255, 128, 0].value)
+  end
+
+  def test_initializes_with_hex
+    assert_equal([255, 128, 0], C['#ff8000'].value)
+  end
 end
