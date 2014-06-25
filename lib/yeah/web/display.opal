@@ -26,7 +26,7 @@ class Display
     `#@context.fillRect(0, 0, #{size.x}, #{size.y})`
   end
 
-  def fill(position, size, color)
+  def rectangle(position, size, color)
     `#@context.fillStyle = #{color.to_hex}`
     `#@context.fillRect(#{position.x}, #{position.y}, #{size.x}, #{size.y})`
   end

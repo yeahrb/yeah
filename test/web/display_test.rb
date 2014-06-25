@@ -13,7 +13,7 @@ class DisplayTest < Test
   end
 
   def test_implements_display_interface
-    methods = %i[size size= color_at clear fill]
+    methods = %i[size size= color_at clear rectangle]
     methods.each { |m| assert_respond_to(@object, m) }
   end
 
@@ -23,19 +23,19 @@ class DisplayTest < Test
     rect_color =    C[255, 255, 255]
     clear_color =   C[0, 0, 0]
 
-    @object.fill(rect_position, rect_size, rect_color)
+    @object.rectangle(rect_position, rect_size, rect_color)
 
     @object.clear
 
     assert_equal(clear_color, @object.color_at(rect_position))
   end
 
-  def test_fill_fills_area_with_color
+  def test_rectangle_fills_area_with_color
     position = V[100, 200]
     size =     V[100, 100]
     color =    C[255, 128, 0]
 
-    @object.fill(position, size, color)
+    @object.rectangle(position, size, color)
 
     topleft = position
     middle = V[position.x + size.x / 2, position.y + size.y / 2]
