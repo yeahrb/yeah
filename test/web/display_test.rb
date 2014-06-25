@@ -41,7 +41,10 @@ class DisplayTest < Test
     middle = V[position.x + size.x / 2, position.y + size.y / 2]
     bottomright = V[position.x + size.x - 1, position.y + size.y - 1]
 
-    [topleft, middle, bottomright].each { |position|
-      assert_equal(color, @object.color_at(position)) }
+    [topleft, middle, bottomright].each do |position|
+      color.value.zip(@object.color_at(position).value).each do |e, a|
+        assert_in_delta(e, a, 0.01)
+      end
+    end
   end
 end
