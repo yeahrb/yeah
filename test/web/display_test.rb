@@ -20,7 +20,7 @@ class DisplayTest < Test
   def test_clear_fills_all_with_black
     rect_position = V[10, 10]
     rect_size =     V[1, 1]
-    rect_color =    C[1, 1, 1]
+    rect_color =    C[255, 255, 255]
     clear_color =   C[0, 0, 0]
 
     @object.fill(rect_position, rect_size, rect_color)
@@ -33,7 +33,7 @@ class DisplayTest < Test
   def test_fill_fills_area_with_color
     position = V[100, 200]
     size =     V[100, 100]
-    color =    C[1, 0.5, 0]
+    color =    C[255, 128, 0]
 
     @object.fill(position, size, color)
 
@@ -42,9 +42,7 @@ class DisplayTest < Test
     bottomright = V[position.x + size.x - 1, position.y + size.y - 1]
 
     [topleft, middle, bottomright].each do |position|
-      color.value.zip(@object.color_at(position).value).each do |e, a|
-        assert_in_delta(e, a, 0.01)
-      end
+      assert_equal(color.value, @object.color_at(position).value)
     end
   end
 end

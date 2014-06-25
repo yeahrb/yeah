@@ -18,7 +18,7 @@ class Display
 
   def color_at(position)
     data = `#@context.getImageData(#{position.x}, #{position.y}, 1, 1).data`
-    C[`data[0] / 255`, `data[1] / 255`, `data[2] / 255`]
+    C[`data[0]`, `data[1]`, `data[2]`]
   end
 
   def clear
