@@ -16,6 +16,13 @@ class Display
     `#@canvas.height = #{value.y}`
   end
 
+  def fill
+    C[`#@context.fillStyle`]
+  end
+  def fill=(color)
+    `#@context.fillStyle = #{color.to_hex}`
+  end
+
   def color_at(position)
     data = `#@context.getImageData(#{position.x}, #{position.y}, 1, 1).data`
     C[`data[0]`, `data[1]`, `data[2]`]

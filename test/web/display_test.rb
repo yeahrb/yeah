@@ -13,7 +13,7 @@ class DisplayTest < Test
   end
 
   def test_implements_display_interface
-    methods = %i[size size= color_at clear rectangle]
+    methods = %i[size size= fill fill= color_at clear rectangle]
     methods.each { |m| assert_respond_to(@object, m) }
   end
 
