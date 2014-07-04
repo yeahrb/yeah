@@ -31,6 +31,10 @@ class Display
   def rectangle(position, size)
     `#@context.fillRect(#{position.x}, #{position.y}, #{size.x}, #{size.y})`
   end
+
+  def draw_image(image, position)
+    `#@context.drawImage(#{image.to_n}, #{position.x}, #{position.y})`
+  end
 end
 end
 end
