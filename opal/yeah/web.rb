@@ -1,7 +1,3 @@
-module Yeah
-  module Web; end
-end
-
 require 'opal'
 
 require 'yeah'
