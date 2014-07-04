@@ -1,3 +1,5 @@
+require 'opal'
+
 module Yeah
 module Web
 class Server < Opal::Server
