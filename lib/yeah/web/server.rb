@@ -1,3 +1,4 @@
+require 'pathname'
 require 'rack'
 require 'opal'
 
@@ -15,8 +16,11 @@ class Server
       super
 
       $LOAD_PATH.each { |p| append_path(p) }
-      append_path 'lib'
-      append_path 'opal'
+
+      gem_path = Pathname.new(__FILE__).join('..', '..', '..', '..')
+      append_path gem_path.join('lib')
+      append_path gem_path.join('opal')
+
       self.main = 'yeah/web'
     end
   end
