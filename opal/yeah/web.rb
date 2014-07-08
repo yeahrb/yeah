@@ -1,8 +1,10 @@
 require 'opal'
 
 require 'yeah'
-require 'yeah/web/display'
+require 'yeah/web/asset'
 require 'yeah/web/image'
+require 'yeah/web/sound'
+require 'yeah/web/display'
 require 'yeah/web/keyboard'
 require 'yeah/web/mouse'
 require 'yeah/web/ticker'
