@@ -13,7 +13,6 @@ class Server
 
   class Application < Opal::Server
     def initialize
-      @main = 'yeah/web'
       @index_path = gem_path.join('lib', 'yeah', 'web', 'runner.html.erb').to_s
 
       super
@@ -24,6 +23,9 @@ class Server
       # Append Yeah paths
       append_path gem_path.join('lib')
       append_path gem_path.join('opal')
+
+      # Append game (working directory) paths
+      append_path 'assets'
     end
 
     private

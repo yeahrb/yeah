@@ -1,15 +1,25 @@
 module Yeah
 module Web
 class Image
+  ASSETS_PATH = "/assets"
+
   def initialize(path)
-    %x{
-      #@image = new Image();
-      #@image.src = #{path};
-    }
+   ` #@native = new Image();`
+
+    self.path = path
+  end
+
+  def path
+    `#@native.src`.sub(/.*:\/\/.*#{ASSETS_PATH}\//i, '')
+  end
+  def path=(val)
+    # TODO: use Pathname#join if it is implemented in Opal
+    full_path = "#{ASSETS_PATH}/#{val}"
+    `#@native.src = #{full_path};`
   end
 
   def to_n
-    @image
+    @native
   end
 end
 end
