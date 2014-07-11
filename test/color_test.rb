@@ -1,10 +1,10 @@
-class CTest < Test
+class ColorTest < Test
   def setup
-    @class = C
+    @class = Color
     @object = @class[0, 0, 0]
   end
 
-  def test_implements_c_interface
+  def test_implements_color_interface
     assert_respond_to(@class, :[])
 
     %i[value ==].each { |m| assert_respond_to(@object, m) }

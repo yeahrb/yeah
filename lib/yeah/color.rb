@@ -1,5 +1,5 @@
 module Yeah
-class C
+class Color
   class << self
     private :new
 
@@ -31,3 +31,5 @@ class C
   end
 end
 end
+
+Yeah::C = Yeah::Color
