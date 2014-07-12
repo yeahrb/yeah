@@ -13,10 +13,11 @@ class Game
   end
 
   def initialize(args = {})
-    @ticker = args.fetch(:ticker)
-    @display = args.fetch(:display)
-    @keyboard = args.fetch(:keyboard)
-    @mouse = args.fetch(:mouse)
+    args = defaults.merge(args)
+    @ticker = args[:ticker]
+    @display = args[:display]
+    @keyboard = args[:keyboard]
+    @mouse = args[:mouse]
 
     @ticker.on_tick { |e| update(e) }
 
@@ -24,6 +25,15 @@ class Game
   end
 
   private
+
+  def defaults
+    {
+      ticker: Ticker.new,
+      display: Display.new,
+      keyboard: Keyboard.new,
+      mouse: Mouse.new
+    }
+  end
 
   def setup
     # overridable noop
