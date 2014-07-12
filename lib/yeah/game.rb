@@ -18,12 +18,18 @@ class Game
     @keyboard = args.fetch(:keyboard)
     @mouse = args.fetch(:mouse)
 
+    @ticker.on_tick { update }
+
     setup
   end
 
   private
 
   def setup
+    # overridable noop
+  end
+
+  def update
     # overridable noop
   end
 end
