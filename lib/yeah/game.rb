@@ -18,7 +18,7 @@ class Game
     @keyboard = args.fetch(:keyboard)
     @mouse = args.fetch(:mouse)
 
-    @ticker.on_tick { update }
+    @ticker.on_tick { |e| update(e) }
 
     setup
   end
