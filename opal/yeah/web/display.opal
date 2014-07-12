@@ -2,10 +2,11 @@ module Yeah
 module Web
 class Display
   def initialize(args = {})
-    @canvas = `document.querySelectorAll(#{args.fetch(:canvas_selector)})[0]`
-    @context = `#@canvas.getContext('2d')`
+    canvas_selector = args.fetch(:canvas_selector, DEFAULT_CANVAS_SELECTOR)
 
-    self.size = args.fetch(:size)
+    @canvas = `document.querySelectorAll(#{canvas_selector})[0]`
+    @context = `#@canvas.getContext('2d')`
+    self.size = args.fetch(:size, DEFAULT_DISPLAY_SIZE)
   end
 
   def size

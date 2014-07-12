@@ -6,7 +6,9 @@ class Mouse
   private :is_pressing
 
   def initialize(args = {})
-    @canvas = `document.querySelectorAll(#{args.fetch(:canvas_selector)})[0]`
+    canvas_selector = args.fetch(:canvas_selector, DEFAULT_CANVAS_SELECTOR)
+
+    @canvas = `document.querySelectorAll(#{canvas_selector})[0]`
 
     %x{
       #@canvas.addEventListener('mousemove', function(event) {
