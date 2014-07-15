@@ -1,8 +1,6 @@
 module Yeah
 class Color
   class << self
-    private :new
-
     def [](*args)
       new(*args)
     end

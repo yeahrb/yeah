@@ -5,8 +5,6 @@ class Vector
   extend Forwardable
 
   class << self
-    private :new
-
     def [](*args)
       new(*args)
     end
