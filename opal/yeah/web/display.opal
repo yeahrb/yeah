@@ -36,6 +36,14 @@ class Display
   def draw_image(image, position)
     `#@context.drawImage(#{image.to_n}, #{position.x}, #{position.y})`
   end
+
+  def draw_image_cropped(image, position, crop_size, crop_position = V[0, 0])
+    %x{#@context.drawImage(#{image.to_n},
+                           #{crop_position.x}, #{crop_position.y},
+                           #{crop_size.x}, #{crop_size.y},
+                           #{position.x}, #{position.y},
+                           #{crop_size.x}, #{crop_size.y})}
+  end
 end
 end
 end
