@@ -1,0 +1,1 @@
+Game.subclasses.last.new

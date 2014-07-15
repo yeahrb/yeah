@@ -26,6 +26,7 @@ class Server
 
       # Append game (working directory) paths
       append_path 'assets'
+      append_path 'code'
     end
 
     private

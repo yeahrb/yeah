@@ -3,5 +3,3 @@ module Yeah
 end
 
 include Yeah
-
-Game.subclasses.last.new
