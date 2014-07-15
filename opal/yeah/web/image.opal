@@ -5,6 +5,14 @@ class Image < Asset
     V[`#@native.width`, `#@native.height`]
   end
 
+  def width
+    @native.width
+  end
+
+  def height
+    @native.height
+  end
+
   private
 
   def setup_native
