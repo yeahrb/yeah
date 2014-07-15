@@ -1,0 +1,16 @@
+#!/usr/bin/env ruby
+
+options = {}
+
+options[:command] = ARGV.shift
+
+case options[:command]
+when 'serve'
+  require 'yeah/web/server'
+  Yeah::Web::Server.new.start
+else
+  puts "Usage: yeah <command>"
+  puts ""
+  puts "Commands:"
+  puts "  serve - serve the game over the web"
+end
