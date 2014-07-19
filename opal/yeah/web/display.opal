@@ -33,6 +33,10 @@ class Display
     `#@context.fillRect(#{position.x}, #{position.y}, #{size.x}, #{size.y})`
   end
 
+  def clear
+    `#@context.fillRect(0, 0, #{size.x}, #{size.y})`
+  end
+
   def draw_image(image, position)
     `#@context.drawImage(#{image.to_n}, #{position.x}, #{position.y})`
   end
