@@ -11,6 +11,10 @@ class VectorTest < Test
     assert_respond_to(@v, :components)
     assert_respond_to(@v, :to_a)
 
+    %i[+ - * /].each do |symbol|
+      assert_respond_to(@v, symbol)
+    end
+
     %i[x y z].each { |a|
       assert_respond_to(@v, a)
       assert_respond_to(@v, "#{a}=") }

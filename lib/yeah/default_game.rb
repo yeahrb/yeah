@@ -1,10 +1,10 @@
 module Yeah
 class DefaultGame < Game
   def setup
-    display.fill = C['#ff0099']
+    display.fill = C['#00ff99']
     draw_background
 
-    display.fill = C['#9900ff']
+    display.fill = C['#0099ff']
     draw_face
   end
 
@@ -17,13 +17,13 @@ class DefaultGame < Game
   end
 
   def draw_face
-    center = V[display.size.x / 2, display.size.y / 2]
+    center = display.size / 2
 
-    display.rectangle(V[center.x - 200, center.y - 200], V[100, 200])
-    display.rectangle(V[center.x + 200, center.y - 200], V[100, 200])
-    display.rectangle(V[center.x - 300, center.y + 200], V[700, 100])
-    display.rectangle(V[center.x + 300, center.y + 100], V[100, 200])
-    display.rectangle(V[center.x - 300, center.y + 100], V[100, 200])
+    display.rectangle(center + V[-200, -200], V[100, 200])
+    display.rectangle(center + V[ 200, -200], V[100, 200])
+    display.rectangle(center + V[-300,  200], V[700, 100])
+    display.rectangle(center + V[ 300,  100], V[100, 200])
+    display.rectangle(center + V[-300,  100], V[100, 200])
   end
 
   def draw_square(length)
