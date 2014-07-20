@@ -58,6 +58,30 @@ class Display
     `#@context.strokeRect(#{position.x}, #{position.y}, #{size.x}, #{size.y})`
   end
 
+  def begin_shape
+    `#@context.beginPath()`
+  end
+
+  def end_shape
+    `#@context.closePath()`
+  end
+
+  def move_to(position)
+    `#@context.moveTo(#{position.x}, #{position.y})`
+  end
+
+  def line_to(position)
+    `#@context.lineTo(#{position.x}, #{position.y})`
+  end
+
+  def stroke
+    `#@context.stroke()`
+  end
+
+  def fill
+    `#@context.fill()`
+  end
+
   def clear
     `#@context.fillRect(0, 0, #{size.x}, #{size.y})`
   end
