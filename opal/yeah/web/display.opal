@@ -31,6 +31,13 @@ class Display
     `#@context.strokeStyle = #{color.to_hex}`
   end
 
+  def line_width
+    `#@context.lineWidth`
+  end
+  def line_width=(number)
+    `#@context.lineWidth = #{number}`
+  end
+
   def color_at(position)
     data = `#@context.getImageData(#{position.x}, #{position.y}, 1, 1).data`
     C[`data[0]`, `data[1]`, `data[2]`]
