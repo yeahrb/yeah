@@ -43,6 +43,16 @@ class Display
     C[`data[0]`, `data[1]`, `data[2]`]
   end
 
+  def line(pos1, pos2)
+    %x{
+      #@context.beginPath();
+      #@context.moveTo(#{pos1.x}, #{pos1.y});
+      #@context.lineTo(#{pos2.x}, #{pos2.y});
+      #@context.closePath();
+      #@context.stroke();
+    }
+  end
+
   def rectangle(position, size)
     `#@context.fillRect(#{position.x}, #{position.y}, #{size.x}, #{size.y})`
     `#@context.strokeRect(#{position.x}, #{position.y}, #{size.x}, #{size.y})`
