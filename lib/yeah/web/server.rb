@@ -29,6 +29,19 @@ class Server
       append_path 'code'
     end
 
+    def asset_include_tags
+      paths = Dir['assets/**/*'].select { |p| File.file? p }
+
+      paths.map do |path|
+        case path
+        when /\.(ogg|wav|mp3)$/
+          "<audio src=\"#{path}\"></audio>"
+        else
+          "<img src=\"#{path}\" />"
+        end
+      end.join("\n")
+    end
+
     private
 
     def gem_path
