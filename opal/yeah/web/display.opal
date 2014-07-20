@@ -24,6 +24,13 @@ class Display
     `#@context.fillStyle = #{color.to_hex}`
   end
 
+  def stroke
+    C[`#@context.strokeStyle`]
+  end
+  def stroke=(color)
+    `#@context.strokeStyle = #{color.to_hex}`
+  end
+
   def color_at(position)
     data = `#@context.getImageData(#{position.x}, #{position.y}, 1, 1).data`
     C[`data[0]`, `data[1]`, `data[2]`]
@@ -31,6 +38,7 @@ class Display
 
   def rectangle(position, size)
     `#@context.fillRect(#{position.x}, #{position.y}, #{size.x}, #{size.y})`
+    `#@context.strokeRect(#{position.x}, #{position.y}, #{size.x}, #{size.y})`
   end
 
   def clear
