@@ -1,12 +1,16 @@
 module Yeah
 module Web
 class Display
+  attr_reader :font_type, :font_size
+
   def initialize(args = {})
     canvas_selector = args.fetch(:canvas_selector, DEFAULT_CANVAS_SELECTOR)
 
     @canvas = `document.querySelectorAll(#{canvas_selector})[0]`
     @context = `#@canvas.getContext('2d')`
     self.size = args.fetch(:size, DEFAULT_DISPLAY_SIZE)
+    self.font_type = 'DejaVu Serif'
+    self.font_size = 72
   end
 
   def size
@@ -96,6 +100,28 @@ class Display
                            #{crop_size.x}, #{crop_size.y},
                            #{position.x}, #{position.y},
                            #{crop_size.x}, #{crop_size.y})}
+  end
+
+  def font_type=(type)
+    @font_type = type
+    update_font
+  end
+
+  def font_size=(size)
+    @font_size = size
+    update_font
+  end
+
+  def text(position, value)
+    `#@context.fillText(#{value}, #{position.x}, #{position.y})`
+    `#@context.strokeText(#{value}, #{position.x}, #{position.y})`
+  end
+
+  private
+
+  def update_font
+    font = "#{font_size}px #{font_type}"
+    `#@context.font = #{font}`
   end
 end
 end
