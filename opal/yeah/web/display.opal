@@ -9,8 +9,8 @@ class Display
     @canvas = `document.querySelectorAll(#{canvas_selector})[0]`
     @context = `#@canvas.getContext('2d')`
     self.size = args.fetch(:size, DEFAULT_DISPLAY_SIZE)
-    self.font_type = 'DejaVu Serif'
-    self.font_size = 72
+    self.font_type = DEFAULT_DISPLAY_FONT_TYPE
+    self.font_size = DEFAULT_DISPLAY_FONT_SIZE
   end
 
   def size
