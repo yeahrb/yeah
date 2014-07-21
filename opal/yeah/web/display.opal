@@ -90,11 +90,11 @@ class Display
     `#@context.fillRect(0, 0, #{size.x}, #{size.y})`
   end
 
-  def image(image, position)
+  def image(position, image)
     `#@context.drawImage(#{image.to_n}, #{position.x}, #{position.y})`
   end
 
-  def image_cropped(image, position, crop_position, crop_size)
+  def image_cropped(position, image, crop_position, crop_size)
     %x{#@context.drawImage(#{image.to_n},
                            #{crop_position.x}, #{crop_position.y},
                            #{crop_size.x}, #{crop_size.y},
