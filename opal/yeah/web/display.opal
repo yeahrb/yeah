@@ -11,6 +11,8 @@ class Display
     self.size = args.fetch(:size, DEFAULT_DISPLAY_SIZE)
     self.font_type = DEFAULT_DISPLAY_FONT_TYPE
     self.font_size = DEFAULT_DISPLAY_FONT_SIZE
+    @transform = [1, 0, 0, 1, 0, 0]
+    @transforms = []
   end
 
   def size
@@ -45,6 +47,62 @@ class Display
   def color_at(position)
     data = `#@context.getImageData(#{position.x}, #{position.y}, 1, 1).data`
     C[`data[0]`, `data[1]`, `data[2]`]
+  end
+
+  def transform
+    @transform + [0, 0, 1] # appendage to fulfill signature
+  end
+
+  def translate(distance)
+    @transform[4] += `#{@transform[0]} * #{distance.x} + #{@transform[2]} * #{distance.y}`
+    @transform[5] += `#{@transform[1]} * #{distance.x} + #{@transform[3]} * #{distance.y}`
+
+    %x{
+      #@context.setTransform(#{@transform[0]}, #{@transform[1]},
+                             #{@transform[2]}, #{@transform[3]},
+                             #{@transform[4]}, #{@transform[5]}); }
+  end
+
+  def scale(multiplier)
+    %x{
+      #{@transform} = [#{@transform[0]} * #{multiplier.x},
+                       #{@transform[1]} * #{multiplier.x},
+                       #{@transform[2]} * #{multiplier.y},
+                       #{@transform[3]} * #{multiplier.y},
+                       #{@transform[4]}, #{@transform[5]}];
+
+      #@context.setTransform(#{@transform[0]}, #{@transform[1]},
+                             #{@transform[2]}, #{@transform[3]},
+                             #{@transform[4]}, #{@transform[5]}); }
+  end
+
+  def rotate(radians)
+    %x{
+      var cos = Math.cos(#{radians}),
+          sin = Math.sin(#{radians}),
+          e0 = #{@transform[0]} * cos + #{@transform[2]} * sin,
+          e1 = #{@transform[1]} * cos + #{@transform[3]} * sin,
+          e2 = #{@transform[0]} * -sin + #{@transform[2]} * cos,
+          e3 = #{@transform[1]} * -sin + #{@transform[3]} * cos;
+
+      #@transform = [e0, e1, e2, e3, #{@transform[4]}, #{@transform[5]}];
+
+      #@context.setTransform(#{@transform[0]}, #{@transform[1]},
+                             #{@transform[2]}, #{@transform[3]},
+                             #{@transform[4]}, #{@transform[5]}); }
+  end
+
+  def push
+    @transforms.push(@transform.dup)
+  end
+
+  def pop
+    @transform = @transforms.pop
+
+    %x{
+      #@context.setTransform(#{@transform[0]}, #{@transform[1]},
+                             #{@transform[2]}, #{@transform[3]},
+                             #{@transform[4]}, #{@transform[5]}); }
   end
 
   def line(pos1, pos2)
