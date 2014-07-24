@@ -136,11 +136,11 @@ class Display
     `#@context.lineTo(#{position.x}, #{position.y})`
   end
 
-  def stroke
+  def stroke_shape
     `#@context.stroke()`
   end
 
-  def fill
+  def fill_shape
     `#@context.fill()`
   end
 
