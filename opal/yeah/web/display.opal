@@ -23,6 +23,20 @@ class Display
     `#@canvas.height = #{value.y}`
   end
 
+  def width
+    `#@canvas.width`
+  end
+  def width=(value)
+    `#@canvas.width =  #{value.x}`
+  end
+
+  def height
+    `#@canvas.height`
+  end
+  def height=(value)
+    `#@canvas.height =  #{value.x}`
+  end
+
   def fill
     C[`#@context.fillStyle`]
   end
