@@ -115,9 +115,12 @@ class Display
     }
   end
 
-  def rectangle(position, size)
-    `#@context.fillRect(#{position.x}, #{position.y}, #{size.x}, #{size.y})`
+  def stroke_rectangle(position, size)
     `#@context.strokeRect(#{position.x}, #{position.y}, #{size.x}, #{size.y})`
+  end
+
+  def fill_rectangle(position, size)
+    `#@context.fillRect(#{position.x}, #{position.y}, #{size.x}, #{size.y})`
   end
 
   def begin_shape
