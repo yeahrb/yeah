@@ -162,24 +162,21 @@ class Display
 
   def font_type=(type)
     @font_type = type
-    update_font
+
+    font = "#{@font_size}px #{@font_type}"
+    `#@context.font = #{font}`
   end
 
   def font_size=(size)
     @font_size = size
-    update_font
+
+    font = "#{@font_size}px #{@font_type}"
+    `#@context.font = #{font}`
   end
 
   def text(position, value)
     `#@context.fillText(#{value}, #{position.x}, #{position.y})`
     `#@context.strokeText(#{value}, #{position.x}, #{position.y})`
-  end
-
-  private
-
-  def update_font
-    font = "#{font_size}px #{font_type}"
-    `#@context.font = #{font}`
   end
 end
 end
