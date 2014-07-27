@@ -46,6 +46,14 @@ class Vector
       @components[i] / number
     })
   end
+
+  def +@
+    self.class.new(@components)
+  end
+
+  def -@
+    self.class.new(*(0...@components.count).map { |i| -@components[i] })
+  end
 end
 end
 
