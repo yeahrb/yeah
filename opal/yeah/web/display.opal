@@ -37,24 +37,24 @@ class Display
     `#@canvas.height =  #{value.x}`
   end
 
-  def fill
+  def fill_color
     C[`#@context.fillStyle`]
   end
-  def fill=(color)
+  def fill_color=(color)
     `#@context.fillStyle = #{color.to_hex}`
   end
 
-  def stroke
+  def stroke_color
     C[`#@context.strokeStyle`]
   end
-  def stroke=(color)
+  def stroke_color=(color)
     `#@context.strokeStyle = #{color.to_hex}`
   end
 
-  def line_width
+  def stroke_width
     `#@context.lineWidth`
   end
-  def line_width=(number)
+  def stroke_width=(number)
     `#@context.lineWidth = #{number}`
   end
 
