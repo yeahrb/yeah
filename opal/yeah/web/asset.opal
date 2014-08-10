@@ -1,7 +1,7 @@
 module Yeah
 module Web
 class Asset
-  ASSETS_PATH = "/assets"
+  ASSETS_PATH = "./assets"
 
   def initialize(path)
     setup_native
