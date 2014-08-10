@@ -191,8 +191,11 @@ class Display
     `#@context.font = #{font}`
   end
 
-  def text(position, value)
+  def fill_text(position, value)
     `#@context.fillText(#{value}, #{position.x}, #{position.y})`
+  end
+
+  def stroke_text(position, value)
     `#@context.strokeText(#{value}, #{position.x}, #{position.y})`
   end
 end
