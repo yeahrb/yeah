@@ -2,6 +2,16 @@
 
 Practical Ruby video game framework
 
+## Features
+
+* Designed to be easy to learn and fast to build games with
+* Embraces Ruby's strengths (object-orientation, duck typing, focus on developer happiness)
+* Platform-agnostic (currently compiles to the web; PC executables and native mobile planned)
+* Convention (over configuration)-oriented
+* Processing/HTML5 Canvas-style drawing API
+* Command-line utilities (no monolithic IDE)
+* Open source under MIT license
+
 ## Early examples
 
 * Random [\[play\]](https://skofo.github.io/yeah/examples/random/runner.html) [\[code\]](https://github.com/skofo/yeah/tree/examples/examples/random)
