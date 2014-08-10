@@ -1,6 +1,6 @@
 # Yeah
 
-Practical Ruby video game framework
+Practical Ruby video game framework, alpha stage
 
 ## Features
 
