@@ -50,6 +50,7 @@
     <%= @server.asset_include_tags %>
   </div>
 
+  <%= javascript_include_tag 'yeah/web/dependencies' %>
   <%= javascript_include_tag 'yeah/web' %>
   <%= javascript_include_tag 'yeah/web/setup' %>
   <%= javascript_include_tag 'code' unless @server.sprockets['code'].nil? %>

@@ -1,6 +1,3 @@
-require 'opal'
-
-require 'yeah'
 require 'yeah/web/constants'
 require 'yeah/web/asset'
 require 'yeah/web/image'
