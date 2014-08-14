@@ -54,6 +54,26 @@ class Vector
   def -@
     self.class.new(*(0...@components.count).map { |i| -@components[i] })
   end
+
+  def distance_to(position)
+    Math.sqrt((x - position.x) ** 2 + (y - position.y) ** 2)
+  end
+
+  def direction_to(position)
+    diff = position - self
+    Math.atan2(diff.y, diff.x)
+  end
+
+  def move_along(direction, amount)
+    self.x += Math.cos(direction) * amount
+    self.y += Math.sin(direction) * amount
+
+    self
+  end
+
+  def move_toward(position, amount)
+    move_along(direction_to(position), amount)
+  end
 end
 end
 
