@@ -165,11 +165,11 @@ class Display
     `#@context.fillRect(0, 0, #{size.x}, #{size.y})`
   end
 
-  def image(position, image)
+  def image(image, position)
     `#@context.drawImage(#{image.to_n}, #{position.x}, #{position.y})`
   end
 
-  def image_cropped(position, image, crop_position, crop_size)
+  def image_cropped(image, position, crop_position, crop_size)
     %x{#@context.drawImage(#{image.to_n},
                            #{crop_position.x}, #{crop_position.y},
                            #{crop_size.x}, #{crop_size.y},
@@ -191,11 +191,11 @@ class Display
     `#@context.font = #{font}`
   end
 
-  def fill_text(position, value)
+  def fill_text(value, position)
     `#@context.fillText(#{value}, #{position.x}, #{position.y})`
   end
 
-  def stroke_text(position, value)
+  def stroke_text(value, position)
     `#@context.strokeText(#{value}, #{position.x}, #{position.y})`
   end
 end
