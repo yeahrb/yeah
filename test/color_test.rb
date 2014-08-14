@@ -7,7 +7,9 @@ class ColorTest < Test
   def test_implements_color_interface
     assert_respond_to(@class, :[])
 
-    %i[value ==].each { |m| assert_respond_to(@object, m) }
+    %i[value == to_s to_hex].each do |method|
+      assert_respond_to(@object, method)
+    end
   end
 
   def test_initializes_with_bytes

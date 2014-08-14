@@ -13,8 +13,15 @@ class DisplayTest < Test
   end
 
   def test_implements_display_interface
-    methods = %i[size size= fill_color fill_color= color_at fill_rectangle]
+    methods = %i[color_at transform translate scale rotate push pop line
+      stroke_rectangle fill_rectangle begin_shape end_shape move_to line_to
+      stroke_shape fill_shape clear image image_cropped fill_text stroke_text]
     methods.each { |m| assert_respond_to(@object, m) }
+
+    %i[size width height fill_color stroke_color stroke_width].each do |prop|
+      assert_respond_to(@object, prop)
+      assert_respond_to(@object, "#{prop}=")
+    end
   end
 
   def test_color_at_gets_color_at_position
