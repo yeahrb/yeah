@@ -9,7 +9,6 @@ class VectorTest < Test
 
     assert_respond_to(@object, :[])
     assert_respond_to(@object, :components)
-    assert_respond_to(@object, :to_a)
 
     %i[+@ -@ + - * /].each do |symbol|
       assert_respond_to(@object, symbol)
@@ -20,8 +19,13 @@ class VectorTest < Test
       assert_respond_to(@object, "#{a}=")
     end
 
-    %i[distance_to direction_to move_along move_toward].each do |method|
+    %i[distance_to angle_to].each do |method|
       assert_respond_to(@object, method)
+    end
+
+    %i[along toward].each do |method|
+      assert_respond_to(@object, method)
+      assert_respond_to(@object, "#{method}!")
     end
   end
 end
