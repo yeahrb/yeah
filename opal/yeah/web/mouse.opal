@@ -1,14 +1,19 @@
 module Yeah
 module Web
 class Mouse
-  attr_reader :position, :is_pressing
-  alias :pressing? :is_pressing
-  private :is_pressing
+  BUTTON_MAP = {
+    0 => :left,
+    1 => :middle,
+    2 => :right
+  }
+
+  attr_reader :position
 
   def initialize(args = {})
     canvas_selector = args.fetch(:canvas_selector, DEFAULT_CANVAS_SELECTOR)
 
     @canvas = `document.querySelectorAll(#{canvas_selector})[0]`
+    @buttons = {}
 
     %x{
       #@canvas.addEventListener('mousemove', function(event) {
@@ -20,13 +25,17 @@ class Mouse
       });
 
       #@canvas.addEventListener('mousedown', function(event) {
-        #{@is_pressing = true}
+        #{@buttons[BUTTON_MAP[`event.button`]] = true}
       });
 
       #@canvas.addEventListener('mouseup', function(event) {
-        #{@is_pressing = false}
+        #{@buttons[BUTTON_MAP[`event.button`]] = false}
       });
     }
+  end
+
+  def pressing?(button)
+    @buttons[button] || false
   end
 end
 end
