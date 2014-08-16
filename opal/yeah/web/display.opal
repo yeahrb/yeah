@@ -133,7 +133,7 @@ class Display
                              #{@transform[4]}, #{@transform[5]}); }
   end
 
-  def line(pos1, pos2)
+  def stroke_line(pos1, pos2)
     %x{
       #@context.beginPath();
       #@context.moveTo(#{pos1.x}, #{pos1.y});
