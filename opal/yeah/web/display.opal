@@ -63,6 +63,20 @@ class Display
     C[`data[0]`, `data[1]`, `data[2]`]
   end
 
+  def font_type=(type)
+    @font_type = type
+
+    font = "#{@font_size}px #{@font_type}"
+    `#@context.font = #{font}`
+  end
+
+  def font_size=(size)
+    @font_size = size
+
+    font = "#{@font_size}px #{@font_type}"
+    `#@context.font = #{font}`
+  end
+
   def transform
     @transform + [0, 0, 1] # appendage to fulfill signature
   end
@@ -175,20 +189,6 @@ class Display
                            #{crop_size.x}, #{crop_size.y},
                            #{position.x}, #{position.y},
                            #{crop_size.x}, #{crop_size.y})}
-  end
-
-  def font_type=(type)
-    @font_type = type
-
-    font = "#{@font_size}px #{@font_type}"
-    `#@context.font = #{font}`
-  end
-
-  def font_size=(size)
-    @font_size = size
-
-    font = "#{@font_size}px #{@font_type}"
-    `#@context.font = #{font}`
   end
 
   def fill_text(value, position)
