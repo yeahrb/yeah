@@ -195,6 +195,17 @@ class Display
     `#@context.lineTo(#{position.x}, #{position.y})`
   end
 
+  def curve_to(position, control)
+    `#@context.quadraticCurveTo(#{control.x}, #{control.y},
+                                #{position.x}, #{position.y})`
+  end
+
+  def curve2_to(position, control1, control2)
+    `#@context.bezierCurveTo(#{control1.x}, #{control1.y},
+                             #{control2.x}, #{control2.y},
+                             #{position.x}, #{position.y})`
+  end
+
   def stroke_shape
     `#@context.stroke()`
   end
