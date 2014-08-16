@@ -151,6 +151,34 @@ class Display
     `#@context.fillRect(#{position.x}, #{position.y}, #{size.x}, #{size.y})`
   end
 
+  def stroke_ellipse(center, radius)
+    %x{
+      #@context.beginPath();
+      #@context.save();
+      #@context.beginPath();
+      #@context.translate(#{center.x} - #{radius.x},
+                          #{center.y} - #{radius.y});
+      #@context.scale(#{radius.x}, #{radius.y});
+      #@context.arc(1, 1, 1, 0, 2 * Math.PI, false);
+      #@context.restore();
+      #@context.stroke();
+    }
+  end
+
+  def fill_ellipse(center, radius)
+    %x{
+      #@context.beginPath();
+      #@context.save();
+      #@context.beginPath();
+      #@context.translate(#{center.x} - #{radius.x},
+                          #{center.y} - #{radius.y});
+      #@context.scale(#{radius.x}, #{radius.y});
+      #@context.arc(1, 1, 1, 0, 2 * Math.PI, false);
+      #@context.restore();
+      #@context.fill();
+    }
+  end
+
   def begin_shape
     `#@context.beginPath()`
   end
