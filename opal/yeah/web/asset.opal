@@ -3,6 +3,12 @@ module Web
 class Asset
   ASSETS_PATH = "./assets"
 
+  class << self
+    def [](*args)
+      new(*args)
+    end
+  end
+
   def initialize(path)
     setup_native
 

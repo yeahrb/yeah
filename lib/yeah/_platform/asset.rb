@@ -8,6 +8,13 @@ class Asset
     raise NotImplementedError
   end
 
+  class << self
+    # @!method [](*args)
+    # @param arguments catch-all
+    # @return [Asset]
+    # Alias for ::new.
+  end
+
   # @!attribute path
   # @param [String] path to asset relative to `assets`
   # @return [String] path to asset relative to `assets`
