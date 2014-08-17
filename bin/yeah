@@ -5,12 +5,27 @@ options = {}
 options[:command] = ARGV.shift
 
 case options[:command]
+when 'new'
+  if Dir['game'].any?
+    puts "Error: `game` directory already exists."
+  else
+    template_path = File.expand_path('../../lib/yeah/template', __FILE__)
+    FileUtils.cp_r(template_path, './game')
+    puts "Created new game project at `game`."
+  end
+when 'build'
+  puts "Pending"
 when 'serve'
   require 'yeah/web/server'
   Yeah::Web::Server.new.start
+when 'version'
+  puts Yeah::VERSION
 else
   puts "Usage: yeah <command>"
   puts ""
   puts "Commands:"
-  puts "  serve - serve the game over the web"
+  puts "  new - create a new game project"
+  puts "  build - build self-contained package for a game"
+  puts "  serve - serve a game over the Internet"
+  puts "  version - print installed version"
 end
