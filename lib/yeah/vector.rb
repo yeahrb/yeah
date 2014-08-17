@@ -22,6 +22,14 @@ class Vector
     define_method("#{component}=") { |v| @components[i] = v }
   end
 
+  def magnitude
+    Math.sqrt(@components[0] ** 2 + @components[1] ** 2 + @components[2] ** 2)
+  end
+
+  def normalize
+    self / magnitude
+  end
+
   def +(vector)
     self.class.new(*
       [@components, vector.components].transpose.map { |cc|
