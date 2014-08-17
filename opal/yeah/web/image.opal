@@ -6,11 +6,11 @@ class Image < Asset
   end
 
   def width
-    @native.width
+    `#@native.width`
   end
 
   def height
-    @native.height
+    `#@native.height`
   end
 
   private
