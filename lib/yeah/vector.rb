@@ -43,15 +43,15 @@ class Vector
     "#{self.class.name}#{@components.to_s}"
   end
 
-  # @!attribute [rw] x
+  # @!attribute x
   # @param [Numeric] first component value
   # @return [Numeric] first component value
 
-  # @!attribute [rw] y
+  # @!attribute y
   # @param [Numeric] second component value
   # @return [Numeric] second component value
 
-  # @!attribute [rw] z
+  # @!attribute z
   # @param [Numeric] third component value
   # @return [Numeric] third component value
   %i[x y z].each_with_index do |component, i|
