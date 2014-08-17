@@ -53,7 +53,9 @@
   <%= javascript_include_tag 'yeah/web/dependencies' %>
   <%= javascript_include_tag 'yeah/web' %>
   <%= javascript_include_tag 'yeah/web/setup' %>
-  <%= javascript_include_tag 'code' unless @server.sprockets['code'].nil? %>
+
+  <%= javascript_include_tag 'code' %>
+
   <%= javascript_include_tag 'yeah/web/start' %>
 </body>
 </html>
