@@ -1,7 +1,4 @@
-class NewGame < Game
-  def setup
-  end
+# Entry point
+# Specify dependencies and game code require order here.
 
-  def update(elapsed)
-  end
-end
+require 'game'
