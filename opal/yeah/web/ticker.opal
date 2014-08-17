@@ -1,13 +1,15 @@
 module Yeah
 module Web
 class Ticker
-  attr_reader :rate
+  attr_reader :rate, :tick_count
 
   def initialize(args = {})
     @rate = args.fetch(:rate, DEFAULT_TICKER_RATE)
+    @tick_count = 0
   end
 
   def on_tick(&block)
+    # TODO: add to ticks before yielding
     %x{
       var lastTime = (new Date()).getTime(),
           elapsed = 0,
@@ -20,6 +22,8 @@ class Ticker
 
         if (elapsed > interval) {
           #{yield `elapsed`}
+
+          #{@tick_count += 1}
 
           lastTime = currentTime - (elapsed % interval);
         }
