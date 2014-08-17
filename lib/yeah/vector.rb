@@ -18,13 +18,18 @@ class Vector
 
   class << self
     # Alias for ::new.
+    # @param arguments catch-all
+    # @return [Vector]
     def [](*args)
       new(*args)
     end
   end
 
   # @return [Array] vector components
-  attr_reader :components
+  attr_accessor :components
+
+  # @!attribute []
+  # @return [Numeric] *n*th component value
   def_delegators :@components, :[]
 
   # @param [Numeric] first component, defaults to 0
@@ -136,6 +141,7 @@ class Vector
   # @param [Vector] position to move to
   # @param [Vector] distance to move
   # @return [Vector] position moved toward other position for a distance in 2D
+  # @todo Make work in 3D.
   def toward(position, distance)
     along angle_to(position), amount
   end
@@ -143,6 +149,7 @@ class Vector
   # @param (see #toward)
   # @return [Vector] self after moving toward other position for a distance in
   #   2D
+  # @todo Make work in 3D.
   def toward!(position, amount)
     along! angle_to(position), amount
   end
