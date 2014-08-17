@@ -1,7 +1,7 @@
 module Yeah
 module Web
 class Keyboard
-  KEYMAP = {
+  KEY_MAP = {
     0   => :fn,
     8   => :backspace,
     9   => :tab,
@@ -109,14 +109,14 @@ class Keyboard
 
     %x{
       window.addEventListener('keydown', function(event) {
-        #{key = KEYMAP[`event.keyCode`]}
+        #{key = KEY_MAP[`event.keyCode`]}
         if (#{!@pressed_keys[key]}) {
           #{@pressed_keys[key] = @ticker.tick_count}
         }
       });
 
       window.addEventListener('keyup', function(event) {
-        #{key = KEYMAP[`event.keyCode`]}
+        #{key = KEY_MAP[`event.keyCode`]}
         #{@released_keys[key] = @ticker.tick_count}
         #{@pressed_keys[key] = nil}
       });
