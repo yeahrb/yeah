@@ -17,9 +17,9 @@ class Vector
   extend Forwardable
 
   class << self
-    # Alias for ::new.
     # @param arguments catch-all
     # @return [Vector]
+    # Alias for ::new.
     def [](*args)
       new(*args)
     end
