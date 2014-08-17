@@ -13,8 +13,6 @@ when 'new'
     FileUtils.cp_r(template_path, './game')
     puts "Created new game project at `game`."
   end
-when 'build'
-  puts "Pending"
 when 'serve'
   require 'yeah/web/server'
   Yeah::Web::Server.new.start
@@ -25,7 +23,6 @@ else
   puts ""
   puts "Commands:"
   puts "  new - create a new game project"
-  puts "  build - build self-contained package for a game"
   puts "  serve - serve a game over the Internet"
   puts "  version - print installed version"
 end
