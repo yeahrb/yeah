@@ -1,15 +1,15 @@
 module Yeah
 module Web
 class Display
-  attr_reader :font_type, :font_size
+  attr_reader :font_family, :font_size
 
-  def initialize(args = {})
-    canvas_selector = args.fetch(:canvas_selector, DEFAULT_CANVAS_SELECTOR)
+  def initialize(options = {})
+    canvas_selector = options.fetch(:canvas_selector, DEFAULT_CANVAS_SELECTOR)
 
     @canvas = `document.querySelectorAll(#{canvas_selector})[0]`
     @context = `#@canvas.getContext('2d')`
-    self.size = args.fetch(:size, DEFAULT_DISPLAY_SIZE)
-    self.font_type = DEFAULT_DISPLAY_FONT_TYPE
+    self.size = options.fetch(:size, DEFAULT_DISPLAY_SIZE)
+    self.font_family = DEFAULT_DISPLAY_FONT_FAMILY
     self.font_size = DEFAULT_DISPLAY_FONT_SIZE
     @transform = [1, 0, 0, 1, 0, 0]
     @transforms = []
@@ -82,10 +82,10 @@ class Display
   end
 
   def translate(displacement)
-    @transform[4] += `#{@transform[0]} * #{distance.x} +
-                      #{@transform[2]} * #{distance.y}`
-    @transform[5] += `#{@transform[1]} * #{distance.x} +
-                      #{@transform[3]} * #{distance.y}`
+    @transform[4] += `#{@transform[0]} * #{displacement.x} +
+                      #{@transform[2]} * #{displacement.y}`
+    @transform[5] += `#{@transform[1]} * #{displacement.x} +
+                      #{@transform[3]} * #{displacement.y}`
 
     %x{
       #@context.setTransform(#{@transform[0]}, #{@transform[1]},

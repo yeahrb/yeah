@@ -3,9 +3,13 @@ module Platform
 
 # The `Display` is responsible for drawing to a game display. It provides a
 # procedural drawing API similar to Processing or HTML5 Canvas.
-# @abstract
+# @abstract Provided by a `Platform`.
 class Display
-  def initialize(args = {})
+  # @param [Hash] options for new object
+  # @option options [Vector] :size (V[1280, 720]) of display
+  # @option options [String] :canvas_selector ('canvas') for canvas HTML
+  #   element (applicable only to `Web::Display`)
+  def initialize(options = {})
     raise NotImplementedError
   end
 
