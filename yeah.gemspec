@@ -8,8 +8,8 @@ Gem::Specification.new do |s|
   s.name = 'yeah'
   s.version = Yeah::VERSION
   s.summary = "Practical Ruby video game framework"
-  s.description = "Video game framework that takes advantage of Ruby's " +
-    "unique set of strengths as a programming language."
+  s.description = "Video game framework designed to be easy to learn and " +
+                  "fast to build games with."
 
   s.authors = ["Artur Ostrega"]
   s.email = 'skoofoo@gmail.com'
