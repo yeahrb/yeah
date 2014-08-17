@@ -1,6 +1,6 @@
 module Yeah
 class Game
-  attr_reader :display, :keyboard, :mouse
+  attr_reader :ticker, :display, :keyboard, :mouse
 
   def self.inherited(klass)
     self.subclasses << klass
@@ -27,10 +27,12 @@ class Game
   private
 
   def defaults
+    ticker = Ticker.new
+
     {
-      ticker: Ticker.new,
+      ticker: ticker,
       display: Display.new,
-      keyboard: Keyboard.new,
+      keyboard: Keyboard.new(ticker: ticker),
       mouse: Mouse.new
     }
   end

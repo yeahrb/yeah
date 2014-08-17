@@ -102,22 +102,37 @@ class Keyboard
     222 => :quote
   }
 
-  def initialize
-    @keys = {}
+  def initialize(args)
+    @ticker = args.fetch(:ticker)
+    @pressed_keys = {}
+    @released_keys = {}
 
     %x{
       window.addEventListener('keydown', function(event) {
-        #{@keys[KEYMAP[`event.keyCode`]] = true}
+        #{key = KEYMAP[`event.keyCode`]}
+        if (#{!@pressed_keys[key]}) {
+          #{@pressed_keys[key] = @ticker.tick_count}
+        }
       });
 
       window.addEventListener('keyup', function(event) {
-        #{@keys[KEYMAP[`event.keyCode`]] = false}
+        #{key = KEYMAP[`event.keyCode`]}
+        #{@released_keys[key] = @ticker.tick_count}
+        #{@pressed_keys[key] = nil}
       });
     }
   end
 
   def pressing?(key)
-    @keys[key] || false
+    !!@pressed_keys[key] || false
+  end
+
+  def pressed?(key)
+    @pressed_keys[key] == @ticker.tick_count
+  end
+
+  def released?(key)
+    @released_keys[key] == @ticker.tick_count
   end
 end
 end
