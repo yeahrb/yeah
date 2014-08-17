@@ -26,12 +26,13 @@ NOTE: This is alpha-stage software, expect changes!
 
 ### Installation
 
-1. Install Ruby 2.1, visit [the Ruby website](http://ruby-lang.org/) for more info.
+1. Install Ruby 2.0+, visit [the Ruby website](http://ruby-lang.org/) for more info.
 2. In a command line, enter `gem install yeah`.
+3. Enter `yeah` to view list of commands.
 
 ### Making a game
 
 1. In a command line, enter `yeah new` to generate a new game project.
 2. Change into the new `game` directory, then enter `bundle install`.
-3. Add code to `code/code.rb`, the game's entry point. No tutorials yet; please take a look at the examples and API documentation.
+3. Add code to `code/code.rb`, the game's entry point. No tutorials yet; please take a look at the example code and API documentation.
 4. Enter `yeah serve` and visit [http://localhost:1234](http://localhost:1234) to try the game.
