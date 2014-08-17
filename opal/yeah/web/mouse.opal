@@ -11,9 +11,10 @@ class Mouse
 
   def initialize(args = {})
     canvas_selector = args.fetch(:canvas_selector, DEFAULT_CANVAS_SELECTOR)
-
+    @ticker = args.fetch(:ticker)
     @canvas = `document.querySelectorAll(#{canvas_selector})[0]`
-    @buttons = {}
+    @pressed_buttons = {}
+    @released_buttons = {}
 
     %x{
       #@canvas.addEventListener('mousemove', function(event) {
@@ -25,17 +26,30 @@ class Mouse
       });
 
       #@canvas.addEventListener('mousedown', function(event) {
-        #{@buttons[BUTTON_MAP[`event.button`]] = true}
+        #{button = BUTTON_MAP[`event.button`]}
+        if (#{!@pressed_buttons[button]}) {
+          #{@pressed_buttons[button] = @ticker.tick_count}
+        }
       });
 
       #@canvas.addEventListener('mouseup', function(event) {
-        #{@buttons[BUTTON_MAP[`event.button`]] = false}
+        #{button = BUTTON_MAP[`event.button`]}
+        #{@released_buttons[button] = @ticker.tick_count}
+        #{@pressed_buttons[button] = nil}
       });
     }
   end
 
   def pressing?(button)
-    @buttons[button] || false
+    !!@pressed_buttons[button] || false
+  end
+
+  def pressed?(button)
+    @pressed_buttons[button] == @ticker.tick_count
+  end
+
+  def released?(button)
+    @released_buttons[button] == @ticker.tick_count
   end
 end
 end

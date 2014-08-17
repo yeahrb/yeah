@@ -33,7 +33,7 @@ class Game
       ticker: ticker,
       display: Display.new,
       keyboard: Keyboard.new(ticker: ticker),
-      mouse: Mouse.new
+      mouse: Mouse.new(ticker: ticker)
     }
   end
 
