@@ -1,6 +1,8 @@
 module Yeah
 class Game
   class << self
+    attr_writer :name
+
     def inherited(klass)
       subclasses << klass
 
@@ -18,6 +20,10 @@ class Game
         keyboard: {},
         mouse: {}
       }
+    end
+
+    def canonical
+      subclasses.last
     end
   end
 

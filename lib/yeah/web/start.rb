@@ -1,1 +1,1 @@
-Game.subclasses.last.new
+Game.canonical.new
