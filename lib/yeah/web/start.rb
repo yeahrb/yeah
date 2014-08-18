@@ -1,1 +1,1 @@
-Game.canonical.new
+Game.default.new
