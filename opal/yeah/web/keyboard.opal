@@ -102,8 +102,8 @@ class Keyboard
     222 => :quote
   }
 
-  def initialize(args)
-    @ticker = args.fetch(:ticker)
+  def initialize(options = {})
+    @ticker = options.fetch(:ticker)
     @pressed_keys = {}
     @released_keys = {}
 
