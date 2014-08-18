@@ -4,13 +4,20 @@ require 'opal'
 
 module Yeah
 module Web
+
+# The `Web::Server` serves a game over the Internet. It can be started easily
+# by entering `yeah serve` in a command-line within a game project.
 class Server
+  # @param [Integer] port to serve game over
+  # Start serving the game.
   def start(port = 1234)
     Rack::Server.start(app: Application.new, Port: port)
   end
 
   private
 
+  # For internal usage.
+  # @see Yeah::Web::Server
   class Application < Opal::Server
     def initialize
       @index_path = gem_path.join('lib', 'yeah', 'web', 'runner.html.erb').to_s
