@@ -2,7 +2,7 @@ module Yeah
 
 # An `Image` is an asset that a `Display` can draw.
 # @abstract Provided by a `Platform`.
-# @see Yeah::Platform::Display#image
+# @see Yeah::Display#image
 class Image < Asset
   # @!attribute [r] size
   # @return [Vector] size of image
