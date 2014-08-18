@@ -14,7 +14,7 @@ Gem::Specification.new do |s|
   s.authors = ["Artur Ostrega"]
   s.email = 'skoofoo@gmail.com'
 
-  s.files = Dir.glob('{bin,lib,demo}/**/*') + %w(LICENSE.txt README.md)
+  s.files = Dir.glob('{bin,lib,opal,examples}/**/*') + %w(LICENSE.txt README.md)
   s.executables = ['yeah']
 
   s.homepage = 'https://github.com/skofo/yeah'
