@@ -39,4 +39,4 @@ NOTE: This is alpha-stage software, expect changes!
 
 ## API Reference
 
-[0.3.1](http://rdoc.info/github/yeahrb/yeah/72d406d599b/frames)
+[0.3.1](http://rdoc.info/github/yeahrb/yeah/6cb26ef/frames)
