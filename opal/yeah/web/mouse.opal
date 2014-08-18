@@ -4,7 +4,9 @@ class Mouse
   BUTTON_MAP = {
     0 => :left,
     1 => :middle,
-    2 => :right
+    2 => :right,
+    3 => 4,
+    4 => 5
   }
 
   attr_reader :position
