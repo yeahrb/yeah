@@ -14,10 +14,17 @@ Practical Ruby video game framework, alpha stage
 * Open source under MIT license
 
 
-## Early examples
+## Examples
 
-* Random [\[play\]](https://yeahrb.github.io/yeah/examples/random/runner.html) [\[code\]](https://github.com/yeahrb/yeah/tree/examples/examples/random)
-* Asteroids [\[play\]](https://yeahrb.github.io/yeah/examples/asteroids/runner.html) [\[code\]](https://github.com/yeahrb/yeah/tree/examples/examples/asteroids)
+[![Asteroids](https://cdn.mediacru.sh/IkYZP46TmCsd.png)](https://yeahrb.github.io/yeah/examples/asteroids/runner.html)
+
+[*Asteroids*](https://yeahrb.github.io/yeah/examples/asteroids/runner.html)
+[(code)](https://github.com/yeahrb/yeah/tree/examples/examples/asteroids)
+
+[![Random](https://cdn.mediacru.sh/KW9M6TndLry0.png)](https://yeahrb.github.io/yeah/examples/random/runner.html)
+
+[*Random*](https://cdn.mediacru.sh/ZpyKf2TtdLqJ.png)
+[(code)](https://github.com/yeahrb/yeah/tree/examples/examples/random)
 
 
 ## Usage
@@ -36,6 +43,7 @@ NOTE: This is alpha-stage software, expect changes!
 2. Change into the new `game` directory, then enter `bundle install`.
 3. Add game code to `code/game.rb`. No tutorials yet; please take a look at the [example code](https://github.com/yeahrb/yeah/tree/examples/examples) and [API reference](http://rdoc.info/github/yeahrb/yeah/5e7fbd0/frames).
 4. Enter `yeah serve` and visit [http://localhost:1234](http://localhost:1234) to try the game.
+
 
 ## API Reference
 
