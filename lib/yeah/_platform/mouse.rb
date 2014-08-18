@@ -1,5 +1,4 @@
 module Yeah
-module Platform
 
 # `Mouse` provides mouse input handling.
 # @example Attack on button press within game
@@ -27,6 +26,5 @@ class Mouse
   # @!method released?(button)
   # @param [Symbol, Numeric] button to check
   # @return [Boolean] whether button was just released
-end
 end
 end

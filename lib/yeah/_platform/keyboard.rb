@@ -1,5 +1,4 @@
 module Yeah
-module Platform
 
 # The `Keyboard` provides keyboard input handling.
 # @example Playing sound on key press within game
@@ -34,6 +33,5 @@ class Keyboard
   # @!method released?(key)
   # @param [Symbol, Numeric] key to check
   # @return [Boolean] whether key was just released
-end
 end
 end

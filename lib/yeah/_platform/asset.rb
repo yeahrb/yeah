@@ -1,8 +1,7 @@
 module Yeah
-module Platform
 
 # An `Asset` represents a file found in a project's `assets` directory.
-# @abstract Subclassed to more specific assets.
+# @abstract Provided by a `Platform`, subclassed to more specific assets.
 class Asset
   def initialize(path)
     raise NotImplementedError
@@ -21,6 +20,5 @@ class Asset
 
   # @!method to_n
   # @return [Native] native representation of asset for platform
-end
 end
 end

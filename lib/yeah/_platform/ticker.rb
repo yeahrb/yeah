@@ -1,5 +1,4 @@
 module Yeah
-module Platform
 
 # The `Ticker` provides a way to start a game loop.
 # @example Print elapsed time between each tick
@@ -18,6 +17,5 @@ class Ticker
   # @!method on_tick
   # @yield [elapsed] block to execute per tick
   # @yieldparam [Numeric] elapsed time since last tick
-end
 end
 end

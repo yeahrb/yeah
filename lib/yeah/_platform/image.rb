@@ -1,5 +1,4 @@
 module Yeah
-module Platform
 
 # An `Image` is an asset that a `Display` can draw.
 # @abstract Provided by a `Platform`.
@@ -13,6 +12,5 @@ class Image < Asset
 
   # @!attribute [r] height
   # @return [Integer] height of image
-end
 end
 end

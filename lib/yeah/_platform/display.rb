@@ -1,5 +1,4 @@
 module Yeah
-module Platform
 
 # The `Display` is responsible for drawing to a game display. It provides a
 # procedural drawing API similar to Processing or HTML5 Canvas.
@@ -178,6 +177,5 @@ class Display
   # @param [Vector] position
   # @return [nil]
   # Stroke text at a position.
-end
 end
 end
