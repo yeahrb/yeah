@@ -1,5 +1,7 @@
 #!/usr/bin/env ruby
 
+require 'fileutils'
+
 options = {}
 
 options[:command] = ARGV.shift
