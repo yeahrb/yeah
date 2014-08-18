@@ -60,11 +60,11 @@ class Game
   # @option options [Keyboard] :keyboard
   # @option options [Mouse] :mouse
   def initialize(options = {})
-    args = defaults.merge(args)
-    @ticker = args[:ticker]
-    @display = args[:display]
-    @keyboard = args[:keyboard]
-    @mouse = args[:mouse]
+    options = defaults.merge(options)
+    @ticker = options[:ticker]
+    @display = options[:display]
+    @keyboard = options[:keyboard]
+    @mouse = options[:mouse]
 
     setup
 
