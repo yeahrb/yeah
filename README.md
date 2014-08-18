@@ -34,7 +34,7 @@ NOTE: This is alpha-stage software, expect changes!
 
 1. In a command line, enter `yeah new` to generate a new game project.
 2. Change into the new `game` directory, then enter `bundle install`.
-3. Add game code to `code/game.rb`. No tutorials yet; please take a look at the [example code](https://github.com/skofo/yeah/tree/examples/examples) and [API reference](http://rdoc.info/github/yeahrb/yeah/master/frames).
+3. Add game code to `code/game.rb`. No tutorials yet; please take a look at the [example code](https://github.com/skofo/yeah/tree/examples/examples) and [API reference](http://rdoc.info/github/yeahrb/yeah/72d406d599b/frames).
 4. Enter `yeah serve` and visit [http://localhost:1234](http://localhost:1234) to try the game.
 
-View the [API reference](http://rdoc.info/github/yeahrb/yeah/master/frames) for more information.
+View the [API reference](http://rdoc.info/github/yeahrb/yeah/72d406d599b/frames) for more information.
