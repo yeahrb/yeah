@@ -23,7 +23,7 @@ Practical Ruby video game framework, alpha stage
 
 [![Random](https://cdn.mediacru.sh/KW9M6TndLry0.png)](https://yeahrb.github.io/yeah/examples/random/runner.html)
 
-[*Random*](https://cdn.mediacru.sh/ZpyKf2TtdLqJ.png)
+[*Random*](https://yeahrb.github.io/yeah/examples/random/runner.html)
 [(code)](https://github.com/yeahrb/yeah/tree/examples/examples/random)
 
 
