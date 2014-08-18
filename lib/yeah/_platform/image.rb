@@ -1,7 +1,7 @@
 module Yeah
 module Platform
 
-# An `Image` is an asset that a `Display` can draw (see Display#draw_image}).
+# An `Image` is an asset that a `Display` can draw (see `Display#draw_image`}).
 # @abstract Provided by a `Platform`.
 class Image < Asset
   # @!attribute [r] size
