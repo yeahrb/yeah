@@ -20,7 +20,6 @@ Gem::Specification.new do |s|
   s.homepage = 'https://github.com/skofo/yeah'
   s.license = 'MIT'
 
-  s.add_runtime_dependency 'opal', '~> 0.7.0.dev'
   s.add_development_dependency 'rake', '~> 10.3.1'
   s.add_development_dependency 'minitest', '~> 5.3.2'
   s.add_development_dependency 'opal-minitest', '~> 0.0.3'
