@@ -1,7 +1,7 @@
 module Yeah
 module Platform
 
-# An `Asset` represents a file in a game project's `assets` directory.
+# An `Asset` represents a file found in a project's `assets` directory.
 # @abstract Subclassed to more specific assets.
 class Asset
   def initialize(path)

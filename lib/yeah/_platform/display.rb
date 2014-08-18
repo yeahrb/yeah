@@ -155,6 +155,8 @@ class Display
   # @param [Image] image to draw
   # @param [Vector] position
   # @return [nil]
+  # @example Draw a duck within a game
+  #   display.image Image['images/duck.png'], V[80, 80]
   # Draw an image at a position.
 
   # @!method image_cropped(image, position, crop_position, crop_size)

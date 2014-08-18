@@ -37,13 +37,14 @@ class Color
     end
   end
 
+  # @return [String] readable representation
+  def inspect
+    "#{self.class.name}#{value.to_s}"
+  end
+
   # @return [Boolean] whether self matches other color
   def ==(other)
     value == other.value
-  end
-
-  def inspect
-    "#{self.class.name}#{value.to_s}"
   end
 
   # @return [String] color value as a hex string

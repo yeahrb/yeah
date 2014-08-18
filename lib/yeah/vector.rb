@@ -39,6 +39,7 @@ class Vector
     @components = components + [0] * (3 - components.size)
   end
 
+  # @return [String] readable representation
   def inspect
     "#{self.class.name}#{@components.to_s}"
   end
