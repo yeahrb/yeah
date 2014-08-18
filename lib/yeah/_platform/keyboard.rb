@@ -2,6 +2,8 @@ module Yeah
 module Platform
 
 # The `Keyboard` provides keyboard input handling.
+# @example Playing sound on key press
+#   neigh.play if keyboard.pressed? :scroll_lock
 class Keyboard
   KEYS = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, :a, :alt, :b, :backquote, :backslash,
           :backspace, :c, :caps_lock, :comma, :ctrl, :d, :delete, :dot, :down,
