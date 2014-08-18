@@ -3,8 +3,8 @@
   $opal.dynamic_require_severity = "error";
   var self = $opal.top, $scope = $opal, nil = $opal.nil, $breaker = $opal.breaker, $slice = $opal.slice;
 
-  $opal.add_stubs(['$new', '$last', '$subclasses']);
-  return $scope.get('Game').$subclasses().$last().$new()
+  $opal.add_stubs(['$new', '$default']);
+  return $scope.get('Game').$default().$new()
 })(Opal);
 
 //# sourceMappingURL=yeah/web/start.map

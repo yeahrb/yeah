@@ -465,7 +465,7 @@ Opal.modules["thing"] = function($opal) {
   $opal.dynamic_require_severity = "error";
   var self = $opal.top, $scope = $opal, nil = $opal.nil, $breaker = $opal.breaker, $slice = $opal.slice, $klass = $opal.klass, $hash2 = $opal.hash2;
 
-  $opal.add_stubs(['$attr_accessor', '$fetch', '$[]', '$setup']);
+  $opal.add_stubs(['$attr_accessor', '$fetch', '$[]']);
   return (function($base, $super) {
     function $Thing(){};
     var self = $Thing = $klass($base, $super, 'Thing', $Thing);
@@ -480,8 +480,7 @@ Opal.modules["thing"] = function($opal) {
       if (args == null) {
         args = $hash2([], {})
       }
-      self.position = args.$fetch("position", $scope.get('V')['$[]'](0, 0));
-      return self.$setup(args);
+      return self.position = args.$fetch("position", $scope.get('V')['$[]'](0, 0));
     }, nil) && 'initialize';
   })(self, null)
 };
@@ -491,21 +490,23 @@ Opal.modules["asteroid"] = function($opal) {
   $opal.dynamic_require_severity = "error";
   var self = $opal.top, $scope = $opal, nil = $opal.nil, $breaker = $opal.breaker, $slice = $opal.slice, $klass = $opal.klass, $hash2 = $opal.hash2;
 
-  $opal.add_stubs(['$[]', '$fetch', '$-', '$rand', '$*', '$move', '$wrap', '$+', '$>', '$-@', '$x', '$radius', '$x=', '$width', '$display', '$y', '$y=', '$height', '$<', '$distance_between', '$reject!', '$==', '$things', '$<<', '$new', '$stroke_color=', '$fill_color=', '$draw_polygon', '$private', '$sqrt', '$**', '$/', '$push', '$translate', '$rotate', '$begin_shape', '$move_to', '$times', '$line_to', '$cos', '$sin', '$end_shape', '$stroke_shape', '$pop']);
+  $opal.add_stubs(['$[]', '$fetch', '$-', '$rand', '$*', '$move', '$wrap', '$+', '$>', '$-@', '$x', '$radius', '$x=', '$width', '$display', '$y', '$y=', '$height', '$<', '$distance_to', '$reject!', '$==', '$things', '$<<', '$new', '$stroke_color=', '$draw_polygon', '$private', '$/', '$push', '$translate', '$rotate', '$begin_shape', '$move_to', '$times', '$line_to', '$cos', '$sin', '$end_shape', '$stroke_shape', '$pop']);
   return (function($base, $super) {
     function $Asteroid(){};
     var self = $Asteroid = $klass($base, $super, 'Asteroid', $Asteroid);
 
-    var def = self._proto, $scope = self._scope;
+    var def = self._proto, $scope = self._scope, TMP_1;
 
     def.position = def.velocity = def.rotation = def.rotation_speed = def.side_count = nil;
     $opal.cdecl($scope, 'COLOR', $scope.get('C')['$[]']("#ffffff"));
 
     $opal.cdecl($scope, 'RADIUS_PER_SIDE', 8);
 
-    def.$setup = function(args) {
-      var self = this;
+    def.$initialize = TMP_1 = function(args) {var $zuper = $slice.call(arguments, 0);
+      var self = this, $iter = TMP_1._p, $yield = $iter || nil;
 
+      TMP_1._p = null;
+      $opal.find_super_dispatcher(self, 'initialize', TMP_1, $iter).apply(self, $zuper);
       self.side_count = args.$fetch("side_count");
       self.rotation = 0;
       self.rotation_speed = $scope.get('Math').$rand()['$-'](0.5);
@@ -527,16 +528,16 @@ Opal.modules["asteroid"] = function($opal) {
     };
 
     def.$wrap = function(game) {
-      var self = this, left_overlap = nil, right_overlap = nil, top_overlap = nil, bottom_overlap = nil;
+      var $a, $b, self = this, left_overlap = nil, right_overlap = nil, top_overlap = nil, bottom_overlap = nil;
 
       if (((left_overlap = self.position.$x()['$-@']()['$-'](self.$radius())))['$>'](0)) {
-        self.position['$x='](game.$display().$width()['$-'](left_overlap)['$+'](self.$radius()))
+        (($a = [game.$display().$width()['$-'](left_overlap)['$+'](self.$radius())]), $b = self.position, $b['$x='].apply($b, $a), $a[$a.length-1])
       } else if (((right_overlap = self.position.$x()['$-'](self.$radius())['$-'](game.$display().$width())))['$>'](0)) {
-        self.position['$x='](right_overlap['$-'](self.$radius()))};
+        (($a = [right_overlap['$-'](self.$radius())]), $b = self.position, $b['$x='].apply($b, $a), $a[$a.length-1])};
       if (((top_overlap = self.position.$y()['$-@']()['$-'](self.$radius())))['$>'](0)) {
-        return self.position['$y='](game.$display().$height()['$-'](top_overlap)['$+'](self.$radius()))
+        return (($a = [game.$display().$height()['$-'](top_overlap)['$+'](self.$radius())]), $b = self.position, $b['$y='].apply($b, $a), $a[$a.length-1])
       } else if (((bottom_overlap = self.position.$y()['$-'](self.$radius())['$-'](game.$display().$height())))['$>'](0)) {
-        return self.position['$y='](bottom_overlap['$-'](self.$radius()))
+        return (($a = [bottom_overlap['$-'](self.$radius())]), $b = self.position, $b['$y='].apply($b, $a), $a[$a.length-1])
         } else {
         return nil
       };
@@ -545,15 +546,15 @@ Opal.modules["asteroid"] = function($opal) {
     def['$colliding?'] = function(point) {
       var self = this;
 
-      return self.$distance_between(self.position, point)['$<'](self.$radius());
+      return self.position.$distance_to(point)['$<'](self.$radius());
     };
 
     def.$die = function(game) {
-      var $a, $b, TMP_1, self = this;
+      var $a, $b, TMP_2, self = this;
 
-      ($a = ($b = game.$things())['$reject!'], $a._p = (TMP_1 = function(t){var self = TMP_1._s || this;
+      ($a = ($b = game.$things())['$reject!'], $a._p = (TMP_2 = function(t){var self = TMP_2._s || this;
 if (t == null) t = nil;
-      return t['$=='](self)}, TMP_1._s = self, TMP_1), $a).call($b);
+      return t['$=='](self)}, TMP_2._s = self, TMP_2), $a).call($b);
       if (self.side_count['$>'](3)) {
         game.$things()['$<<']($scope.get('Asteroid').$new($hash2(["position", "side_count", "velocity"], {"position": self.position, "side_count": self.side_count['$-'](1), "velocity": $scope.get('V')['$[]'](self.velocity.$y()['$-@'](), self.velocity.$x())['$*'](2)})));
         return game.$things()['$<<']($scope.get('Asteroid').$new($hash2(["position", "side_count", "velocity"], {"position": self.position, "side_count": self.side_count['$-'](1), "velocity": $scope.get('V')['$[]'](self.velocity.$y(), self.velocity.$x()['$-@']())['$*'](2)})));
@@ -562,12 +563,11 @@ if (t == null) t = nil;
       };
     };
 
-    def.$draw = function(d) {
-      var self = this;
+    def.$draw = function(display) {
+      var $a, $b, self = this;
 
-      d['$stroke_color=']($scope.get('COLOR'));
-      d['$fill_color=']((($scope.get('AsteroidsGame'))._scope.get('BG_COLOR')));
-      return self.$draw_polygon(d, self.position, self.rotation, self.side_count, self.$radius());
+      (($a = [$scope.get('COLOR')]), $b = display, $b['$stroke_color='].apply($b, $a), $a[$a.length-1]);
+      return self.$draw_polygon(display, self.position, self.rotation, self.side_count, self.$radius());
     };
 
     self.$private();
@@ -578,14 +578,8 @@ if (t == null) t = nil;
       return self.side_count['$*']($scope.get('RADIUS_PER_SIDE'));
     };
 
-    def.$distance_between = function(a, b) {
-      var self = this;
-
-      return $scope.get('Math').$sqrt((a.$x()['$-'](b.$x()))['$**'](2)['$+']((a.$y()['$-'](b.$y()))['$**'](2)));
-    };
-
     return (def.$draw_polygon = function(d, position, rotation, side_count, radius) {
-      var $a, $b, TMP_2, self = this, angle_per = nil;
+      var $a, $b, TMP_3, self = this, angle_per = nil;
 
       angle_per = (($scope.get('Math'))._scope.get('PI'))['$*'](2)['$/'](side_count);
       d.$push();
@@ -593,9 +587,9 @@ if (t == null) t = nil;
       d.$rotate(self.rotation);
       d.$begin_shape();
       d.$move_to($scope.get('V')['$[]'](radius, 0));
-      ($a = ($b = side_count).$times, $a._p = (TMP_2 = function(i){var self = TMP_2._s || this;
+      ($a = ($b = side_count).$times, $a._p = (TMP_3 = function(i){var self = TMP_3._s || this;
 if (i == null) i = nil;
-      return d.$line_to($scope.get('V')['$[]'](radius['$*']($scope.get('Math').$cos(angle_per['$*'](i))), radius['$*']($scope.get('Math').$sin(angle_per['$*'](i)))))}, TMP_2._s = self, TMP_2), $a).call($b);
+      return d.$line_to($scope.get('V')['$[]'](radius['$*']($scope.get('Math').$cos(angle_per['$*'](i))), radius['$*']($scope.get('Math').$sin(angle_per['$*'](i)))))}, TMP_3._s = self, TMP_3), $a).call($b);
       d.$end_shape();
       d.$stroke_shape();
       return d.$pop();
@@ -608,12 +602,12 @@ Opal.modules["bullet"] = function($opal) {
   $opal.dynamic_require_severity = "error";
   var self = $opal.top, $scope = $opal, nil = $opal.nil, $breaker = $opal.breaker, $slice = $opal.slice, $klass = $opal.klass;
 
-  $opal.add_stubs(['$fetch', '$[]', '$move', '$wrap', '$collide', '$self_destruct', '$x=', '$+', '$x', '$*', '$cos', '$y=', '$y', '$sin', '$/', '$>', '$-', '$-@', '$width', '$display', '$height', '$each', '$respond_to?', '$colliding?', '$die', '$reject!', '$==', '$things', '$stroke_color=', '$push', '$translate', '$rotate', '$stroke_rectangle', '$pop']);
+  $opal.add_stubs(['$fetch', '$[]', '$move', '$wrap', '$collide', '$self_destruct', '$along!', '$*', '$/', '$>', '$-', '$-@', '$x', '$x=', '$+', '$width', '$display', '$y', '$y=', '$height', '$each', '$respond_to?', '$colliding?', '$die', '$reject!', '$==', '$things', '$stroke_color=', '$push', '$translate', '$rotate', '$stroke_rectangle', '$pop']);
   return (function($base, $super) {
     function $Bullet(){};
     var self = $Bullet = $klass($base, $super, 'Bullet', $Bullet);
 
-    var def = self._proto, $scope = self._scope;
+    var def = self._proto, $scope = self._scope, TMP_1;
 
     def.position = def.direction = def.size = def.age = nil;
     $opal.cdecl($scope, 'SPIN_SPEED', 0.6);
@@ -622,10 +616,11 @@ Opal.modules["bullet"] = function($opal) {
 
     $opal.cdecl($scope, 'SPEED', 600);
 
-    def.$setup = function(args) {
-      var self = this;
+    def.$initialize = TMP_1 = function(args) {var $zuper = $slice.call(arguments, 0);
+      var self = this, $iter = TMP_1._p, $yield = $iter || nil;
 
-      self.position = args.$fetch("position");
+      TMP_1._p = null;
+      $opal.find_super_dispatcher(self, 'initialize', TMP_1, $iter).apply(self, $zuper);
       self.direction = args.$fetch("direction");
       self.size = $scope.get('V')['$[]'](8, 8);
       return self.age = 0;
@@ -641,24 +636,23 @@ Opal.modules["bullet"] = function($opal) {
     };
 
     def.$move = function(elapsed) {
-      var $a, self = this;
+      var self = this;
 
-      ($a = self.position, $a['$x=']($a.$x()['$+']($scope.get('Math').$cos(self.direction)['$*']($scope.get('SPEED'))['$*'](elapsed))));
-      return ($a = self.position, $a['$y=']($a.$y()['$+']($scope.get('Math').$sin(self.direction)['$*']($scope.get('SPEED'))['$*'](elapsed))));
+      return self.position['$along!'](self.direction, $scope.get('SPEED')['$*'](elapsed));
     };
 
     def.$wrap = function(game) {
-      var self = this, half_size = nil, left_overlap = nil, right_overlap = nil, top_overlap = nil, bottom_overlap = nil;
+      var $a, $b, self = this, half_size = nil, left_overlap = nil, right_overlap = nil, top_overlap = nil, bottom_overlap = nil;
 
       half_size = self.size['$/'](2);
       if (((left_overlap = self.position.$x()['$-@']()['$-'](half_size.$x())))['$>'](0)) {
-        self.position['$x='](game.$display().$width()['$-'](left_overlap)['$+'](half_size.$y()))
+        (($a = [game.$display().$width()['$-'](left_overlap)['$+'](half_size.$y())]), $b = self.position, $b['$x='].apply($b, $a), $a[$a.length-1])
       } else if (((right_overlap = self.position.$x()['$-'](half_size.$x())['$-'](game.$display().$width())))['$>'](0)) {
-        self.position['$x='](right_overlap['$-'](half_size.$y()))};
+        (($a = [right_overlap['$-'](half_size.$y())]), $b = self.position, $b['$x='].apply($b, $a), $a[$a.length-1])};
       if (((top_overlap = self.position.$y()['$-@']()['$-'](half_size.$y())))['$>'](0)) {
-        return self.position['$y='](game.$display().$height()['$-'](top_overlap)['$+'](half_size.$y()))
+        return (($a = [game.$display().$height()['$-'](top_overlap)['$+'](half_size.$y())]), $b = self.position, $b['$y='].apply($b, $a), $a[$a.length-1])
       } else if (((bottom_overlap = self.position.$y()['$-'](half_size.$y())['$-'](game.$display().$height())))['$>'](0)) {
-        return self.position['$y='](bottom_overlap['$-'](half_size.$y()))
+        return (($a = [bottom_overlap['$-'](half_size.$y())]), $b = self.position, $b['$y='].apply($b, $a), $a[$a.length-1])
         } else {
         return nil
       };
@@ -666,40 +660,40 @@ Opal.modules["bullet"] = function($opal) {
 
     def.$collide = function(game) {try {
 
-      var $a, $b, TMP_1, self = this;
+      var $a, $b, TMP_2, self = this;
 
-      return ($a = ($b = game.$things()).$each, $a._p = (TMP_1 = function(thing){var self = TMP_1._s || this, $a, $b, TMP_2;
+      return ($a = ($b = game.$things()).$each, $a._p = (TMP_2 = function(thing){var self = TMP_2._s || this, $a, $b, TMP_3;
         if (self.position == null) self.position = nil;
 if (thing == null) thing = nil;
       if ((($a = ($b = thing['$respond_to?']("colliding?"), $b !== false && $b !== nil ?thing['$colliding?'](self.position) : $b)) !== nil && (!$a._isBoolean || $a == true))) {
           thing.$die(game);
-          ($a = ($b = game.$things())['$reject!'], $a._p = (TMP_2 = function(t){var self = TMP_2._s || this;
+          ($a = ($b = game.$things())['$reject!'], $a._p = (TMP_3 = function(t){var self = TMP_3._s || this;
 if (t == null) t = nil;
-          return t['$=='](self)}, TMP_2._s = self, TMP_2), $a).call($b);
+          return t['$=='](self)}, TMP_3._s = self, TMP_3), $a).call($b);
           $opal.$return(nil);
           } else {
           return nil
-        }}, TMP_1._s = self, TMP_1), $a).call($b);
+        }}, TMP_2._s = self, TMP_2), $a).call($b);
       } catch ($returner) { if ($returner === $opal.returner) { return $returner.$v } throw $returner; }
     };
 
     def.$self_destruct = function(elapsed, game) {
-      var $a, $b, TMP_3, self = this;
+      var $a, $b, TMP_4, self = this;
 
       self.age = self.age['$+'](elapsed);
       if (self.age['$>']($scope.get('MAX_AGE'))) {
-        return ($a = ($b = game.$things())['$reject!'], $a._p = (TMP_3 = function(t){var self = TMP_3._s || this;
+        return ($a = ($b = game.$things())['$reject!'], $a._p = (TMP_4 = function(t){var self = TMP_4._s || this;
 if (t == null) t = nil;
-        return t['$=='](self)}, TMP_3._s = self, TMP_3), $a).call($b)
+        return t['$=='](self)}, TMP_4._s = self, TMP_4), $a).call($b)
         } else {
         return nil
       };
     };
 
     return (def.$draw = function(d) {
-      var self = this;
+      var $a, $b, self = this;
 
-      d['$stroke_color=']((($scope.get('Ship'))._scope.get('COLOR')));
+      (($a = [(($scope.get('Ship'))._scope.get('COLOR'))]), $b = d, $b['$stroke_color='].apply($b, $a), $a[$a.length-1]);
       d.$push();
       d.$translate(self.position);
       d.$rotate((0.785)['$+'](self.direction));
@@ -714,12 +708,12 @@ Opal.modules["ship"] = function($opal) {
   $opal.dynamic_require_severity = "error";
   var self = $opal.top, $scope = $opal, nil = $opal.nil, $breaker = $opal.breaker, $slice = $opal.slice, $klass = $opal.klass, $hash2 = $opal.hash2;
 
-  $opal.add_stubs(['$[]', '$*', '$control', '$move', '$wrap', '$collide', '$input', '$+', '$-', '$<<', '$things', '$new', '$x=', '$x', '$cos', '$y=', '$y', '$sin', '$/', '$>', '$-@', '$width', '$display', '$height', '$each', '$respond_to?', '$colliding?', '$die', '$initialize', '$stroke_color=', '$push', '$translate', '$rotate', '$begin_shape', '$move_to', '$line_to', '$end_shape', '$stroke_shape', '$pop']);
+  $opal.add_stubs(['$[]', '$*', '$control', '$move', '$wrap', '$collide', '$input', '$+', '$-', '$<<', '$things', '$new', '$along!', '$/', '$>', '$-@', '$x', '$x=', '$width', '$display', '$y', '$y=', '$height', '$each', '$respond_to?', '$colliding?', '$die', '$initialize', '$stroke_color=', '$push', '$translate', '$rotate', '$begin_shape', '$move_to', '$line_to', '$end_shape', '$stroke_shape', '$pop']);
   return (function($base, $super) {
     function $Ship(){};
     var self = $Ship = $klass($base, $super, 'Ship', $Ship);
 
-    var def = self._proto, $scope = self._scope;
+    var def = self._proto, $scope = self._scope, TMP_1;
 
     def.direction = def.position = def.thrusting = def.velocity = def.size = nil;
     $opal.cdecl($scope, 'COLOR', $scope.get('C')['$[]']("#ffff88"));
@@ -728,9 +722,11 @@ Opal.modules["ship"] = function($opal) {
 
     $opal.cdecl($scope, 'ROTATE_SPEED', 5);
 
-    def.$setup = function(args) {
-      var self = this;
+    def.$initialize = TMP_1 = function(args) {var $zuper = $slice.call(arguments, 0);
+      var self = this, $iter = TMP_1._p, $yield = $iter || nil;
 
+      TMP_1._p = null;
+      $opal.find_super_dispatcher(self, 'initialize', TMP_1, $iter).apply(self, $zuper);
       self.size = $scope.get('V')['$[]'](32, 32);
       self.velocity = $scope.get('V')['$[]'](0, 0);
       self.direction = (($scope.get('Math'))._scope.get('PI'))['$*'](1.5);
@@ -765,23 +761,22 @@ Opal.modules["ship"] = function($opal) {
       var $a, self = this;
 
       if ((($a = self.thrusting) !== nil && (!$a._isBoolean || $a == true))) {
-        ($a = self.velocity, $a['$x=']($a.$x()['$+']($scope.get('Math').$cos(self.direction)['$*']($scope.get('SPEED'))['$*'](elapsed))));
-        ($a = self.velocity, $a['$y=']($a.$y()['$+']($scope.get('Math').$sin(self.direction)['$*']($scope.get('SPEED'))['$*'](elapsed))));};
+        self.velocity['$along!'](self.direction, $scope.get('SPEED')['$*'](elapsed))};
       return self.position = self.position['$+'](self.velocity);
     };
 
     def.$wrap = function(game) {
-      var self = this, half_size = nil, left_overlap = nil, right_overlap = nil, top_overlap = nil, bottom_overlap = nil;
+      var $a, $b, self = this, half_size = nil, left_overlap = nil, right_overlap = nil, top_overlap = nil, bottom_overlap = nil;
 
       half_size = self.size['$/'](2);
       if (((left_overlap = self.position.$x()['$-@']()['$-'](half_size.$x())))['$>'](0)) {
-        self.position['$x='](game.$display().$width()['$-'](left_overlap)['$+'](half_size.$y()))
+        (($a = [game.$display().$width()['$-'](left_overlap)['$+'](half_size.$y())]), $b = self.position, $b['$x='].apply($b, $a), $a[$a.length-1])
       } else if (((right_overlap = self.position.$x()['$-'](half_size.$x())['$-'](game.$display().$width())))['$>'](0)) {
-        self.position['$x='](right_overlap['$-'](half_size.$y()))};
+        (($a = [right_overlap['$-'](half_size.$y())]), $b = self.position, $b['$x='].apply($b, $a), $a[$a.length-1])};
       if (((top_overlap = self.position.$y()['$-@']()['$-'](half_size.$y())))['$>'](0)) {
-        return self.position['$y='](game.$display().$height()['$-'](top_overlap)['$+'](half_size.$y()))
+        return (($a = [game.$display().$height()['$-'](top_overlap)['$+'](half_size.$y())]), $b = self.position, $b['$y='].apply($b, $a), $a[$a.length-1])
       } else if (((bottom_overlap = self.position.$y()['$-'](half_size.$y())['$-'](game.$display().$height())))['$>'](0)) {
-        return self.position['$y='](bottom_overlap['$-'](half_size.$y()))
+        return (($a = [bottom_overlap['$-'](half_size.$y())]), $b = self.position, $b['$y='].apply($b, $a), $a[$a.length-1])
         } else {
         return nil
       };
@@ -789,9 +784,9 @@ Opal.modules["ship"] = function($opal) {
 
     def.$collide = function(game) {try {
 
-      var $a, $b, TMP_1, self = this;
+      var $a, $b, TMP_2, self = this;
 
-      return ($a = ($b = game.$things()).$each, $a._p = (TMP_1 = function(thing){var self = TMP_1._s || this, $a, $b;
+      return ($a = ($b = game.$things()).$each, $a._p = (TMP_2 = function(thing){var self = TMP_2._s || this, $a, $b;
         if (self.position == null) self.position = nil;
         if (self.args == null) self.args = nil;
 if (thing == null) thing = nil;
@@ -801,14 +796,14 @@ if (thing == null) thing = nil;
           $opal.$return(nil);
           } else {
           return nil
-        }}, TMP_1._s = self, TMP_1), $a).call($b);
+        }}, TMP_2._s = self, TMP_2), $a).call($b);
       } catch ($returner) { if ($returner === $opal.returner) { return $returner.$v } throw $returner; }
     };
 
     return (def.$draw = function(d) {
-      var $a, self = this;
+      var $a, $b, self = this;
 
-      d['$stroke_color=']($scope.get('COLOR'));
+      (($a = [$scope.get('COLOR')]), $b = d, $b['$stroke_color='].apply($b, $a), $a[$a.length-1]);
       d.$push();
       d.$translate(self.position);
       d.$rotate(self.direction['$+']((($scope.get('Math'))._scope.get('PI'))['$/'](2)));
@@ -837,20 +832,22 @@ Opal.modules["game"] = function($opal) {
   $opal.dynamic_require_severity = "error";
   var self = $opal.top, $scope = $opal, nil = $opal.nil, $breaker = $opal.breaker, $slice = $opal.slice, $klass = $opal.klass, $hash2 = $opal.hash2;
 
-  $opal.add_stubs(['$[]', '$attr_accessor', '$<<', '$new', '$/', '$size', '$display', '$times', '$*', '$rand', '$width', '$height', '$stroke_color=', '$stroke_width=', '$fill_color=', '$[]=', '$pressing?', '$keyboard', '$!', '$clear', '$each', '$nil?', '$update', '$draw', '$draw_help', '$private', '$font_size=', '$fill_text']);
+  $opal.add_stubs(['$[]', '$attr_accessor', '$[]=', '$config', '$<<', '$new', '$/', '$size', '$display', '$times', '$*', '$rand', '$width', '$height', '$stroke_color=', '$stroke_width=', '$fill_color=', '$pressing?', '$keyboard', '$pressed?', '$clear', '$each', '$nil?', '$update', '$draw', '$draw_help', '$private', '$font_size=', '$fill_text']);
   return (function($base, $super) {
     function $AsteroidsGame(){};
     var self = $AsteroidsGame = $klass($base, $super, 'AsteroidsGame', $AsteroidsGame);
 
     var def = self._proto, $scope = self._scope;
 
-    def.things = def.input = def.shot = nil;
+    def.things = def.input = nil;
     $opal.cdecl($scope, 'BG_COLOR', $scope.get('C')['$[]']("#001133"));
 
     self.$attr_accessor("input", "things");
 
+    self.$config()['$[]']("display")['$[]=']("size", $scope.get('V')['$[]'](720, 720));
+
     def.$setup = function() {
-      var $a, $b, TMP_1, self = this;
+      var $a, $b, TMP_1, $c, self = this;
 
       self.things = [];
       self.things['$<<']($scope.get('Ship').$new($hash2(["position"], {"position": self.$display().$size()['$/'](2)})));
@@ -860,9 +857,9 @@ Opal.modules["game"] = function($opal) {
       return self.things['$<<']($scope.get('Asteroid').$new($hash2(["position", "side_count"], {"position": $scope.get('V')['$[]']($scope.get('Math').$rand()['$*'](self.$display().$width()), $scope.get('Math').$rand()['$*'](self.$display().$height())), "side_count": 6})))}, TMP_1._s = self, TMP_1), $a).call($b);
       self.input = $hash2([], {});
       self.shot = false;
-      self.$display()['$stroke_color=']($scope.get('C')['$[]']("#dddddd"));
-      self.$display()['$stroke_width='](4);
-      return self.$display()['$fill_color=']($scope.get('BG_COLOR'));
+      (($a = [$scope.get('C')['$[]']("#dddddd")]), $c = self.$display(), $c['$stroke_color='].apply($c, $a), $a[$a.length-1]);
+      (($a = [4]), $c = self.$display(), $c['$stroke_width='].apply($c, $a), $a[$a.length-1]);
+      return (($a = [$scope.get('BG_COLOR')]), $c = self.$display(), $c['$fill_color='].apply($c, $a), $a[$a.length-1]);
     };
 
     def.$update = function(elapsed) {
@@ -871,17 +868,8 @@ Opal.modules["game"] = function($opal) {
       self.input['$[]=']("left", self.$keyboard()['$pressing?']("left"));
       self.input['$[]=']("right", self.$keyboard()['$pressing?']("right"));
       self.input['$[]=']("up", self.$keyboard()['$pressing?']("up"));
-      if ((($a = ($b = self.$keyboard()['$pressing?']("z"), $b !== false && $b !== nil ?self.shot['$!']() : $b)) !== nil && (!$a._isBoolean || $a == true))) {
-        self.input['$[]=']("shoot", true);
-        self.shot = true;
-        } else {
-        self.input['$[]=']("shoot", false)
-      };
-      if ((($a = self.$keyboard()['$pressing?']("z")) !== nil && (!$a._isBoolean || $a == true))) {
-        } else {
-        self.shot = false
-      };
-      self.$display()['$fill_color=']($scope.get('BG_COLOR'));
+      self.input['$[]=']("shoot", self.$keyboard()['$pressed?']("z"));
+      (($a = [$scope.get('BG_COLOR')]), $b = self.$display(), $b['$fill_color='].apply($b, $a), $a[$a.length-1]);
       self.$display().$clear();
       ($a = ($b = self.things).$each, $a._p = (TMP_2 = function(t){var self = TMP_2._s || this, $a;
 if (t == null) t = nil;
@@ -895,13 +883,13 @@ if (t == null) t = nil;
     self.$private();
 
     return (def.$draw_help = function(d) {
-      var self = this;
+      var $a, $b, self = this;
 
-      d['$font_size='](16);
-      d['$fill_color=']($scope.get('C')['$[]']("#999999"));
-      d.$fill_text($scope.get('V')['$[]'](800, 100), "Left/Right - Turn");
-      d.$fill_text($scope.get('V')['$[]'](800, 120), "Up - Thrust");
-      return d.$fill_text($scope.get('V')['$[]'](800, 140), "z - Shoot");
+      (($a = [16]), $b = d, $b['$font_size='].apply($b, $a), $a[$a.length-1]);
+      (($a = [$scope.get('C')['$[]']("#999999")]), $b = d, $b['$fill_color='].apply($b, $a), $a[$a.length-1]);
+      d.$fill_text("Left/Right - Turn", $scope.get('V')['$[]'](500, 100));
+      d.$fill_text("Up - Thrust", $scope.get('V')['$[]'](500, 120));
+      return d.$fill_text("z - Shoot", $scope.get('V')['$[]'](500, 140));
     }, nil) && 'draw_help';
   })(self, $scope.get('Game'))
 };
