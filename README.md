@@ -7,7 +7,7 @@ Practical Ruby video game framework, alpha stage
 
 * Designed to be easy to learn and fast to build games with
 * Embraces Ruby's strengths (object-orientation, duck typing, focus on developer happiness)
-* Platform-agnostic (currently compiles to web pages; PC executables and mobile apps planned)
+* Platform-agnostic (currently compiles to web pages through [Opal](https://github.com/opal/opal); PC executables and mobile apps planned)
 * Convention (over configuration)-oriented
 * Processing/HTML5 Canvas-style drawing API
 * Command-line utilities (no monolithic IDE)
