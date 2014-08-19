@@ -51,6 +51,6 @@ NOTE: This is alpha-stage software, expect changes!
 
 [Issue & feature tracker](https://github.com/yeahrb/yeah/issues)
 
-[IRC channel](irc://irc.freenode.net/yeahrb)
+IRC channel: irc://irc.freenode.net/yeahrb
 
 [Author's email](mailto:skoofoo@gmail.com)
