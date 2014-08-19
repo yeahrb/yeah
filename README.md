@@ -45,8 +45,12 @@ NOTE: This is alpha-stage software, expect changes!
 4. Enter `yeah serve` and visit [http://localhost:1234](http://localhost:1234) to try the game.
 
 
-## API Reference
+## Links
 
-[0.3.3](http://rdoc.info/github/yeahrb/yeah/9f065a6/frames)
+[0.3.3 API reference](http://rdoc.info/github/yeahrb/yeah/9f065a6/frames)
 
-[Edge](http://rdoc.info/github/yeahrb/yeah/master/frames)
+[Issue & feature tracker](https://github.com/yeahrb/yeah/issues)
+
+[IRC channel](irc://irc.freenode.net/yeahrb)
+
+[Author's email](mailto:skoofoo@gmail.com)
