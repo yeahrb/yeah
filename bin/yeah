@@ -19,6 +19,7 @@ when 'serve'
   require 'yeah/web/server'
   Yeah::Web::Server.new.start
 when 'version'
+  require 'yeah/version'
   puts Yeah::VERSION
 else
   puts "Usage: yeah <command>"
