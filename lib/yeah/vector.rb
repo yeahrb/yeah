@@ -67,7 +67,7 @@ class Vector
 
   # @return [Vector] vector of same direction whose length is 1
   def normalize
-    self / magnitude
+    self / length
   end
 
   # @param [Vector] vector to add
