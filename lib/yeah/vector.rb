@@ -72,6 +72,8 @@ class Vector
     self / length
   end
 
+  alias :unit :normalize
+
   # @param [Vector] vector to add
   # @return [Vector] vector sum
   def +(vector)
