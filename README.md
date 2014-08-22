@@ -1,4 +1,4 @@
-# Yeah
+# Yeah [![Inline docs](http://inch-ci.org/github/yeahrb/yeah.svg?branch=master)](http://inch-ci.org/github/yeahrb/yeah)
 
 Practical Ruby video game framework, alpha stage
 
