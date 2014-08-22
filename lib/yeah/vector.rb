@@ -65,6 +65,8 @@ class Vector
     Math.sqrt(@components[0] ** 2 + @components[1] ** 2 + @components[2] ** 2)
   end
 
+  alias :magnitude :length
+
   # @return [Vector] vector of same direction whose length is 1
   def normalize
     self / length
