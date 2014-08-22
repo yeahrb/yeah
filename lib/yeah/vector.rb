@@ -71,31 +71,35 @@ class Vector
   end
 
   # @param [Vector] vector to add
-  # @return [Vector] vector added into other vector
+  # @return [Vector] vector sum
   def +(vector)
-    self.class.new(*
-      [@components, vector.components].transpose.map { |cc|
-        cc.reduce(:+) })
+    self.class.new(@components[0] + vector.components[0],
+                   @components[1] + vector.components[1],
+                   @components[2] + vector.components[2])
   end
 
   # @param [Vector] vector to subtract
-  # @return [Vector] vector from which other vector was subtracted
+  # @return [Vector] vector difference
   def -(vector)
-    self.class.new(*
-      [@components, vector.components].transpose.map { |cc|
-        cc.reduce(:-) })
+    self.class.new(@components[0] - vector.components[0],
+                   @components[1] - vector.components[1],
+                   @components[2] - vector.components[2])
   end
 
-  # @param [Numeric] numeric value to multiply vector
-  # @return [Vector] vector multiplied by a numeric value
+  # @param [Numeric] numeric to multiply vector by
+  # @return [Vector] vector product
   def *(numeric)
-    self.class.new(*@components.map { |c| c * numeric })
+    self.class.new(@components[0] * numeric,
+                   @components[1] * numeric,
+                   @components[2] * numeric)
   end
 
-  # @param [Numeric] numeric value to divide vector
-  # @return [Vector] vector divided by a numeric value
+  # @param [Numeric] numeric to divide vector by
+  # @return [Vector] vector quotient
   def /(numeric)
-    self.class.new(*@components.map { |c| c / numeric })
+    self.class.new(@components[0] / numeric,
+                   @components[1] / numeric,
+                   @components[2] / numeric)
   end
 
   # @return [Vector] identical vector
