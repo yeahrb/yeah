@@ -8,12 +8,16 @@ options[:command] = ARGV.shift
 
 case options[:command]
 when 'new'
-  if Dir['game'].any?
-    puts "Error: `game` directory already exists."
+  if directory = ARGV.shift
+    unless Dir[directory].any?
+      template_path = File.expand_path('../../lib/yeah/_template', __FILE__)
+      FileUtils.cp_r(template_path, "./#{directory}")
+      puts "Created new game project at `#{directory}`."
+    else
+      puts "Error: `#{directory}` directory already exists."
+    end
   else
-    template_path = File.expand_path('../../lib/yeah/_template', __FILE__)
-    FileUtils.cp_r(template_path, './game')
-    puts "Created new game project at `game`."
+    puts 'Error: directory must be specified.'
   end
 when 'serve'
   require 'yeah/web/server'
