@@ -14,10 +14,11 @@ Gem::Specification.new do |s|
   s.authors = ["Artur Ostrega"]
   s.email = 'skoofoo@gmail.com'
 
-  s.files = Dir.glob('{bin,lib,opal,examples}/**/*') + %w(LICENSE.txt README.md)
+  s.files = Dir.glob('{bin,lib,opal}/**/*') +
+            %w(LICENSE.txt CHANGELOG.md README.md)
   s.executables = ['yeah']
 
-  s.homepage = 'https://github.com/skofo/yeah'
+  s.homepage = 'https://github.com/yeahrb/yeah'
   s.license = 'MIT'
 
   s.add_development_dependency 'rake', '~> 10.3.1'
