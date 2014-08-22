@@ -8,16 +8,14 @@ options[:command] = ARGV.shift
 
 case options[:command]
 when 'new'
-  if directory = ARGV.shift
-    unless Dir[directory].any?
-      template_path = File.expand_path('../../lib/yeah/_template', __FILE__)
-      FileUtils.cp_r(template_path, "./#{directory}")
-      puts "Created new game project at `#{directory}`."
-    else
-      puts "Error: `#{directory}` directory already exists."
-    end
+  directory = ARGV.shift || 'game'
+
+  unless Dir[directory].any?
+    template_path = File.expand_path('../../lib/yeah/_template', __FILE__)
+    FileUtils.cp_r(template_path, "./#{directory}")
+    puts "Created new game project at `#{directory}`."
   else
-    puts 'Error: directory must be specified.'
+    puts "Error: `#{directory}` directory already exists."
   end
 when 'serve'
   require 'yeah/web/server'
@@ -29,7 +27,7 @@ else
   puts "Usage: yeah <command>"
   puts ""
   puts "Commands:"
-  puts "  new - create a new game project"
+  puts "  new [name] - create a new game project"
   puts "  serve - serve a game over the Internet"
   puts "  version - print installed version"
 end
