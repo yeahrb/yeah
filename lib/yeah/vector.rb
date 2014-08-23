@@ -113,7 +113,9 @@ class Vector
 
   # @return [Vector] negative vector
   def -@
-    self.class.new(*@components.map(&:-@))
+    self.class.new(-@components[0],
+                   -@components[1],
+                   -@components[2])
   end
 
   # @param [Vector] position
