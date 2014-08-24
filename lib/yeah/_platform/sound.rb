@@ -8,5 +8,8 @@ module Yeah
 class Sound < Asset
   # @!method play
   # Play sound.
+
+  # @!method stop
+  # Stop all playback.
 end
 end

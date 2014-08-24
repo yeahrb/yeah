@@ -7,6 +7,8 @@ class Sound < Asset
   def initialize(path)
     super
 
+    @sources = []
+
     %x{
       var request = new XMLHttpRequest();
       request.open('GET', #{full_path}, true);
@@ -29,8 +31,19 @@ class Sound < Asset
       var source = #{CONTEXT}.createBufferSource();
       source.buffer = #@buffer;
       source.connect(#{CONTEXT}.destination);
+
+      #{@sources << `source`}
+
+      source.onended = function() {
+        #{@sources.shift}
+      }
+
       source.start(0);
     }
+  end
+
+  def stop
+    @sources.each { |s| `try { #{s}.stop(0) } catch(e) {}`; nil }
   end
 end
 end
