@@ -1,3 +1,18 @@
+0.3.5 (2014-08-24)
+------------------
+* Updated project structure; new entrypoint is `code/game.rb`
+* `yeah build` command through new `Web::Builder`
+* `yeah new` accepts name option (thanks fixnum)
+* `yeah serve` accepts port option
+* `Asset`: removed `#path=`, `#to_n`
+* `Image`: added `#to_n`
+* `Sound`: removed `#pause`, added `#stop`
+* `Web::Sound` can be played multiple times simultaneously
+* Benchmarking & `Vector` benchmarks (thanks meganemura)
+* `Vector` optimization (partly by meganemura)
+* New project game class name is based on name option.
+* Various code & documentation cleanup
+
 0.3.4 (2014-08-22)
 ------------------
 * Fixed `yeah version` command (thanks Chris Olszewski)
