@@ -9,16 +9,26 @@ module Web
 # `Web::Builder` builds standalone game packages playable through a web
 # browser. To build a game, enter `yeah build` in a command-line within a game
 # project.
-# @todo Clean up internals.
+# @todo DRY internals with `Web::Server`.
 class Builder
   # @return [nil]
   # Build game in working directory.
   def build
+    make_build_dirs
+    setup_compiler
+    compile
+
+    puts "Built game package to `build/web/`."
+  end
+
+  private
+
+  def make_build_dirs
     # Make build directories.
     FileUtils.mkpath 'build/web/assets/yeah/web'
+  end
 
-
-    # Set up code compiler.
+  def setup_compiler
     @compiler = Opal::Environment.new
 
     # Append standard library code paths.
@@ -31,26 +41,19 @@ class Builder
     # Append game code and asset paths.
     @compiler.append_path 'assets'
     @compiler.append_path 'code'
+  end
 
-
-    # Build runner.
+  def compile
     runner_path = Pathname.new(__FILE__).join('..', 'runner.html.erb')
     html = ERB.new(File.read(runner_path)).result(binding)
     File.write('build/web/runner.html', html)
-
-
-    puts "Built game package to `build/web/`."
   end
-
-  private
 
   def asset_include_tags
     paths = Dir['assets/**/*'].select { |p| File.file? p }
 
     paths.map do |path|
-      destination = Pathname.new("build/web").join(path)
-      FileUtils.mkpath(destination.join('..'))
-      FileUtils.cp(path, destination)
+      copy_asset(path)
 
       case path
       when /\.(ogg|wav|mp3)$/
@@ -62,9 +65,23 @@ class Builder
   end
 
   def script_include_tag(path)
-    File.write("build/web/assets/#{path}.js", @compiler[path].to_s)
+    build_script(path)
 
     "<script src=\"./assets/#{path}.js\"></script>"
+  end
+
+  def copy_asset(path)
+    destination_path = build_path.join(path)
+    FileUtils.mkpath(destination_path.join('..'))
+    FileUtils.cp(path, destination_path)
+  end
+
+  def build_script(path)
+    File.write(build_path.join("assets/#{path}.js"), @compiler[path].to_s)
+  end
+
+  def build_path
+    @build_path ||= Pathname.new("build/web")
   end
 
   def gem_path
