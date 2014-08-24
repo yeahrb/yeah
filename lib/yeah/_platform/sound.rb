@@ -8,8 +8,5 @@ module Yeah
 class Sound < Asset
   # @!method play
   # Play sound.
-
-  # @!method pause
-  # Pause sound. A following call to {#play} will resume.
 end
 end

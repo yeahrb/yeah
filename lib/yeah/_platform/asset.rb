@@ -15,11 +15,7 @@ class Asset
     # Alias for ::new.
   end
 
-  # @!attribute path
-  # @param [String] path to asset relative to `assets/`
+  # @!attribute [r] path
   # @return [String] path to asset relative to `assets/`
-
-  # @!method to_n
-  # @return [Native] native representation of asset for platform
 end
 end
