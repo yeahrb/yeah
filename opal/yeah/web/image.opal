@@ -21,6 +21,10 @@ class Image < Asset
   def height
     `#@native.height`
   end
+
+  def to_n
+    @native
+  end
 end
 end
 end

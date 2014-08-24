@@ -12,5 +12,8 @@ class Image < Asset
 
   # @!attribute [r] height
   # @return [Integer] height of image
+
+  # @!method to_n
+  # @return [Native] native reference
 end
 end
