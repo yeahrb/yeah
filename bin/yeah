@@ -39,7 +39,8 @@ when 'build'
 
 when 'serve'
   require 'yeah/web/server'
-  Yeah::Web::Server.new.serve
+  port = ARGV.shift
+  port ? Yeah::Web::Server.new.serve(port) : Yeah::Web::Server.new.serve
 
 when 'version'
   require 'yeah/version'
@@ -51,6 +52,6 @@ else
   puts "Commands:"
   puts "  new [name] - create a new game project"
   puts "  build - build package for a game"
-  puts "  serve - serve a game over the Internet"
+  puts "  serve [port] - serve a game over the Internet"
   puts "  version - print installed version"
 end
