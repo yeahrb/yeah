@@ -23,6 +23,8 @@ class Sound < Asset
   end
 
   def play
+    return unless @buffer
+
     %x{
       var source = #{CONTEXT}.createBufferSource();
       source.buffer = #@buffer;
