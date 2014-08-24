@@ -22,7 +22,7 @@ when 'build'
   Yeah::Web::Builder.new.build
 when 'serve'
   require 'yeah/web/server'
-  Yeah::Web::Server.new.start
+  Yeah::Web::Server.new.serve
 when 'version'
   require 'yeah/version'
   puts Yeah::VERSION

@@ -6,12 +6,13 @@ require 'opal'
 module Yeah
 module Web
 
-# The `Web::Server` serves a game over the web. It can be started easily by
-# entering `yeah serve` in a command-line within a game project.
+# The `Web::Server` serves a game over the web. To serve a game, enter
+# `yeah serve` in a command-line within a game project.
 class Server
   # @param [Integer] port to serve game over
-  # Start serving the game.
-  def start(port = 1234)
+  # @return [nil]
+  # Serve game in working directory.
+  def serve(port = 1234)
     runner = Runner.new
 
     assets = Opal::Environment.new
@@ -58,6 +59,8 @@ class Server
 
       [200, {'Content-Type' => 'text/html'}, [html]]
     end
+
+    private
 
     def asset_include_tags
       paths = Dir['assets/**/*'].select { |p| File.file? p }
