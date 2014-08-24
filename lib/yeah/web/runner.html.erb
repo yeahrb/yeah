@@ -47,15 +47,15 @@
   <canvas></canvas>
 
   <div class="hidden">
-    <%= @server.asset_include_tags %>
+    <%= asset_include_tags %>
   </div>
 
-  <%= javascript_include_tag 'yeah/web/dependencies' %>
-  <%= javascript_include_tag 'yeah/web' %>
-  <%= javascript_include_tag 'yeah/web/setup' %>
+  <%= script_include_tag 'yeah/web/dependencies' %>
+  <%= script_include_tag 'yeah/web' %>
+  <%= script_include_tag 'yeah/web/setup' %>
 
-  <%= javascript_include_tag 'code' %>
+  <%= script_include_tag 'code' %>
 
-  <%= javascript_include_tag 'yeah/web/start' %>
+  <%= script_include_tag 'yeah/web/start' %>
 </body>
 </html>

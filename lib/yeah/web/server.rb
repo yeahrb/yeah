@@ -1,39 +1,62 @@
 require 'pathname'
+require 'erb'
 require 'rack'
 require 'opal'
 
 module Yeah
 module Web
 
-# The `Web::Server` serves a game over the Internet. It can be started easily
-# by entering `yeah serve` in a command-line within a game project.
+# The `Web::Server` serves a game over the web. It can be started easily by
+# entering `yeah serve` in a command-line within a game project.
 class Server
   # @param [Integer] port to serve game over
   # Start serving the game.
   def start(port = 1234)
-    Rack::Server.start(app: Application.new, Port: port)
+    runner = Runner.new
+
+    assets = Opal::Environment.new
+
+    # Append standard library code paths.
+    $LOAD_PATH.each { |p| assets.append_path(p) }
+
+    # Append gem code paths.
+    assets.append_path gem_path.join('lib')
+    assets.append_path gem_path.join('opal')
+
+    # Append game code and asset paths.
+    assets.append_path 'assets'
+    assets.append_path 'code'
+
+    application = Rack::Builder.new do
+      use Rack::Deflater
+
+      map '/' do
+        run runner
+      end
+
+      map '/assets' do
+        run assets
+      end
+    end
+
+    Rack::Server.start(app: application, Port: port)
   end
 
   private
 
-  # For internal usage.
+  def gem_path
+    @gem_path ||= Pathname.new(__FILE__).join('..', '..', '..', '..')
+  end
+
+  # `Web::Runner` is a Rack app that provides the runner webpage for
+  # `Web::Server`.
   # @see Yeah::Web::Server
-  class Application < Opal::Server
-    def initialize
-      @index_path = gem_path.join('lib', 'yeah', 'web', 'runner.html.erb').to_s
+  class Runner
+    def call(environment)
+      runner_path = Pathname.new(__FILE__).join('..', 'runner.html.erb')
+      html = ERB.new(File.read(runner_path)).result(binding)
 
-      super
-
-      # Append stdlib paths
-      $LOAD_PATH.each { |p| append_path(p) }
-
-      # Append Yeah paths
-      append_path gem_path.join('lib')
-      append_path gem_path.join('opal')
-
-      # Append game (working directory) paths
-      append_path 'assets'
-      append_path 'code'
+      [200, {'Content-Type' => 'text/html'}, [html]]
     end
 
     def asset_include_tags
@@ -42,19 +65,18 @@ class Server
       paths.map do |path|
         case path
         when /\.(ogg|wav|mp3)$/
-          "<audio src=\"#{path}\"></audio>"
+          "<audio src=\"/#{path}\"></audio>"
         else
-          "<img src=\"#{path}\" />"
+          "<img src=\"/#{path}\" />"
         end
       end.join("\n")
     end
 
-    private
-
-    def gem_path
-      @gem_path ||= Pathname.new(__FILE__).join('..', '..', '..', '..')
+    def script_include_tag(path)
+      "<script src=\"/assets/#{path}.js\"></script>"
     end
   end
 end
+
 end
 end
