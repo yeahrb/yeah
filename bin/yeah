@@ -17,6 +17,9 @@ when 'new'
   else
     puts "Error: `#{directory}` directory already exists."
   end
+when 'build'
+  require 'yeah/web/builder'
+  Yeah::Web::Builder.new.build
 when 'serve'
   require 'yeah/web/server'
   Yeah::Web::Server.new.start
@@ -28,6 +31,7 @@ else
   puts ""
   puts "Commands:"
   puts "  new [name] - create a new game project"
+  puts "  build - build package for a game"
   puts "  serve - serve a game over the Internet"
   puts "  version - print installed version"
 end
