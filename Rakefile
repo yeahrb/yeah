@@ -1,5 +1,6 @@
 task :default => :test
 
+desc "Run tests through Minitest"
 task :test do
   require 'minitest'
   require 'minitest/autorun'
