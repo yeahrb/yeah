@@ -6,9 +6,9 @@ require 'opal'
 module Yeah
 module Web
 
-# `Web::Builder` builds standalone game packages playable through a web
-# browser. To build a game, enter `yeah build` in a command-line within a game
-# project.
+# `Web::Builder` builds a game into a standalone package that is playable
+# through a web browser. To build a game, enter `yeah build` in a command-line
+# within a game project.
 # @todo DRY internals with `Web::Server`.
 class Builder
   # @return [nil]
