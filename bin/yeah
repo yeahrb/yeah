@@ -7,17 +7,30 @@ case command
 when 'new'
   require 'fileutils'
 
-  name = ARGV.shift || 'game'
+  name = ARGV.shift || 'new_game'
 
-  unless Dir[name].any?
+  def underscore(string)
+    string.split(/(?=[A-Z])/).map(&:downcase).join('_')
+  end
+
+  def classify(string)
+    string.split('_').map(&:capitalize).join
+  end
+
+  project_path = underscore(name)
+
+  if Dir[project_path].any?
+    puts "Error: `#{project_path}` directory already exists."
+  else
+    # Use project template for new project directory.
     template_path = File.expand_path('../../lib/yeah/_template', __FILE__)
-    project_path = "./#{name}"
-
     FileUtils.cp_r(template_path, project_path)
 
-    puts "Created new game project at `#{name}`."
-  else
-    puts "Error: `#{name}` directory already exists."
+    # Use name for Game subclass name.
+    game_path = "#{project_path}/code/game.rb"
+    File.write(game_path, File.read(game_path) % classify(name))
+
+    puts "Created new game project at `#{project_path}`."
   end
 
 when 'build'

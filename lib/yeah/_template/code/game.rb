@@ -1,4 +1,4 @@
-class NewGame < Game
+class %s < Game
   def setup
   end
 
