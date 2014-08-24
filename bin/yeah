@@ -1,31 +1,37 @@
 #!/usr/bin/env ruby
 
-require 'fileutils'
+command = ARGV.shift
 
-options = {}
+case command
 
-options[:command] = ARGV.shift
-
-case options[:command]
 when 'new'
-  directory = ARGV.shift || 'game'
+  require 'fileutils'
 
-  unless Dir[directory].any?
+  name = ARGV.shift || 'game'
+
+  unless Dir[name].any?
     template_path = File.expand_path('../../lib/yeah/_template', __FILE__)
-    FileUtils.cp_r(template_path, "./#{directory}")
-    puts "Created new game project at `#{directory}`."
+    project_path = "./#{name}"
+
+    FileUtils.cp_r(template_path, project_path)
+
+    puts "Created new game project at `#{name}`."
   else
-    puts "Error: `#{directory}` directory already exists."
+    puts "Error: `#{name}` directory already exists."
   end
+
 when 'build'
   require 'yeah/web/builder'
   Yeah::Web::Builder.new.build
+
 when 'serve'
   require 'yeah/web/server'
   Yeah::Web::Server.new.serve
+
 when 'version'
   require 'yeah/version'
   puts Yeah::VERSION
+
 else
   puts "Usage: yeah <command>"
   puts ""
