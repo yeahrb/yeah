@@ -3,6 +3,8 @@ module Web
 class Asset
   ASSETS_PATH = "./assets"
 
+  attr_reader :path
+
   class << self
     def [](*args)
       new(*args)
@@ -10,28 +12,13 @@ class Asset
   end
 
   def initialize(path)
-    setup_native
-
-    self.path = path
-  end
-
-  def path
-    `#@native.src`.sub(/.*:\/\/.*#{ASSETS_PATH}\//i, '')
-  end
-  def path=(val)
-    # TODO: use Pathname#join if it is implemented in Opal
-    full_path = "#{ASSETS_PATH}/#{val}"
-    `#@native.src = #{full_path};`
-  end
-
-  def to_n
-    @native
+    @path = path
   end
 
   private
 
-  def setup_native
-    raise NotImplementedError
+  def full_path
+    "#{ASSETS_PATH}/#{@path}"
   end
 end
 end
