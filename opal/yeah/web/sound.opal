@@ -13,10 +13,6 @@ class Sound < Asset
   def play
     `#@native.play()`
   end
-
-  def pause
-    `#@native.pause()`
-  end
 end
 end
 end
