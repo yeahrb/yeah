@@ -121,9 +121,9 @@ class Vector
   # @param [Vector] position
   # @return [Numeric] distance to a position
   def distance_to(position)
-    Math.sqrt((x - position.x) ** 2 +
-              (y - position.y) ** 2 +
-              (z - position.z) ** 2)
+    Math.sqrt((@components[0] - position.x) ** 2 +
+              (@components[1] - position.y) ** 2 +
+              (@components[2] - position.z) ** 2)
   end
 
   # @param [Vector] position
@@ -137,15 +137,16 @@ class Vector
   # @param [Numeric] distance to move
   # @return [Vector] position moved along an angle for a distance in 2D
   def along(angle, distance)
-    self.class.new(x + Math.cos(angle) * distance,
-                   y + Math.sin(angle) * distance)
+    self.class.new(@components[0] + Math.cos(angle) * distance,
+                   @components[1] + Math.sin(angle) * distance)
   end
 
   # @param (see #along)
   # @return [Vector] self after moving along an angle for a distance in 2D
   def along!(angle, distance)
-    self.x += Math.cos(angle) * distance
-    self.y += Math.sin(angle) * distance
+    @components[0] += Math.cos(angle) * distance
+    @components[1] += Math.sin(angle) * distance
+
     self
   end
 
