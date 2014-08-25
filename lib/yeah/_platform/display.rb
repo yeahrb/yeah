@@ -13,16 +13,16 @@ class Display
   end
 
   # @!attribute size
-  # @param [Vector] size to make display
-  # @return [Vector] size of display
+  # @param [Vector] size to make display in pixels
+  # @return [Vector] size of display in pixels
 
   # @!attribute width
-  # @param [Vector] width to make display
-  # @return [Vector] width of display
+  # @param [Integer] width to make display in pixels
+  # @return [Integer] width of display in pixels
 
   # @!attribute height
-  # @param [Vector] height to make display
-  # @return [Vector] height of display
+  # @param [Integer] height to make display in pixels
+  # @return [Integer] height of display in pixels
 
   # @!attribute fill_color
   # @param [Color] color for fill
@@ -33,8 +33,8 @@ class Display
   # @return [Color] color for stroke
 
   # @!attribute stroke_width
-  # @param [Numeric] width for stroke
-  # @return [Numeric] width for stroke
+  # @param [Numeric] width for stroke in pixels
+  # @return [Numeric] width for stroke in pixels
 
   # @!attribute text_font
   # @param [Font] font for text
@@ -97,13 +97,13 @@ class Display
 
   # @!method stroke_ellipse(center, radius)
   # @param [Vector] center position in 2D
-  # @param [Vector] radius in 2D
+  # @param [Vector] radius in pixels in 2D
   # @return [nil]
   # Stroke an ellipse at a center position and 2D radius.
 
   # @!method fill_ellipse(center, radius)
   # @param [Vector] center position in 2D
-  # @param [Vector] radius in 2D
+  # @param [Vector] radius in pixels in 2D
   # @return [nil]
   # Fill an ellipse at a center position and 2D radius.
 
@@ -161,7 +161,7 @@ class Display
   # @!method image_cropped(image, position, crop_position, crop_size)
   # @param [Image] image to draw
   # @param [Vector] position
-  # @param [Vector] start point of crop
+  # @param [Vector] start position of crop
   # @param [Vector] size of crop
   # @return [nil]
   # Draw a cropped image at a position.
