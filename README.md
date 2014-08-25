@@ -49,6 +49,8 @@ NOTE: This is alpha-stage software, expect changes!
 
 [0.3.5 API reference](http://rdoc.info/github/yeahrb/yeah/5efbbc9/frames)
 
+[Version upgrade notes](https://github.com/yeahrb/yeah/blob/master/UPGRADING.md)
+
 [Issue & feature tracker](https://github.com/yeahrb/yeah/issues)
 
 [Discussion via Gitter](https://gitter.im/yeahrb/yeah)
