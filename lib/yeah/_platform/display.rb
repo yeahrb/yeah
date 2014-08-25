@@ -41,8 +41,8 @@ class Display
   # @return [Font] font for text
 
   # @!attribute text_size
-  # @param [Numeric] size for text
-  # @return [Numeric] size for text
+  # @param [Integer] size for text in pixels
+  # @return [Integer] size for text in pixels
 
   # @!method color_at(position)
   # @param [Vector] position of pixel from which to get color
