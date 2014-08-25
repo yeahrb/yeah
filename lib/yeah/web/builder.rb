@@ -18,14 +18,14 @@ class Builder
     setup_compiler
     compile
 
-    puts "Built game package to `build/web/`."
+    puts "Built game package to `builds/web`."
   end
 
   private
 
   def make_build_dirs
     # Make build directories.
-    FileUtils.mkpath 'build/web/assets/yeah/web'
+    FileUtils.mkpath 'builds/web/assets/yeah/web'
   end
 
   def setup_compiler
