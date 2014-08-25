@@ -1,7 +1,7 @@
 module Yeah
 module Web
 class Display
-  attr_reader :font_family, :font_size
+  attr_reader :text_font, :text_size
 
   def initialize(options = {})
     canvas_selector = options.fetch(:canvas_selector, DEFAULT_CANVAS_SELECTOR)
@@ -9,8 +9,8 @@ class Display
     @canvas = `document.querySelectorAll(#{canvas_selector})[0]`
     @context = `#@canvas.getContext('2d')`
     self.size = options.fetch(:size, DEFAULT_DISPLAY_SIZE)
-    self.font_family = DEFAULT_DISPLAY_FONT_FAMILY
-    self.font_size = DEFAULT_DISPLAY_FONT_SIZE
+    self.text_font = Font['']
+    self.text_size = DEFAULT_DISPLAY_TEXT_SIZE
     @transform = [1, 0, 0, 1, 0, 0]
     @transforms = []
   end
@@ -58,17 +58,17 @@ class Display
     `#@context.lineWidth = #{numeric}`
   end
 
-  def font_family=(type)
-    @font_family= type
+  def text_font=(font)
+    @text_font = font
 
-    font = "#{@font_size}px #{@font_family}"
+    font = "#{@text_size}px \"#{@text_font.path}\""
     `#@context.font = #{font}`
   end
 
-  def font_size=(size)
-    @font_size = size
+  def text_size=(size)
+    @text_size = size
 
-    font = "#{@font_size}px #{@font_family}"
+    font = "#{@text_size}px \"#{@text_font.path}\""
     `#@context.font = #{font}`
   end
 

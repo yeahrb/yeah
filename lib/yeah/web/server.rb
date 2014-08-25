@@ -69,6 +69,10 @@ class Server
         case path
         when /\.(ogg|wav|mp3)$/
           "<audio src=\"/#{path}\"></audio>"
+        when /\.(otf|ttf|woff)$/
+          "<style>" +
+          "@font-face { font-family: \"#{path[7..-1]}\"; src: url(#{path}) }" +
+          "</style>"
         else
           "<img src=\"/#{path}\" />"
         end

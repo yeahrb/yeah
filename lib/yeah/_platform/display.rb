@@ -36,13 +36,13 @@ class Display
   # @param [Numeric] width for stroke
   # @return [Numeric] width for stroke
 
-  # @!attribute font_family
-  # @param [String] font family for text
-  # @return [String] font family for text
+  # @!attribute text_font
+  # @param [Font] font for text
+  # @return [Font] font for text
 
-  # @!attribute font_size
-  # @param [String] font size for text
-  # @return [String] font size for text
+  # @!attribute text_size
+  # @param [String] size for text
+  # @return [String] size for text
 
   # @!method color_at(position)
   # @param [Vector] position of pixel from which to get color
