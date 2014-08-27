@@ -155,15 +155,15 @@ class Vector
   # @return [Vector] position moved toward other position for a distance in 2D
   # @todo Make work in 3D.
   def toward(position, distance)
-    along angle_to(position), amount
+    along angle_to(position), distance
   end
 
   # @param (see #toward)
   # @return [Vector] self after moving toward other position for a distance in
   #   2D
   # @todo Make work in 3D.
-  def toward!(position, amount)
-    along! angle_to(position), amount
+  def toward!(position, distance)
+    along! angle_to(position), distance
   end
 end
 end
