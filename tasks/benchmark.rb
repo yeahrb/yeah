@@ -33,6 +33,8 @@ namespace :benchmark do
       benchmark(bm, :angle_to)    { |a, b| a.angle_to b }
       benchmark(bm, :along)       { |a, b| a.along radian, 10 }
       benchmark(bm, :along!)      { |a, b| a.along! radian, 10 }
+      benchmark(bm, :toward)      { |a, b| a.toward b, 10 }
+      benchmark(bm, :toward!)     { |a, b| a.toward! b, 10 }
     end
   end
 end
