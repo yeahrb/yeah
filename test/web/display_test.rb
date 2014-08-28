@@ -20,7 +20,7 @@ class DisplayTest < Test
     methods.each { |m| assert_respond_to(@object, m) }
 
     properties = %i[size width height fill_color stroke_color stroke_width
-      font_family font_size]
+      text_font text_size]
     properties.each do |property|
       assert_respond_to(@object, property)
       assert_respond_to(@object, "#{property}=")
