@@ -30,7 +30,6 @@ namespace :benchmark do
       benchmark(bm, :subtract!)   { |a, b| a.subtract! b }
       benchmark(bm, :multiply!)   { |a, b| a.multiply! 5 }
       benchmark(bm, :divide!)     { |a, b| a.divide! 5 }
-      benchmark(bm, :+@)          { |a, b| +a }
       benchmark(bm, :-@)          { |a, b| -a }
       benchmark(bm, :length)      { |a, b| a.length }
       benchmark(bm, :distance_to) { |a, b| a.distance_to b }

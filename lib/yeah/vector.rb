@@ -154,10 +154,7 @@ class Vector
     self
   end
 
-  # @return [Vector] identical vector
-  def +@
-    self.class.new(*@components)
-  end
+  alias :+@ :dup
 
   # @return [Vector] negative vector
   def -@
