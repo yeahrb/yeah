@@ -106,6 +106,54 @@ class Vector
                    @components[2] / numeric)
   end
 
+  alias :add :+
+
+  alias :subtract :-
+
+  alias :multiply :*
+
+  alias :divide :/
+
+  # @param (see #add)
+  # @return [Vector] self after adding vector
+  def add!(vector)
+    @components[0] += vector.components[0]
+    @components[1] += vector.components[1]
+    @components[2] += vector.components[2]
+
+    self
+  end
+
+  # @param (see #subtract)
+  # @return [Vector] self after subtracting vector
+  def subtract!(vector)
+    @components[0] -= vector.components[0]
+    @components[1] -= vector.components[1]
+    @components[2] -= vector.components[2]
+
+    self
+  end
+
+  # @param (see #multiply)
+  # @return [Vector] self after multiplying by numeric
+  def multiply!(numeric)
+    @components[0] *= numeric
+    @components[1] *= numeric
+    @components[2] *= numeric
+
+    self
+  end
+
+  # @param (see #divide)
+  # @return [Vector] self after dividing by numeric
+  def divide!(numeric)
+    @components[0] /= numeric
+    @components[1] /= numeric
+    @components[2] /= numeric
+
+    self
+  end
+
   # @return [Vector] identical vector
   def +@
     self.class.new(*@components)
