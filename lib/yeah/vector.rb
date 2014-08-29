@@ -74,6 +74,12 @@ class Vector
 
   alias :unit :normalize
 
+  # @param [Vector] vector to compare
+  # @return [Boolean] whether self matches vector
+  def ==(other)
+    @components == other.components
+  end
+
   # @param [Vector] vector to add
   # @return [Vector] vector sum
   def +(vector)
