@@ -7,16 +7,13 @@ class VectorTest < Test
   def test_implements_vector_interface
     assert_respond_to(@class, :[])
 
-    assert_respond_to(@object, :[])
-    assert_respond_to(@object, :components)
-
-    %i[+@ -@ + - * /].each do |symbol|
+    %i[[] +@ -@ + - * / ==].each do |symbol|
       assert_respond_to(@object, symbol)
     end
 
-    %i[x y z].each do |a|
-      assert_respond_to(@object, a)
-      assert_respond_to(@object, "#{a}=")
+    %i[x y z components].each do |attr|
+      assert_respond_to(@object, attr)
+      assert_respond_to(@object, "#{attr}=")
     end
 
     %i[distance_to angle_to].each do |method|
