@@ -74,8 +74,8 @@ class Vector
 
   alias :unit :normalize
 
-  # @param [Vector] vector to compare
-  # @return [Boolean] whether self matches vector
+  # @param [Vector] vector to equate
+  # @return [Boolean] whether self equals vector
   def ==(other)
     @components == other.components
   end
@@ -189,7 +189,8 @@ class Vector
   # @return [Vector] position moved along an angle for a distance in 2D
   def along(angle, distance)
     self.class.new(@components[0] + Math.cos(angle) * distance,
-                   @components[1] + Math.sin(angle) * distance)
+                   @components[1] + Math.sin(angle) * distance,
+                   @components[2])
   end
 
   # @param (see #along)
