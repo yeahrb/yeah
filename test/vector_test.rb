@@ -95,4 +95,14 @@ class VectorTest < Test
     object.along! Math::PI, 1.5
     assert_equal(object.components, [-1.5, 3.0, 4])
   end
+
+  def test_toward
+    assert_equal(@class[0.0, 4.5, 6.0], @class[0.0, 1.5, 2].toward(@object, 5))
+  end
+
+  def test_toward_bang
+    object = @class[0.0, 1.5, 2]
+    object.toward! @object, 5
+    assert_equal([0.0, 4.5, 6.0], object.components)
+  end
 end
