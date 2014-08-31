@@ -77,10 +77,6 @@ class Display
     C[`data[0]`, `data[1]`, `data[2]`]
   end
 
-  def transformation
-    @transform + [0, 0, 1] # appendage to fulfill signature
-  end
-
   def translate(displacement)
     @transform[4] += `#{@transform[0]} * #{displacement.x} +
                       #{@transform[2]} * #{displacement.y}`
