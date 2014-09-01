@@ -12,12 +12,6 @@ namespace :web do
   require 'opal/minitest/rake_task'
   Opal.append_path('opal')
   Opal::Minitest::RakeTask.new(:test)
-
-  task :server do
-    require 'yeah/web/server'
-
-    Yeah::Web::Server.new.start
-  end
 end
 
 Dir.glob(File.dirname(__FILE__) + '/tasks/*.rb').each do |file|
