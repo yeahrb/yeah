@@ -34,6 +34,10 @@ class VectorTest < Test
     assert_equal(1, @object.normalize.length)
   end
 
+  def test_equality
+    assert(@object == @class[0, 3, 0] + @class[0, 0, 4])
+  end
+
   def test_add
     assert_equal(@class[0, 6, 8], @object + @object)
   end
