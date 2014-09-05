@@ -89,6 +89,29 @@ class Display
                              #{@transform[4]}, #{@transform[5]}); }
   end
 
+  def translate_x(displacement)
+    @transform[4] += `#{@transform[0]} * #{displacement} + #{@transform[2]}`
+    @transform[5] += `#{@transform[1]} * #{displacement} + #{@transform[3]}`
+
+    %x{
+      #@context.setTransform(#{@transform[0]}, #{@transform[1]},
+                             #{@transform[2]}, #{@transform[3]},
+                             #{@transform[4]}, #{@transform[5]}); }
+  end
+
+  def translate_y(displacement)
+    @transform[4] += `#{@transform[0]} + #{@transform[2]} * #{displacement}`
+    @transform[5] += `#{@transform[1]} + #{@transform[3]} * #{displacement}`
+
+    %x{
+      #@context.setTransform(#{@transform[0]}, #{@transform[1]},
+                             #{@transform[2]}, #{@transform[3]},
+                             #{@transform[4]}, #{@transform[5]}); }
+  end
+
+  def translate_z(displacement)
+  end
+
   def scale(multiplier)
     %x{
       #{@transform} = [#{@transform[0]} * #{multiplier.x},
@@ -102,7 +125,44 @@ class Display
                              #{@transform[4]}, #{@transform[5]}); }
   end
 
+  def scale_x(multiplier)
+    %x{
+      #{@transform} = [#{@transform[0]} * #{multiplier},
+                       #{@transform[1]} * #{multiplier},
+                       #{@transform[2]}, #{@transform[3]},
+                       #{@transform[4]}, #{@transform[5]}];
+
+      #@context.setTransform(#{@transform[0]}, #{@transform[1]},
+                             #{@transform[2]}, #{@transform[3]},
+                             #{@transform[4]}, #{@transform[5]}); }
+  end
+
+  def scale_y(multiplier)
+    %x{
+      #{@transform} = [#{@transform[0]}, #{@transform[1]},
+                       #{@transform[2]} * #{multiplier},
+                       #{@transform[3]} * #{multiplier},
+                       #{@transform[4]}, #{@transform[5]}];
+
+      #@context.setTransform(#{@transform[0]}, #{@transform[1]},
+                             #{@transform[2]}, #{@transform[3]},
+                             #{@transform[4]}, #{@transform[5]}); }
+  end
+
+  def scale_z(multiplier)
+  end
+
   def rotate(radians)
+    rotate_z(radians.z)
+  end
+
+  def rotate_x(radians)
+  end
+
+  def rotate_y(radians)
+  end
+
+  def rotate_z(radians)
     %x{
       var cos = Math.cos(#{radians}),
           sin = Math.sin(#{radians}),
