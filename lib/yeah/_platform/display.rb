@@ -52,22 +52,71 @@ class Display
   # @return [Array] transformation matrix
 
   # @!method translate(displacement)
-  # @param [Vector] displacement in 2D
+  # @param [Vector] displacement
   # @return [nil]
-  # @todo Make this work in 3D.
-  # Move the transformation by a 2D displacement.
+  # @note `Web::Display#translate` is currently 2D (only X and Y apply).
+  # Move the transformation by a vector displacement.
+
+  # @!method translate_x(displacement)
+  # @param [Numeric] displacement
+  # @return [nil]
+  # Move the transformation by a displacement on the X axis.
+
+  # @!method translate_y(displacement)
+  # @param [Numeric] displacement
+  # @return [nil]
+  # Move the transformation by a displacement on the Y axis.
+
+  # @!method translate_z(displacement)
+  # @param [Numeric] displacement
+  # @return [nil]
+  # @note No-op in `Web::Display`, which is currently 2D.
+  # Move the transformation by a displacement on the Z axis.
 
   # @!method scale(multiplier)
-  # @param [Vector] multiplier in 2D
+  # @param [Vector] multiplier
   # @return [nil]
-  # @todo Make this work in 3D.
-  # Scale the transformation by a 2D multiplier.
+  # @note `Web::Display#scale` is currently 2D (only X and Y apply).
+  # Scale the transformation by a vector multiplier.
+
+  # @!method scale_x(multiplier)
+  # @param [Numeric] multiplier
+  # @return [nil]
+  # Scale the transformation by a multiplier on the X axis.
+
+  # @!method scale_y(multiplier)
+  # @param [Numeric] multiplier
+  # @return [nil]
+  # Scale the transformation by a multiplier on the Y axis.
+
+  # @!method scale_z(multiplier)
+  # @param [Numeric] multiplier
+  # @return [nil]
+  # @note No-op in `Web::Display`, which is currently 2D.
+  # Scale the transformation by a multiplier on the Z axis.
 
   # @!method rotate(radians)
-  # @param [Numeric] radians in 2D
+  # @param [Vector] radians
   # @return [nil]
-  # @todo Make this work in 3D.
-  # Rotate the transformation by radians.
+  # @note `Web::Display#rotate` is currently 2D (only Z applies).
+  # Rotate the transformation by vector radians.
+
+  # @!method rotate_x(radians)
+  # @param [Numeric] radians
+  # @return [nil]
+  # @note No-op in `Web::Display`, which is currently 2D.
+  # Rotate the transformation by radians on the X axis.
+
+  # @!method rotate_y(radians)
+  # @param [Numeric] radians
+  # @return [nil]
+  # @note No-op in `Web::Display`, which is currently 2D.
+  # Rotate the transformation by radians on the Y axis.
+
+  # @!method rotate_z(radians)
+  # @param [Numeric] radians
+  # @return [nil]
+  # Rotate the transformation by radians on the Z axis.
 
   # @!method push
   # @return [nil]
