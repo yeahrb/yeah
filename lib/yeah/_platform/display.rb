@@ -7,7 +7,7 @@ class Display
   # @param [Hash] options for new object
   # @option options [Vector] :size (V[1280, 720]) of display
   # @option options [String] :canvas_selector ('canvas') for canvas HTML
-  #   element (applicable only to `Web::Display`)
+  #   element (applies only to `Web::Display`)
   def initialize(options = {})
     raise NotImplementedError
   end
@@ -176,20 +176,20 @@ class Display
   # @!method line_to(position)
   # @param [Vector] position
   # @return [nil]
-  # Draw line to position as part of shape.
+  # Trace line to position as part of shape.
 
   # @!method curve_to(position, control)
   # @param [Vector] position
   # @param [Vector] control point position
   # @return [nil]
-  # Draw curve with a control point to position as part of shape.
+  # Trace curve with a control point to position as part of shape.
 
   # @!method curve2_to(position, control1, control2)
   # @param [Vector] position
   # @param [Vector] first control point position
   # @param [Vector] second control point position
   # @return [nil]
-  # Draw curve with 2 control points to position as part of shape.
+  # Trace curve with 2 control points to position as part of shape.
 
   # @!method stroke_shape
   # @return [nil]
