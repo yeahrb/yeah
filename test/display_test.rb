@@ -1,15 +1,6 @@
-require 'yeah/web'
-
 class DisplayTest < Test
-  include Yeah::Web
-
   def setup
-    `document.body.appendChild(document.createElement('canvas'))`
-
-    @object = Display.new(
-      canvas_selector: 'canvas',
-      size: V[400, 400]
-    )
+    @object = Display.new
   end
 
   def test_implements_display_interface
