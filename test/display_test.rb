@@ -4,10 +4,10 @@ class DisplayTest < Test
   end
 
   def test_implements_display_interface
-    methods = %i[color_at transformation translate scale rotate push pop
-      stroke_line stroke_rectangle fill_rectangle stroke_ellipse fill_ellipse
-      clear begin_shape end_shape move_to line_to curve_to curve2_to
-      stroke_shape fill_shape image image_cropped fill_text stroke_text]
+    methods = %i[color_at translate scale rotate push pop stroke_line
+      stroke_rectangle fill_rectangle stroke_ellipse fill_ellipse clear
+      begin_shape end_shape move_to line_to curve_to curve2_to stroke_shape
+      fill_shape image image_cropped fill_text stroke_text]
     methods.each { |m| assert_respond_to(@object, m) }
 
     properties = %i[size width height fill_color stroke_color stroke_width
