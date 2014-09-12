@@ -1,3 +1,5 @@
+require 'math'
+
 require 'yeah/web/constants'
 require 'yeah/web/asset'
 require 'yeah/web/image'

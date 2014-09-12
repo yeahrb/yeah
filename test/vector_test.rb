@@ -1,5 +1,3 @@
-require 'math'
-
 class VectorTest < Test
   def setup
     @class = Vector
