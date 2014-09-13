@@ -201,6 +201,30 @@ class Display
     }
   end
 
+  def stroke_curve(start_pos, end_pos, control)
+    %x{
+      #@context.beginPath();
+      #@context.moveTo(#{start_pos.x}, #{start_pos.y});
+      #@context.quadraticCurveTo(#{control.x}, #{control.y},
+                                 #{end_pos.x}, #{end_pos.y});
+      #@context.closePath();
+      #@context.stroke();
+    }
+  end
+
+  def stroke_curve2(start_pos, end_pos, control1, control2)
+    %x{
+      #@context.beginPath();
+      #@context.moveTo(#{start_pos.x}, #{start_pos.y});
+      #@context.quadraticCurveTo(#{control.x}, #{control.y},
+      #@context.bezierCurveTo(#{control1.x}, #{control1.y},
+                              #{control2.x}, #{control2.y},
+                              #{end_pos.x}, #{end_pos.y});
+      #@context.closePath();
+      #@context.stroke();
+    }
+  end
+
   def stroke_rectangle(position, size)
     `#@context.strokeRect(#{position.x}, #{position.y}, #{size.x}, #{size.y})`
   end

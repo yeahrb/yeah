@@ -132,6 +132,21 @@ class Display
   # @return [nil]
   # Stroke a line between two positions.
 
+  # @!method stroke_curve(start_pos, end_pos, control)
+  # @param [Vector] start position in 2D
+  # @param [Vector] end position in 2D
+  # @param [Vector] control point position in 2D
+  # @return [nil]
+  # Stroke curve with a control point between two positions.
+
+  # @!method stroke_curve2(start_pos, end_pos, control1, control2)
+  # @param [Vector] start position in 2D
+  # @param [Vector] end position in 2D
+  # @param [Vector] first control point position in 2D
+  # @param [Vector] second control point position in 2D
+  # @return [nil]
+  # Stroke curve with 2 control points between two positions.
+
   # @!method stroke_rectangle(position, size)
   # @param [Vector] position in 2D
   # @param [Vector] size in 2D
