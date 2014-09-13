@@ -72,4 +72,16 @@ class DisplayTest < Test
     assert_equal(@object.fill_color, @object.color_at(bottom_right),
                  "Bottom-right rectangle color matches")
   end
+
+  def test_clear_fills_everything_with_fill_color
+    @object.fill_color = C[255, 128, 0]
+    @object.clear
+
+    assert_equal(@object.fill_color, @object.color_at(V[0, 0]),
+                 "Top-left color matches")
+    assert_equal(@object.fill_color, @object.color_at(@object.size / 2),
+                 "Middle color matches")
+    assert_equal(@object.fill_color, @object.color_at(@object.size - V[1, 1]),
+                 "Bottom-right color matches")
+  end
 end
