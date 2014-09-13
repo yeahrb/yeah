@@ -127,48 +127,55 @@ class Display
   # Pop a transformation off the transformation stack and use it.
 
   # @!method stroke_line(start_pos, end_pos)
-  # @param [Vector] start position in 2D
-  # @param [Vector] end position in 2D
+  # @param [Vector] start position
+  # @param [Vector] end position
   # @return [nil]
+  # @note `Web::Display#stroke_line` is currently 2D (only X and Y apply).
   # Stroke a line between two positions.
 
   # @!method stroke_curve(start_pos, end_pos, control)
-  # @param [Vector] start position in 2D
-  # @param [Vector] end position in 2D
-  # @param [Vector] control point position in 2D
+  # @param [Vector] start position
+  # @param [Vector] end position
+  # @param [Vector] control point position
   # @return [nil]
+  # @note `Web::Display#stroke_curve` is currently 2D (only X and Y apply).
   # Stroke curve with a control point between two positions.
 
   # @!method stroke_curve2(start_pos, end_pos, control1, control2)
-  # @param [Vector] start position in 2D
-  # @param [Vector] end position in 2D
-  # @param [Vector] first control point position in 2D
-  # @param [Vector] second control point position in 2D
+  # @param [Vector] start position
+  # @param [Vector] end position
+  # @param [Vector] first control point position
+  # @param [Vector] second control point position
   # @return [nil]
+  # @note `Web::Display#stroke_curve2` is currently 2D (only X and Y apply).
   # Stroke curve with 2 control points between two positions.
 
   # @!method stroke_rectangle(position, size)
-  # @param [Vector] position in 2D
-  # @param [Vector] size in 2D
+  # @param [Vector] position
+  # @param [Vector] size
   # @return [nil]
+  # @note `Web::Display#stroke_rectangle` is currently 2D (only X and Y apply).
   # Stroke a rectangle at a position and size.
 
   # @!method fill_rectangle(position, size)
-  # @param [Vector] position in 2D
-  # @param [Vector] size in 2D
+  # @param [Vector] position
+  # @param [Vector] size
   # @return [nil]
+  # @note `Web::Display#fill_rectangle` is currently 2D (only X and Y apply).
   # Fill a rectangle at a position and size.
 
   # @!method stroke_ellipse(center, radius)
-  # @param [Vector] center position in 2D
+  # @param [Vector] center position
   # @param [Vector] radius in pixels in 2D
   # @return [nil]
+  # @note `Web::Display#stroke_ellipse` is currently 2D (only X and Y apply).
   # Stroke an ellipse at a center position and 2D radius.
 
   # @!method fill_ellipse(center, radius)
-  # @param [Vector] center position in 2D
+  # @param [Vector] center position
   # @param [Vector] radius in pixels in 2D
   # @return [nil]
+  # @note `Web::Display#fill_ellipse` is currently 2D (only X and Y apply).
   # Fill an ellipse at a center position and 2D radius.
 
   # @!method clear
