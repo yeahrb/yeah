@@ -32,22 +32,22 @@ class DisplayTest < Test
     @object.fill_color = C[0, 128, 255]
     @object.fill_rectangle(position, V[1, 1])
 
-    assert_equal(@object.color_at(position), @object.fill_color)
+    assert_equal(@object.fill_color, @object.color_at(position))
   end
 
-  def test_fill_rectangle_fills_area_with_color
+  def test_fill_rectangle_fills_area_with_fill_color
     position = V[100, 200]
-    size =     V[100, 100]
+    size = V[100, 100]
 
     @object.fill_color = C[255, 128, 0]
     @object.fill_rectangle(position, size)
 
-    topleft = position
-    middle = V[position.x + size.x / 2, position.y + size.y / 2]
-    bottomright = V[position.x + size.x - 1, position.y + size.y - 1]
+    top_left = position
+    middle = position + size / 2
+    bottom_right = position + size - V[1, 1]
 
-    [topleft, middle, bottomright].each do |position|
-      assert_equal(@object.fill_color.value, @object.color_at(position).value)
+    [top_left, middle, bottom_right].each do |position|
+      assert_equal(@object.fill_color, @object.color_at(position))
     end
   end
 end
