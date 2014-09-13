@@ -48,9 +48,6 @@ class Display
   # @param [Vector] position of pixel from which to get color
   # @return [Color] color of pixel
 
-  # @!attribute [r] transformation
-  # @return [Array] transformation matrix
-
   # @!method translate(displacement)
   # @param [Vector] displacement
   # @return [nil]
