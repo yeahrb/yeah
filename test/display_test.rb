@@ -38,41 +38,6 @@ class DisplayTest < Test
     assert_equal(@object.fill_color, @object.color_at(position))
   end
 
-  def test_stroke_rectangle_strokes_area_with_stroke_color
-    position = V[100, 200]
-    size = V[100, 100]
-
-    @object.stroke_color = C[255, 128, 0]
-    @object.stroke_rectangle(position, size)
-
-    top_left = position
-    bottom_right = position + size - V[1, 1]
-
-    assert_equal(@object.stroke_color, @object.color_at(top_left),
-                 "Top-left rectangle color matches")
-    assert_equal(@object.stroke_color, @object.color_at(bottom_right),
-                 "Bottom-right rectangle color matches")
-  end
-
-  def test_fill_rectangle_fills_area_with_fill_color
-    position = V[100, 200]
-    size = V[100, 100]
-
-    @object.fill_color = C[255, 128, 0]
-    @object.fill_rectangle(position, size)
-
-    top_left = position
-    middle = position + size / 2
-    bottom_right = position + size - V[1, 1]
-
-    assert_equal(@object.fill_color, @object.color_at(top_left),
-                 "Top-left rectangle color matches")
-    assert_equal(@object.fill_color, @object.color_at(middle),
-                 "Middle rectangle color matches")
-    assert_equal(@object.fill_color, @object.color_at(bottom_right),
-                 "Bottom-right rectangle color matches")
-  end
-
   def test_translate_moves_transformation_by_displacement_in_2d
     displacement = V[50, 25]
 
@@ -114,6 +79,41 @@ class DisplayTest < Test
                  "Top-right square color matches")
     assert_equal(TEST_SQUARE_COLORS[0], @object.color_at(bottom_right),
                  "Bottom-right square color matches")
+  end
+
+  def test_stroke_rectangle_strokes_area_with_stroke_color
+    position = V[100, 200]
+    size = V[100, 100]
+
+    @object.stroke_color = C[255, 128, 0]
+    @object.stroke_rectangle(position, size)
+
+    top_left = position
+    bottom_right = position + size - V[1, 1]
+
+    assert_equal(@object.stroke_color, @object.color_at(top_left),
+                 "Top-left rectangle color matches")
+    assert_equal(@object.stroke_color, @object.color_at(bottom_right),
+                 "Bottom-right rectangle color matches")
+  end
+
+  def test_fill_rectangle_fills_area_with_fill_color
+    position = V[100, 200]
+    size = V[100, 100]
+
+    @object.fill_color = C[255, 128, 0]
+    @object.fill_rectangle(position, size)
+
+    top_left = position
+    middle = position + size / 2
+    bottom_right = position + size - V[1, 1]
+
+    assert_equal(@object.fill_color, @object.color_at(top_left),
+                 "Top-left rectangle color matches")
+    assert_equal(@object.fill_color, @object.color_at(middle),
+                 "Middle rectangle color matches")
+    assert_equal(@object.fill_color, @object.color_at(bottom_right),
+                 "Bottom-right rectangle color matches")
   end
 
   private
