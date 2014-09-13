@@ -216,7 +216,6 @@ class Display
     %x{
       #@context.beginPath();
       #@context.moveTo(#{start_pos.x}, #{start_pos.y});
-      #@context.quadraticCurveTo(#{control.x}, #{control.y},
       #@context.bezierCurveTo(#{control1.x}, #{control1.y},
                               #{control2.x}, #{control2.y},
                               #{end_pos.x}, #{end_pos.y});
