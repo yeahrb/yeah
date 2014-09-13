@@ -38,6 +38,21 @@ class DisplayTest < Test
     assert_equal(@object.fill_color, @object.color_at(position))
   end
 
+  def test_stroke_line_strokes_line_with_stroke_color
+    pos1 = V[20, 20]
+    pos2 = V[40, 80]
+
+    @object.stroke_color = C[255, 128, 0]
+    @object.stroke_line(pos1, pos2)
+
+    assert_equal(@object.stroke_color, @object.color_at(pos1),
+                 "Start of line color matches")
+    assert_equal(@object.stroke_color, @object.color_at(pos2 - pos1),
+                 "Middle of line color matches")
+    assert_equal(@object.stroke_color, @object.color_at(pos2),
+                 "End of line color matches")
+  end
+
   def test_stroke_rectangle_strokes_area_with_stroke_color
     position = V[100, 200]
     size = V[100, 100]
