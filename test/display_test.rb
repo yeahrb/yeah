@@ -38,49 +38,6 @@ class DisplayTest < Test
     assert_equal(@object.fill_color, @object.color_at(position))
   end
 
-  def test_translate_moves_transformation_by_displacement_in_2d
-    displacement = V[50, 25]
-
-    @object.translate(displacement)
-    draw_test_square(@object, V[0, 0])
-
-    top_left = displacement
-    bottom_left = displacement + V[0, TEST_SQUARE_SIZE.y] - V[0, 1]
-    top_right = displacement + V[TEST_SQUARE_SIZE.x, 0] - V[1, 0]
-    bottom_right = displacement + TEST_SQUARE_SIZE - V[1, 1]
-
-    assert_equal(TEST_SQUARE_COLORS[0], @object.color_at(top_left),
-                 "Top-left square color matches")
-    assert_equal(TEST_SQUARE_COLORS[1], @object.color_at(bottom_left),
-                 "Bottom-left square color matches")
-    assert_equal(TEST_SQUARE_COLORS[1], @object.color_at(top_right),
-                 "Top-right square color matches")
-    assert_equal(TEST_SQUARE_COLORS[0], @object.color_at(bottom_right),
-                 "Bottom-right square color matches")
-  end
-
-  def test_scale_scales_transformation_by_multiplier_in_2d
-    multiplier = V[2, 3]
-
-    @object.scale(multiplier)
-    draw_test_square(@object, V[0, 0])
-
-    top_left = V[0, 0]
-    bottom_left = V[0, TEST_SQUARE_SIZE.y * multiplier.y] - V[0, 1]
-    top_right = V[TEST_SQUARE_SIZE.x * multiplier.x, 0] - V[1, 0]
-    bottom_right = V[TEST_SQUARE_SIZE.x * multiplier.x,
-                     TEST_SQUARE_SIZE.y * multiplier.y] - V[1, 1]
-
-    assert_equal(TEST_SQUARE_COLORS[0], @object.color_at(top_left),
-                 "Top-left square color matches")
-    assert_equal(TEST_SQUARE_COLORS[1], @object.color_at(bottom_left),
-                 "Bottom-left square color matches")
-    assert_equal(TEST_SQUARE_COLORS[1], @object.color_at(top_right),
-                 "Top-right square color matches")
-    assert_equal(TEST_SQUARE_COLORS[0], @object.color_at(bottom_right),
-                 "Bottom-right square color matches")
-  end
-
   def test_stroke_rectangle_strokes_area_with_stroke_color
     position = V[100, 200]
     size = V[100, 100]
@@ -114,19 +71,5 @@ class DisplayTest < Test
                  "Middle rectangle color matches")
     assert_equal(@object.fill_color, @object.color_at(bottom_right),
                  "Bottom-right rectangle color matches")
-  end
-
-  private
-
-  # Fill square divided into 4 squares of alternating color.
-  def draw_test_square(object, position)
-    half_size = TEST_SQUARE_SIZE / 2
-
-    object.fill_color = TEST_SQUARE_COLORS[0]
-    object.fill_rectangle(position, TEST_SQUARE_SIZE)
-
-    object.fill_color = TEST_SQUARE_COLORS[1]
-    object.fill_rectangle(position + V[half_size.x, 0], half_size)
-    object.fill_rectangle(position + V[0, half_size.y], half_size)
   end
 end
