@@ -120,11 +120,11 @@ class Display
 
   # @!method push
   # @return [nil]
-  # Push transformation to the transformation stack.
+  # Push current transformation to the transformation stack.
 
   # @!method pop
   # @return [nil]
-  # Pop a transformation off the transformation stack.
+  # Pop a transformation off the transformation stack and use it.
 
   # @!method stroke_line(start_pos, end_pos)
   # @param [Vector] start position in 2D
@@ -204,7 +204,7 @@ class Display
   # @param [Vector] position
   # @return [nil]
   # @example Draw a duck within a game
-  #   display.image Image['images/duck.png'], V[80, 80]
+  #   display.image(Image['images/duck.png'], V[80, 80])
   # Draw an image at a position.
 
   # @!method image_cropped(image, position, crop_position, crop_size)
