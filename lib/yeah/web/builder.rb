@@ -46,7 +46,7 @@ class Builder
   def compile
     runner_path = Pathname.new(__FILE__).join('..', 'runner.html.erb')
     html = ERB.new(File.read(runner_path)).result(binding)
-    File.write('build/web/runner.html', html)
+    File.write('builds/web/runner.html', html)
   end
 
   def asset_include_tags
@@ -85,7 +85,7 @@ class Builder
   end
 
   def build_path
-    @build_path ||= Pathname.new("build/web")
+    @build_path ||= Pathname.new("builds/web")
   end
 
   def gem_path
