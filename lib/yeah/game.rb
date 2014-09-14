@@ -9,21 +9,6 @@ module Yeah
 # @abstract Subclass this to make a game.
 class Game
   class << self
-    # @param [Hash] configuration used for new game instances
-    # @option configuration [Hash] :ticker options
-    # @option configuration [Hash] :display options
-    # @option configuration [Hash] :keyboard options
-    # @option configuration [Hash] :mouse options
-    # @return [Hash] configuration for new game instances
-    def config
-      @config ||= {
-        ticker: {},
-        display: {},
-        keyboard: {},
-        mouse: {}
-      }
-    end
-
     # @return [Game] default subclass (i.e. project game)
     def default
       subclasses.last
@@ -84,18 +69,14 @@ class Game
 
   private
 
-  def config
-    self.class.config
-  end
-
   def defaults
-    ticker = Ticker.new(config[:ticker])
+    ticker = Ticker.new
 
     {
       ticker: ticker,
-      display: Display.new(config[:display]),
-      keyboard: Keyboard.new({ ticker: ticker }.merge(config[:keyboard])),
-      mouse: Mouse.new({ ticker: ticker }.merge(config[:mouse]))
+      display: Display.new,
+      keyboard: Keyboard.new(ticker: ticker),
+      mouse: Mouse.new(ticker: ticker)
     }
   end
 end
