@@ -1,13 +1,5 @@
 0.4.2 (2014-09-14)
 ------------------
-* Need sleep.
-
-0.4.1 (2014-09-14)
-------------------
-* Fixed `yeah build`.
-
-0.4.0 (2014-09-14)
-------------------
 * New `Font` class
 * `Web` runner scales game display to use all available space
 * New configuration system; title and factorial scaling configuration
@@ -54,8 +46,5 @@
 
 0.3.3 (2014-08-18)
 ------------------
-* Fixed missing require for `yeah new` command (thanks audy)
-
-0.3.2 (2014-08-18)
-------------------
 * First substantial working release!
+* Fixed missing require for `yeah new` command (thanks audy)
