@@ -27,14 +27,14 @@ class Display
     `#@canvas.width`
   end
   def width=(value)
-    `#@canvas.width =  #{value.x}`
+    `#@canvas.width =  #{value}`
   end
 
   def height
     `#@canvas.height`
   end
   def height=(value)
-    `#@canvas.height =  #{value.x}`
+    `#@canvas.height =  #{value}`
   end
 
   def fill_color
