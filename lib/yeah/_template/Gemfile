@@ -1,4 +1,4 @@
 source 'https://rubygems.org'
 
-gem 'yeah', '~> 0.3.5'
+gem 'yeah', '~> 0.4'
 gem 'opal', github: 'opal/opal', ref: '78b4fb9'

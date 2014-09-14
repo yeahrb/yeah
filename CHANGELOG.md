@@ -1,3 +1,24 @@
+0.4.0 (2014-09-14)
+------------------
+* New `Font` class
+* `Web` runner scales game display to use all available space
+* New configuration system; title and factorial scaling configuration
+* `Display` replaced `#font_family` & `#font_size` with `#text_font` & `#text_size`
+* `Vector` added `#==`, `#add[!]`, `#subtract[!]`, `#multiply[!]`, `#divide[!]`
+* `Vector#toward[!]` works in 3 dimensions
+* `Display#rotate` takes `Vector` instead of `Numeric`
+* `Display#[translate|scale|rotate]_[x|y|z]` added
+* `Display` added `#stroke_curve` and `#stroke_curve2`
+* `Display#transformation` removed
+* `Game::config` removed
+* `yeah build` builds to `builds`
+* Secure Rubygems for Gemfile in game projects (thanks cokernel)
+* Tests made platform-agnostic
+* Interface tests for most classes, some `Display` draw tests, some `Color` initialization tests
+* Benchmarks made more consistent
+* Various bug fixes
+* Documentation cleanup
+
 0.3.5 (2014-08-24)
 ------------------
 * Updated project structure; new entrypoint is `code/game.rb`

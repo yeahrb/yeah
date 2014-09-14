@@ -16,16 +16,15 @@ Practical Ruby video game framework, alpha stage
 
 ## Examples
 
-[Code for all examples](https://github.com/yeahrb/examples)
+[Code for all examples][Example code]
 
-[![Asteroids](https://cdn.mediacru.sh/IkYZP46TmCsd.png)](https://yeahrb.github.io/examples/asteroids/runner.html)
+[![Asteroids](https://cdn.mediacru.sh/IkYZP46TmCsd.png)][Asteroids example]
 
-[*Asteroids*](https://yeahrb.github.io/examples/asteroids/runner.html)
+[*Asteroids*][Asteroids example]
 
-[![Random](https://cdn.mediacru.sh/KW9M6TndLry0.png)](https://yeahrb.github.io/examples/random/runner.html)
+[![Random](https://cdn.mediacru.sh/KW9M6TndLry0.png)][Random example]
 
-[*Random*](https://yeahrb.github.io/examples/random/runner.html)
-
+[*Random*][Random example]
 
 ## Usage
 
@@ -41,13 +40,13 @@ NOTE: This is alpha-stage software, expect changes!
 
 1. In a command line, enter `yeah new` to generate a new game project.
 2. Change into the new project directory, then enter `bundle install`.
-3. Add game code to `code/game.rb`. No tutorials yet; please take a look at the [example code](https://github.com/yeahrb/examples) and [API reference](http://rdoc.info/github/yeahrb/yeah/5efbbc9/frames).
+3. Add game code to `code/game.rb`. No tutorials yet; please take a look at the [example code][Example code] and [API reference][0.4.0 API].
 4. Enter `yeah serve` and visit [http://localhost:1234](http://localhost:1234) to try the game.
 
 
 ## Links
 
-[0.3.5 API reference](http://rdoc.info/github/yeahrb/yeah/5efbbc9/frames)
+API reference: [0.4.0][0.4.0 API], [0.3.5][0.3.5 API]
 
 [Version upgrade notes](https://github.com/yeahrb/yeah/blob/master/UPGRADING.md)
 
@@ -56,3 +55,10 @@ NOTE: This is alpha-stage software, expect changes!
 [Discussion via Gitter](https://gitter.im/yeahrb/yeah)
 
 [Author's email](mailto:skoofoo@gmail.com)
+
+
+[0.4.0 API]: http://rdoc.info/github/yeahrb/yeah/3b9d818/frames
+[0.3.5 API]: http://rdoc.info/github/yeahrb/yeah/5efbbc9/frames
+[Example code]: https://github.com/yeahrb/examples
+[Asteroids example]: https://yeahrb.github.io/examples/asteroids/runner.html
+[Random example]: https://yeahrb.github.io/examples/random/runner.html
