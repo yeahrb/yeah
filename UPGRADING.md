@@ -1,4 +1,4 @@
-0.3.5 -> 0.4.1
+0.3.5 -> 0.4.2
 --------------
 * `Display` font attributes have been revised. Use `#text_font` & `#text_size` in place of `#font_family` & `#font_size`. Use `Font` instances in place of font names.
 * `Display#rotate` now takes a `Vector` instead of a `Numeric`. Replace occurances of `#rotate` with `#rotate_z`.
