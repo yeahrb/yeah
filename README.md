@@ -40,13 +40,13 @@ NOTE: This is alpha-stage software, expect changes!
 
 1. In a command line, enter `yeah new` to generate a new game project.
 2. Change into the new project directory, then enter `bundle install`.
-3. Add game code to `code/game.rb`. No tutorials yet; please take a look at the [example code][Example code] and [API reference][0.4.1 API].
+3. Add game code to `code/game.rb`. No tutorials yet; please take a look at the [example code][Example code] and [API reference][0.4.2 API].
 4. Enter `yeah serve` and visit [http://localhost:1234](http://localhost:1234) to try the game.
 
 
 ## Links
 
-API reference: [0.4.1][0.4.1 API], [0.3.5][0.3.5 API]
+API reference: [0.4.2][0.4.2 API], [0.3.5][0.3.5 API]
 
 [Version upgrade notes](https://github.com/yeahrb/yeah/blob/master/UPGRADING.md)
 
@@ -57,7 +57,7 @@ API reference: [0.4.1][0.4.1 API], [0.3.5][0.3.5 API]
 [Author's email](mailto:skoofoo@gmail.com)
 
 
-[0.4.1 API]: http://rdoc.info/github/yeahrb/yeah/32a50f5/frames
+[0.4.2 API]: http://rdoc.info/github/yeahrb/yeah/32a50f5/frames
 [0.3.5 API]: http://rdoc.info/github/yeahrb/yeah/5efbbc9/frames
 [Example code]: https://github.com/yeahrb/examples
 [Asteroids example]: https://yeahrb.github.io/examples/asteroids/runner.html
