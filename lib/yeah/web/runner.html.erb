@@ -41,9 +41,13 @@
           width_scale = window.innerWidth / canvas.width,
           height_scale = window.innerHeight / canvas.height,
 
-          scale = Math.min(width_scale, height_scale)
+          scale = Math.min(width_scale, height_scale);
 
-          width = canvas.width * scale,
+      if (FACTORIAL_SCALING && scale >= 1) {
+        scale = Math.floor(scale);
+      }
+
+      var width = canvas.width * scale,
           height = canvas.height * scale,
 
           sizeStyle = "width:"+width+"px; height:"+height+"px";

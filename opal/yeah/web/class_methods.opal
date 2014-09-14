@@ -1,14 +1,13 @@
 module Yeah
 module Web
   module ClassMethods
-    require 'ostruct'
-
     def configure(&block)
-      config = OpenStruct.new
+      config = Struct.new(:title, :factorial_scaling).new
 
       yield config
 
       `window.document.title = #{config.title}` unless config.title.nil?
+      `FACTORIAL_SCALING = #{config.factorial_scaling}`
     end
   end
 end

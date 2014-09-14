@@ -2,6 +2,8 @@ module Yeah
   # @!method self.configure
   # @abstract Provided by a `Platform`.
   # @yield [config] configuration block
-  # @yieldparam [OpenStruct] configuration
+  # @yieldparam [Struct] configuration
+  # @note Configuration struct attributes: `title` (String),
+  #   `factorial_scaling` (Boolean)
   # @return [nil]
 end
