@@ -38,10 +38,10 @@
     function scaleDisplay() {
       var canvas = document.getElementsByTagName('canvas')[0],
 
-          width_scale = window.innerWidth / canvas.width,
-          height_scale = window.innerHeight / canvas.height,
+          widthScale = window.innerWidth / canvas.width,
+          heightScale = window.innerHeight / canvas.height,
 
-          scale = Math.min(width_scale, height_scale);
+          scale = Math.min(widthScale, heightScale);
 
       if (FACTORIAL_SCALING && scale >= 1) {
         scale = Math.floor(scale);
