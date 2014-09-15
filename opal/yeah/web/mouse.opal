@@ -17,6 +17,7 @@ class Mouse
     @canvas = `document.querySelectorAll(#{canvas_selector})[0]`
     @pressed_buttons = {}
     @released_buttons = {}
+    @position = V[0, 0]
 
     %x{
       #@canvas.addEventListener('mousemove', function(event) {
