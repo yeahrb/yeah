@@ -20,11 +20,17 @@ class Mouse
     @position = V[0, 0]
 
     %x{
+      if (window['displayScale'] === undefined) {
+        window.displayScale = 1;
+      }
+
       #@canvas.addEventListener('mousemove', function(event) {
         if (event.offsetX) {
-          #{@position = V[`event.offsetX`, `event.offsetY`]}
+          #{@position = V[`Math.round(event.offsetX / displayScale)`,
+                          `Math.round(event.offsetY / displayScale)`]}
         } else {
-          #{@position = V[`event.layerX`, `event.layerY`]}
+          #{@position = V[`Math.round(event.layerX / displayScale)`,
+                          `Math.round(event.layerY / displayScale)`]}
         }
       });
 
