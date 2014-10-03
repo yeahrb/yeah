@@ -14,15 +14,19 @@ Practical Ruby video game framework, alpha stage
 * Open source under MIT license
 
 
-## Examples
+## Gallery
 
-[![Asteroids](https://cdn.mediacru.sh/IkYZP46TmCsd.png)][Asteroids example]
+[![Leone Mangione](https://cdn.mediacru.sh/VuuuvZYDbPet.png)][Leone Mangione]
 
-[*Asteroids*][Asteroids example] [[code]][Asteroids code]
+[*Leone Mangione*][Leone Mangione] [[code]][Leone Mangione code]
 
-[![Random](https://cdn.mediacru.sh/KW9M6TndLry0.png)][Random example]
+[![Asteroids](https://cdn.mediacru.sh/IkYZP46TmCsd.png)][Asteroids]
 
-[*Random*][Random example] [[code]][Random code]
+[*Asteroids*][Asteroids] [[code]][Asteroids code]
+
+[![Random](https://cdn.mediacru.sh/KW9M6TndLry0.png)][Random]
+
+[*Random*][Random] [[code]][Random code]
 
 ## Usage
 
@@ -57,7 +61,9 @@ API reference: [0.4.2][0.4.2 API], [0.3.5][0.3.5 API]
 
 [0.4.2 API]: http://rdoc.info/github/yeahrb/yeah/32a50f5/frames
 [0.3.5 API]: http://rdoc.info/github/yeahrb/yeah/5efbbc9/frames
-[Asteroids example]: https://skofo.github.io/asteroids/runner.html
+[Asteroids]: https://skofo.github.io/asteroids/runner.html
 [Asteroids code]: https://github.com/skofo/asteroids
-[Random example]: https://skofo.github.io/random/runner.html
+[Random]: https://skofo.github.io/random/runner.html
 [Random code]: https://github.com/skofo/random
+[Leone Mangione]: http://elia.schito.me/yeah-leone-mangione/runner.html
+[Leone Mangione code]: https://github.com/elia/yeah-leone-mangione
