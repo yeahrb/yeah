@@ -18,15 +18,15 @@ Practical Ruby video game framework, alpha stage
 
 [![Leone Mangione](https://cdn.mediacru.sh/VuuuvZYDbPet.png)][Leone Mangione]
 
-[*Leone Mangione*][Leone Mangione] by [elia](https://github.com/elia) [[code]][Leone Mangione code]
+[*Leone Mangione*][Leone Mangione] by [elia](https://github.com/elia) ([code][Leone Mangione code])
 
 [![Asteroids](https://cdn.mediacru.sh/IkYZP46TmCsd.png)][Asteroids]
 
-[*Asteroids*][Asteroids] by [skofo](https://github.com/skofo) [[code]][Asteroids code]
+[*Asteroids*][Asteroids] by [skofo](https://github.com/skofo) ([code][Asteroids code])
 
 [![Random](https://cdn.mediacru.sh/KW9M6TndLry0.png)][Random]
 
-[*Random*][Random] by [skofo](https://github.com/skofo) [[code]][Random code]
+[*Random*][Random] by [skofo](https://github.com/skofo) ([code][Random code])
 
 
 ## Usage
