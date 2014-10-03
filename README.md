@@ -16,15 +16,13 @@ Practical Ruby video game framework, alpha stage
 
 ## Examples
 
-[Code for all examples][Example code]
-
 [![Asteroids](https://cdn.mediacru.sh/IkYZP46TmCsd.png)][Asteroids example]
 
-[*Asteroids*][Asteroids example]
+[*Asteroids*][Asteroids example] [[code]][Asteroids code]
 
 [![Random](https://cdn.mediacru.sh/KW9M6TndLry0.png)][Random example]
 
-[*Random*][Random example]
+[*Random*][Random example] [[code]][Random code]
 
 ## Usage
 
@@ -59,6 +57,7 @@ API reference: [0.4.2][0.4.2 API], [0.3.5][0.3.5 API]
 
 [0.4.2 API]: http://rdoc.info/github/yeahrb/yeah/32a50f5/frames
 [0.3.5 API]: http://rdoc.info/github/yeahrb/yeah/5efbbc9/frames
-[Example code]: https://github.com/yeahrb/examples
-[Asteroids example]: https://yeahrb.github.io/examples/asteroids/runner.html
-[Random example]: https://yeahrb.github.io/examples/random/runner.html
+[Asteroids example]: https://skofo.github.io/asteroids/runner.html
+[Asteroids code]: https://github.com/skofo/asteroids
+[Random example]: https://skofo.github.io/random/runner.html
+[Random code]: https://github.com/skofo/random
