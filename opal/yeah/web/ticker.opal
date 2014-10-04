@@ -16,12 +16,12 @@ class Ticker
       var lastTime = (new Date()).getTime(),
           lastMeasureTime = lastTime,
           elapsed = 0,
-          interval = 1/#{rate},
+          interval = 1000.0 / #{rate},
           currentTime;
 
       var loop = function() {
         currentTime = new Date().getTime();
-        elapsed = (currentTime - lastTime) / 1000;
+        elapsed = currentTime - lastTime;
 
         if (elapsed > interval) {
           #{yield `elapsed`}
