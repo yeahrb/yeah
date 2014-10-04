@@ -12,7 +12,10 @@ class Ticker
   end
 
   # @!attribute [r] rate
-  # @return [Numeric] ticks per second intended
+  # @return [Numeric] ticks per second expected
+
+  # @!attribute [r] actual_rate
+  # @return [Numeric] ticks per second measured
 
   # @!method on_tick
   # @yield [elapsed] block to execute per tick
