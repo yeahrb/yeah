@@ -17,5 +17,5 @@ namespace :test do
   Opal.append_path('opal')
   Opal::Minitest::RakeTask.new(
     name: :web,
-    requires_glob: '../test/{test_helper,web_test_helper,**/*_test}.{rb,opal}')
+    requires_glob: 'test/{test_helper,web_test_helper,**/*_test}.{rb,opal}')
 end
