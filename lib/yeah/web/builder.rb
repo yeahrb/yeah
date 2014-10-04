@@ -46,7 +46,7 @@ class Builder
   def compile
     runner_path = Pathname.new(__FILE__).join('..', 'runner.html.erb')
     html = ERB.new(File.read(runner_path)).result(binding)
-    File.write('builds/web/runner.html', html)
+    File.write('builds/web/index.html', html)
   end
 
   def asset_include_tags
