@@ -47,7 +47,6 @@
       var canvas = document.getElementsByTagName('canvas')[0],
           widthScale = window.innerWidth / canvas.width,
           heightScale = window.innerHeight / canvas.height;
-
       window.displayScale = Math.min(widthScale, heightScale);
 
       if (PRESERVE_PIXELS && displayScale >= 1) {
@@ -60,6 +59,10 @@
 
       canvas.setAttribute('style', sizeStyle);
     }
+
+    document.addEventListener('keydown', function(event) {
+      event.preventDefault();
+    });
   </script>
 </head>
 <body class="center-content" onresize="scaleDisplay()">
