@@ -32,7 +32,7 @@ when 'new'
 
     # Use classified passed-in name as Game class name.
     game_path = "#{project_path}/code/game.rb"
-    File.write(game_path, File.read(game_path) % classify(name))
+    File.write(game_path, File.read(game_path) % "#{classify(name)}Game")
 
     # Use titleized passed-in name as configured game name.
     config_path = "#{project_path}/code/config.rb"
