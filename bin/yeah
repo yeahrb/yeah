@@ -14,7 +14,7 @@ when 'new'
   end
 
   def classify(string)
-    string.split('_').map(&:capitalize).join
+    string.split(/[_-]/).map(&:capitalize).join
   end
 
   project_path = underscore(name)
