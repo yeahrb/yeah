@@ -1,7 +1,8 @@
 module Yeah
 module Web
 class Ticker
-  attr_reader :rate, :tick_count, :actual_rate
+  attr_accessor :rate
+  attr_reader :tick_count, :actual_rate
 
   def initialize(args = {})
     @rate = args.fetch(:rate, DEFAULT_TICKER_RATE)
@@ -16,10 +17,11 @@ class Ticker
       var lastTime = (new Date()).getTime(),
           lastMeasureTime = lastTime,
           elapsed = 0,
-          interval = 1000.0 / #{rate},
+          interval,
           currentTime;
 
       var loop = function() {
+        interval = 1000.0 / #{@rate};
         currentTime = new Date().getTime();
         elapsed = currentTime - lastTime;
 

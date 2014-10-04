@@ -11,11 +11,12 @@ class Ticker
     raise NotImplementedError
   end
 
-  # @!attribute [r] rate
-  # @return [Numeric] ticks per second expected
+  # @!attribute rate
+  # @param [Integer] ticks per second
+  # @return [Integer] ticks per second expected
 
   # @!attribute [r] actual_rate
-  # @return [Numeric] ticks per second measured
+  # @return [Integer] ticks per second measured
 
   # @!method on_tick
   # @yield [elapsed] block to execute per tick
