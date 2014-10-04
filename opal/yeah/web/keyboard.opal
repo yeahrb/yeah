@@ -1,6 +1,17 @@
 module Yeah
 module Web
 class Keyboard
+  KEYS = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, :a, :alt, :b, :backquote, :backslash,
+          :backspace, :c, :caps_lock, :comma, :ctrl, :d, :delete, :dot, :down,
+          :e, :end, :enter, :equals, :escape, :f, :f1, :f10, :f11, :f12, :f2,
+          :f3, :f4, :f5, :f6, :f7, :f8, :f9, :fn, :g, :h, :home, :i, :insert,
+          :j, :k, :l, :left, :left_bracket, :m, :minus, :n, :num0, :num1,
+          :num2, :num3, :num4, :num5, :num6, :num7, :num8, :num9,
+          :num_asterisk, :num_dot, :num_lock, :num_minus, :num_plus,
+          :num_slash, :o, :p, :page_down, :page_up, :pause, :q, :quote, :r,
+          :right, :right_bracket, :s, :scroll_lock, :semicolon, :shift, :slash,
+          :space, :super, :t, :tab, :u, :up, :v, :w, :x, :y, :z]
+
   KEY_MAP = {
     0   => :fn,
     8   => :backspace,

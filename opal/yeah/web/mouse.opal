@@ -1,6 +1,8 @@
 module Yeah
 module Web
 class Mouse
+  BUTTONS = [:left, :middle, :right, 4, 5]
+
   BUTTON_MAP = {
     0 => :left,
     1 => :middle,
