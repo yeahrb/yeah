@@ -12,6 +12,7 @@ class Keyboard
     19  => :pause,
     20  => :caps_lock,
     27  => :escape,
+    32  => :space,
     33  => :page_up,
     34  => :page_down,
     35  => :end,

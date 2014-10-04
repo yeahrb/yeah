@@ -14,7 +14,7 @@ class Keyboard
           :num_asterisk, :num_dot, :num_lock, :num_minus, :num_plus,
           :num_slash, :o, :p, :page_down, :page_up, :pause, :q, :quote, :r,
           :right, :right_bracket, :s, :scroll_lock, :semicolon, :shift, :slash,
-          :super, :t, :tab, :u, :up, :v, :w, :x, :y, :z]
+          :space, :super, :t, :tab, :u, :up, :v, :w, :x, :y, :z]
 
   # @param [Hash] options for new object
   # @option options [Ticker] :ticker for one-shot input handling
