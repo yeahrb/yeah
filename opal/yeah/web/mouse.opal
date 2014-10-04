@@ -60,6 +60,14 @@ class Mouse
   def released?(button)
     @released_buttons[button] == @ticker.tick_count
   end
+
+  def x
+    @position[0]
+  end
+
+  def y
+    @position[1]
+  end
 end
 end
 end

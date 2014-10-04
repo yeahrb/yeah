@@ -15,6 +15,15 @@ class Mouse
     raise NotImplementedError
   end
 
+  # @!attribute position [r]
+  # @return [Integer] position of mouse cursor
+
+  # @!attribute x [r]
+  # @return [Integer] x position of mouse cursor
+
+  # @!attribute y [r]
+  # @return [Integer] y position of mouse cursor
+
   # @!method pressing?(button)
   # @param [Symbol, Numeric] button to check
   # @return [Boolean] whether button is pressed
