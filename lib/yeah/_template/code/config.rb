@@ -1,4 +1,4 @@
 Yeah.configure do |c|
-  c.title = "Game"
+  c.title = "%s"
   c.preserve_pixels = false
 end

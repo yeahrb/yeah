@@ -17,6 +17,10 @@ when 'new'
     string.split(/[_-]/).map(&:capitalize).join
   end
 
+  def titleize(string)
+    classify(string).split(/(?=[A-Z])/).join(' ')
+  end
+
   project_path = underscore(name)
 
   if Dir[project_path].any?
@@ -26,9 +30,13 @@ when 'new'
     template_path = File.expand_path('../../lib/yeah/_template', __FILE__)
     FileUtils.cp_r(template_path, project_path)
 
-    # Use name for Game subclass name.
+    # Use classified passed-in name as Game class name.
     game_path = "#{project_path}/code/game.rb"
     File.write(game_path, File.read(game_path) % classify(name))
+
+    # Use titleized passed-in name as configured game name.
+    config_path = "#{project_path}/code/config.rb"
+    File.write(config_path, File.read(config_path) % titleize(name))
 
     puts "Created new game project at `#{project_path}`."
   end
