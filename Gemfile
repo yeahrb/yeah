@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
 
-gem 'opal', github: 'opal/opal', ref: '78b4fb9'
+gem 'opal', github: 'opal/opal', ref: '8e20d29'
 
 gemspec
