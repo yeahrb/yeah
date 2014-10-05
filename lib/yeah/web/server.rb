@@ -13,6 +13,8 @@ class Server
   # @return [nil]
   # Serve game in working directory.
   def serve(port = 1234)
+    Opal::Processor.inline_operators_enabled = true
+
     runner = Runner.new
 
     assets = Opal::Environment.new

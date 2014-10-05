@@ -29,6 +29,8 @@ class Builder
   end
 
   def setup_compiler
+    Opal::Processor.inline_operators_enabled = true
+
     @compiler = Opal::Environment.new
 
     # Append standard library code paths.
