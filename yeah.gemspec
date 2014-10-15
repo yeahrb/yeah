@@ -21,8 +21,7 @@ Gem::Specification.new do |s|
   s.homepage = 'https://github.com/yeahrb/yeah'
   s.license = 'MIT'
 
-  # todo: Uncomment once Opal 0.7 is out.
-  #s.add_runtime_dependency 'opal', '~> 0.7.0'
+  s.add_runtime_dependency 'opal', '~> 0.7.0.beta1'
 
   s.add_development_dependency 'rake', '~> 10.3.1'
   s.add_development_dependency 'minitest', '~> 5.3.2'
