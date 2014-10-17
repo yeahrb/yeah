@@ -21,9 +21,9 @@ class Ticker
           currentTime;
 
       var loop = function() {
-        interval = 1000.0 / #{@rate};
+        interval = 1.0 / #{@rate};
         currentTime = new Date().getTime();
-        elapsed = currentTime - lastTime;
+        elapsed = (currentTime - lastTime) / 1000.0;
 
         if (elapsed > interval) {
           #{yield `elapsed`}
