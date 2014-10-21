@@ -7,8 +7,12 @@ namespace :test do
     platform_types = %i[asset display font image keyboard mouse sound ticker]
     platform_type_test_paths = platform_types.map {|t| "../test/#{t}_test.rb" }
 
-    Dir.glob('../test/{test_helper,*_test}.rb').each do |path|
-      require_relative(path) unless platform_type_test_paths.include? path
+    Dir.glob('test/{test_helper,*_test}.rb').each do |path|
+      relative_path = "../#{path}"
+
+      unless platform_type_test_paths.include? relative_path
+        require_relative(relative_path)
+      end
     end
   end
 
