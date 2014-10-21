@@ -15,14 +15,6 @@ class Display
     @transforms = []
   end
 
-  def size
-    [`#@canvas.width`, `#@canvas.height`]
-  end
-  def size=(value)
-    `#@canvas.width =  #{value[0]}`
-    `#@canvas.height = #{value[1]}`
-  end
-
   def width
     `#@canvas.width`
   end
@@ -35,6 +27,14 @@ class Display
   end
   def height=(value)
     `#@canvas.height =  #{value}`
+  end
+
+  def size
+    [`#@canvas.width`, `#@canvas.height`]
+  end
+  def size=(value)
+    `#@canvas.width =  #{value[0]}`
+    `#@canvas.height = #{value[1]}`
   end
 
   def fill_color
