@@ -219,7 +219,7 @@ class Display
   # @return [nil]
   # Fill previously made shape.
 
-  # @!method image(image, position)
+  # @!method draw_image(image, position)
   # @param [Image] image to draw
   # @param [Vector] position
   # @return [nil]
@@ -227,7 +227,7 @@ class Display
   #   display.image(Image['images/duck.png'], V[80, 80])
   # Draw an image at a position.
 
-  # @!method image_cropped(image, position, crop_position, crop_size)
+  # @!method draw_image_cropped(image, position, crop_position, crop_size)
   # @param [Image] image to draw
   # @param [Vector] position
   # @param [Vector] start position of crop
