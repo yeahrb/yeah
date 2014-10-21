@@ -2,13 +2,13 @@ module Yeah
 module Web
 class Ticker
   attr_accessor :rate
-  attr_reader :tick_count, :actual_rate
+  attr_reader :tick_count, :ticks_per_second
 
   def initialize(args = {})
     @rate = args.fetch(:rate, DEFAULT_TICKER_RATE)
     @tick_count = 0
-    @actual_rate = 0
-    @next_actual_rate = 0
+    @ticks_per_second = 0
+    @next_tps = 0
   end
 
   def on_tick(&block)
@@ -29,13 +29,13 @@ class Ticker
           #{yield `elapsed`}
 
           #@tick_count += 1;
-          #@next_actual_rate += 1;
+          #@next_tps += 1;
 
           lastTime = currentTime - (elapsed % interval);
         }
 
         if (currentTime - lastMeasureTime > 1000) {
-          #@actual_rate = #@next_actual_rate;
+          #@ticks_per_second = #@next_tps;
           #@next_actual_rate = 0;
 
           lastMeasureTime = currentTime - (currentTime - lastMeasureTime) % 1000;

@@ -13,10 +13,13 @@ class Ticker
 
   # @!attribute rate
   # @param [Integer] ticks per second
-  # @return [Integer] ticks per second expected
+  # @return [Integer] expected tick rate
 
-  # @!attribute [r] actual_rate
-  # @return [Integer] ticks per second measured
+  # @!attribute [r] ticks_per_second
+  # @return [Integer] ticks counted over the last second
+
+  # @!attribute [r] tick_count
+  # @return [Integer] total count of ticks
 
   # @!method on_tick
   # @yield [elapsed] block to execute per tick
