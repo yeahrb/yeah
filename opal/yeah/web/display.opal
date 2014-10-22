@@ -194,12 +194,12 @@ class Display
     }
   end
 
-  def stroke_curve(start_x, start_y, end_x, end_y, c1_x, c1_y, c2_x, c2_y)
+  def stroke_curve(start_x, start_y, end_x, end_y, control1_x, control1_y, control2_x, control2_y)
     %x{
       #@context.beginPath();
       #@context.moveTo(#{start_x}, #{start_y});
-      #@context.bezierCurveTo(#{c1_x}, #{c1_y},
-                              #{c2_x}, #{c2_y},
+      #@context.bezierCurveTo(#{control1_x}, #{control1_y},
+                              #{control2_x}, #{control2_y},
                               #{end_x}, #{end_y});
       #@context.closePath();
       #@context.stroke();
@@ -267,9 +267,9 @@ class Display
                                 #{x}, #{y})`
   end
 
-  def curve2_to(x, y, c1_x, c1_y, c2_x, c2_y)
-    `#@context.bezierCurveTo(#{c1_x}, #{c1_y},
-                             #{c2_x}, #{c2_y},
+  def curve2_to(x, y, control1_x, control1_y, control2_x, control2_y)
+    `#@context.bezierCurveTo(#{control1_x}, #{control1_y},
+                             #{control2_x}, #{control2_y},
                              #{x}, #{y})`
   end
 

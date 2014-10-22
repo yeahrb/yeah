@@ -4,14 +4,14 @@ module Yeah
 # @abstract Provided by a `Platform`.
 # @see Yeah::Display#image
 class Image < Asset
-  # @!attribute [r] size
-  # @return [Vector] size of image
-
   # @!attribute [r] width
   # @return [Integer] width of image
 
   # @!attribute [r] height
   # @return [Integer] height of image
+
+  # @!attribute [r] size
+  # @return [Array<Integer>] size of image
 
   # @!method to_n
   # @return [Native] native reference
