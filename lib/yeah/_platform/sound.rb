@@ -4,7 +4,7 @@ module Yeah
 # effects for a game.
 # @example Playing a sound
 #   Sound['sounds/neigh.wav'].play
-# @abstract Provided by a `Platform`.
+# @note Provided by a `Platform`.
 class Sound < Asset
   # @!method play
   # Play sound.

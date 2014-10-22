@@ -1,7 +1,7 @@
 module Yeah
 
 # An `Image` is an asset that a `Display` can draw.
-# @abstract Provided by a `Platform`.
+# @note Provided by a `Platform`.
 # @see Yeah::Display#image
 class Image < Asset
   # @!attribute [r] width

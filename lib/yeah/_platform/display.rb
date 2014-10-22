@@ -3,7 +3,7 @@ module Yeah
 # The `Display` is responsible for drawing to a game display. It provides a
 # procedural drawing API similar to Processing or HTML5 Canvas. Its drawing
 # origin is the top-left corner.
-# @abstract Provided by a `Platform`.
+# @note Provided by a `Platform`.
 class Display
   # @param [Hash] options for new object
   # @option options [Integer] :width (1280) of display

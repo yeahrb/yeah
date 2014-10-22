@@ -3,7 +3,7 @@ module Yeah
 # `Mouse` provides mouse input handling.
 # @example Attack on button press within game
 #   attack if mouse.pressed? :left
-# @abstract Provided by a `Platform`.
+# @note Provided by a `Platform`.
 class Mouse
   BUTTONS = [:left, :middle, :right, 4, 5]
 

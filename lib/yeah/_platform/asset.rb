@@ -1,7 +1,8 @@
 module Yeah
 
 # An `Asset` represents a file found in a project's `assets/` directory.
-# @abstract Provided by a `Platform`, subclassed to more specific assets.
+# @note Provided by a `Platform`
+# @abstract Subclassed to more specific assets.
 class Asset
   # @param [String] path relative to `assets/`
   def initialize(path)
