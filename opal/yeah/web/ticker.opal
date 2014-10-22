@@ -36,7 +36,7 @@ class Ticker
 
         if (currentTime - lastMeasureTime > 1000) {
           #@ticks_per_second = #@next_tps;
-          #@next_actual_rate = 0;
+          #@next_tps = 0;
 
           lastMeasureTime = currentTime - (currentTime - lastMeasureTime) % 1000;
         }
