@@ -10,7 +10,11 @@ module Vec2
   end
 
   def magnitude(x, y)
-    Math.sqrt(x * 2 + y ** 2)
+    Math.sqrt(x ** 2 + y ** 2)
+  end
+
+  def direction(x, y)
+    Math.atan2(y, x)
   end
 
   alias :length :magnitude
@@ -38,6 +42,14 @@ module Vec2
 
   def dot_product(ax, ay, bx, by)
     ax * bx + ay * by
+  end
+
+  def distance_to(ax, ay, bx, by)
+    Math.sqrt((ax - bx) ** 2, (ay - by) ** 2)
+  end
+
+  def direction_to(ax, ay, bx, by)
+    Math.atan2(by - ay, bx - by)
   end
 end
 
