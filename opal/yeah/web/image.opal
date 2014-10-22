@@ -10,16 +10,16 @@ class Image < Asset
     }
   end
 
-  def size
-    V[`#@native.width`, `#@native.height`]
-  end
-
   def width
     `#@native.width`
   end
 
   def height
     `#@native.height`
+  end
+
+  def size
+    [`#@native.width`, `#@native.height`]
   end
 
   def to_n

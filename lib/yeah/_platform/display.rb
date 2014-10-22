@@ -6,16 +6,13 @@ module Yeah
 # @abstract Provided by a `Platform`.
 class Display
   # @param [Hash] options for new object
-  # @option options [Vector] :size (V[1280, 720]) of display
+  # @option options [Integer] :width (1280) of display
+  # @option options [Integer] :height (720) of display
   # @option options [String] :canvas_selector ('canvas') for canvas HTML
   #   element (applies only to `Web::Display`)
   def initialize(options = {})
     raise NotImplementedError
   end
-
-  # @!attribute size
-  # @param [Vector] size to make display in pixels
-  # @return [Vector] size of display in pixels
 
   # @!attribute width
   # @param [Integer] width to make display in pixels
@@ -24,6 +21,10 @@ class Display
   # @!attribute height
   # @param [Integer] height to make display in pixels
   # @return [Integer] height of display in pixels
+
+  # @!attribute size
+  # @param [(Integer, Integer)] size to make display in pixels
+  # @return [(Integer, Integer)] size of display in pixels
 
   # @!attribute fill_color
   # @param [Color] color for fill
@@ -45,76 +46,47 @@ class Display
   # @param [Integer] size for text in pixels
   # @return [Integer] size for text in pixels
 
-  # @!method color_at(position)
-  # @param [Vector] position of pixel from which to get color
+  # @!method color_at(x, y)
+  # @param [Integer] x position of pixel to get color from
+  # @param [Integer] y position of pixel to get color from
   # @return [Color] color of pixel
 
-  # @!method translate(displacement)
-  # @param [Vector] displacement
+  # @!method translate(x, y)
+  # @param [Numeric] x axis displacement
+  # @param [Numeric] y axis displacement
   # @return [nil]
-  # @note `Web::Display#translate` is currently 2D (only X and Y apply).
-  # Move the transformation by a vector displacement.
+  # Move the transformation by a 2D displacement.
 
-  # @!method translate_x(displacement)
-  # @param [Numeric] displacement
+  # @!method translate_x(x)
+  # @param [Numeric] x axis displacement
   # @return [nil]
   # Move the transformation by a displacement on the X axis.
 
-  # @!method translate_y(displacement)
-  # @param [Numeric] displacement
+  # @!method translate_y(y)
+  # @param [Numeric] y axis displacement
   # @return [nil]
   # Move the transformation by a displacement on the Y axis.
 
-  # @!method translate_z(displacement)
-  # @param [Numeric] displacement
+  # @!method scale(x, y)
+  # @param [Numeric] x axis multiplier
+  # @param [Numeric] y axis multiplier
   # @return [nil]
-  # @note No-op in `Web::Display`, which is currently 2D.
-  # Move the transformation by a displacement on the Z axis.
+  # Scale the transformation by a 2D multiplier.
 
-  # @!method scale(multiplier)
-  # @param [Vector] multiplier
-  # @return [nil]
-  # @note `Web::Display#scale` is currently 2D (only X and Y apply).
-  # Scale the transformation by a vector multiplier.
-
-  # @!method scale_x(multiplier)
-  # @param [Numeric] multiplier
+  # @!method scale_x(x)
+  # @param [Numeric] x axis multiplier
   # @return [nil]
   # Scale the transformation by a multiplier on the X axis.
 
-  # @!method scale_y(multiplier)
-  # @param [Numeric] multiplier
+  # @!method scale_y(y)
+  # @param [Numeric] y axis multiplier
   # @return [nil]
   # Scale the transformation by a multiplier on the Y axis.
 
-  # @!method scale_z(multiplier)
-  # @param [Numeric] multiplier
-  # @return [nil]
-  # @note No-op in `Web::Display`, which is currently 2D.
-  # Scale the transformation by a multiplier on the Z axis.
-
   # @!method rotate(radians)
-  # @param [Vector] radians
-  # @return [nil]
-  # @note `Web::Display#rotate` is currently 2D (only Z applies).
-  # Rotate the transformation by vector radians.
-
-  # @!method rotate_x(radians)
   # @param [Numeric] radians
   # @return [nil]
-  # @note No-op in `Web::Display`, which is currently 2D.
-  # Rotate the transformation by radians on the X axis.
-
-  # @!method rotate_y(radians)
-  # @param [Numeric] radians
-  # @return [nil]
-  # @note No-op in `Web::Display`, which is currently 2D.
-  # Rotate the transformation by radians on the Y axis.
-
-  # @!method rotate_z(radians)
-  # @param [Numeric] radians
-  # @return [nil]
-  # Rotate the transformation by radians on the Z axis.
+  # Rotate the transformation in 2D by radians.
 
   # @!method push
   # @return [nil]
@@ -124,56 +96,66 @@ class Display
   # @return [nil]
   # Pop a transformation off the transformation stack and use it.
 
-  # @!method stroke_line(start_pos, end_pos)
-  # @param [Vector] start position
-  # @param [Vector] end position
+  # @!method stroke_line(start_x, start_y, end_x, end_y)
+  # @param [Numeric] start x position
+  # @param [Numeric] start y position
+  # @param [Numeric] end x position
+  # @param [Numeric] end y position
   # @return [nil]
-  # @note `Web::Display#stroke_line` is currently 2D (only X and Y apply).
   # Stroke a line between two positions.
 
-  # @!method stroke_curve(start_pos, end_pos, control)
-  # @param [Vector] start position
-  # @param [Vector] end position
-  # @param [Vector] control point position
+  # @!method stroke_curve(start_x, start_y, end_x, end_y, control_x, control_y)
+  # @param [Numeric] start x position
+  # @param [Numeric] start y position
+  # @param [Numeric] end x position
+  # @param [Numeric] end y position
+  # @param [Numeric] control point x position
+  # @param [Numeric] control point y position
   # @return [nil]
-  # @note `Web::Display#stroke_curve` is currently 2D (only X and Y apply).
   # Stroke curve with a control point between two positions.
 
-  # @!method stroke_curve2(start_pos, end_pos, control1, control2)
-  # @param [Vector] start position
-  # @param [Vector] end position
-  # @param [Vector] first control point position
-  # @param [Vector] second control point position
+  # @!method stroke_curve2(start_x, start_y, end_x, end_y, control1_x, control1_y, control2_x, control2_y)
+  # @param [Numeric] start x position
+  # @param [Numeric] start y position
+  # @param [Numeric] end x position
+  # @param [Numeric] end y position
+  # @param [Numeric] first control point x position
+  # @param [Numeric] first control point y position
+  # @param [Numeric] second control point x position
+  # @param [Numeric] second control point y position
   # @return [nil]
-  # @note `Web::Display#stroke_curve2` is currently 2D (only X and Y apply).
   # Stroke curve with 2 control points between two positions.
 
-  # @!method stroke_rectangle(position, size)
-  # @param [Vector] position
-  # @param [Vector] size
+  # @!method stroke_rectangle(x, y, width, height)
+  # @param [Numeric] x position
+  # @param [Numeric] y position
+  # @param [Numeric] width
+  # @param [Numeric] height
   # @return [nil]
-  # @note `Web::Display#stroke_rectangle` is currently 2D (only X and Y apply).
   # Stroke a rectangle at a position and size.
 
-  # @!method fill_rectangle(position, size)
-  # @param [Vector] position
-  # @param [Vector] size
+  # @!method fill_rectangle(x, y, width, height)
+  # @param [Numeric] x position
+  # @param [Numeric] y position
+  # @param [Numeric] width
+  # @param [Numeric] height
   # @return [nil]
-  # @note `Web::Display#fill_rectangle` is currently 2D (only X and Y apply).
   # Fill a rectangle at a position and size.
 
-  # @!method stroke_ellipse(center, radius)
-  # @param [Vector] center position
-  # @param [Vector] radius in pixels in 2D
+  # @!method stroke_ellipse(center_x, center_y, radius_x, radius_y)
+  # @param [Numeric] center x position
+  # @param [Numeric] center y position
+  # @param [Numeric] radius on x axis
+  # @param [Numeric] radius on y axis
   # @return [nil]
-  # @note `Web::Display#stroke_ellipse` is currently 2D (only X and Y apply).
   # Stroke an ellipse at a center position and 2D radius.
 
-  # @!method fill_ellipse(center, radius)
-  # @param [Vector] center position
-  # @param [Vector] radius in pixels in 2D
+  # @!method fill_ellipse(center_x, center_y, radius_x, radius_y)
+  # @param [Numeric] center x position
+  # @param [Numeric] center y position
+  # @param [Numeric] radius on x axis
+  # @param [Numeric] radius on y axis
   # @return [nil]
-  # @note `Web::Display#fill_ellipse` is currently 2D (only X and Y apply).
   # Fill an ellipse at a center position and 2D radius.
 
   # @!method clear
@@ -188,26 +170,33 @@ class Display
   # @return [nil]
   # End shape.
 
-  # @!method move_to(position)
-  # @param [Vector] position
+  # @!method move_to(x, y)
+  # @param [Numeric] x position
+  # @param [Numeric] y position
   # @return [nil]
   # Move shape cursor to position.
 
-  # @!method line_to(position)
-  # @param [Vector] position
+  # @!method line_to(x, y)
+  # @param [Numeric] x position
+  # @param [Numeric] y position
   # @return [nil]
   # Trace line to position as part of shape.
 
-  # @!method curve_to(position, control)
-  # @param [Vector] position
-  # @param [Vector] control point position
+  # @!method curve_to(x, y, control_x, control_y)
+  # @param [Numeric] x position
+  # @param [Numeric] y position
+  # @param [Numeric] control point x position
+  # @param [Numeric] control point y position
   # @return [nil]
   # Trace curve with a control point to position as part of shape.
 
-  # @!method curve2_to(position, control1, control2)
-  # @param [Vector] position
-  # @param [Vector] first control point position
-  # @param [Vector] second control point position
+  # @!method curve2_to(x, y, control1_x, control1_y, control2_x, control2_y)
+  # @param [Numeric] x position
+  # @param [Numeric] y position
+  # @param [Numeric] first control point x position
+  # @param [Numeric] first control point y position
+  # @param [Numeric] second control point x position
+  # @param [Numeric] second control point y position
   # @return [nil]
   # Trace curve with 2 control points to position as part of shape.
 
@@ -219,31 +208,37 @@ class Display
   # @return [nil]
   # Fill previously made shape.
 
-  # @!method draw_image(image, position)
+  # @!method draw_image(image, x, y)
   # @param [Image] image to draw
-  # @param [Vector] position
+  # @param [Numeric] x position
+  # @param [Numeric] y position
   # @return [nil]
   # @example Draw a duck within a game
-  #   display.image(Image['images/duck.png'], V[80, 80])
+  #   display.image(Image['images/duck.png'], 80, 80)
   # Draw an image at a position.
 
-  # @!method draw_image_cropped(image, position, crop_position, crop_size)
+  # @!method draw_image_cropped(image, x, y, crop_x, crop_y, crop_width, crop_height)
   # @param [Image] image to draw
-  # @param [Vector] position
-  # @param [Vector] start position of crop
-  # @param [Vector] size of crop
+  # @param [Numeric] x position
+  # @param [Numeric] y position
+  # @param [Numeric] x position of crop
+  # @param [Numeric] y position of crop
+  # @param [Numeric] width of crop
+  # @param [Numeric] height of crop
   # @return [nil]
   # Draw a cropped image at a position.
 
-  # @!method fill_text(text, position)
+  # @!method fill_text(text, x, y)
   # @param [String] text value
-  # @param [Vector] position
+  # @param [Numeric] x position
+  # @param [Numeric] y position
   # @return [nil]
   # Fill text at a position.
 
-  # @!method stroke_text(text, position)
+  # @!method stroke_text(text, x, y)
   # @param [String] text value
-  # @param [Vector] position
+  # @param [Numeric] x position
+  # @param [Numeric] y position
   # @return [nil]
   # Stroke text at a position.
 end

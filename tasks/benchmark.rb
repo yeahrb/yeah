@@ -1,3 +1,4 @@
+
 require 'benchmark'
 
 namespace :benchmark do
@@ -5,39 +6,33 @@ namespace :benchmark do
     ENV['ITERATIONS'] ||= '100000'
   end
 
-  desc 'Benchmark Yeah::Vector'
-  task :vector => :setup do |task|
-    require 'yeah/vector'
+  desc 'Benchmark Yeah::Vec2'
+  task :vec2 => :setup do |task|
+    require 'yeah/vec2'
 
     def benchmark(job, name, &block)
-      object_sets = Array.new(ENV['ITERATIONS'].to_i) do
-        [Yeah::V[10, 20, 30], Yeah::V[-5, -5, -5]]
-      end
+      iterations = ENV['ITERATIONS'].to_i
 
       job.report(name) do
-        object_sets.each { |set| yield set }
+        iterations.times do
+          yield
+        end
       end
     end
 
-    Benchmark.bm(10) do |bm|
-      radian = Math::PI * 45 / 180
+    Benchmark.bm(11) do |bm|
+      ax, ay, bx, by = 10, 20, -5, -5
 
-      benchmark(bm, :+)           { |a, b| a + b }
-      benchmark(bm, :-)           { |a, b| a - b }
-      benchmark(bm, :*)           { |a, b| a * 5 }
-      benchmark(bm, :/)           { |a, b| a / 5 }
-      benchmark(bm, :add!)        { |a, b| a.add! b }
-      benchmark(bm, :subtract!)   { |a, b| a.subtract! b }
-      benchmark(bm, :multiply!)   { |a, b| a.multiply! 5 }
-      benchmark(bm, :divide!)     { |a, b| a.divide! 5 }
-      benchmark(bm, :-@)          { |a, b| -a }
-      benchmark(bm, :length)      { |a, b| a.length }
-      benchmark(bm, :distance_to) { |a, b| a.distance_to b }
-      benchmark(bm, :angle_to)    { |a, b| a.angle_to b }
-      benchmark(bm, :along)       { |a, b| a.along radian, 10 }
-      benchmark(bm, :along!)      { |a, b| a.along! radian, 10 }
-      benchmark(bm, :toward)      { |a, b| a.toward b, 10 }
-      benchmark(bm, :toward!)     { |a, b| a.toward! b, 10 }
+      benchmark(bm, :equal?)       { Yeah::Vec2.equal?(ax, ay, bx, by) }
+      benchmark(bm, :magnitude)    { Yeah::Vec2.magnitude(ax, ay) }
+      benchmark(bm, :direction)    { Yeah::Vec2.direction(ax, ay) }
+      benchmark(bm, :add)          { Yeah::Vec2.add(ax, ay, bx, by) }
+      benchmark(bm, :subtract)     { Yeah::Vec2.subtract(ax, ay, bx, by) }
+      benchmark(bm, :multiply)     { Yeah::Vec2.multiply(ax, ay, bx) }
+      benchmark(bm, :divide)       { Yeah::Vec2.divide(ax, ay, bx) }
+      benchmark(bm, :multiply)     { Yeah::Vec2.multiply(ax, ay, bx) }
+      benchmark(bm, :distance_to)  { Yeah::Vec2.distance_to(ax, ay, bx, by) }
+      benchmark(bm, :direction_to) { Yeah::Vec2.direction_to(ax, ay, bx, by) }
     end
   end
 end

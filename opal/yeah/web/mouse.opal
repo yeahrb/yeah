@@ -11,7 +11,7 @@ class Mouse
     4 => 5
   }
 
-  attr_reader :position
+  attr_reader :x, :y
 
   def initialize(args = {})
     canvas_selector = args.fetch(:canvas_selector, DEFAULT_CANVAS_SELECTOR)
@@ -19,7 +19,8 @@ class Mouse
     @canvas = `document.querySelectorAll(#{canvas_selector})[0]`
     @pressed_buttons = {}
     @released_buttons = {}
-    @position = V[0, 0]
+    @x = 0
+    @y = 0
 
     %x{
       if (window['displayScale'] === undefined) {
@@ -28,11 +29,11 @@ class Mouse
 
       #@canvas.addEventListener('mousemove', function(event) {
         if (event.offsetX) {
-          #{@position = V[`Math.round(event.offsetX / displayScale)`,
-                          `Math.round(event.offsetY / displayScale)`]}
+          #@x = Math.round(event.offsetX / displayScale);
+          #@y = Math.round(event.offsetY / displayScale);
         } else {
-          #{@position = V[`Math.round(event.layerX / displayScale)`,
-                          `Math.round(event.layerY / displayScale)`]}
+          #@x = Math.round(event.layerX / displayScale);
+          #@y = Math.round(event.layerY / displayScale);
         }
       });
 
@@ -63,12 +64,8 @@ class Mouse
     @released_buttons[button] == @ticker.tick_count
   end
 
-  def x
-    @position[0]
-  end
-
-  def y
-    @position[1]
+  def position
+    [@x, @y]
   end
 end
 end

@@ -15,14 +15,6 @@ class Display
     @transforms = []
   end
 
-  def size
-    V[`#@canvas.width`, `#@canvas.height`]
-  end
-  def size=(value)
-    `#@canvas.width =  #{value.x}`
-    `#@canvas.height = #{value.y}`
-  end
-
   def width
     `#@canvas.width`
   end
@@ -35,6 +27,14 @@ class Display
   end
   def height=(value)
     `#@canvas.height =  #{value}`
+  end
+
+  def size
+    [`#@canvas.width`, `#@canvas.height`]
+  end
+  def size=(value)
+    `#@canvas.width =  #{value[0]}`
+    `#@canvas.height = #{value[1]}`
   end
 
   def fill_color
@@ -72,16 +72,14 @@ class Display
     `#@context.font = #{font}`
   end
 
-  def color_at(position)
-    data = `#@context.getImageData(#{position.x}, #{position.y}, 1, 1).data`
+  def color_at(x, y)
+    data = `#@context.getImageData(#{x}, #{y}, 1, 1).data`
     C[`data[0]`, `data[1]`, `data[2]`]
   end
 
-  def translate(displacement)
-    @transform[4] += `#{@transform[0]} * #{displacement.x} +
-                      #{@transform[2]} * #{displacement.y}`
-    @transform[5] += `#{@transform[1]} * #{displacement.x} +
-                      #{@transform[3]} * #{displacement.y}`
+  def translate(x, y)
+    @transform[4] += `#{@transform[0]} * #{x} + #{@transform[2]} * #{y}`
+    @transform[5] += `#{@transform[1]} * #{x} + #{@transform[3]} * #{y}`
 
     %x{
       #@context.setTransform(#{@transform[0]}, #{@transform[1]},
@@ -89,9 +87,9 @@ class Display
                              #{@transform[4]}, #{@transform[5]}); }
   end
 
-  def translate_x(displacement)
-    @transform[4] += `#{@transform[0]} * #{displacement} + #{@transform[2]}`
-    @transform[5] += `#{@transform[1]} * #{displacement} + #{@transform[3]}`
+  def translate_x(x)
+    @transform[4] += `#{@transform[0]} * #{x} + #{@transform[2]}`
+    @transform[5] += `#{@transform[1]} * #{x} + #{@transform[3]}`
 
     %x{
       #@context.setTransform(#{@transform[0]}, #{@transform[1]},
@@ -99,9 +97,9 @@ class Display
                              #{@transform[4]}, #{@transform[5]}); }
   end
 
-  def translate_y(displacement)
-    @transform[4] += `#{@transform[0]} + #{@transform[2]} * #{displacement}`
-    @transform[5] += `#{@transform[1]} + #{@transform[3]} * #{displacement}`
+  def translate_y(y)
+    @transform[4] += `#{@transform[0]} + #{@transform[2]} * #{y}`
+    @transform[5] += `#{@transform[1]} + #{@transform[3]} * #{y}`
 
     %x{
       #@context.setTransform(#{@transform[0]}, #{@transform[1]},
@@ -109,15 +107,12 @@ class Display
                              #{@transform[4]}, #{@transform[5]}); }
   end
 
-  def translate_z(displacement)
-  end
-
-  def scale(multiplier)
+  def scale(x, y)
     %x{
-      #{@transform} = [#{@transform[0]} * #{multiplier.x},
-                       #{@transform[1]} * #{multiplier.x},
-                       #{@transform[2]} * #{multiplier.y},
-                       #{@transform[3]} * #{multiplier.y},
+      #{@transform} = [#{@transform[0]} * #{x},
+                       #{@transform[1]} * #{x},
+                       #{@transform[2]} * #{y},
+                       #{@transform[3]} * #{y},
                        #{@transform[4]}, #{@transform[5]}];
 
       #@context.setTransform(#{@transform[0]}, #{@transform[1]},
@@ -125,10 +120,10 @@ class Display
                              #{@transform[4]}, #{@transform[5]}); }
   end
 
-  def scale_x(multiplier)
+  def scale_x(x)
     %x{
-      #{@transform} = [#{@transform[0]} * #{multiplier},
-                       #{@transform[1]} * #{multiplier},
+      #{@transform} = [#{@transform[0]} * #{x},
+                       #{@transform[1]} * #{x},
                        #{@transform[2]}, #{@transform[3]},
                        #{@transform[4]}, #{@transform[5]}];
 
@@ -137,11 +132,11 @@ class Display
                              #{@transform[4]}, #{@transform[5]}); }
   end
 
-  def scale_y(multiplier)
+  def scale_y(y)
     %x{
       #{@transform} = [#{@transform[0]}, #{@transform[1]},
-                       #{@transform[2]} * #{multiplier},
-                       #{@transform[3]} * #{multiplier},
+                       #{@transform[2]} * #{y},
+                       #{@transform[3]} * #{y},
                        #{@transform[4]}, #{@transform[5]}];
 
       #@context.setTransform(#{@transform[0]}, #{@transform[1]},
@@ -149,20 +144,7 @@ class Display
                              #{@transform[4]}, #{@transform[5]}); }
   end
 
-  def scale_z(multiplier)
-  end
-
   def rotate(radians)
-    rotate_z(radians.z)
-  end
-
-  def rotate_x(radians)
-  end
-
-  def rotate_y(radians)
-  end
-
-  def rotate_z(radians)
     %x{
       var cos = Math.cos(#{radians}),
           sin = Math.sin(#{radians}),
@@ -191,69 +173,69 @@ class Display
                              #{@transform[4]}, #{@transform[5]}); }
   end
 
-  def stroke_line(start_pos, end_pos)
+  def stroke_line(start_x, start_y, end_x, end_y)
     %x{
       #@context.beginPath();
-      #@context.moveTo(#{start_pos.x}, #{start_pos.y});
-      #@context.lineTo(#{end_pos.x}, #{end_pos.y});
+      #@context.moveTo(#{start_x}, #{start_y});
+      #@context.lineTo(#{end_x}, #{end_y});
       #@context.closePath();
       #@context.stroke();
     }
   end
 
-  def stroke_curve(start_pos, end_pos, control)
+  def stroke_curve(start_x, start_y, end_x, end_y, control_x, control_y)
     %x{
       #@context.beginPath();
-      #@context.moveTo(#{start_pos.x}, #{start_pos.y});
-      #@context.quadraticCurveTo(#{control.x}, #{control.y},
-                                 #{end_pos.x}, #{end_pos.y});
+      #@context.moveTo(#{start_x}, #{start_y});
+      #@context.quadraticCurveTo(#{control_x}, #{control_y},
+                                 #{end_x}, #{end_y});
       #@context.closePath();
       #@context.stroke();
     }
   end
 
-  def stroke_curve2(start_pos, end_pos, control1, control2)
+  def stroke_curve(start_x, start_y, end_x, end_y, control1_x, control1_y, control2_x, control2_y)
     %x{
       #@context.beginPath();
-      #@context.moveTo(#{start_pos.x}, #{start_pos.y});
-      #@context.bezierCurveTo(#{control1.x}, #{control1.y},
-                              #{control2.x}, #{control2.y},
-                              #{end_pos.x}, #{end_pos.y});
+      #@context.moveTo(#{start_x}, #{start_y});
+      #@context.bezierCurveTo(#{control1_x}, #{control1_y},
+                              #{control2_x}, #{control2_y},
+                              #{end_x}, #{end_y});
       #@context.closePath();
       #@context.stroke();
     }
   end
 
-  def stroke_rectangle(position, size)
-    `#@context.strokeRect(#{position.x}, #{position.y}, #{size.x}, #{size.y})`
+  def stroke_rectangle(x, y, width, height)
+    `#@context.strokeRect(#{x}, #{y}, #{width}, #{height})`
   end
 
-  def fill_rectangle(position, size)
-    `#@context.fillRect(#{position.x}, #{position.y}, #{size.x}, #{size.y})`
+  def fill_rectangle(x, y, width, height)
+    `#@context.fillRect(#{x}, #{y}, #{width}, #{height})`
   end
 
-  def stroke_ellipse(center, radius)
+  def stroke_ellipse(center_x, center_y, radius_x, radius_y)
     %x{
       #@context.beginPath();
       #@context.save();
       #@context.beginPath();
-      #@context.translate(#{center.x} - #{radius.x},
-                          #{center.y} - #{radius.y});
-      #@context.scale(#{radius.x}, #{radius.y});
+      #@context.translate(#{center_x} - #{radius_x},
+                          #{center_y} - #{radius_y});
+      #@context.scale(#{radius_x}, #{radius_y});
       #@context.arc(1, 1, 1, 0, 2 * Math.PI, false);
       #@context.restore();
       #@context.stroke();
     }
   end
 
-  def fill_ellipse(center, radius)
+  def fill_ellipse(center_x, center_y, radius_x, radius_y)
     %x{
       #@context.beginPath();
       #@context.save();
       #@context.beginPath();
-      #@context.translate(#{center.x} - #{radius.x},
-                          #{center.y} - #{radius.y});
-      #@context.scale(#{radius.x}, #{radius.y});
+      #@context.translate(#{center_x} - #{radius_x},
+                          #{center_y} - #{radius_y});
+      #@context.scale(#{radius_x}, #{radius_y});
       #@context.arc(1, 1, 1, 0, 2 * Math.PI, false);
       #@context.restore();
       #@context.fill();
@@ -261,7 +243,7 @@ class Display
   end
 
   def clear
-    `#@context.fillRect(0, 0, #{size.x}, #{size.y})`
+    `#@context.fillRect(0, 0, #{width}, #{height})`
   end
 
   def begin_shape
@@ -272,23 +254,23 @@ class Display
     `#@context.closePath()`
   end
 
-  def move_to(position)
-    `#@context.moveTo(#{position.x}, #{position.y})`
+  def move_to(x, y)
+    `#@context.moveTo(#{x}, #{y})`
   end
 
-  def line_to(position)
-    `#@context.lineTo(#{position.x}, #{position.y})`
+  def line_to(x, y)
+    `#@context.lineTo(#{x}, #{y})`
   end
 
-  def curve_to(position, control)
-    `#@context.quadraticCurveTo(#{control.x}, #{control.y},
-                                #{position.x}, #{position.y})`
+  def curve_to(x, y, control_x, control_y)
+    `#@context.quadraticCurveTo(#{control_x}, #{control_y},
+                                #{x}, #{y})`
   end
 
-  def curve2_to(position, control1, control2)
-    `#@context.bezierCurveTo(#{control1.x}, #{control1.y},
-                             #{control2.x}, #{control2.y},
-                             #{position.x}, #{position.y})`
+  def curve2_to(x, y, control1_x, control1_y, control2_x, control2_y)
+    `#@context.bezierCurveTo(#{control1_x}, #{control1_y},
+                             #{control2_x}, #{control2_y},
+                             #{x}, #{y})`
   end
 
   def stroke_shape
@@ -299,24 +281,24 @@ class Display
     `#@context.fill()`
   end
 
-  def draw_image(image, position)
-    `#@context.drawImage(#{image.to_n}, #{position.x}, #{position.y})`
+  def draw_image(image, x, y)
+    `#@context.drawImage(#{image.to_n}, #{x}, #{y})`
   end
 
-  def draw_image_cropped(image, position, crop_position, crop_size)
+  def draw_image_cropped(image, x, y, crop_x, crop_y, crop_width, crop_height)
     %x{#@context.drawImage(#{image.to_n},
-                           #{crop_position.x}, #{crop_position.y},
-                           #{crop_size.x}, #{crop_size.y},
-                           #{position.x}, #{position.y},
-                           #{crop_size.x}, #{crop_size.y})}
+                           #{crop_x}, #{crop_y},
+                           #{crop_width}, #{crop_height},
+                           #{x}, #{y},
+                           #{crop_x}, #{crop_y})}
   end
 
-  def fill_text(text, position)
-    `#@context.fillText(#{text}, #{position.x}, #{position.y})`
+  def fill_text(text, x, y)
+    `#@context.fillText(#{text}, #{x}, #{y})`
   end
 
-  def stroke_text(text, position)
-    `#@context.strokeText(#{text}, #{position.x}, #{position.y})`
+  def stroke_text(text, x, y)
+    `#@context.strokeText(#{text}, #{x}, #{y})`
   end
 end
 end
