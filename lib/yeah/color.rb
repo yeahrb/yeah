@@ -2,9 +2,8 @@ module Yeah
 
 # A `Color` represents a color.
 #
-# `C` is an alias for `Color`.
 # @example Comparing two colors
-#   C[100, 100, 100] == C['#646464']
+#   Color[100, 100, 100] == Color['#646464']
 #   # => true
 class Color
   class << self
@@ -53,5 +52,3 @@ class Color
   end
 end
 end
-
-Yeah::C = Yeah::Color
