@@ -11,7 +11,7 @@ class Image < Asset
   # @return [Integer] height of image
 
   # @!attribute [r] size
-  # @return [Array<Integer>] size of image
+  # @return [(Integer, Integer)] size of image
 
   # @!method to_n
   # @return [Native] native reference

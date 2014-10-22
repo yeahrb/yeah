@@ -22,8 +22,8 @@ class Display
   # @return [Integer] height of display in pixels
 
   # @!attribute size
-  # @param [Array<Integer>] size to make display in pixels
-  # @return [Array<Integer>] size of display in pixels
+  # @param [(Integer, Integer)] size to make display in pixels
+  # @return [(Integer, Integer)] size of display in pixels
 
   # @!attribute fill_color
   # @param [Color] color for fill

@@ -42,7 +42,7 @@ class Color
     "#{self.class.name}#{value.to_s}"
   end
 
-  # @return [Boolean] whether self matches other color
+  # @return [true, false] whether self matches other color
   def ==(other)
     value == other.value
   end

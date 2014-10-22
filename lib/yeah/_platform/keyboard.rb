@@ -23,15 +23,15 @@ class Keyboard
   end
 
   # @!method pressing?(key)
-  # @param [Symbol, Numeric] key to check
-  # @return [Boolean] whether key is pressed
+  # @param [Symbol, Integer] key to check
+  # @return [true, false] whether key is pressed
 
   # @!method pressed?(key)
-  # @param [Symbol, Numeric] key to check
-  # @return [Boolean] whether key was just pressed
+  # @param [Symbol, Integer] key to check
+  # @return [true, false] whether key was just pressed
 
   # @!method released?(key)
-  # @param [Symbol, Numeric] key to check
-  # @return [Boolean] whether key was just released
+  # @param [Symbol, Integer] key to check
+  # @return [true, false] whether key was just released
 end
 end

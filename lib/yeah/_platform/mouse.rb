@@ -22,18 +22,18 @@ class Mouse
   # @return [Integer] y position of mouse cursor
 
   # @!attribute position [r]
-  # @return [Array<Integer>] position of mouse cursor
+  # @return [(Integer, Integer)] position of mouse cursor
 
   # @!method pressing?(button)
   # @param [Symbol, Numeric] button to check
-  # @return [Boolean] whether button is pressed
+  # @return [true, false] whether button is pressed
 
   # @!method pressed?(button)
   # @param [Symbol, Numeric] button to check
-  # @return [Boolean] whether button was just pressed
+  # @return [true, false] whether button was just pressed
 
   # @!method released?(button)
   # @param [Symbol, Numeric] button to check
-  # @return [Boolean] whether button was just released
+  # @return [true, false] whether button was just released
 end
 end

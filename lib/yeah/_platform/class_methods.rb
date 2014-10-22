@@ -4,6 +4,6 @@ module Yeah
   # @yield [config] configuration block
   # @yieldparam [Struct] configuration
   # @note Configuration struct attributes: `title` (String),
-  #   `factorial_scaling` (Boolean)
+  #   `factorial_scaling` (true, false)
   # @return [nil]
 end
