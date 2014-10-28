@@ -34,6 +34,8 @@ class Color
     else
       @value = args
     end
+
+    @hex = "##{@value.map { |v| v.to_s(16).rjust(2, '0') }.join }"
   end
 
   # @return [String] readable representation
@@ -48,7 +50,7 @@ class Color
 
   # @return [String] color value as a hex string
   def to_hex
-    "##{value.map { |v| v.to_s(16).rjust(2, '0') }.join }"
+    @hex
   end
 end
 end
