@@ -25,6 +25,10 @@ when 'new'
 
   if Dir[project_path].any?
     puts "Error: `#{project_path}` directory already exists."
+
+  elsif name =~ /^\d/
+    puts "Error: name cannot start with a number."
+
   else
     # Use project template for new project directory.
     template_path = File.expand_path('../../lib/yeah/_template', __FILE__)
