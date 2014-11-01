@@ -14,7 +14,11 @@ Practical Ruby video game framework, alpha stage
 * Open source under MIT license
 
 
-## Gallery
+## Early demos
+
+[![Collisions](https://i.imgur.com/KzgTDmn.png)][Collisions]
+
+[*Collisions*][Collisions] by [skofo](https://github.com/skofo) ([code][Collisions code])
 
 [![Leone Mangione](https://cdn.mediacru.sh/VuuuvZYDbPet.png)][Leone Mangione]
 
@@ -68,3 +72,5 @@ API reference: [0.4.2][0.4.2 API], [0.3.5][0.3.5 API]
 [Random code]: https://github.com/skofo/random
 [Leone Mangione]: http://elia.schito.me/yeah-leone-mangione/runner.html
 [Leone Mangione code]: https://github.com/elia/yeah-leone-mangione
+[Collisions]: https://skofo.github.io/collisions
+[Collisions code]: https://github.com/skofo/collisions
