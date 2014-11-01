@@ -12,9 +12,8 @@ class Ticker
   end
 
   def on_tick(&block)
-    # TODO: add to ticks before yielding
     %x{
-      var lastTime = (new Date()).getTime(),
+      var lastTime = new Date().getTime(),
           lastMeasureTime = lastTime,
           elapsed = 0,
           interval,
@@ -26,6 +25,7 @@ class Ticker
         elapsed = (currentTime - lastTime) / 1000.0;
 
         if (elapsed > interval) {
+          // TODO: add to ticks before yielding
           #{yield `elapsed`}
 
           #@tick_count += 1;
