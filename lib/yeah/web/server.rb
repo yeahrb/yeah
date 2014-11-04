@@ -30,6 +30,8 @@ class Server
     assets.append_path 'assets'
     assets.append_path 'code'
 
+    source_maps = Opal::SourceMapServer.new(assets, '/assets')
+
     application = Rack::Builder.new do
       use Rack::Deflater
 
@@ -38,7 +40,7 @@ class Server
       end
 
       map '/assets' do
-        run assets
+        run Rack::Cascade.new([assets, source_maps])
       end
     end
 
