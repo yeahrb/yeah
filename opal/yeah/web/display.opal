@@ -10,7 +10,7 @@ class Display
     @context = `#@canvas.getContext('2d')`
     self.text_font = Font['']
     self.text_size = DEFAULT_DISPLAY_TEXT_SIZE
-    self.size = options.fetch(:size, DEFAULT_DISPLAY_SIZE)
+    self.size = options.fetch(:size, nil)
     @transform = [1, 0, 0, 1, 0, 0]
     @transforms = []
   end
@@ -19,7 +19,9 @@ class Display
     `#@canvas.width`
   end
   def width=(value)
-    `#@canvas.width =  #{value}`
+    @width = value
+    `#@canvas.width = #{value}` unless value.nil?
+    `DISPLAY_EXPLICIT_SIZE = #{@width.nil? && @height.nil?}`
 
     font = "#{@text_size}px \"#{@text_font.path}\""
     `#@context.font = #{font}`
@@ -29,7 +31,9 @@ class Display
     `#@canvas.height`
   end
   def height=(value)
-    `#@canvas.height =  #{value}`
+    @height = value
+    `#@canvas.height = #{value}` unless value.nil?
+    `DISPLAY_EXPLICIT_SIZE = #{@width.nil? && @height.nil?}`
 
     font = "#{@text_size}px \"#{@text_font.path}\""
     `#@context.font = #{font}`
@@ -39,8 +43,15 @@ class Display
     [`#@canvas.width`, `#@canvas.height`]
   end
   def size=(value)
-    `#@canvas.width =  #{value[0]}`
-    `#@canvas.height = #{value[1]}`
+    @width, @height = value
+
+    if value.nil?
+      `DISPLAY_EXPLICIT_SIZE = false`
+    else
+      `#@canvas.width = #{value[0]}`
+      `#@canvas.height = #{value[1]}`
+      `DISPLAY_EXPLICIT_SIZE = true`
+    end
 
     font = "#{@text_size}px \"#{@text_font.path}\""
     `#@context.font = #{font}`
