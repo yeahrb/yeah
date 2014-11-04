@@ -13,6 +13,8 @@ class Display
     self.size = options.fetch(:size, nil)
     @transform = [1, 0, 0, 1, 0, 0]
     @transforms = []
+
+    `DISPLAY = #{self}`
   end
 
   def width
@@ -319,6 +321,37 @@ class Display
 
   def stroke_text(text, x, y)
     `#@context.strokeText(#{text}, #{x}, #{y})`
+  end
+
+  private
+
+  def scale_to_window
+    %x{
+      var canvas = document.getElementsByTagName('canvas')[0];
+
+      if (DISPLAY_EXPLICIT_SIZE) {
+        var widthScale = window.innerWidth / canvas.width,
+            heightScale = window.innerHeight / canvas.height;
+        window.displayScale = Math.min(widthScale, heightScale);
+
+        if (PRESERVE_PIXELS && displayScale >= 1) {
+          displayScale = Math.floor(displayScale);
+        }
+
+        var width = canvas.width * displayScale,
+            height = canvas.height * displayScale,
+            sizeStyle = "width:"+width+"px; height:"+height+"px";
+
+        canvas.setAttribute('style', sizeStyle);
+      } else {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        canvas.setAttribute('style', "");
+      }
+    }
+
+    font = "#{@text_size}px \"#{@text_font.path}\""
+    `#@context.font = #{font}`
   end
 end
 end
