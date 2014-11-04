@@ -8,9 +8,9 @@ class Display
 
     @canvas = `document.querySelectorAll(#{canvas_selector})[0]`
     @context = `#@canvas.getContext('2d')`
-    self.size = options.fetch(:size, DEFAULT_DISPLAY_SIZE)
     self.text_font = Font['']
     self.text_size = DEFAULT_DISPLAY_TEXT_SIZE
+    self.size = options.fetch(:size, DEFAULT_DISPLAY_SIZE)
     @transform = [1, 0, 0, 1, 0, 0]
     @transforms = []
   end
@@ -20,6 +20,9 @@ class Display
   end
   def width=(value)
     `#@canvas.width =  #{value}`
+
+    font = "#{@text_size}px \"#{@text_font.path}\""
+    `#@context.font = #{font}`
   end
 
   def height
@@ -27,6 +30,9 @@ class Display
   end
   def height=(value)
     `#@canvas.height =  #{value}`
+
+    font = "#{@text_size}px \"#{@text_font.path}\""
+    `#@context.font = #{font}`
   end
 
   def size
@@ -35,6 +41,9 @@ class Display
   def size=(value)
     `#@canvas.width =  #{value[0]}`
     `#@canvas.height = #{value[1]}`
+
+    font = "#{@text_size}px \"#{@text_font.path}\""
+    `#@context.font = #{font}`
   end
 
   def fill_color
