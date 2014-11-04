@@ -14,7 +14,7 @@ Practical Ruby video game framework, alpha stage
 * Open source under MIT license
 
 
-## Early demos
+## Demos
 
 [![Collisions](https://i.imgur.com/KzgTDmn.png)][Collisions]
 
