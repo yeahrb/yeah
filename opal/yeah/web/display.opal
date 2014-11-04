@@ -23,7 +23,6 @@ class Display
   def width=(value)
     @width = value
     `#@canvas.width = #{value}` unless value.nil?
-    `DISPLAY_EXPLICIT_SIZE = #{@width.nil? && @height.nil?}`
 
     font = "#{@text_size}px \"#{@text_font.path}\""
     `#@context.font = #{font}`
@@ -35,7 +34,6 @@ class Display
   def height=(value)
     @height = value
     `#@canvas.height = #{value}` unless value.nil?
-    `DISPLAY_EXPLICIT_SIZE = #{@width.nil? && @height.nil?}`
 
     font = "#{@text_size}px \"#{@text_font.path}\""
     `#@context.font = #{font}`
@@ -47,12 +45,9 @@ class Display
   def size=(value)
     @width, @height = value
 
-    if value.nil?
-      `DISPLAY_EXPLICIT_SIZE = false`
-    else
+    unless value.nil?
       `#@canvas.width = #{value[0]}`
       `#@canvas.height = #{value[1]}`
-      `DISPLAY_EXPLICIT_SIZE = true`
     end
 
     font = "#{@text_size}px \"#{@text_font.path}\""
@@ -329,7 +324,11 @@ class Display
     %x{
       var canvas = document.getElementsByTagName('canvas')[0];
 
-      if (DISPLAY_EXPLICIT_SIZE) {
+      if (#{@width.nil?} && #{@height.nil?}) {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        canvas.setAttribute('style', "");
+      } else {
         var widthScale = window.innerWidth / canvas.width,
             heightScale = window.innerHeight / canvas.height;
         window.displayScale = Math.min(widthScale, heightScale);
@@ -343,10 +342,6 @@ class Display
             sizeStyle = "width:"+width+"px; height:"+height+"px";
 
         canvas.setAttribute('style', sizeStyle);
-      } else {
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-        canvas.setAttribute('style', "");
       }
     }
 
