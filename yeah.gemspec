@@ -12,7 +12,7 @@ Gem::Specification.new do |s|
                   "fast to build games with."
 
   s.authors = ["Artur Ostrega"]
-  s.email = 'skoofoo@gmail.com'
+  s.email = 'artur.mariusz.ostrega@gmail.com'
 
   s.files = Dir.glob('{bin,lib,opal}/**/*') +
             %w(LICENSE.txt CHANGELOG.md README.md)
