@@ -2,12 +2,13 @@ module Yeah
 
 # The `Display` is responsible for drawing to a game display. It provides a
 # procedural drawing API similar to Processing or HTML5 Canvas. Its drawing
-# origin is the top-left corner.
+# origin is the top-left corner. Without an explicit size, it fills its entire
+# container.
 # @note Provided by a `Platform`.
 class Display
   # @param [Hash] options for new object
-  # @option options [Integer] :width (1280) of display
-  # @option options [Integer] :height (720) of display
+  # @option options [Integer] :width of display
+  # @option options [Integer] :height of display
   # @option options [String] :canvas_selector ('canvas') for canvas HTML
   #   element (applies only to `Web::Display`)
   def initialize(options = {})
