@@ -9,10 +9,10 @@ module Web
 # The `Web::Server` serves a game over the web. To serve a game, enter
 # `yeah serve` in a command-line within a game project.
 class Server
-  # @param [Integer] port to serve game over
+  # @param [Integer] port for server
   # @return [nil]
-  # Serve game in working directory.
-  def serve(port = 1234)
+  # Start game server for game in working directory.
+  def start(port = 1234)
     Opal::Processor.inline_operators_enabled = true
 
     runner = Runner.new

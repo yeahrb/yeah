@@ -52,7 +52,7 @@ when 'build'
 when 'server'
   require 'yeah/web/server'
   port = ARGV.shift
-  port ? Yeah::Web::Server.new.serve(port) : Yeah::Web::Server.new.serve
+  port ? Yeah::Web::Server.new.start(port) : Yeah::Web::Server.new.start
 
 when 'version'
   require 'yeah/version'
