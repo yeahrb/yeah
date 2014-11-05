@@ -6,12 +6,12 @@ require 'opal'
 module Yeah
 module Web
 
-# The `Web::Server` serves a game over the web. To serve a game, enter
-# `yeah serve` in a command-line within a game project.
+# The `Web::Server` serves a game over the web. To start a game web server,
+# enter `yeah serve` in a command-line within a game project.
 class Server
-  # @param [Integer] port for server
+  # @param [Integer] port
   # @return [nil]
-  # Start game server for game in working directory.
+  # Start web server for game in working directory.
   def start(port = 1234)
     Opal::Processor.inline_operators_enabled = true
 
