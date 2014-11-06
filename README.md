@@ -16,6 +16,10 @@ Practical Ruby video game framework, alpha stage
 
 ## Demos
 
+[![Rogueliek](https://i.imgur.com/HTDnncD.png)][Rogueliek]
+
+[*Rogueliek*][Rogueliek] by [skofo](https://github.com/skofo) ([code][Rogueliek code])
+
 [![Collisions](https://i.imgur.com/KzgTDmn.png)][Collisions]
 
 [*Collisions*][Collisions] by [skofo](https://github.com/skofo) ([code][Collisions code])
@@ -74,3 +78,5 @@ API reference: [0.4.2][0.4.2 API], [0.3.5][0.3.5 API]
 [Leone Mangione code]: https://github.com/elia/yeah-leone-mangione
 [Collisions]: https://skofo.github.io/collisions
 [Collisions code]: https://github.com/skofo/collisions
+[Rogueliek]: https://skofo.github.io/rogueliek
+[Rogueliek code]: https://github.com/skofo/rogueliek
