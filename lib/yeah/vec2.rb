@@ -21,6 +21,8 @@ module Vec2
       Math.sqrt(x ** 2 + y ** 2)
     end
 
+    alias :length :magnitude
+
     # @param [Numeric] x component
     # @param [Numeric] y component
     # @return [Numeric] angle of vector in radians
@@ -28,15 +30,13 @@ module Vec2
       Math.atan2(y, x)
     end
 
-    alias :length :magnitude
-
     # @param [Numeric] x component
     # @param [Numeric] y component
     # @return [(Numeric, Numeric)] vector of same direction with a
     #   magnitude of 1
     def normalize(x, y)
-      magnitude = magnitude(x, y)
-      [x / magnitude, y / magnitude]
+      mag = magnitude(x, y)
+      [x / mag, y / mag]
     end
 
     # @param [Numeric] x component of first vector
