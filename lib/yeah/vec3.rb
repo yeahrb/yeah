@@ -85,7 +85,7 @@ module Vec3
     # @param [Numeric] y component of second vector
     # @param [Numeric] z component of second vector
     # @return [Numeric] vector dot product
-    def dot_product(ax, ay, az, bx, by, bz)
+    def dot(ax, ay, az, bx, by, bz)
       ax * bx + ay * by + az * bz
     end
 
@@ -96,7 +96,7 @@ module Vec3
     # @param [Numeric] y component of second vector
     # @param [Numeric] z component of second vector
     # @return [(Numeric, Numeric, Numeric)] vector dot product
-    def cross_product(ax, ay, az, bx, by, bz)
+    def cross(ax, ay, az, bx, by, bz)
       [ay * bz - az * by, az * bx - ax * bz, ax * by - ay * bx]
     end
 
