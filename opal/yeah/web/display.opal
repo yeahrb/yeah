@@ -211,7 +211,7 @@ class Display
     }
   end
 
-  def stroke_curve(start_x, start_y, end_x, end_y, control1_x, control1_y, control2_x, control2_y)
+  def stroke_curve2(start_x, start_y, end_x, end_y, control1_x, control1_y, control2_x, control2_y)
     %x{
       #@context.beginPath();
       #@context.moveTo(#{start_x}, #{start_y});
