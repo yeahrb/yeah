@@ -78,8 +78,8 @@ module Vec2
     # @param [Numeric] y component of first vector
     # @param [Numeric] x component of second vector
     # @param [Numeric] y component of second vector
-    # @return [Numeric] vector dot product
-    def dot(ax, ay, bx, by)
+    # @return [(Numeric, Numeric)] vector dot product
+    def dot_product(ax, ay, bx, by)
       ax * bx + ay * by
     end
 
