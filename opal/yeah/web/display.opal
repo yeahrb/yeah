@@ -55,7 +55,7 @@ class Display
   end
 
   def fill_color
-    Color[`#@context.fillStyle`]
+    Color.new(`#@context.fillStyle`)
   end
   def fill_color=(color)
     %x{
@@ -65,7 +65,7 @@ class Display
   end
 
   def stroke_color
-    Color[`#@context.strokeStyle`]
+    Color.new(`#@context.strokeStyle`)
   end
   def stroke_color=(color)
     %x{
@@ -97,7 +97,7 @@ class Display
 
   def color_at(x, y)
     data = `#@context.getImageData(#{x}, #{y}, 1, 1).data`
-    Color[`data[0]`, `data[1]`, `data[2]`]
+    Color.new(`data[0]`, `data[1]`, `data[2]`)
   end
 
   def translate(x, y)
