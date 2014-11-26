@@ -108,7 +108,7 @@ module Vec3
     # @param [Numeric] z component of second vector
     # @return [Numeric] distance from first vector to second vector
     def distance_to(ax, ay, az, bx, by, bz)
-      Math.sqrt((ax - bx) ** 2 + (ay - by) ** 2, + (az - bz) ** 2)
+      Math.sqrt((ax - bx) ** 2 + (ay - by) ** 2 + (az - bz) ** 2)
     end
   end
 end
