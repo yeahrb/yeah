@@ -3,18 +3,9 @@ module Yeah
 # A `Color` represents a color with an alpha value.
 #
 # @example Comparing two colors
-#   Color[100, 100, 100] == Color['#646464']
+#   Color.new(100, 100, 100) == Color.new('#646464')
 #   # => true
 class Color
-  class << self
-    # @param arguments catch-all
-    # @return [Color]
-    # Alias for ::new.
-    def [](*args)
-      new(*args)
-    end
-  end
-
   # @return [Array] color value in RGBA format
   attr_reader :value
 
