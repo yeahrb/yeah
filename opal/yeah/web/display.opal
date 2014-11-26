@@ -58,14 +58,20 @@ class Display
     Color[`#@context.fillStyle`]
   end
   def fill_color=(color)
-    `#@context.fillStyle = #{color.to_hex}`
+    %x{
+      var value = #{color.value};
+      #@context.fillStyle = 'rgba(' + value + ')';
+    }
   end
 
   def stroke_color
     Color[`#@context.strokeStyle`]
   end
   def stroke_color=(color)
-    `#@context.strokeStyle = #{color.to_hex}`
+    %x{
+      var value = #{color.value};
+      #@context.strokeStyle = 'rgba(' + value + ')';
+    }
   end
 
   def stroke_width
