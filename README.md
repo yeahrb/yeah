@@ -2,7 +2,9 @@
 
 Practical Ruby video game framework, alpha stage
 
-Project has been stalled after gaining a better understanding of the problem space. I started this to help me build great games. However, at some point it became clear to me that Yeah's fundamental design is not very practical for creating great games. A Processing-like drawing API is useful for drawing simple abstract graphics, though not much beyond that. A game's level of quality actually has nothing to do with its level of support for multiple disparate platforms. Ruby's flexibility comes at a non-trivial computational cost, which can be adequately worked around in a web app, but much less so in a video game. In light of this, I don't plan to continue working on Yeah. For your Ruby game prototyping needs, I recommend using [ruby-processing](https://github.com/jashkenas/ruby-processing), which has a similar but richer drawing API and is more mature & stable.
+Project has been stalled after gaining a better understanding of the problem space and programming. I started this to help me build awesome games quickly and easily. However, I found that Yeah's fundamental design is too abstracted from the hardware to perform well as a base for video games. 
+
+A gem with a drawing API similar to Yeah's is [ruby-processing](https://github.com/jashkenas/ruby-processing).
 
 ## Features
 
