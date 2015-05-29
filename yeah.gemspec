@@ -7,25 +7,23 @@ require 'yeah/version'
 Gem::Specification.new do |s|
   s.name = 'yeah'
   s.version = Yeah::VERSION
-  s.summary = "Practical Ruby video game framework"
-  s.description = "Video game framework designed to be easy to learn and " +
-                  "fast to build games with."
+  s.summary = "Ruby video game framework"
 
-  s.authors = ["Artur Ostrega"]
+  s.author = "Artur Ostręga"
   s.email = 'artur.mariusz.ostrega@gmail.com'
 
   s.files = Dir.glob('{bin,lib,opal}/**/*') +
-            %w(LICENSE.txt CHANGELOG.md README.md)
+            %w(LICENSE.txt CHANGELOG.md UPGRADING.md README.md)
   s.executables = ['yeah']
 
   s.homepage = 'https://github.com/yeahrb/yeah'
   s.license = 'MIT'
 
-  s.add_runtime_dependency 'opal', '~> 0.7.0.beta1'
+  s.add_runtime_dependency 'opal', '~> 0.7.2'
 
-  s.add_development_dependency 'rake', '~> 10.3.1'
-  s.add_development_dependency 'minitest', '~> 5.3.2'
+  s.add_development_dependency 'rake', '~> 10.3.2'
+  s.add_development_dependency 'minitest', '~> 5.3.5'
   s.add_development_dependency 'opal-minitest', '~> 0.0.4'
-  s.add_development_dependency 'yard', '~> 0.8.7.2'
-  s.add_development_dependency 'kramdown', '~> 1.4.1'
+  s.add_development_dependency 'yard', '~> 0.8.7.6'
+  s.add_development_dependency 'kramdown', '~> 1.4.2'
 end
