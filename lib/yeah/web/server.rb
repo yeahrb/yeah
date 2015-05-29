@@ -2,6 +2,7 @@ require 'pathname'
 require 'erb'
 require 'rack'
 require 'opal'
+require 'opal/sprockets/environment'
 
 module Yeah
 module Web
