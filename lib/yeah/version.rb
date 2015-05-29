@@ -1,3 +1,3 @@
 module Yeah
-  VERSION = '0.4.3.dev'
+  VERSION = '0.5.0.dev'
 end
