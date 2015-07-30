@@ -1,1 +1,21 @@
 #!/usr/bin/env ruby
+
+command = ARGV.shift
+
+case command
+
+when 'run'
+  puts "todo"
+
+when 'version'
+  require 'yeah/version'
+  puts Yeah::VERSION
+
+else
+  puts "Usage:"
+  puts "  yeah <command>"
+  puts ""
+  puts "Commands:"
+  puts "  run - Run game project with web runner."
+  puts "  version - Print installed version of Yeah."
+end
