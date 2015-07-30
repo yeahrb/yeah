@@ -1,2 +1,0 @@
-require 'opal'
-require 'yeah'
