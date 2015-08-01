@@ -18,4 +18,6 @@ Gem::Specification.new do |s|
 
   s.homepage = 'https://github.com/yeahrb/yeah'
   s.license = 'MIT'
+
+  s.add_runtime_dependency 'yeah-web', '~> 0.5.0.dev'
 end

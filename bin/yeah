@@ -4,8 +4,9 @@ command = ARGV.shift
 
 case command
 
-when 'run'
-  puts "todo"
+when 'server'
+  require 'yeah-web'
+  Yeah::Web::Server.new
 
 when 'version'
   require 'yeah/version'
@@ -16,6 +17,6 @@ else
   puts "  yeah <command>"
   puts ""
   puts "Commands:"
-  puts "  run - Run game project with web runner."
+  puts "  server - Start web server for game project."
   puts "  version - Print installed version of Yeah."
 end
