@@ -1,8 +1,5 @@
 **/.*
-Gemfile.lock
 *.gem
-doc/
+Gemfile.lock
 vendor/bundle/
-bin/*
-!bin/yeah
 tmp/
