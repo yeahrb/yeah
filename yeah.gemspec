@@ -9,8 +9,8 @@ Gem::Specification.new do |s|
   s.version = Yeah::VERSION
   s.summary = "Ruby video game framework"
 
-  s.author = "Artur M. Ostręga"
-  s.email = 'artur.mariusz.ostrega@gmail.com'
+  s.author = "Artur Ostręga"
+  s.email = 'artmarost@gmail.com'
 
   s.files = Dir.glob('{bin,lib}/**/*') +
             %w(LICENSE.txt CHANGELOG.md UPGRADING.md README.md)
