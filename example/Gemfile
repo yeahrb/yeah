@@ -1,0 +1,6 @@
+source 'https://rubygems.org'
+
+gem 'yeah', github: 'yeahrb/yeah'
+#gem 'yeah', path: '../'
+gem 'yeah-web', github: 'yeahrb/yeah-web'
+gem 'opal', github: 'opal/opal'
