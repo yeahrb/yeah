@@ -1,6 +1,6 @@
 # Example Game
 
-A barebones example game included with Yeah.
+Barebones example game for Yeah
 
 ## Usage
 
@@ -14,4 +14,4 @@ Start a web server for the game.
 
 Finally, visit [http://localhost:1234](http://localhost:1234) to run the game in your web browser.
 
-Note: graphical output is in the works.
+Note: graphical output in the game framework is in the works.
