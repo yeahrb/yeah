@@ -1,8 +1,7 @@
-class ExampleGame < Yeah::Game
-  def initialize
-    super
+require 'spaces/world' #
 
-    puts "Hello!"
-    display.size = 320, 240
-  end
+class Example < Yeah::Game
+#class Example < Game
+  display.size = 320, 240
+  self.space = World
 end

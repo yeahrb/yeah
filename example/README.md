@@ -1,6 +1,6 @@
 # Example Game
 
-Barebones example game for Yeah
+Barebones example game for Yeah, a work in progress
 
 ## Usage
 
