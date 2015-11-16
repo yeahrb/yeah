@@ -6,6 +6,7 @@ class Duck < Yeah::Thing #
   self.look = DuckLook #
 
   def act(input, space)
-    puts "Quack" if rand > 0.8
+    self.x += 3
+    puts "Quack" if rand > 0.5
   end
 end
