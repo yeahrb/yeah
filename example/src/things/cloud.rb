@@ -4,7 +4,7 @@ class Cloud < Yeah::Thing #
 #class Cloud < Thing
   self.look = CloudLook #
 
-  def act(input, space)
-    self.x -= 1
+  def act(input, space, elapsed)
+    self.x -= 10 * elapsed
   end
 end

@@ -5,8 +5,7 @@ class Duck < Yeah::Thing #
 #class Duck < Thing
   self.look = DuckLook #
 
-  def act(input, space)
-    self.x += 3
-    puts "Quack" if rand > 0.5
+  def act(input, space, elapsed)
+    self.x += 30 * elapsed
   end
 end
