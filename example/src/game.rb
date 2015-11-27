@@ -1,7 +1,7 @@
 require 'spaces/world' #
 
-class Example < Yeah::Game
-#class Example < Game
+class Game < Yeah::Game
+  self.title = "Example Game"
   display.size = 640, 360
   self.space = World
 end
