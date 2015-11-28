@@ -16,6 +16,7 @@ class Duck < Yeah::Thing #
 
     if keyboard.released? :space
       puts "Quack!"
+      space.color = rand, rand, rand
     end
   end
 
