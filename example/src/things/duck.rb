@@ -23,6 +23,11 @@ class Duck < Yeah::Thing #
       puts "*flap flap*"
       self.position = mouse.position
     end
+
+    if mouse.pressed? :middle
+      display.width += 10
+      display.height += 10
+    end
   end
 
   def speed
