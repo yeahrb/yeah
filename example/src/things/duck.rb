@@ -18,6 +18,11 @@ class Duck < Yeah::Thing #
       puts "Quack!"
       space.color = rand, rand, rand
     end
+
+    if mouse.released? :left
+      puts "*flap flap*"
+      self.position = mouse.position
+    end
   end
 
   def speed
