@@ -6,14 +6,6 @@ class Duck < Yeah::Thing #
   self.look = DuckLook #
 
   def act(elapsed)
-    if keyboard.pressing? :left
-      self.x -= speed * elapsed
-    end
-
-    if keyboard.pressing? :right
-      self.x += speed * elapsed
-    end
-
     if keyboard.released? :space
       puts "Quack!"
       space.color = rand, rand, rand
@@ -28,6 +20,8 @@ class Duck < Yeah::Thing #
       display.width += 10
       display.height += 10
     end
+
+    self.x += speed * elapsed
   end
 
   def speed
