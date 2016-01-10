@@ -1,6 +1,6 @@
 # Yeah
 
-Ruby video game framework, in revision
+Ruby video game framework, alpha stage
 
 [Latest release (alpha version 0.4.2)](https://github.com/yeahrb/yeah/tree/0.4.2#readme)
 
