@@ -1,4 +1,3 @@
-require 'yeah/thing' #
 require 'looks/guy_look' #
 
 class Guy < Yeah::Thing
@@ -6,38 +5,39 @@ class Guy < Yeah::Thing
   self.look = GuyLook #
 
   def act(elapsed)
-    walked = false
-
-    if keyboard.pressing? :left
-      look.animation = :walk_left
-      self.x -= speed * elapsed
-      walked = true
-    end
+    walking = false
 
     if keyboard.pressing? :right
-      look.animation = :walk_right
       self.x += speed * elapsed
-      walked = true
+      look.animation = :walk_right if keyboard.pressed? :right
+      walking = true
     end
 
-    if keyboard.pressing? :down
-      look.animation = :walk_down
-      self.y -= speed * elapsed
-      walked = true
+    if keyboard.pressing? :left
+      self.x -= speed * elapsed
+      look.animation = :walk_left if keyboard.pressed? :left
+      walking = true
     end
 
     if keyboard.pressing? :up
-      look.animation = :walk_up
       self.y += speed * elapsed
-      walked = true
+      look.animation = :walk_up if keyboard.pressed? :up
+      walking = true
     end
 
-    unless walked
-      look.animation = :stand_left if keyboard.released? :left
-      look.animation = :stand_right if keyboard.released? :right
-      look.animation = :stand_down if keyboard.released? :down
-      look.animation = :stand_up if keyboard.released? :up
+    if keyboard.pressing? :down
+      self.y -= speed * elapsed
+      look.animation = :walk_down if keyboard.pressed? :down
+      walking = true
     end
+
+    unless walking
+      look.animation = :stand_right if keyboard.released? :right
+      look.animation = :stand_left if keyboard.released? :left
+      look.animation = :stand_up if keyboard.released? :up
+      look.animation = :stand_down if keyboard.released? :down
+    end
+
   end
 
   def speed

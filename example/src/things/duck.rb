@@ -1,4 +1,3 @@
-require 'yeah/thing' #
 require 'looks/duck_look' #
 
 class Duck < Yeah::Thing #

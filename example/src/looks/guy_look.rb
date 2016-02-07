@@ -1,18 +1,16 @@
-require 'yeah/sprite_look' #
-
 class GuyLook < Yeah::SpriteLook #
-#class GuyLook < ImageLook
-  self.image = "guy.png" #
+#class GuyLook < SpriteLook
+  self.image = Yeah::Image['guy.png'] #
   self.size = 64, 64
 
   self.animations = {
-    walk_up: (0..8),
-    walk_left: (9..17),
-    walk_down: (18..26),
-    walk_right: { frames: (27..35), mirror_x: false },
     stand_up: 0,
     stand_left: 9,
     stand_down: 18,
-    stand_right: 27
+    stand_right: 27,
+    walk_up: (0..8),
+    walk_left: (9..17),
+    walk_down: (18..26),
+    walk_right: (27..35)
   }
 end

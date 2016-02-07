@@ -1,4 +1,3 @@
-require 'yeah/thing' #
 require 'looks/cloud_look' #
 
 class Cloud < Yeah::Thing #
