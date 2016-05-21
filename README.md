@@ -2,8 +2,10 @@
 
 Ruby video game framework, work in progress
 
-[Demos](https://github.com/yeahrb/yeah/wiki/Demos)
+[Games & demos](https://github.com/yeahrb/yeah/wiki/Games-&-demos)
 
-[Latest alpha release (0.4.2)](https://github.com/yeahrb/yeah/tree/0.4.2#readme)
+[Latest release (0.4.2)](https://github.com/yeahrb/yeah/tree/0.4.2#readme)
 
-[Yeah Web](https://github.com/yeahrb/yeah-web)
+## Platforms
+
+[Web](https://github.com/yeahrb/yeah-web)
